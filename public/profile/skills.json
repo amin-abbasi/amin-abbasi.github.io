@@ -1,0 +1,178 @@
+{
+  "intro": "I love to learn new things and experiment with new technologies.\nThese are some of the major languages, technologies, tools and platforms I have worked with:",
+  "skills": [
+    {
+      "title": "Back-end Languages & Frameworks",
+      "items": [
+        {
+          "icon": "images/skills/js.png",
+          "title": "JavaScript"
+        },
+        {
+          "icon": "images/skills/typescript.png",
+          "title": "Typescript"
+        },
+        {
+          "icon": "images/skills/nodejs.svg",
+          "title": "Nodejs"
+        },
+        {
+          "icon": "images/skills/python.png",
+          "title": "Python"
+        },
+        {
+          "icon": "images/skills/django.png",
+          "title": "Django"
+        },
+        {
+          "icon": "images/skills/golang.svg",
+          "title": "Golang"
+        },
+        {
+          "icon": "images/skills/rabbit-mq.svg",
+          "title": "RabbitMQ"
+        }
+      ]
+    },
+    {
+      "title": "Databases",
+      "items": [
+        {
+          "icon": "images/skills/mongo-db.png",
+          "title": "MongoDB"
+        },
+        {
+          "icon": "images/skills/couchdb.svg",
+          "title": "CouchDB"
+        },
+        {
+          "icon": "images/skills/arangodb.png",
+          "title": "ArangoDB"
+        },
+        {
+          "icon": "images/skills/mysql.png",
+          "title": "MySQL"
+        },
+        {
+          "icon": "images/skills/postgresql.svg",
+          "title": "PostgreSQL"
+        },
+        {
+          "icon": "images/skills/redis.svg",
+          "title": "Redis"
+        }
+      ]
+    },
+    {
+      "title": "Front-end Languages & Frameworks",
+      "items": [
+        {
+          "icon": "images/skills/html.png",
+          "title": "HTML"
+        },
+        {
+          "icon": "images/skills/css.png",
+          "title": "CSS"
+        },
+        {
+          "icon": "images/skills/js.png",
+          "title": "JavaScript"
+        },
+        {
+          "icon": "images/skills/typescript.png",
+          "title": "Typescript"
+        },
+        {
+          "icon": "images/skills/react.png",
+          "title": "React"
+        },
+        {
+          "icon": "images/skills/redux.svg",
+          "title": "Redux"
+        }
+      ]
+    },
+    {
+      "title": "DevOps Engineering Tools",
+      "items": [
+        {
+          "icon": "images/skills/bash.svg",
+          "title": "Bash"
+        },
+        {
+          "icon": "images/skills/docker.png",
+          "title": "Docker"
+        },
+        {
+          "icon": "images/skills/nginx.svg",
+          "title": "Nginx"
+        },
+        {
+          "icon": "images/skills/linux.svg",
+          "title": "Linux"
+        },
+        {
+          "icon": "images/skills/ubuntu.svg",
+          "title": "Ubuntu"
+        },
+        {
+          "icon": "images/skills/aws.svg",
+          "title": "AWS"
+        },
+        {
+          "icon": "images/skills/azure.svg",
+          "title": "Azure"
+        },
+        {
+          "icon": "images/skills/firebase.png",
+          "title": "Firebase"
+        },
+        {
+          "icon": "images/skills/openshift.png",
+          "title": "OpenShift"
+        },
+        {
+          "icon": "images/skills/cloudflare.png",
+          "title": "Cloudflare"
+        }
+      ]
+    },
+    {
+      "title": "Tools, Frameworks & Platforms",
+      "items": [
+        {
+          "icon": "images/skills/jest.svg",
+          "title": "Jest"
+        },
+        {
+          "icon": "images/skills/jira.svg",
+          "title": "Jira"
+        },
+        {
+          "icon": "images/skills/vscode.svg",
+          "title": "VS-Code"
+        },
+        {
+          "icon": "images/skills/git.png",
+          "title": "Git"
+        },
+        {
+          "icon": "images/skills/github.svg",
+          "title": "Github"
+        },
+        {
+          "icon": "images/skills/gitlab.svg",
+          "title": "Gitlab"
+        },
+        {
+          "icon": "images/skills/socket-io.svg",
+          "title": "Socket-IO"
+        },
+        {
+          "icon": "images/skills/graphql.svg",
+          "title": "GraphQL"
+        }
+      ]
+    }
+  ]
+}
