@@ -1,0 +1,102 @@
+{
+  "experiences": [
+    {
+      "title": "Backend Software Engineer",
+      "subtitle": "DANNIE.CC, Antalya, Turkey",
+      "workType": "Full-time",
+      "workDescription": [
+        "Spearheading the development of robust backend systems in Node.js, Typescript, and JavaScript for precise processing in computer vision electronics.",
+        "Driving scalable software design in Node.js, ensuring seamless user experiences for interactive panels.",
+        "Launching the development of tracking applications using Node.js, Typescript, JavaScript, and ArangoDB to achieve precise data interpretation.",
+        "Engaging in the architecture of computing hardware backends with Node.js and WebSocket, prioritizing performance and reliability."
+      ],
+      "dateText": "12/2022 - 12/2023"
+    },
+    {
+      "title": "Backend Software Engineer",
+      "subtitle": "Actimi Co., Antalya, Turkey",
+      "workType": "Full-time",
+      "workDescription": [
+        "Write and optimize code to support speed and scalability of FHIR-based web application.",
+        "Conducted code reviews and identified areas for improvement.",
+        "Investigate and resolved production issues.",
+        "Implement new features and functionality.",
+        "Work closely with front-end and mobile developers to ensure seamless integration."
+      ],
+      "dateText": "12/2022 - 12/2023"
+    },
+    {
+      "title": "Software Engineer, Architect, & Consultant",
+      "subtitle": "Freelance, Worldwide",
+      "workType": "Contracts",
+      "workDescription": [
+        "Analyzed and discovered solutions on Cryptocurrency projects.",
+        "Put in place the best scenarios for OTC, p2p, and HD wallet solutions.",
+        "Advised clients on the best architecture for their needs, taking into account performance, scalability, and cost.",
+        "Created reports on project progress and requirement to plan new features.",
+        "Investigated and resolved defects raised by users and other developers."
+      ],
+      "dateText": "01/2022 - 12/2022"
+    },
+    {
+      "title": "Lead Software Engineer",
+      "subtitle": "Digialpha Co., Tehran, Iran",
+      "workType": "Full-time",
+      "workDescription": [
+        "Designed and built high-performance, scalable back-end architecture for 3 Cryptocurrency projects.",
+        "Doubled micro-services communication speed by queueing messages using RabbitMQ.",
+        "Led and collaborated with an 8-member cross-functional team.",
+        "Put in place the best scenarios for copy-trading and peer-to-peer exchange solutions.",
+        "Created reports on project progress and requirement to plan new features."
+      ],
+      "dateText": "06/2021 - 04/2022"
+    },
+    {
+      "title": "Lead Software Engineer",
+      "subtitle": "Mobisoft Co., Tehran, Iran",
+      "workType": "Full-time",
+      "workDescription": [
+        "Led back-end team to evaluate and implement solutions on a Social Network project with 14 REST-API micro-services.",
+        "Collaborated to increase the efficiency of using WebRTC in the project by 40%.",
+        "Managed and guided a 12-member cross-functional team.",
+        "Assessed project progress, identified conflicts, and prepared detailed weekly reports."
+      ],
+      "dateText": "05/2020 - 05/2021"
+    },
+    {
+      "title": "Software Engineer",
+      "subtitle": "Irantom Co., Tehran, Iran",
+      "workType": "Full-time",
+      "workDescription": [
+        "Analyzed system solutions based on client requirements with 12 members development team.",
+        "Led back-end team to plan, develop, test, and deploy 34 REST API micro-services.",
+        "Prepared detailed daily reports on project specifications, progress, and identified conflicts.",
+        "Defined and translated user requirements into implementation plans every two weeks sprint.",
+        "Reduced API documentation production time by 40% using Swagger (Open API)."
+      ],
+      "dateText": "09/2018 - 12/2019"
+    },
+    {
+      "title": "Software Engineer",
+      "subtitle": "Pixels & Code Co., Tehran, Iran",
+      "workType": "Full-time",
+      "workDescription": [
+        "Collaborated with multiple teams to analyze and implement services based on client needs.",
+        "Developed, tested and deployed 6-7 web projects for domestic and international clients.",
+        "Represented the web development team in weekly meetings with executives to discuss project goals and milestones."
+      ],
+      "dateText": "09/2017 - 09/2018"
+    },
+    {
+      "title": "Software Engineer",
+      "subtitle": "Freelance, Tehran, Iran",
+      "workType": "Freelance",
+      "workDescription": [
+        "Analyzed, designed, and executed multiple software and web applications.",
+        "Adjusted software parameters and incorporated new features to boost performance by at least 20%.",
+        "Technology Stack: MATLAB, C++, C#, ASP.NET, PHP, HTML, CSS, JavaScript."
+      ],
+      "dateText": "05/2015 - 09/2017"
+    }
+  ]
+}

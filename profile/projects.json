@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "image": "images/projects/typescript-boilerplate-image.png",
+      "title": "Typescript Boilerplate",
+      "bodyText": "- Server-side boilerplate using Typescript, MongoDB, Redis, & more...\n -  Fully customizable and dynamic, easily change data structure.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/typescript-boilerplate"
+        }
+      ],
+      "tags": ["Typescript", "Nodejs", "MongoDB", "Redis"]
+    }
+  ]
+}
