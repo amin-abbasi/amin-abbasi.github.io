@@ -15,7 +15,7 @@
   height: 100%;
   background-image: url('./home.jpg');
   background-size: cover;
-  filter: blur(3px); /* Adjust the blur amount as needed */
+  /*filter: blur(3px); /* Adjust the blur amount as needed */
   transition: opacity 1s ease-in-out; /* Add a fade-in transition */
 }
 

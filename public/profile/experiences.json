@@ -1,20 +1,20 @@
 {
   "experiences": [
     {
-      "title": "Backend Software Engineer",
-      "subtitle": "DANNIE.CC, Antalya, Turkey",
+      "title": "Senior Backend Software Engineer",
+      "subtitle": "Dannie.CC, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
         "Spearheading the development of robust backend systems in Node.js, Typescript, and JavaScript for precise processing in computer vision electronics.",
         "Driving scalable software design in Node.js, ensuring seamless user experiences for interactive panels.",
-        "Launching the development of tracking applications using Node.js, Typescript, JavaScript, and ArangoDB to achieve precise data interpretation.",
-        "Engaging in the architecture of computing hardware backends with Node.js and WebSocket, prioritizing performance and reliability."
+        "Launching the development of tracking applications using Typescript and ArangoDB to achieve precise data interpretation.",
+        "Engaging in the architecture of computing hardware backends, prioritizing performance and reliability."
       ],
-      "dateText": "12/2022 - 12/2023"
+      "dateText": "12/2023 - Present"
     },
     {
       "title": "Backend Software Engineer",
-      "subtitle": "Actimi Co., Antalya, Turkey",
+      "subtitle": "Actimi GmbH, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
         "Write and optimize code to support speed and scalability of FHIR-based web application.",
