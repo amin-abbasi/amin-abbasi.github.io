@@ -14,10 +14,11 @@ const styles = {
   ulStyle: {
     listStylePosition: 'outside',
     paddingLeft: 20,
+    marginBottom: 0,
   },
   subtitleContainerStyle: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
   },
   subtitleStyle: {
     display: 'inline-block',
@@ -27,6 +28,9 @@ const styles = {
   },
   itemStyle: {
     marginBottom: 10,
+  },
+  liStyle: {
+    marginBottom: -15,
   },
 };
 
@@ -82,7 +86,7 @@ function Experience(props) {
                       <ul style={styles.ulStyle}>
                         {item.workDescription.map((point) => (
                           <div key={point}>
-                            <li>
+                            <li style={styles.liStyle}>
                               <ReactMarkdown
                                 children={point}
                                 components={{

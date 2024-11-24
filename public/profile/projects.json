@@ -27,11 +27,15 @@
     {
       "image": "images/projects/gach.png",
       "title": "Gach Package",
-      "bodyText": "- A package to colorize your terminal text messages\n- Pre-defined system font & background colors (red, green, ...).\n- Set font color using 'rgb' and 'hex'.\n- Nested functions ability",
+      "bodyText": "- A package to colorize your terminal text messages\n- Pre-defined system font & background colors (red, green, ...).\n- Set font color using 'rgb' and 'hex'.\n- Nested functions for chaining styles.\n- Custom styles can be applied using an object for more flexibility.",
       "links": [
         {
           "text": "GitHub",
           "href": "https://github.com/amin-abbasi/gach"
+        },
+        {
+          "text": "NPM",
+          "href": "https://www.npmjs.com/package/gach"
         }
       ],
       "tags": ["Javascript", "Typescript", "Nodejs", "Terminal"]

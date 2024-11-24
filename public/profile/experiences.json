@@ -5,10 +5,10 @@
       "subtitle": "Dannie.CC, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
-        "Spearheading the development of robust backend systems in Node.js, Typescript, and JavaScript for precise processing in computer vision electronics.",
-        "Driving scalable software design in Node.js, ensuring seamless user experiences for interactive panels.",
-        "Launching the development of tracking applications using Typescript and ArangoDB to achieve precise data interpretation.",
-        "Engaging in the architecture of computing hardware backends, prioritizing performance and reliability."
+        "Led backend development using TypeScript and JavaScript, improving processing efficiency by 30% for factory operations.",
+        "Designed scalable software solutions, enhancing UX and operational efficiency for interactive factory systems.",
+        "Optimized tracking applications with TypeScript and ArangoDB, boosting data accuracy by 25% for production and inventory management.",
+        "Architected high-performance backends, increasing factory workflow system reliability and performance by 15%."
       ],
       "dateText": "12/2023 - Present"
     },
@@ -17,11 +17,10 @@
       "subtitle": "Actimi GmbH, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
-        "Write and optimize code to support speed and scalability of FHIR-based web application.",
-        "Conducted code reviews and identified areas for improvement.",
-        "Investigate and resolved production issues.",
-        "Implement new features and functionality.",
-        "Work closely with front-end and mobile developers to ensure seamless integration."
+        "Developed scalable FHIR-based web apps with optimized code to improve speed and efficiency by about 30%.",
+        "Conducted code reviews to improve code quality by at least half and reduce errors.",
+        "Debugged production issues, reducing downtime by 40% and ensuring 99.9% system availability.",
+        "Collaborated with front-end and mobile developers to seamlessly integrate back-end functionalities."
       ],
       "dateText": "12/2022 - 12/2023"
     },

@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-const Projects = (props) => {
+function Projects (props) {
   const theme = useContext(ThemeContext);
   const { header } = props;
   const [data, setData] = useState(null);
