@@ -78,7 +78,8 @@ export interface ExperiencesData {
 export interface Project {
   id: number;
   title: string;
-  description: string;
+  description?: string;
+  bodyText?: string;
   image?: string;
   tags?: string[];
   source?: string;
