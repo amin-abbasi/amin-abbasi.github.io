@@ -1,101 +1,109 @@
 {
   "experiences": [
     {
+      "title": "Lead Software Engineer",
+      "subtitle": "Dannie.CC, Antalya, Turkey",
+      "workType": "Full-time",
+      "workDescription": [
+        "Drove ERP and MES architectural evolution by breaking down a monolithic platform into independently deployable services, improving maintainability and cutting feature delivery time from 1 month to 1 week.",
+        "Maintained 99.99% uptime and improved sprint predictability by implementing structured code reviews, standardizing CI/CD pipelines, and redefining hybrid individual and team KPIs.",
+        "Streamlined backend workflows to double processing speeds for high-volume factory operations.",
+        "Mentored 3 junior-to-mid-level engineers, establishing a peer-review culture that reduced 'knowledge silos' and empowered the team to take ownership of service deployments.",
+        "Played a key role in securing the company’s IATF 16949 certification by designing and documenting software workflows that met rigorous automotive quality standards.",
+        "Designed scalable software solutions, enhancing UX and operational efficiency for interactive factory systems."
+      ],
+      "dateText": "01/2025 - Present"
+    },
+    {
       "title": "Senior Backend Software Engineer",
       "subtitle": "Dannie.CC, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
-        "Led backend development using TypeScript and JavaScript, improving processing efficiency by 30% for factory operations.",
-        "Designed scalable software solutions, enhancing UX and operational efficiency for interactive factory systems.",
-        "Optimized tracking applications with TypeScript and ArangoDB, boosting data accuracy by 25% for production and inventory management.",
-        "Architected high-performance backends, increasing factory workflow system reliability and performance by 15%."
+        "Spearheaded the migration of the core platform from JavaScript to TypeScript, resolving architectural ambiguity and improving code maintainability by introducing strict type-safety across complex data fragments.",
+        "Halved system latency from 120ms to 60ms, successfully managing peak loads of over 1,500 requests per second.",
+        "Built a zero-latency WebSocket architecture to power real-time production tracking across 24/7 manufacturing lines.",
+        "Optimized tracking applications with TypeScript and ArangoDB, boosting data accuracy by 25% for production and inventory management."
       ],
-      "dateText": "12/2023 - Present"
+      "dateText": "12/2023 - 01/2025"
     },
     {
-      "title": "Backend Software Engineer",
+      "title": "Senior Backend Software Engineer",
       "subtitle": "Actimi GmbH, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
+        "Re-engineered PostgreSQL schemas and optimized complex query execution plans for a FHIR-based senior care platform, reducing data retrieval latency by 30%.",
+        "Developed a remote fleet management system via Zoho MDM to automate updates and reboots for distributed tablets, ensuring 100% system consistency across all devices.",
+        "Migrated to an automated GCP CI/CD pipeline to streamline deployments and reduce integration defects by 20%.",
         "Developed scalable FHIR-based web apps with optimized code to improve speed and efficiency by about 30%.",
-        "Conducted code reviews to improve code quality by at least half and reduce errors.",
+        "Conducted code reviews to improve code quality and reduce errors.",
         "Debugged production issues, reducing downtime by 40% and ensuring 99.9% system availability.",
         "Collaborated with front-end and mobile developers to seamlessly integrate back-end functionalities."
       ],
       "dateText": "12/2022 - 12/2023"
     },
     {
-      "title": "Software Engineer, Architect, & Consultant",
-      "subtitle": "Freelance, Worldwide",
+      "title": "Freelance Architect & Technical Consultant",
+      "subtitle": "Remote (US-based Clients)",
       "workType": "Contracts",
       "workDescription": [
-        "Analyzed and discovered solutions on Cryptocurrency projects.",
-        "Put in place the best scenarios for OTC, p2p, and HD wallet solutions.",
-        "Advised clients on the best architecture for their needs, taking into account performance, scalability, and cost.",
-        "Created reports on project progress and requirement to plan new features.",
+        "Audited and enhanced 4 Cryptocurrency platforms, delivering 30% performance improvement.",
+        "Designed and implemented secure OTC, P2P, and HD wallet solutions, reducing development cost by more than half.",
+        "Resolved more than 50 major architectural flaws by standardizing core components.",
+        "Advised clients on best architecture for performance, scalability, and cost.",
+        "Created reports on project progress and requirements to plan new features.",
         "Investigated and resolved defects raised by users and other developers."
       ],
-      "dateText": "01/2022 - 12/2022"
+      "dateText": "06/2022 - 12/2022"
     },
     {
       "title": "Lead Software Engineer",
-      "subtitle": "Digialpha Co., Tehran, Iran",
+      "subtitle": "DigiAlpha, Tehran, Iran",
       "workType": "Full-time",
       "workDescription": [
-        "Designed and built high-performance, scalable back-end architecture for 3 Cryptocurrency projects.",
-        "Doubled micro-services communication speed by queueing messages using RabbitMQ.",
-        "Led and collaborated with an 8-member cross-functional team.",
+        "Delivered crypto exchange, OTC, and copy-trading solutions, driving over 30% performance gains.",
+        "Re-architected microservices communication with RabbitMQ, enabling event-driven processing and doubling inter-service throughput under production load.",
+        "Scaled the engineering team from 4 to 9 developers, providing technical leadership and architectural oversight.",
+        "Designed and built high-performance, scalable back-end architecture for multiple Cryptocurrency projects.",
         "Put in place the best scenarios for copy-trading and peer-to-peer exchange solutions.",
-        "Created reports on project progress and requirement to plan new features."
+        "Created reports on project progress and requirements to plan new features."
       ],
-      "dateText": "06/2021 - 04/2022"
+      "dateText": "06/2021 - 06/2022"
     },
     {
-      "title": "Lead Software Engineer",
-      "subtitle": "Mobisoft Co., Tehran, Iran",
+      "title": "Lead BackEnd Software Engineer",
+      "subtitle": "Mobisoft, Tehran, Iran",
       "workType": "Full-time",
       "workDescription": [
-        "Led back-end team to evaluate and implement solutions on a Social Network project with 14 REST-API micro-services.",
-        "Collaborated to increase the efficiency of using WebRTC in the project by 40%.",
-        "Managed and guided a 12-member cross-functional team.",
-        "Assessed project progress, identified conflicts, and prepared detailed weekly reports."
+        "Took ownership of a social networking platform across web, iOS, and Android, leading a 12-member team.",
+        "Led project reviews and conflict resolution, maintaining consistent on-time delivery across weekly release cycles.",
+        "Improved WebRTC signalling protocols for multi-party video conferencing to boost efficiency by 40%.",
+        "Managed and guided a large cross-functional team, preparing detailed weekly reports and resolving conflicts."
       ],
       "dateText": "05/2020 - 05/2021"
     },
     {
-      "title": "Software Engineer",
-      "subtitle": "Irantom Co., Tehran, Iran",
+      "title": "Backend Software Engineer",
+      "subtitle": "Irantom, Tehran, Iran",
       "workType": "Full-time",
       "workDescription": [
-        "Analyzed system solutions based on client requirements with 12 members development team.",
-        "Led back-end team to plan, develop, test, and deploy 34 REST API micro-services.",
-        "Prepared detailed daily reports on project specifications, progress, and identified conflicts.",
-        "Defined and translated user requirements into implementation plans every two weeks sprint.",
-        "Reduced API documentation production time by 40% using Swagger (Open API)."
+        "Implemented and maintained Node.js backend services for a CRM system with 30+ microservices.",
+        "Worked closely with a 16-member team to optimize API response times by ~25% and increase system stability.",
+        "Planned, developed, tested, and deployed REST API micro-services, reducing documentation time by 40% using Swagger.",
+        "Defined and translated user requirements into implementation plans every two-week sprint."
       ],
-      "dateText": "09/2018 - 12/2019"
+      "dateText": "11/2018 - 04/2020"
     },
     {
-      "title": "Software Engineer",
-      "subtitle": "Pixels & Code Co., Tehran, Iran",
+      "title": "Backend Software Engineer",
+      "subtitle": "Goki, Tehran, Iran",
       "workType": "Full-time",
       "workDescription": [
-        "Collaborated with multiple teams to analyze and implement services based on client needs.",
-        "Developed, tested and deployed 6-7 web projects for domestic and international clients.",
-        "Represented the web development team in weekly meetings with executives to discuss project goals and milestones."
+        "Collaborated with 4 development teams to analyze and implement services based on client needs.",
+        "Developed, tested, and deployed 6-7 web projects, meeting 100% client delivery deadlines.",
+        "Represented the web development team in weekly meetings with executives to discuss project goals and milestones.",
+        "Adjusted software parameters and incorporated new features to boost performance."
       ],
-      "dateText": "09/2017 - 09/2018"
-    },
-    {
-      "title": "Software Engineer",
-      "subtitle": "Freelance, Tehran, Iran",
-      "workType": "Freelance",
-      "workDescription": [
-        "Analyzed, designed, and executed multiple software and web applications.",
-        "Adjusted software parameters and incorporated new features to boost performance by at least 20%.",
-        "Technology Stack: MATLAB, C++, C#, ASP.NET, PHP, HTML, CSS, JavaScript."
-      ],
-      "dateText": "05/2015 - 09/2017"
+      "dateText": "03/2016 - 09/2018"
     }
   ]
 }
