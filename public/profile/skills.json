@@ -5,12 +5,12 @@
       "title": "Back-end Languages & Frameworks",
       "items": [
         {
-          "icon": "images/skills/js.png",
-          "title": "JavaScript"
-        },
-        {
           "icon": "images/skills/typescript.png",
           "title": "Typescript"
+        },
+        {
+          "icon": "images/skills/js.png",
+          "title": "JavaScript"
         },
         {
           "icon": "images/skills/nodejs.svg",
@@ -38,16 +38,16 @@
       "title": "Databases",
       "items": [
         {
+          "icon": "images/skills/arangodb.png",
+          "title": "ArangoDB"
+        },
+        {
           "icon": "images/skills/mongo-db.png",
           "title": "MongoDB"
         },
         {
           "icon": "images/skills/couchdb.svg",
           "title": "CouchDB"
-        },
-        {
-          "icon": "images/skills/arangodb.png",
-          "title": "ArangoDB"
         },
         {
           "icon": "images/skills/mysql.png",
@@ -67,6 +67,10 @@
       "title": "Front-end Languages & Frameworks",
       "items": [
         {
+          "icon": "images/skills/typescript.png",
+          "title": "Typescript"
+        },
+        {
           "icon": "images/skills/html.png",
           "title": "HTML"
         },
@@ -77,10 +81,6 @@
         {
           "icon": "images/skills/js.png",
           "title": "JavaScript"
-        },
-        {
-          "icon": "images/skills/typescript.png",
-          "title": "Typescript"
         },
         {
           "icon": "images/skills/react.png",
@@ -151,6 +151,10 @@
         {
           "icon": "images/skills/vscode.svg",
           "title": "VS-Code"
+        },
+        {
+          "icon": "images/skills/antigravity.svg",
+          "title": "Antigravity"
         },
         {
           "icon": "images/skills/git.png",
