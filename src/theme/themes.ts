@@ -49,18 +49,18 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
-  background: "#121212",
+  background: "#0d1117",
   color: "#eee",
   accentColor: "#3D84C6",
   chronoTheme: {
-    cardBgColor: "#1B1B1B",
+    cardBgColor: "#161b22",
     cardForeColor: "#eee",
     titleColor: "black",
   },
-  timelineLineColor: "#444",
-  cardBackground: "#060606",
-  cardFooterBackground: "#181818",
-  cardBorderColor: "#ffffff20",
+  timelineLineColor: "#30363d",
+  cardBackground: "#161b22",
+  cardFooterBackground: "#0d1117",
+  cardBorderColor: "#30363d50",
   navbarTheme: {
     linkColor: "rgba(255,255,255,.55)",
     linkHoverColor: "rgba(255,255,255,.75)",
