@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-// @ts-ignore
-import { Timeline, TimelineItem } from "vertical-timeline-component-for-react";
+import { Chrono } from "react-chrono";
 import { Container } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import { ThemeContext } from "styled-components";
@@ -10,31 +9,6 @@ import endpoints from "../constants/endpoints";
 import FallbackSpinner from "./FallbackSpinner";
 import "../css/experience.css";
 import { Theme } from "../theme/themes";
-import { CSSProperties } from "react";
-
-const styles = {
-  ulStyle: {
-    listStylePosition: "outside",
-    paddingLeft: 20,
-    marginBottom: 0,
-  } as CSSProperties,
-  subtitleContainerStyle: {
-    marginTop: 5,
-    marginBottom: 5,
-  } as CSSProperties,
-  subtitleStyle: {
-    display: "inline-block",
-  } as CSSProperties,
-  inlineChild: {
-    display: "inline-block",
-  } as CSSProperties,
-  itemStyle: {
-    marginBottom: 10,
-  } as CSSProperties,
-  liStyle: {
-    marginBottom: -15,
-  } as CSSProperties,
-};
 
 interface ExperienceItem {
   title: string;
@@ -52,6 +26,10 @@ function Experience(props: ExperienceProps) {
   const theme = useContext(ThemeContext) as Theme;
   const { header } = props;
   const [data, setData] = useState<ExperienceItem[] | null>(null);
+  const [width, setWidth] = useState("50vw");
+  const [mode, setMode] = useState<"VERTICAL" | "VERTICAL_ALTERNATING">(
+    "VERTICAL_ALTERNATING",
+  );
 
   useEffect(() => {
     fetch(endpoints.experiences, {
@@ -60,6 +38,26 @@ function Experience(props: ExperienceProps) {
       .then((res) => res.json())
       .then((res) => setData(res.experiences))
       .catch((err) => console.error(err));
+
+    const handleResize = () => {
+      if (window?.innerWidth < 576) {
+        setMode("VERTICAL");
+        setWidth("90vw");
+      } else if (window?.innerWidth >= 576 && window?.innerWidth < 768) {
+        setWidth("90vw");
+        setMode("VERTICAL_ALTERNATING");
+      } else if (window?.innerWidth >= 768 && window?.innerWidth < 1024) {
+        setWidth("75vw");
+        setMode("VERTICAL_ALTERNATING");
+      } else {
+        setWidth("50vw");
+        setMode("VERTICAL_ALTERNATING");
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -69,51 +67,56 @@ function Experience(props: ExperienceProps) {
       {data ? (
         <div className="section-content-container">
           <Container>
-            <Timeline lineColor={theme.timelineLineColor}>
-              {data.map((item, index) => (
-                <Fade key={item.title + item.dateText + index}>
-                  <TimelineItem
-                    dateText={item.dateText}
-                    dateInnerStyle={{ background: theme.accentColor }}
-                    style={styles.itemStyle}
-                    bodyContainerStyle={{ color: theme.color }}
-                  >
-                    <h2 className="item-title">{item.title}</h2>
-                    <div style={styles.subtitleContainerStyle}>
-                      <h4
-                        style={{
-                          ...styles.subtitleStyle,
-                          color: theme.accentColor,
-                        }}
-                      >
-                        {item.subtitle}
-                      </h4>
-                      {item.workType && (
-                        <h5 style={styles.inlineChild}>
-                          &nbsp;· {item.workType}
-                        </h5>
-                      )}
-                    </div>
-                    <ul style={styles.ulStyle}>
+            <div style={{ width }}>
+              <Chrono
+                allowDynamicUpdate
+                useReadMore={false}
+                items={data.map((item) => ({
+                  title: item.dateText,
+                  cardTitle: item.title,
+                  cardDetailedText: item.workDescription,
+                }))}
+                mode={
+                  mode === "VERTICAL_ALTERNATING" ? "alternating" : "vertical"
+                }
+                layout={{ cardHeight: 250 }}
+                display={{ toolbar: { enabled: false } }}
+                interaction={{ pointClick: false }}
+                theme={{
+                  primary: theme.accentColor,
+                  secondary: theme.accentColor,
+                  cardBgColor: theme.chronoTheme.cardBgColor,
+                  titleColor: theme.chronoTheme.titleColor,
+                }}
+              >
+                {data.map((item) => (
+                  <div key={item.title + item.dateText}>
+                    <h4
+                      style={{
+                        color: theme.accentColor,
+                        marginTop: 0,
+                        marginBottom: 10,
+                      }}
+                    >
+                      {item.subtitle}
+                    </h4>
+                    <ul style={{ listStylePosition: "outside" }}>
                       {item.workDescription.map((point) => (
-                        <div key={point}>
-                          <li style={styles.liStyle}>
-                            <ReactMarkdown
-                              components={{
-                                p: "span",
-                              }}
-                            >
-                              {point}
-                            </ReactMarkdown>
-                          </li>
-                          <br />
-                        </div>
+                        <li key={point}>
+                          <ReactMarkdown
+                            components={{
+                              p: "span",
+                            }}
+                          >
+                            {point}
+                          </ReactMarkdown>
+                        </li>
                       ))}
                     </ul>
-                  </TimelineItem>
-                </Fade>
-              ))}
-            </Timeline>
+                  </div>
+                ))}
+              </Chrono>
+            </div>
           </Container>
         </div>
       ) : (
