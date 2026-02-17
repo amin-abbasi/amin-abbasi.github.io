@@ -16,6 +16,15 @@ const styles = {
 
 const ExternalNavLink = styled.a<{ theme: Theme }>`
   color: ${(props) => props.theme.navbarTheme.linkColor};
+  margin-left: 0.75em;
+  margin-right: 0.75em;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-indent: 0.3em;
+  border-bottom: 3px solid transparent;
+
   &:hover {
     color: ${(props) => props.theme.navbarTheme.linkHoverColor};
   }
@@ -26,13 +35,22 @@ const ExternalNavLink = styled.a<{ theme: Theme }>`
 
 const InternalNavLink = styled(NavLink)<{ theme: Theme }>`
   color: ${(props) => props.theme.navbarTheme.linkColor};
+  margin-left: 0.75em;
+  margin-right: 0.75em;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-indent: 0.3em;
+  border-bottom: 3px solid transparent;
+
   &:hover {
     color: ${(props) => props.theme.navbarTheme.linkHoverColor};
   }
   &::after {
     background-color: ${(props) => props.theme.accentColor};
   }
-  &.navbar__link--active {
+  &.active {
     color: ${(props) => props.theme.navbarTheme.linkActiveColor};
   }
 `;
@@ -101,11 +119,7 @@ function NavBar() {
                   <InternalNavLink
                     key={section.title}
                     onClick={() => setExpanded(false)}
-                    className={({ isActive }: { isActive: boolean }) =>
-                      isActive
-                        ? "navbar__link navbar__link--active"
-                        : "navbar__link"
-                    }
+                    className="navbar__link"
                     to={section.href}
                     end={section.href === "/"}
                   >
