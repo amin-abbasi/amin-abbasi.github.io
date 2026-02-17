@@ -1,7 +1,7 @@
 {
   "homepage": "https://amin-abbasi.github.io",
   "name": "my-portfolio",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.28.6",
