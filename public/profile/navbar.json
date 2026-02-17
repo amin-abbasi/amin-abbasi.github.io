@@ -6,10 +6,6 @@
   },
   "sections": [
     {
-      "title": "Home",
-      "href": "/"
-    },
-    {
       "title": "About",
       "href": "/about"
     },
@@ -21,18 +17,13 @@
       "title": "Experience",
       "href": "/experience"
     },
-		{
+    {
       "title": "Education",
       "href": "/education"
     },
     {
       "title": "Projects",
       "href": "/projects"
-    },
-    {
-      "title": "Resume",
-      "href": "https://docs.google.com/document/d/11lEyFo-ptlzdY_eDOUCQPv7hP8uwsghruwYJDuFWEaY/edit?usp=sharing",
-      "type": "link"
     }
   ]
 }

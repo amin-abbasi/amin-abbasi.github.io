@@ -15,6 +15,8 @@ const styles = {
   } as CSSProperties,
   inlineChild: {
     display: "inline-block",
+    margin: 0,
+    lineHeight: "normal",
   } as CSSProperties,
   mainContainer: {
     height: "100%",
@@ -41,7 +43,7 @@ function Home() {
   }, []);
 
   return data ? (
-    <Fade>
+    <div style={{ height: "100vh", position: "relative" }}>
       <div className="background-container">
         <div className="background-image" />
         <div
@@ -54,20 +56,29 @@ function Home() {
         />
       </div>
       <div className="text-container" style={styles.mainContainer}>
-        <h1 style={styles.nameStyle}>{data?.name}</h1>
-        <div style={{ flexDirection: "row" }}>
-          <h2 style={styles.inlineChild}>I&apos;m&nbsp;</h2>
-          <Typewriter
-            options={{
-              loop: true,
-              autoStart: true,
-              strings: data?.roles,
+        <Fade direction="up" triggerOnce>
+          <h1 style={styles.nameStyle}>{data?.name}</h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "baseline",
             }}
-          />
-        </div>
-        <Social />
+          >
+            <h2 style={styles.inlineChild}>I&apos;m&nbsp;</h2>
+            <Typewriter
+              options={{
+                loop: true,
+                autoStart: true,
+                strings: data?.roles,
+              }}
+            />
+          </div>
+          <Social />
+        </Fade>
       </div>
-    </Fade>
+    </div>
   ) : (
     <FallbackSpinner />
   );
