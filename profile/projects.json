@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "image": "images/projects/typescript-boilerplate-image.png",
+      "image": "images/projects/ts-boilerplate.png",
       "title": "Typescript Boilerplate",
       "bodyText": "- Server-side boilerplate using Typescript, MongoDB, Redis, & more...\n -  Fully customizable and dynamic, easily change data structure.",
       "links": [
@@ -10,7 +10,47 @@
           "href": "https://github.com/amin-abbasi/typescript-boilerplate"
         }
       ],
-      "tags": ["Typescript", "Nodejs", "MongoDB", "Redis"]
+      "tags": ["Typescript", "Nodejs", "Express", "Koa", "MongoDB", "Redis"]
+    },
+    {
+      "image": "images/projects/js-boilerplate.png",
+      "title": "Javascript Boilerplate",
+      "bodyText": "- Server-side boilerplate using Javascript, Express, MongoDB, Redis, & more...\n -  Fully customizable and dynamic, easily change data structure.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/javascript-boilerplate"
+        }
+      ],
+      "tags": ["Javascript", "Nodejs", "Express", "MongoDB", "Redis"]
+    },
+    {
+      "image": "images/projects/gach.png",
+      "title": "Gach Package",
+      "bodyText": "- A package to colorize your terminal text messages\n- Pre-defined system font & background colors (red, green, ...).\n- Set font color using 'rgb' and 'hex'.\n- Nested functions for chaining styles.\n- Custom styles can be applied using an object for more flexibility.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/gach"
+        },
+        {
+          "text": "NPM",
+          "href": "https://www.npmjs.com/package/gach"
+        }
+      ],
+      "tags": ["Javascript", "Typescript", "Nodejs", "Terminal"]
+    },
+    {
+      "image": "images/projects/go-boilerplate.png",
+      "title": "Golang Boilerplate",
+      "bodyText": "- Server-side boilerplate using Go, MongoDB, & more...\n -  Fully customizable and dynamic, easily change data structure.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/go-boilerplate"
+        }
+      ],
+      "tags": ["Go", "MongoDB"]
     }
   ]
 }

@@ -1,31 +1,30 @@
 {
   "education": [
     {
-      "title": "Sep 2011 - Sep 2013",
-      "cardTitle": "Master's in Remote Sensing",
-      "cardSubtitle": "Isfahan University, Iran",
-      "cardDetailedText": "Digital Image Processing - Pattern Recognition & Machine Learning - Advanced GIS",
-      "icon": {
-        "src": "images/education/education.png"
-      }
+      "title": "Sep 2011 \u2013 Sep 2013",
+      "cardTitle": "Master of Science \u2013 Remote Sensing",
+      "cardSubtitle": "Isfahan University",
+      "bulletPoints": [
+        "Technical Focus: Specialized in Digital Image Processing and Pattern Recognition",
+        "Impact: Leveraged C++ and MATLAB to develop advanced algorithms for large-scale GIS and hyper-spectral imagery.",
+        "This background drives my mathematical approach to backend data precision."
+      ]
     },
     {
-      "title": "Sep 2006 - Sep 2010",
+      "title": "Sep 2006 \u2013 Sep 2010",
       "cardTitle": "Bachelors in Surveying Engineering",
       "cardSubtitle": "Tafresh University, Iran",
-      "cardDetailedText": "Fundamental & Advanced Computer Programming - Remote Sensing - GIS",
-			"icon": {
-        "src": "images/education/education.png"
-      }
+      "bulletPoints": [
+        "Fundamental & Advanced Computer Programming",
+        "Remote Sensing & GIS Analysis",
+        "Geodesy & Photogrammetry"
+      ]
     },
     {
-      "title": "Sep 2001 - Sep 2005",
+      "title": "Sep 2001 \u2013 Sep 2005",
       "cardTitle": "High School",
       "cardSubtitle": "Tehran, Iran",
-      "cardDetailedText": "Mathematics & Physics",
-			"icon": {
-        "src": "images/education/education.png"
-      }
+      "bulletPoints": ["Major: Mathematics & Physics", "Graduated with Honors"]
     }
   ]
 }
