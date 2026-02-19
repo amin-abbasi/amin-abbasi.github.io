@@ -10,29 +10,94 @@ import FallbackSpinner from "./FallbackSpinner";
 import { Theme } from "../theme/themes";
 
 const MainContainer = styled.div`
+  padding: 40px 0 80px;
   position: relative;
 `;
 
-const EducationSection = styled.div`
-  margin-bottom: 40px;
-  width: 100%;
+// ── Shared schematic timeline styles ──────────────────────────────────────────
+const TimelineTrack = styled.div`
+  position: relative;
+  padding-left: 80px;
+
+  @media (max-width: 768px) {
+    padding-left: 48px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: ${(props) => (props.theme as Theme).timelineLineColor};
+    @media (max-width: 768px) {
+      left: 18px;
+    }
+  }
 `;
 
-const EducationCard = styled.div`
-  padding: 32px;
+const EntryWrapper = styled.div`
+  position: relative;
+  margin-bottom: 80px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const TrackDot = styled.div<{ $accent: string }>`
+  position: absolute;
+  left: -56px;
+  top: 30px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid ${(p) => p.$accent};
+  background: ${(props) => (props.theme as Theme).background};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px ${(p) => p.$accent}40;
+
+  &::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: ${(p) => p.$accent};
+    border-radius: 50%;
+  }
+
+  @media (max-width: 768px) {
+    left: -36px;
+    width: 12px;
+    height: 12px;
+  }
+`;
+
+const Card = styled.div`
+  padding: 28px 32px;
   background: ${(props) => (props.theme as Theme).cardBackground};
   border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-  border-radius: 20px;
+  border-radius: 4px;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(12px);
-  width: 100%;
+  transition: all 0.3s ease;
+
+  /* Blueprint accents */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    border-left: 2px solid ${(props) => (props.theme as Theme).accentColor};
+  }
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     border-color: ${(props) => (props.theme as Theme).accentColor}40;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
   }
 `;
 
@@ -40,53 +105,48 @@ const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 8px;
   flex-wrap: wrap;
   gap: 12px;
+  margin-bottom: 8px;
 `;
 
-const TitleWrapper = styled.div`
+const TitleRow = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  color: ${(props) => (props.theme as Theme).accentColor};
 `;
 
 const DegreeTitle = styled.h3`
-  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
   font-weight: 700;
   margin: 0;
   color: ${(props) => (props.theme as Theme).color};
-  letter-spacing: -0.02em;
-  text-align: left;
+  letter-spacing: -0.01em;
 `;
 
-const DateText = styled.span`
-  font-size: 0.9rem;
+const DateBadge = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 600;
   color: ${(props) => (props.theme as Theme).accentColor};
-  background: ${(props) => (props.theme as Theme).accentColor}12;
-  padding: 6px 16px;
-  border-radius: 24px;
-  white-space: nowrap;
+  background: ${(props) => (props.theme as Theme).accentColor}08;
+  border: 1px solid ${(props) => (props.theme as Theme).accentColor}25;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
 `;
 
-const SubtitleRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-  gap: 16px;
-`;
-
-const InstitutionName = styled.div`
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: ${(props) => (props.theme as Theme).color}CC;
+const Institution = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: ${(props) => (props.theme as Theme).color}AA;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
   text-align: left;
 `;
 
@@ -96,33 +156,24 @@ const BulletList = styled.ul`
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
 
   li {
     position: relative;
-    padding-left: 28px;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: ${(props) => (props.theme as Theme).color}AA;
+    padding-left: 20px;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: ${(props) => (props.theme as Theme).color}BB;
     text-align: left;
 
     &::before {
-      content: "→";
+      content: "▸";
       position: absolute;
       left: 0;
       color: ${(props) => (props.theme as Theme).accentColor};
-      font-weight: 700;
-      opacity: 0.8;
+      font-size: 0.8em;
     }
   }
-`;
-
-const IconWrapper = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${(props) => (props.theme as Theme).accentColor};
 `;
 
 interface EducationItem {
@@ -160,60 +211,70 @@ function Education(props: EducationProps) {
       <Header title={header} />
       {data ? (
         <MainContainer>
-          <Container fluid style={{ maxWidth: "1400px", padding: "0 20px" }}>
-            {data.education.map((item, index) => (
-              <Fade
-                key={`${item.title}-${index}`}
-                direction="up"
-                triggerOnce
-                duration={600}
-                delay={index * 100}
-              >
-                <EducationSection>
-                  <EducationCard>
-                    <CardHeader>
-                      <TitleWrapper>
-                        <FaGraduationCap size={24} />
-                        <DegreeTitle>{item.cardTitle}</DegreeTitle>
-                      </TitleWrapper>
-                      <DateText>{item.title}</DateText>
-                    </CardHeader>
-                    <SubtitleRow>
-                      <InstitutionName>
-                        <IconWrapper>
-                          <FaMapMarkerAlt size={16} />
-                        </IconWrapper>
-                        {item.cardSubtitle}
-                      </InstitutionName>
-                    </SubtitleRow>
-                    {item.bulletPoints && (
-                      <BulletList>
-                        {item.bulletPoints.map((point, idx) => (
-                          <li key={idx}>
-                            <ReactMarkdown
-                              components={{
-                                p: "span",
-                              }}
-                            >
-                              {point}
-                            </ReactMarkdown>
-                          </li>
-                        ))}
-                      </BulletList>
-                    )}
-                    {!item.bulletPoints && item.cardDetailedText && (
-                      <div style={{ textAlign: "left" }}>
-                        <ReactMarkdown>
-                          {Array.isArray(item.cardDetailedText)
-                            ? item.cardDetailedText.join("\n\n")
-                            : item.cardDetailedText}
-                        </ReactMarkdown>
-                      </div>
-                    )}
-                  </EducationCard>
-                </EducationSection>
-              </Fade>
-            ))}
+          <Container fluid style={{ maxWidth: "1400px", padding: "0 24px" }}>
+            <TimelineTrack>
+              {data.education.map((item, index) => (
+                <Fade
+                  key={`${item.title}-${index}`}
+                  direction="up"
+                  triggerOnce
+                  duration={600}
+                  delay={index * 100}
+                >
+                  <EntryWrapper>
+                    <TrackDot $accent={theme.accentColor} />
+                    <Card>
+                      <CardHeader>
+                        <TitleRow>
+                          <FaGraduationCap
+                            size={18}
+                            color={theme.accentColor}
+                            style={{ opacity: 0.8 }}
+                          />
+                          <DegreeTitle>{item.cardTitle}</DegreeTitle>
+                        </TitleRow>
+                        <DateBadge>{item.title}</DateBadge>
+                      </CardHeader>
+                      <Institution>
+                        <FaMapMarkerAlt
+                          size={14}
+                          color={theme.accentColor}
+                          style={{ opacity: 0.7 }}
+                        />
+                        <span>{item.cardSubtitle}</span>
+                      </Institution>
+                      {item.bulletPoints && (
+                        <BulletList>
+                          {item.bulletPoints.map((point, idx) => (
+                            <li key={idx}>
+                              <ReactMarkdown components={{ p: "span" }}>
+                                {point}
+                              </ReactMarkdown>
+                            </li>
+                          ))}
+                        </BulletList>
+                      )}
+                      {!item.bulletPoints && item.cardDetailedText && (
+                        <div
+                          style={{
+                            textAlign: "left",
+                            fontSize: "0.92rem",
+                            color: theme.color + "BB",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          <ReactMarkdown>
+                            {Array.isArray(item.cardDetailedText)
+                              ? item.cardDetailedText.join("\n\n")
+                              : item.cardDetailedText}
+                          </ReactMarkdown>
+                        </div>
+                      )}
+                    </Card>
+                  </EntryWrapper>
+                </Fade>
+              ))}
+            </TimelineTrack>
           </Container>
         </MainContainer>
       ) : (

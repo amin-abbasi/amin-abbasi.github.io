@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import "./App.css";
+import "./css/design-system.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -21,6 +22,14 @@ function App() {
 
   const darkMode = useDarkMode(true);
 
+  // Sync theme with document element for global CSS variables
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode.value ? "dark" : "light",
+    );
+  }, [darkMode.value]);
+
   // Memoize the value object to prevent it from changing on each render
   const contextValue = useMemo(() => ({ darkMode }), [darkMode]);
 
@@ -28,7 +37,7 @@ function App() {
     <AppContext.Provider value={contextValue}>
       <ThemeProvider theme={darkMode.value ? darkTheme : lightTheme}>
         <GlobalStyles />
-        <div className="App">
+        <div className="App" data-theme={darkMode.value ? "dark" : "light"}>
           <Router basename={process.env.PUBLIC_URL}>
             <MainApp />
           </Router>

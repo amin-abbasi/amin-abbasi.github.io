@@ -18,11 +18,13 @@ const ExternalNavLink = styled.a<{ theme: Theme }>`
   color: ${(props) => props.theme.navbarTheme.linkColor};
   margin-left: 0.75em;
   margin-right: 0.75em;
-  font-size: 1em;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  letter-spacing: 0.1em;
-  text-indent: 0.3em;
   border-bottom: 3px solid transparent;
 
   &:hover {
@@ -37,11 +39,13 @@ const InternalNavLink = styled(NavLink)<{ theme: Theme }>`
   color: ${(props) => props.theme.navbarTheme.linkColor};
   margin-left: 0.75em;
   margin-right: 0.75em;
-  font-size: 1em;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  letter-spacing: 0.1em;
-  text-indent: 0.3em;
   border-bottom: 3px solid transparent;
 
   &:hover {

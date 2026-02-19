@@ -8,31 +8,101 @@ import endpoints from "../constants/endpoints";
 import FallbackSpinner from "./FallbackSpinner";
 import { Theme } from "../theme/themes";
 
+// ── Layout shell ─────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
-  padding: 40px 0;
+  padding: 40px 0 80px;
   position: relative;
 `;
 
-const ExperienceSection = styled.div`
-  margin-bottom: 40px;
-  width: 100%;
+// ── Vertical timeline track ───────────────────────────────────────────────────
+const TimelineTrack = styled.div`
+  position: relative;
+  padding-left: 80px;
+
+  @media (max-width: 768px) {
+    padding-left: 48px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: ${(props) => (props.theme as Theme).timelineLineColor};
+
+    @media (max-width: 768px) {
+      left: 18px;
+    }
+  }
 `;
 
-const ExperienceCard = styled.div`
-  padding: 32px;
+// ── One experience entry ──────────────────────────────────────────────────────
+const EntryWrapper = styled.div`
+  position: relative;
+  margin-bottom: 80px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+// Connector dot on the track
+const TrackDot = styled.div<{ $accent: string }>`
+  position: absolute;
+  left: -56px;
+  top: 30px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid ${(p) => p.$accent};
+  background: ${(props) => (props.theme as Theme).background};
+  box-shadow: 0 0 8px ${(p) => p.$accent}60;
+
+  @media (max-width: 768px) {
+    left: -34px;
+    width: 10px;
+    height: 10px;
+  }
+`;
+
+// Schematic entry card
+const Card = styled.div`
+  padding: 28px 32px;
   background: ${(props) => (props.theme as Theme).cardBackground};
   border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-  border-radius: 20px;
+  border-radius: 6px;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(12px);
-  width: 100%;
+  transition: all 0.3s ease;
+
+  /* Blueprint corner accents */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+  }
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    border-left: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    border-radius: 6px 0 0 0;
+  }
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    border-right: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    border-radius: 0 0 6px 0;
+  }
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     border-color: ${(props) => (props.theme as Theme).accentColor}40;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
   }
 `;
 
@@ -40,94 +110,122 @@ const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 6px;
   flex-wrap: wrap;
   gap: 12px;
+  margin-bottom: 4px;
 `;
 
 const JobTitle = styled.h3`
-  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
-  color: ${(props) => (props.theme as Theme).color};
   letter-spacing: -0.02em;
+  color: ${(props) => (props.theme as Theme).color};
 `;
 
-const DateText = styled.span`
-  font-size: 0.9rem;
-  font-weight: 600;
+const DateBadge = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
   color: ${(props) => (props.theme as Theme).accentColor};
   background: ${(props) => (props.theme as Theme).accentColor}12;
-  padding: 6px 16px;
-  border-radius: 24px;
+  border: 1px solid ${(props) => (props.theme as Theme).accentColor}30;
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
   white-space: nowrap;
 `;
 
 const SubtitleRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 24px;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
+  margin-bottom: 20px;
 `;
 
-const CompanyName = styled.div`
-  font-size: 1.1rem;
+const CompanyName = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 500;
-  color: ${(props) => (props.theme as Theme).color}CC;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: ${(props) => (props.theme as Theme).color}AA;
+  letter-spacing: 0.05em;
 
   &::before {
-    content: "";
-    width: 4px;
-    height: 16px;
-    background: ${(props) => (props.theme as Theme).accentColor};
-    border-radius: 2px;
+    content: "@ ";
+    color: ${(props) => (props.theme as Theme).accentColor};
   }
 `;
 
-const WorkDescription = styled.ul`
+const WorkTypeBadge = styled(Badge)`
+  font-family: var(--font-mono) !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  background: transparent !important;
+  color: ${(props) => (props.theme as Theme).accentColor} !important;
+  border: 1px solid ${(props) => (props.theme as Theme).accentColor}35 !important;
+  padding: 3px 10px !important;
+  border-radius: 3px !important;
+`;
+
+const BulletList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
 
   li {
     position: relative;
-    padding-left: 28px;
-    font-size: 1rem;
+    padding-left: 24px;
+    font-size: 0.95rem;
     line-height: 1.7;
-    color: ${(props) => (props.theme as Theme).color}AA;
+    color: ${(props) => (props.theme as Theme).color}CC;
     text-align: left;
-    width: 100%;
 
     &::before {
-      content: "→";
+      content: "▸";
       position: absolute;
       left: 0;
       color: ${(props) => (props.theme as Theme).accentColor};
-      font-weight: 700;
-      opacity: 0.8;
+      font-size: 0.8em;
+      top: 3px;
     }
   }
 `;
 
-const StyledBadge = styled(Badge)`
-  font-weight: 600;
-  font-size: 0.75rem;
-  padding: 5px 10px;
-  background-color: transparent !important;
-  color: ${(props) => (props.theme as Theme).accentColor} !important;
-  border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+// ── Transfer connector between cards ─────────────────────────────────────────
+const ConnectorLabel = styled.div`
+  position: absolute;
+  left: -80px;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
+
+// ── Index counter ─────────────────────────────────────────────────────────────
+const EntryIndex = styled.div`
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: ${(props) => (props.theme as Theme).accentColor};
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 interface ExperienceItem {
   title: string;
@@ -147,9 +245,7 @@ function Experience(props: ExperienceProps) {
   const [data, setData] = useState<ExperienceItem[] | null>(null);
 
   useEffect(() => {
-    fetch(endpoints.experiences, {
-      method: "GET",
-    })
+    fetch(endpoints.experiences, { method: "GET" })
       .then((res) => res.json())
       .then((res) => setData(res.experiences))
       .catch((err) => console.error(err));
@@ -161,46 +257,52 @@ function Experience(props: ExperienceProps) {
 
       {data ? (
         <MainContainer>
-          <Container fluid style={{ maxWidth: "1400px", padding: "0 20px" }}>
-            {data.map((item, index) => (
-              <Fade
-                key={`${item.title}-${index}`}
-                direction="up"
-                triggerOnce
-                duration={600}
-                delay={index * 100}
-              >
-                <ExperienceSection>
-                  <ExperienceCard>
-                    <CardHeader>
-                      <JobTitle>{item.title}</JobTitle>
-                      <DateText>{item.dateText}</DateText>
-                    </CardHeader>
-                    <SubtitleRow>
-                      <CompanyName>{item.subtitle}</CompanyName>
-                      {item.workType && (
-                        <StyledBadge pill bg="secondary">
-                          {item.workType}
-                        </StyledBadge>
-                      )}
-                    </SubtitleRow>
-                    <WorkDescription>
-                      {item.workDescription.map((point, idx) => (
-                        <li key={idx}>
-                          <ReactMarkdown
-                            components={{
-                              p: "span",
-                            }}
-                          >
-                            {point}
-                          </ReactMarkdown>
-                        </li>
-                      ))}
-                    </WorkDescription>
-                  </ExperienceCard>
-                </ExperienceSection>
-              </Fade>
-            ))}
+          <Container fluid style={{ maxWidth: "1400px", padding: "0 24px" }}>
+            <TimelineTrack>
+              {data.map((item, index) => (
+                <Fade
+                  key={`${item.title}-${index}`}
+                  direction="up"
+                  triggerOnce
+                  duration={600}
+                  delay={index * 80}
+                >
+                  <EntryWrapper>
+                    <ConnectorLabel>
+                      <EntryIndex>
+                        {String(index + 1).padStart(2, "0")}
+                      </EntryIndex>
+                    </ConnectorLabel>
+
+                    <TrackDot $accent={theme.accentColor} />
+
+                    <Card>
+                      <CardHeader>
+                        <JobTitle>{item.title}</JobTitle>
+                        <DateBadge>{item.dateText}</DateBadge>
+                      </CardHeader>
+                      <SubtitleRow>
+                        <CompanyName>{item.subtitle}</CompanyName>
+                        {item.workType && (
+                          <WorkTypeBadge pill bg="secondary">
+                            {item.workType}
+                          </WorkTypeBadge>
+                        )}
+                      </SubtitleRow>
+                      <BulletList>
+                        {item.workDescription.map((point, idx) => (
+                          <li key={idx}>
+                            <ReactMarkdown components={{ p: "span" }}>
+                              {point}
+                            </ReactMarkdown>
+                          </li>
+                        ))}
+                      </BulletList>
+                    </Card>
+                  </EntryWrapper>
+                </Fade>
+              ))}
+            </TimelineTrack>
           </Container>
         </MainContainer>
       ) : (
