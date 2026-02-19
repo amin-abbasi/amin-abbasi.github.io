@@ -6,11 +6,13 @@
       "workType": "Full-time",
       "workDescription": [
         "Drove ERP and MES architectural evolution by breaking down a monolithic platform into independently deployable services, improving maintainability and cutting feature delivery time from 1 month to 1 week.",
-        "Maintained 99.99% uptime and improved sprint predictability by implementing structured code reviews, standardizing CI/CD pipelines, and redefining hybrid individual and team KPIs.",
-        "Streamlined backend workflows to double processing speeds for high-volume factory operations.",
-        "Mentored 3 junior-to-mid-level engineers, establishing a peer-review culture that reduced 'knowledge silos' and empowered the team to take ownership of service deployments.",
-        "Played a key role in securing the company’s IATF 16949 certification by designing and documenting software workflows that met rigorous automotive quality standards.",
-        "Designed scalable software solutions, enhancing UX and operational efficiency for interactive factory systems."
+        "Unified code reviews and transparency to prevent information siloing, resulting in a 25% iteration reduction.",
+        "Refined team KPIs and organized the tasks to prioritize quality over volume, achieving all KPI goals for 6 quarters.",
+        "Took the initiative to plan periodic improvement meetings to cut the ERP response times by 35% during peak hours.",
+        "Mentored and accelerated the technical growth of 3 junior engineers, boosting the team productivity by 20%.",
+        "Accelerated IATF 16949 certification readiness by aligning software processes to meet complex automotive requirements.",
+        "Collaborated with executive leadership to design ERP/MES systems, turning intricate business needs into technical objectives that enabled a 40% expansion in operational scope.",
+        "Empowered QA to bridge 9 departments, translating feedback into actionable tasks for 100% alignment with company goals."
       ],
       "dateText": "01/2025 - Present"
     },
@@ -19,10 +21,10 @@
       "subtitle": "Dannie.CC, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
-        "Spearheaded the migration of the core platform from JavaScript to TypeScript, resolving architectural ambiguity and improving code maintainability by introducing strict type-safety across complex data fragments.",
-        "Halved system latency from 120ms to 60ms, successfully managing peak loads of over 1,500 requests per second.",
-        "Built a zero-latency WebSocket architecture to power real-time production tracking across 24/7 manufacturing lines.",
-        "Optimized tracking applications with TypeScript and ArangoDB, boosting data accuracy by 25% for production and inventory management."
+        "Architected a Server-Driven UI (SDUI) framework using WebSockets, allowing the backend to dynamically render complex app modules and reducing frontend deployment needs by 80%.",
+        "The core platform's migration to TypeScript reduced the onboarding time for future developers from three months to one month by removing architectural ambiguity and ensuring safety across complex data fragments.",
+        "Optimized ArangoDB queries to reduce latency to 60 ms under high peak loads, increasing the ERP app's speed by three times.",
+        "Utilizing WebSocket's event-driven architecture, unit tracking on all production lines was established with nearly zero latency."
       ],
       "dateText": "12/2023 - 01/2025"
     },
@@ -31,13 +33,14 @@
       "subtitle": "Actimi GmbH, Antalya, Turkey",
       "workType": "Full-time",
       "workDescription": [
-        "Re-engineered PostgreSQL schemas and optimized complex query execution plans for a FHIR-based senior care platform, reducing data retrieval latency by 30%.",
-        "Developed a remote fleet management system via Zoho MDM to automate updates and reboots for distributed tablets, ensuring 100% system consistency across all devices.",
-        "Migrated to an automated GCP CI/CD pipeline to streamline deployments and reduce integration defects by 20%.",
-        "Developed scalable FHIR-based web apps with optimized code to improve speed and efficiency by about 30%.",
-        "Conducted code reviews to improve code quality and reduce errors.",
-        "Debugged production issues, reducing downtime by 40% and ensuring 99.9% system availability.",
-        "Collaborated with front-end and mobile developers to seamlessly integrate back-end functionalities."
+        "Optimized Aidbox and Medplum FHIR-based data models, redesigning PostgreSQL schemas to reduce complex query latency by 30% for German healthcare providers.",
+        "Engineered a secure remote fleet management system via Zoho MDM API to automate the lifecycle of distributed tablets used by patients and practitioners.",
+        "Developed a robust data-wiping and UUID-regeneration workflow for device reassignment, ensuring 100% GDPR and HIPAA compliance during patient transitions.",
+        "Spearheaded a platform-wide migration from JavaScript to TypeScript, introducing strict type-safety and reducing new developer onboarding from 3 months to 1 month.",
+        "Tripled procurement app performance by optimizing ArangoDB (AQL) queries and halving system latency to 60ms under peak loads of 1,500+ requests per second.",
+        "Refactored Docker and CI/CD pipelines on GCP, slashing development server deployment times from 15 minutes to 2 minutes (85% efficiency gain).",
+        "Established standardized backend data validation checks that eliminated daily synchronization errors between the factory floor and management systems.",
+        "Collaborated with the CTO to define the 'Implementation Flow,' from UI/UX design approval to automated testing and UAT (User Acceptance Testing) cycles."
       ],
       "dateText": "12/2022 - 12/2023"
     },
@@ -60,12 +63,14 @@
       "subtitle": "DigiAlpha, Tehran, Iran",
       "workType": "Full-time",
       "workDescription": [
-        "Delivered crypto exchange, OTC, and copy-trading solutions, driving over 30% performance gains.",
-        "Re-architected microservices communication with RabbitMQ, enabling event-driven processing and doubling inter-service throughput under production load.",
-        "Scaled the engineering team from 4 to 9 developers, providing technical leadership and architectural oversight.",
-        "Designed and built high-performance, scalable back-end architecture for multiple Cryptocurrency projects.",
-        "Put in place the best scenarios for copy-trading and peer-to-peer exchange solutions.",
-        "Created reports on project progress and requirements to plan new features."
+        "Architected a high-frequency trading engine supporting Crypto Exchange, OTC, and Copy-Trading, achieving a 30% gain in order-matching speed.",
+        "Designed a non-blocking matching algorithm for complex order types (Margin, Stop-Loss), preventing parallel execution bottlenecks during high market volatility.",
+        "Re-engineered microservices communication using RabbitMQ to synchronize real-time price feeds and wallet balances, doubling system throughput.",
+        "Developed a proprietary HD Wallet service and an internal ledger system to manage physical crypto assets and virtual balances with high precision.",
+        "Implemented a 3-tier KYC (Know Your Customer) verification service, integrating national ID and bank info verification for different user trust levels.",
+        "Optimized blockchain node synchronization using a 'half-node' flow strategy, significantly reducing storage overhead while maintaining real-time data accuracy.",
+        "Scaled the engineering department from 4 to 9 developers, acting as a technical lead and Scrum Master to ensure high code quality and architectural integrity.",
+        "Defined clean-code standards and established an event-driven architecture that eliminated zero-message loss during peak trading volumes."
       ],
       "dateText": "06/2021 - 06/2022"
     },
@@ -86,10 +91,12 @@
       "subtitle": "Irantom, Tehran, Iran",
       "workType": "Full-time",
       "workDescription": [
-        "Implemented and maintained Node.js backend services for a CRM system with 30+ microservices.",
-        "Worked closely with a 16-member team to optimize API response times by ~25% and increase system stability.",
-        "Planned, developed, tested, and deployed REST API micro-services, reducing documentation time by 40% using Swagger.",
-        "Defined and translated user requirements into implementation plans every two-week sprint."
+        "Architected and maintained a distributed CRM ecosystem consisting of 30+ Node.js microservices, including Auth, Messaging, and Multitenancy modules.",
+        "Leveraged a polyglot persistence strategy using MongoDB, MySQL, and Elasticsearch to optimize data retrieval and storage efficiency across the platform.",
+        "Collaborated with a 16-member engineering team to refactor legacy bottlenecks, improving API response times by 25% and enhancing overall system stability.",
+        "Streamlined the development lifecycle by implementing Swagger/OpenAPI documentation, reducing manual documentation time and overhead by 40%.",
+        "Translated complex user requirements into technical implementation plans, leading two-week Agile sprints to ensure consistent feature delivery.",
+        "Engineered scalable RESTful APIs with a focus on high availability, ensuring the CRM could support increasing user loads and data complexity."
       ],
       "dateText": "11/2018 - 04/2020"
     },
