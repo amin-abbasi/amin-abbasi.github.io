@@ -6,16 +6,16 @@ import { Theme } from "../theme/themes";
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   margin-top: auto;
   border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
   background-color: ${(props) => (props.theme as Theme).background};
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.5rem;
   color: ${(props) => (props.theme as Theme).color}AA;
 
   @media (min-width: 768px) {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 `;
 
