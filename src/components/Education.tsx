@@ -226,11 +226,13 @@ function Education(props: EducationProps) {
                     <Card>
                       <CardHeader>
                         <TitleRow>
-                          <FaGraduationCap
-                            size={18}
-                            color={theme.accentColor}
-                            style={{ opacity: 0.8 }}
-                          />
+                          <div style={{ flexShrink: 0 }}>
+                            <FaGraduationCap
+                              size={18}
+                              color={theme.accentColor}
+                              style={{ opacity: 0.8 }}
+                            />
+                          </div>
                           <DegreeTitle>{item.cardTitle}</DegreeTitle>
                         </TitleRow>
                         <DateBadge>{item.title}</DateBadge>

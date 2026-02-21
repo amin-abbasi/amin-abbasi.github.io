@@ -154,11 +154,15 @@ function About(props: AboutProps) {
         {data ? (
           <Fade triggerOnce duration={1000}>
             <Row className="align-items-center">
-              <TextCol lg={7} md={12}>
+              <TextCol lg={7} md={12} className="order-2 order-lg-1">
                 <DocLabel>REF_ID: PRO_BIO_772</DocLabel>
                 <ReactMarkdown>{data.about}</ReactMarkdown>
               </TextCol>
-              <ImageCol lg={5} md={12}>
+              <ImageCol
+                lg={5}
+                md={12}
+                className="order-1 order-lg-2 mb-5 mb-lg-0"
+              >
                 <Fade direction="right" triggerOnce delay={200}>
                   <ImageFrame>
                     <BlueprintOverlay />
