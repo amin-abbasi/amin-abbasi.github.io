@@ -56,61 +56,99 @@ const ImageCol = styled(Col)`
   z-index: 1;
 `;
 
-const ImageFrame = styled.div`
-  position: relative;
-  padding: 10px;
-  background: ${(props) => (props.theme as Theme).cardBackground};
-  border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-  border-radius: 4px;
+const ProfileSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+`;
 
-  /* Corner accents */
-  &::before,
+const ProfileImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.1; /* Adjust to crop the bottom/stomach area */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align image to bottom so top stays visible, bottom gets cut */
+  border-bottom: 3px solid ${(props) => (props.theme as Theme).accentColor};
+
+  /* Animated Glowing Orb */
   &::after {
     content: "";
     position: absolute;
-    width: 15px;
-    height: 15px;
-    border: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    width: 250px;
+    height: 250px;
+    background: ${(props) => (props.theme as Theme).accentColor};
+    filter: blur(80px);
+    opacity: 0.35;
+    border-radius: 50%;
+    animation: floatOrb 8s ease-in-out infinite;
+    z-index: 0;
+    top: 20%;
   }
-  &::before {
-    top: -2px;
-    left: -2px;
-    border-right: 0;
-    border-bottom: 0;
-  }
-  &::after {
-    bottom: -2px;
-    right: -2px;
-    border-left: 0;
-    border-top: 0;
+
+  @keyframes floatOrb {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
   }
 `;
 
-const BlueprintOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(0, 160, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 160, 255, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-  z-index: 5;
+const QuoteText = styled.div`
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: ${(props) => (props.theme as Theme).color}BB;
+  text-align: center;
+  position: relative;
+  padding: 0 20px;
+
+  &::before,
+  &::after {
+    content: '"';
+    color: ${(props) => (props.theme as Theme).accentColor}80;
+    font-size: 1.5rem;
+    position: absolute;
+    top: -10px;
+  }
+
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
 `;
 
 const ProfileImage = styled.img`
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   height: auto;
-  border-radius: 3px;
   display: block;
-  filter: saturate(0.9) contrast(1.1);
-  transition: filter 0.3s ease;
+  z-index: 2;
+  position: relative;
+  filter: drop-shadow(
+    0 0 10px ${(props) => (props.theme as Theme).accentColor}40
+  );
+  transition: all 0.3s ease;
 
   &:hover {
-    filter: saturate(1.1);
+    transform: scale(1.08);
+    filter: drop-shadow(
+      0 0 40px ${(props) => (props.theme as Theme).accentColor}
+    );
   }
 `;
 
@@ -153,7 +191,7 @@ function About(props: AboutProps) {
       <AboutContainer>
         {data ? (
           <Fade triggerOnce duration={1000}>
-            <Row className="align-items-center">
+            <Row className="align-items-center align-items-lg-start">
               <TextCol lg={7} md={12} className="order-2 order-lg-1">
                 <DocLabel>REF_ID: PRO_BIO_772</DocLabel>
                 <ReactMarkdown>{data.about}</ReactMarkdown>
@@ -161,17 +199,21 @@ function About(props: AboutProps) {
               <ImageCol
                 lg={5}
                 md={12}
-                className="order-1 order-lg-2 mb-5 mb-lg-0"
+                className="order-1 order-lg-2 mb-5 mb-lg-0 mt-lg-4"
               >
                 <Fade direction="right" triggerOnce delay={200}>
-                  <ImageFrame>
-                    <BlueprintOverlay />
-                    <ProfileImage
-                      src={data.imageSource}
-                      alt="profile"
-                      loading="lazy"
-                    />
-                  </ImageFrame>
+                  <ProfileSection>
+                    <ProfileImageContainer>
+                      <ProfileImage
+                        src={data.imageSource}
+                        alt="profile"
+                        loading="lazy"
+                      />
+                    </ProfileImageContainer>
+                    <QuoteText>
+                      The best code is the line you didn't have to write.
+                    </QuoteText>
+                  </ProfileSection>
                 </Fade>
               </ImageCol>
             </Row>

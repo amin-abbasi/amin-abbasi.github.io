@@ -5,6 +5,10 @@ import NavBarWithRouter from "./components/NavBar";
 import Home from "./components/Home";
 import endpoints from "./constants/endpoints";
 import { RoutesData, RouteSection } from "./types/profile.types";
+import { useAnalytics } from "./hooks/useAnalytics";
+import Admin from "./pages/Admin";
+
+import Footer from "./components/Footer";
 
 function createRoute(route: RouteSection) {
   const SectionComponent = React.lazy(
@@ -20,6 +24,7 @@ function createRoute(route: RouteSection) {
 }
 
 function MainApp() {
+  useAnalytics();
   const [data, setData] = useState<RoutesData | null>(null);
 
   useEffect(() => {
@@ -43,10 +48,12 @@ function MainApp() {
         <Suspense fallback={<FallbackSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
             {routes}
           </Routes>
         </Suspense>
       </main>
+      <Footer />
     </div>
   );
 }
