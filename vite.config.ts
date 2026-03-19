@@ -32,7 +32,7 @@ export default defineConfig({
   // SSG options
   // @ts-ignore
   ssgOptions: {
-    script: "async",
+    script: "defer",
     formatting: "minify",
   },
 });
