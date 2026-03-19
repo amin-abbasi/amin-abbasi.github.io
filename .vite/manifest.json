@@ -1,0 +1,32 @@
+{
+  "_index-CMpiobDC.js": {
+    "file": "assets/index-CMpiobDC.js",
+    "name": "index",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "index.html": {
+    "file": "assets/app-CU8NrjNJ.js",
+    "name": "app",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "_index-CMpiobDC.js",
+      "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
+    ],
+    "css": [
+      "assets/app-BzE7fw5Y.css"
+    ]
+  },
+  "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
+    "file": "assets/styled-components-DhaQ0OGc.js",
+    "name": "styled-components",
+    "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  }
+}
