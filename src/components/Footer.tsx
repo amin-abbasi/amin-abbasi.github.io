@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { styled, keyframes } from "styled-components";
 import { Container } from "react-bootstrap";
-import { supabase } from "../utils/supabaseClient";
 import { Theme } from "../theme/themes";
+import { configs } from "constants/configs";
 
 const FooterWrapper = styled.footer`
   width: 100%;
@@ -81,20 +81,27 @@ const Copyright = styled.div`
 export default function Footer() {
   const [viewCount, setViewCount] = useState<number | null>(null);
 
-  useEffect(() => {
-    async function fetchViewCount() {
-      // Get exact count without downloading all rows
-      const { count, error } = await supabase
-        .from("page_views")
-        .select("*", { count: "exact", head: true });
+    useEffect(() => {
+        async function fetchViewCount() {
+            try {
+                const projectId = configs.firebaseProjectId;
+                if (!projectId) return;
 
-      if (!error && count !== null) {
-        setViewCount(count);
-      }
-    }
+                const response = await fetch(`https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/page_views?pageSize=1000`);
+                const result = await response.json();
+                
+                if (result.documents) {
+                    setViewCount(result.documents.length);
+                } else {
+                    setViewCount(0);
+                }
+            } catch (error) {
+                console.error('Error fetching view count:', error);
+            }
+        }
 
-    fetchViewCount();
-  }, []);
+        fetchViewCount();
+    }, []);
 
   return (
     <FooterWrapper>

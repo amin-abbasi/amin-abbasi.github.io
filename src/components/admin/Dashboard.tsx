@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { configs } from 'constants/configs';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { supabase } from '../../utils/supabaseClient';
 import { styled } from 'styled-components';
 
 const DashboardContainer = styled(Container)`
@@ -51,12 +51,33 @@ export default function Dashboard() {
 
     useEffect(() => {
         async function fetchData() {
-            const { data: views, error } = await supabase.from('page_views').select('*').order('created_at', { ascending: false });
+            try {
+                const projectId = configs.firebaseProjectId;
+                if (!projectId) return;
 
-            if (error) {
+                // Firestore REST API retrieval
+                const response = await fetch(`https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/page_views?pageSize=1000`);
+                const result = await response.json();
+                
+                if (result.documents) {
+                    const views = result.documents.map((doc: any) => {
+                        const fields = doc.fields;
+                        return {
+                            id: doc.name.split('/').pop(),
+                            path: fields.path?.stringValue || '/',
+                            created_at: fields.created_at?.stringValue || '',
+                            country: fields.country?.stringValue || 'Unknown',
+                            browser: fields.browser?.stringValue || 'Unknown',
+                            os: fields.os?.stringValue || 'Unknown',
+                        };
+                    }) as PageView[];
+                    
+                    // Sort by created_at desc manually
+                    views.sort((a, b) => b.created_at.localeCompare(a.created_at));
+                    setData(views);
+                }
+            } catch (error) {
                 console.error('Error fetching analytics:', error);
-            } else {
-                setData(views || []);
             }
             setLoading(false);
         }

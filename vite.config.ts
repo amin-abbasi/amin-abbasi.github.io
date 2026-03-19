@@ -1,9 +1,19 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      src: path.resolve(__dirname, "./src"),
+      constants: path.resolve(__dirname, "./src/constants"),
+      components: path.resolve(__dirname, "./src/components"),
+      hooks: path.resolve(__dirname, "./src/hooks"),
+      utils: path.resolve(__dirname, "./src/utils"),
+    },
+  },
   plugins: [
     react(),
     viteStaticCopy({
@@ -15,11 +25,6 @@ export default defineConfig({
       ],
     }),
   ],
-  define: {
-    "process.env.PUBLIC_URL": JSON.stringify(""),
-    global: "(typeof window !== \"undefined\" ? window : global)",
-    "process.version": JSON.stringify(""),
-  },
   base: "/",
   build: {
     outDir: "dist",
