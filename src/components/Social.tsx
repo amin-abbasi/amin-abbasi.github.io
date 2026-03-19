@@ -1,58 +1,49 @@
-import React, { useEffect, useState, useContext } from "react";
-import { SocialIcon } from "react-social-icons";
-import { ThemeContext } from "styled-components";
-import endpoints from "../constants/endpoints";
-import { Theme } from "../theme/themes";
-import { CSSProperties } from "react";
+import { useState, useContext } from 'react';
+import { SocialIcon } from 'react-social-icons';
+import { ThemeContext } from 'styled-components';
+import { Theme } from '../theme/themes';
+import { CSSProperties } from 'react';
+import socialData from '../assets/profile/social.json';
 
 const styles = {
-  iconStyle: {
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
-  } as CSSProperties,
+    iconStyle: {
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 10,
+    } as CSSProperties,
 };
 
 interface SocialLink {
-  network: string;
-  href: string;
+    network: string;
+    href: string;
 }
 
 interface SocialData {
-  social: SocialLink[];
+    social: SocialLink[];
 }
 
 function Social() {
-  const theme = useContext(ThemeContext) as Theme;
-  const [data, setData] = useState<SocialData | null>(null);
+    const theme = useContext(ThemeContext) as Theme;
+    const [data] = useState<SocialData>(socialData as SocialData);
 
-  useEffect(() => {
-    fetch(endpoints.social, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((res: SocialData) => setData(res))
-      .catch((err) => console.error(err));
-  }, []);
-
-  return (
-    <div className="social">
-      {data
-        ? data.social.map((social) => (
-            <SocialIcon
-              key={social.network}
-              style={styles.iconStyle}
-              url={social.href}
-              network={social.network}
-              bgColor={theme?.socialIconBgColor}
-              fgColor={theme?.background}
-              target="_blank"
-              rel="noopener"
-            />
-          ))
-        : null}
-    </div>
-  );
+    return (
+        <div className="social">
+            {data
+                ? data.social.map((social) => (
+                      <SocialIcon
+                          key={social.network}
+                          style={styles.iconStyle}
+                          url={social.href}
+                          network={social.network}
+                          bgColor={theme?.socialIconBgColor}
+                          fgColor={theme?.background}
+                          target="_blank"
+                          rel="noopener"
+                      />
+                  ))
+                : null}
+        </div>
+    );
 }
 
 export default Social;

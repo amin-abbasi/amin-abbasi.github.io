@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import styled, { ThemeContext, keyframes } from "styled-components";
+import { useEffect, useState } from "react";
+import { styled, keyframes } from "styled-components";
 import { Container } from "react-bootstrap";
 import { supabase } from "../utils/supabaseClient";
 import { Theme } from "../theme/themes";

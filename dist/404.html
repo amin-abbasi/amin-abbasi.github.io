@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Page Not Found | Redirecting...</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafrex/spa-github-pages
+      var segmentCount = 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + segmentCount)
+            .join("/") +
+          "/?p=/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(segmentCount)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash,
+      );
+    </script>
+  </head>
+  <body>
+    <!--
+      The file must be > 512 bytes for Internet Explorer to not show its own custom 404 error page.
+      This dummy text ensures the file size constraint is met and it gracefully handles
+      redirections to the index fallback on GitHub pages!
+      
+      We are currently redirecting your request to the single-page application router...
+      The process should take less than a second, and your app will load momentarily.
+      
+      GitHub Pages doesn't natively support dynamic HTML5 PushState routing natively. 
+      This page catches the initial 404, transforms the requested nested path (e.g. /admin) 
+      into query parameters (e.g. /?p=/admin), and redirects to the index.html page. 
+      Then, the index script processes those query parameters and uses history.replaceState()
+      to restore the URL cleanly to /admin, letting React Router take over naturally!
+      
+      Redirecting... Please wait!
+    -->
+  </body>
+</html>

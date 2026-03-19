@@ -1,20 +1,15 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { ViteReactSSG } from 'vite-react-ssg';
 
-const container = document.getElementById("root");
-if (container) {
-  const root = createRoot(container);
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  );
-}
+import './index.css';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+import reportWebVitals from './reportWebVitals';
+import { routes } from './routes';
+
+export const createRoot = ViteReactSSG({ routes }, undefined, {
+    getStyleCollector: async () => {
+        const { default: ssrCollector } = await import('vite-react-ssg/style-collectors/styled-components');
+        return ssrCollector();
+    },
+});
+
 reportWebVitals();

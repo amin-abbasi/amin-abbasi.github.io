@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { supabase } from "../utils/supabaseClient";
-const UAParser = require("ua-parser-js");
+import { UAParser } from "ua-parser-js";
 
 export const useAnalytics = () => {
   const location = useLocation();

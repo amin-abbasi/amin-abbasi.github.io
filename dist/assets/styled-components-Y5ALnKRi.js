@@ -1,0 +1,1 @@
+import"./react-DtrESx-C.js";import{t as e}from"./app-GvAaBu3z.js";async function t(){let t=new e;return{collect(e){return t.collectStyles(e)},toString(){return t.getStyleTags()},cleanup(){t.seal()}}}export{t as default};

@@ -1,0 +1,60 @@
+{
+  "_react-DtrESx-C.js": {
+    "file": "assets/react-DtrESx-C.js",
+    "name": "react"
+  },
+  "index.html": {
+    "file": "assets/app-GvAaBu3z.js",
+    "name": "app",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_react-DtrESx-C.js"
+    ],
+    "dynamicImports": [
+      "node_modules/react-dom/client.js",
+      "node_modules/web-vitals/dist/web-vitals.js",
+      "node_modules/react-dark-mode-toggle/dist/index.js",
+      "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
+    ],
+    "css": [
+      "assets/app-Bpp8-bL_.css"
+    ]
+  },
+  "node_modules/react-dark-mode-toggle/dist/index.js": {
+    "file": "assets/dist-DvJmTCPl.js",
+    "name": "dist",
+    "src": "node_modules/react-dark-mode-toggle/dist/index.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_react-DtrESx-C.js",
+      "index.html"
+    ]
+  },
+  "node_modules/react-dom/client.js": {
+    "file": "assets/client-DQVEg8LZ.js",
+    "name": "client",
+    "src": "node_modules/react-dom/client.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_react-DtrESx-C.js",
+      "index.html"
+    ]
+  },
+  "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
+    "file": "assets/styled-components-Y5ALnKRi.js",
+    "name": "styled-components",
+    "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
+    "isDynamicEntry": true,
+    "imports": [
+      "_react-DtrESx-C.js",
+      "index.html"
+    ]
+  },
+  "node_modules/web-vitals/dist/web-vitals.js": {
+    "file": "assets/web-vitals-CbFrzOv-.js",
+    "name": "web-vitals",
+    "src": "node_modules/web-vitals/dist/web-vitals.js",
+    "isDynamicEntry": true
+  }
+}
