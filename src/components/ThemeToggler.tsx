@@ -1,6 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { styled } from "styled-components";
 import AppContext from "../AppContext";
 
+const ToggleButton = styled.button<{ $isDark: boolean }>`
+  background: ${({ $isDark }) => ($isDark ? "#1e3a8a" : "#87CEEB")};
+  border: 1px solid ${({ $isDark }) => ($isDark ? "#1e40af" : "#AEE0F8")};
+  border-radius: 25px;
+  width: 50px;
+  height: 26px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+
+  .knob {
+    width: 20px;
+    height: 20px;
+    background: ${({ $isDark }) => ($isDark ? "#FFF" : "#FFDF00")};
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: ${({ $isDark }) => ($isDark ? "26px" : "2px")};
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;
 
 interface ThemeTogglerProps {
   onClick?: () => void;
@@ -9,27 +37,12 @@ interface ThemeTogglerProps {
 function ThemeToggler(props: ThemeTogglerProps) {
   const { onClick = () => {} } = props;
   const context = useContext(AppContext);
-  const [isMounted, setIsMounted] = useState(false);
-  const [ToggleComponent, setToggleComponent] = useState<any>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-    const loadToggle = async () => {
-      try {
-        const module: any = await import("react-dark-mode-toggle");
-        // Handle potential nested default exports from CJS-to-ESM interop
-        const component = module.default?.default || module.default || module;
-        setToggleComponent(() => component);
-      } catch (err) {
-        console.error("Failed to load DarkModeToggle:", err);
-      }
-    };
-    loadToggle();
-  }, []);
-
-  if (!context || !isMounted || !ToggleComponent) {
-    return <div style={{ marginBottom: 8, height: 50 }} />;
+  if (!context) {
+    return <div style={{ marginBottom: 8, height: 26, width: 50 }} />;
   }
+
+  const isDark = context.darkMode.value;
 
   const handleOnChange = () => {
     context.darkMode.toggle();
@@ -37,13 +50,13 @@ function ThemeToggler(props: ThemeTogglerProps) {
   };
 
   return (
-    <div style={{ marginBottom: 8 }}>
-      <ToggleComponent
-        onChange={handleOnChange}
-        checked={context.darkMode.value}
-        size={50}
-      />
-    </div>
+    <ToggleButton
+      $isDark={isDark}
+      onClick={handleOnChange}
+      aria-label="Toggle dark mode"
+    >
+      <div className="knob" />
+    </ToggleButton>
   );
 }
 
