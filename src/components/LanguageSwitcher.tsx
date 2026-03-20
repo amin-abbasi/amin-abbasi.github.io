@@ -21,6 +21,9 @@ const StyledDropdown = styled(NavDropdown)`
     padding: 2px 12px;
     height: 26px; /* Match ThemeToggler height */
     transition: all 0.3s ease;
+    margin-inline-start: 1em;
+    margin-inline-end: 1em;
+    margin-bottom: 8px;
 
     &:hover {
       border-color: ${(props) => (props.theme as Theme).accentColor};
@@ -36,10 +39,10 @@ const StyledDropdown = styled(NavDropdown)`
     background-color: ${(props) => (props.theme as Theme).cardBackground};
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     border-radius: 8px;
-    margin-top: 8px;
+    margin-top: 2px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     min-width: 120px;
-    padding: 6px 0;
+    padding: 4px 0;
     /* Center/Align adjustment */
     inset-inline-end: 0 !important;
     inset-inline-start: auto !important;
