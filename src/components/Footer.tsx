@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { styled, keyframes } from "styled-components";
 import { Container } from "react-bootstrap";
+import { doc, setDoc, getDoc, increment } from "firebase/firestore";
+
 import { Theme } from "../theme/themes";
-import { configs } from "constants/configs";
+import { fireStore } from "utils/firebase";
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   margin-top: auto;
   border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
   background-color: ${(props) => (props.theme as Theme).background};
@@ -15,7 +17,7 @@ const FooterWrapper = styled.footer`
   color: ${(props) => (props.theme as Theme).color}AA;
 
   @media (min-width: 768px) {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -60,7 +62,7 @@ const ViewBadge = styled.div`
   gap: 0.5rem;
   background: ${(props) => (props.theme as Theme).cardBackground};
   border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.4rem;
   border-radius: 4px;
   color: ${(props) => (props.theme as Theme).accentColor};
   font-weight: 600;
@@ -79,29 +81,41 @@ const Copyright = styled.div`
 `;
 
 export default function Footer() {
-  const [viewCount, setViewCount] = useState<number | null>(null);
+  const [totalViews, setTotalViews] = useState<number | null>(null);
+  const [countryCounts, setCountryCounts] = useState<Record<string, number>>({});
 
-    useEffect(() => {
-        async function fetchViewCount() {
-            try {
-                const projectId = configs.firebaseProjectId;
-                if (!projectId) return;
+  useEffect(() => {
+    async function fetchAndUpdateStats() {
+      try {
+        const ipRes = await fetch("https://get.geojs.io/v1/ip/country.json");
+        const ipData = await ipRes.json();
+        const country = ipData.country || "UNKNOWN";
 
-                const response = await fetch(`https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/page_views?pageSize=1000`);
-                const result = await response.json();
-                
-                if (result.documents) {
-                    setViewCount(result.documents.length);
-                } else {
-                    setViewCount(0);
-                }
-            } catch (error) {
-                console.error('Error fetching view count:', error);
-            }
-        }
+        const totalRef = doc(fireStore, "analytics", "pageViews");
+        const countryRef = doc(fireStore, "analytics", "perCountry");
 
-        fetchViewCount();
-    }, []);
+        await setDoc(totalRef, { count: increment(1) }, { merge: true });
+        await setDoc(countryRef, { [country]: increment(1) }, { merge: true });
+
+        const [totalSnap, countrySnap] = await Promise.all([
+          getDoc(totalRef),
+          getDoc(countryRef)
+        ]);
+
+        setTotalViews(totalSnap.data()?.count ?? 0);
+        setCountryCounts((countrySnap.data() as Record<string, number>) || {});
+      } catch (err) {
+        console.error("Failed to fetch or update view count:", err);
+        setTotalViews(0);
+      }
+    }
+
+    fetchAndUpdateStats();
+  }, []);
+
+  const topCountries = Object.entries(countryCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3);
 
   return (
     <FooterWrapper>
@@ -117,10 +131,17 @@ export default function Footer() {
 
         <ViewBadge>
           <span className="icon">👁</span>
-          {viewCount !== null
-            ? `${viewCount.toLocaleString()} System Views`
+          {totalViews !== null
+            ? `${totalViews.toLocaleString()} Views`
             : "Loading..."}
         </ViewBadge>
+
+        {topCountries.length > 0 && (
+          <ViewBadge>
+            <span className="icon">🌍</span>
+            {topCountries.map(([c, n]) => `${c}: ${n.toLocaleString()}`).join(", ")}
+          </ViewBadge>
+        )}
       </FooterContent>
     </FooterWrapper>
   );

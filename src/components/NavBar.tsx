@@ -9,7 +9,7 @@ import navbarData from '../assets/profile/navbar.json';
 
 const styles = {
     logoStyle: {
-        width: 50,
+        width: 40,
         height: 40,
     },
 };
