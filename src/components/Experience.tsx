@@ -41,7 +41,12 @@ const TimelineTrack = styled.div`
 // ── One experience entry ──────────────────────────────────────────────────────
 const EntryWrapper = styled.div`
     position: relative;
-    margin-bottom: 80px;
+    margin-top: 0.4em;
+    margin-bottom: 120px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 80px;
+    }
 
     &:last-child {
         margin-bottom: 0;
@@ -177,7 +182,7 @@ const BulletList = styled.ul`
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 
     li {
         position: relative;
@@ -189,11 +194,11 @@ const BulletList = styled.ul`
 
         &::before {
             content: '▸';
+            margin-top: -0.3em;
             position: absolute;
             left: 0;
             color: ${(props) => (props.theme as Theme).accentColor};
-            font-size: 0.8em;
-            top: 3px;
+            font-size: 1.5em;
         }
     }
 `;

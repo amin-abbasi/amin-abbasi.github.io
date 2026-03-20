@@ -39,7 +39,12 @@ const TimelineTrack = styled.div`
 
 const EntryWrapper = styled.div`
     position: relative;
-    margin-bottom: 80px;
+    margin-bottom: 180px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 80px;
+    }
+
     &:last-child {
         margin-bottom: 0;
     }
@@ -76,6 +81,7 @@ const TrackDot = styled.div<{ $accent: string }>`
 
 const Card = styled.div`
     padding: 28px 32px;
+    margin-top: 0.4em;
     background: ${(props) => (props.theme as Theme).cardBackground};
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     border-radius: 4px;
@@ -127,7 +133,7 @@ const DegreeTitle = styled.h3`
 
 const DateBadge = styled.span`
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: ${(props) => (props.theme as Theme).accentColor};
     background: ${(props) => (props.theme as Theme).accentColor}08;
@@ -153,7 +159,7 @@ const Institution = styled.div`
 const BulletList = styled.ul`
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -162,16 +168,17 @@ const BulletList = styled.ul`
         position: relative;
         padding-left: 20px;
         font-size: 0.92rem;
-        line-height: 1.7;
+        line-height: 1.2;
         color: ${(props) => (props.theme as Theme).color}BB;
         text-align: left;
 
         &::before {
             content: '▸';
             position: absolute;
+            margin-top: -0.3em;
             left: 0;
             color: ${(props) => (props.theme as Theme).accentColor};
-            font-size: 0.8em;
+            font-size: 1.5em;
         }
     }
 `;
