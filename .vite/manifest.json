@@ -1,6 +1,6 @@
 {
-  "_client-BoiljAb4.js": {
-    "file": "assets/client-BoiljAb4.js",
+  "_client-Bajd-ijy.js": {
+    "file": "assets/client-Bajd-ijy.js",
     "name": "client",
     "isDynamicEntry": true,
     "imports": [
@@ -8,12 +8,12 @@
     ]
   },
   "index.html": {
-    "file": "assets/app-CPMDus4Q.js",
+    "file": "assets/app-D4D0p5Pg.js",
     "name": "app",
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
-      "_client-BoiljAb4.js",
+      "_client-Bajd-ijy.js",
       "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
     ],
     "css": [
@@ -21,7 +21,7 @@
     ]
   },
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
-    "file": "assets/styled-components-BA5LbFm1.js",
+    "file": "assets/styled-components-ZfTgvQVY.js",
     "name": "styled-components",
     "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
     "isDynamicEntry": true,
