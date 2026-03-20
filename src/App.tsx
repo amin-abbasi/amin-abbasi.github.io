@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import './App.css';
 import './css/design-system.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

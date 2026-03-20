@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { styled, ThemeContext } from 'styled-components';
+import { useState } from 'react';
+import { styled } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { Container } from 'react-bootstrap';
 import Header from './Header';

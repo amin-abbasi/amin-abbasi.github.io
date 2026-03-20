@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { Fade } from 'react-awesome-reveal';
 import { styled, ThemeContext } from 'styled-components';

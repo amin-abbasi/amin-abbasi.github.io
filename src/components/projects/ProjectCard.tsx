@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { styled } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import { Theme } from '../../theme/themes';
@@ -118,15 +118,6 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-`;
-
-const ProjectTitle = styled.h3`
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -0.02em;
-    color: ${(props) => (props.theme as Theme).color};
 `;
 
 const ProjectDescription = styled.div`

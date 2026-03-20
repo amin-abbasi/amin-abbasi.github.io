@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Container, Badge } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import { styled, ThemeContext } from 'styled-components';

@@ -169,7 +169,7 @@ export default function Dashboard() {
                                     outerRadius={100}
                                     dataKey="value"
                                     label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}>
-                                    {countryData.map((entry, index) => (
+                                    {countryData.map((_, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>

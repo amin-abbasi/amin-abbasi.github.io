@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState, useContext } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { styled, ThemeContext } from 'styled-components';
 import ThemeToggler from './ThemeToggler';
 import { Theme } from '../theme/themes';

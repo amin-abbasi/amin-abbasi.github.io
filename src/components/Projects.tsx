@@ -1,6 +1,6 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { styled, ThemeContext } from 'styled-components';
+import { styled } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import Header from './Header';
 import ProjectCard from './projects/ProjectCard';
@@ -49,7 +49,6 @@ interface ProjectsProps {
 }
 
 function Projects(props: ProjectsProps) {
-    const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
     const [data] = useState<ProjectsData>(projectsData as ProjectsData);
     const [showMore, setShowMore] = useState(false);
