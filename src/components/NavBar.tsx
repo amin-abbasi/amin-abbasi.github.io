@@ -2,10 +2,11 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled, ThemeContext } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import ThemeToggler from './ThemeToggler';
+import LanguageSwitcher from './LanguageSwitcher';
 import { Theme } from '../theme/themes';
 import { NavbarData } from '../types/profile.types';
-import navbarData from '../assets/profile/navbar.json';
 
 const styles = {
     logoStyle: {
@@ -16,8 +17,8 @@ const styles = {
 
 const ExternalNavLink = styled.a<{ theme: Theme }>`
     color: ${(props) => props.theme.navbarTheme.linkColor};
-    margin-left: 0.75em;
-    margin-right: 0.75em;
+    margin-inline-start: 0.75em;
+    margin-inline-end: 0.75em;
     font-size: 0.82rem;
     font-family: var(--font-mono);
     font-weight: 500;
@@ -37,8 +38,8 @@ const ExternalNavLink = styled.a<{ theme: Theme }>`
 
 const InternalNavLink = styled(NavLink)<{ theme: Theme }>`
     color: ${(props) => props.theme.navbarTheme.linkColor};
-    margin-left: 0.75em;
-    margin-right: 0.75em;
+    margin-inline-start: 0.75em;
+    margin-inline-end: 0.75em;
     font-size: 0.82rem;
     font-family: var(--font-mono);
     font-weight: 500;
@@ -60,8 +61,12 @@ const InternalNavLink = styled(NavLink)<{ theme: Theme }>`
 `;
 
 function NavBar() {
+    const { t } = useTranslation();
     const theme = useContext(ThemeContext) as Theme;
-    const [data] = useState<NavbarData>(navbarData as NavbarData);
+    const data = {
+        logo: t('resNavbar:logo', { returnObjects: true }),
+        sections: t('resNavbar:sections', { returnObjects: true })
+    } as NavbarData;
     const [expanded, setExpanded] = useState(false);
 
     return (
@@ -80,7 +85,7 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={() => setExpanded(!expanded)} />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto" />
-                    <Nav>
+                    <Nav className="align-items-center">
                         {data &&
                             data.sections?.map((section) =>
                                 section?.type === 'link' ? (
@@ -100,8 +105,11 @@ function NavBar() {
                                     </InternalNavLink>
                                 ),
                             )}
+                        <div className="d-flex align-items-center" style={{ marginInlineStart: '1rem' }}>
+                            <ThemeToggler onClick={() => setExpanded(false)} />
+                            <LanguageSwitcher />
+                        </div>
                     </Nav>
-                    <ThemeToggler onClick={() => setExpanded(false)} />
                 </Navbar.Collapse>
             </Container>
         </Navbar>

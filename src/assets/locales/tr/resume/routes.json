@@ -1,0 +1,9 @@
+{
+  "sections": [
+    { "component": "About", "path": "/about", "headerTitle": "Hakkımda" },
+    { "component": "Skills", "path": "/skills", "headerTitle": "Yetenekler" },
+    { "component": "Education", "path": "/education", "headerTitle": "Eğitim" },
+    { "component": "Experience", "path": "/experience", "headerTitle": "Deneyim" },
+    { "component": "Projects", "path": "/projects", "headerTitle": "Projeler" }
+  ]
+}

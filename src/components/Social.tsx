@@ -1,14 +1,14 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { ThemeContext } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Theme } from '../theme/themes';
 import { CSSProperties } from 'react';
-import socialData from '../assets/profile/social.json';
 
 const styles = {
     iconStyle: {
-        marginLeft: 10,
-        marginRight: 10,
+        marginInlineStart: 10,
+        marginInlineEnd: 10,
         marginBottom: 10,
     } as CSSProperties,
 };
@@ -23,12 +23,15 @@ interface SocialData {
 }
 
 function Social() {
+    const { t } = useTranslation();
     const theme = useContext(ThemeContext) as Theme;
-    const [data] = useState<SocialData>(socialData as SocialData);
+    const data = {
+        social: t('resSocial:social', { returnObjects: true })
+    } as SocialData;
 
     return (
         <div className="social">
-            {data
+            {data && data.social
                 ? data.social.map((social) => (
                       <SocialIcon
                           key={social.network}

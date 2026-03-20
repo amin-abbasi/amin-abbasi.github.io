@@ -1,6 +1,7 @@
 
 import { styled } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import { useTranslation } from 'react-i18next';
 import { Theme } from '../../theme/themes';
 import { Project } from '../../types/profile.types';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
@@ -31,7 +32,7 @@ const CardContainer = styled.div`
         top: -1px;
         left: -1px;
         border-top: 2px solid ${(props) => (props.theme as Theme).accentColor};
-        border-left: 2px solid ${(props) => (props.theme as Theme).accentColor};
+        border-inline-start: 2px solid ${(props) => (props.theme as Theme).accentColor};
         border-radius: 6px 0 0 0;
         opacity: 0.5;
     }
@@ -39,7 +40,7 @@ const CardContainer = styled.div`
         bottom: -1px;
         right: -1px;
         border-bottom: 2px solid ${(props) => (props.theme as Theme).accentColor};
-        border-right: 2px solid ${(props) => (props.theme as Theme).accentColor};
+        border-inline-end: 2px solid ${(props) => (props.theme as Theme).accentColor};
         border-radius: 0 0 6px 0;
         opacity: 0.5;
     }
@@ -117,7 +118,7 @@ const ContentWrapper = styled.div`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: start;
 `;
 
 const ProjectDescription = styled.div`
@@ -131,18 +132,18 @@ const ProjectDescription = styled.div`
         margin: 0;
     }
     ul {
-        padding-left: 16px;
+        padding-inline-start: 16px;
         margin: 4px 0;
         list-style-type: none;
     }
     li {
         position: relative;
-        padding-left: 14px;
+        padding-inline-start: 14px;
         margin-bottom: 4px;
         &::before {
             content: '▸';
             position: absolute;
-            left: 0;
+            inset-inline-start: 0;
             font-size: 0.7em;
             color: ${(props) => (props.theme as Theme).accentColor};
             top: 2px;
@@ -226,6 +227,7 @@ interface ProjectCardProps {
 }
 
 function ProjectCard(props: ProjectCardProps) {
+    const { t } = useTranslation();
     const { project } = props;
 
     return (
@@ -262,7 +264,7 @@ function ProjectCard(props: ProjectCardProps) {
                         link.text.toLowerCase() === 'github' ? (
                             <ActionButton key={link.href} href={link.href} target="_blank">
                                 <FaGithub size={14} />
-                                GitHub
+                                {t('layout:projects.github', { defaultValue: 'GitHub' })}
                             </ActionButton>
                         ) : (
                             <SecondaryButton key={link.href} href={link.href} target="_blank">
@@ -274,13 +276,13 @@ function ProjectCard(props: ProjectCardProps) {
                     {project.source && (
                         <ActionButton href={project.source} target="_blank">
                             <FaGithub size={14} />
-                            Source
+                            {t('layout:projects.source', { defaultValue: 'Source' })}
                         </ActionButton>
                     )}
                     {project.demo && (
                         <SecondaryButton href={project.demo} target="_blank">
                             <FaExternalLinkAlt size={12} />
-                            Demo
+                            {t('layout:projects.demo', { defaultValue: 'Demo' })}
                         </SecondaryButton>
                     )}
                 </LinkContainer>

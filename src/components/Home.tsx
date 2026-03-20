@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext, useRef, useCallback } from 'react';
 import Typewriter from 'typewriter-effect';
 import { Fade } from 'react-awesome-reveal';
+import { useTranslation } from 'react-i18next';
 import AppContext from '../AppContext';
 import Social from './Social';
 import FallbackSpinner from './FallbackSpinner';
 import { HomeData } from '../types/profile.types';
-import homeDataImport from '../assets/profile/home.json';
 
 // ---------------------------------------------------------------------------
 //  Blueprint Canvas — animated engineering grid with nodes and connection lines
@@ -185,8 +185,12 @@ function BlueprintCanvas({ darkMode }: { darkMode: boolean }) {
 //  Home Component
 // ---------------------------------------------------------------------------
 function Home() {
+    const { t, i18n } = useTranslation();
     const context = useContext(AppContext);
-    const [data] = useState<HomeData>(homeDataImport as HomeData);
+    const data = {
+        name: t('resHome:name'),
+        roles: t('resHome:roles', { returnObjects: true })
+    } as HomeData;
 
     if (!context) return null;
 
@@ -235,7 +239,7 @@ function Home() {
                             marginBottom: '1rem',
                             opacity: 0.85,
                         }}>
-                        // system.init — lead engineer
+                        {t('layout:home.systemInit', { defaultValue: '// system.init — lead engineer' })}
                     </p>
 
                     {/* Name */}
@@ -277,6 +281,7 @@ function Home() {
                             }}
                         />
                         <Typewriter
+                            key={i18n.language} // Re-init typewriter on language change
                             options={{
                                 loop: true,
                                 autoStart: true,
@@ -309,7 +314,7 @@ function Home() {
                                 textTransform: 'uppercase',
                                 color: accent,
                             }}>
-                            scroll
+                            {t('layout:home.scroll', { defaultValue: 'scroll' })}
                         </span>
                         <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
                             <rect x="1" y="1" width="12" height="18" rx="6" stroke={accent} strokeWidth="1.5" />

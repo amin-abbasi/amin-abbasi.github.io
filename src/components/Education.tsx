@@ -1,13 +1,13 @@
-import { useState, useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { Fade } from 'react-awesome-reveal';
 import { styled, ThemeContext } from 'styled-components';
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
-import educationData from '../assets/profile/education.json';
 
 const MainContainer = styled.div`
     padding: 40px 0 80px;
@@ -17,16 +17,16 @@ const MainContainer = styled.div`
 // ── Shared schematic timeline styles ──────────────────────────────────────────
 const TimelineTrack = styled.div`
     position: relative;
-    padding-left: 80px;
+    padding-inline-start: 80px;
 
     @media (max-width: 768px) {
-        padding-left: 0;
+        padding-inline-start: 0;
     }
 
     &::before {
         content: '';
         position: absolute;
-        left: 28px;
+        inset-inline-start: 28px;
         top: 0;
         bottom: 0;
         width: 1px;
@@ -52,7 +52,7 @@ const EntryWrapper = styled.div`
 
 const TrackDot = styled.div<{ $accent: string }>`
     position: absolute;
-    left: -56px;
+    inset-inline-start: -56px;
     top: 30px;
     width: 14px;
     height: 14px;
@@ -95,7 +95,7 @@ const Card = styled.div`
         width: 12px;
         height: 12px;
         border-top: 2px solid ${(props) => (props.theme as Theme).accentColor};
-        border-left: 2px solid ${(props) => (props.theme as Theme).accentColor};
+        border-inline-start: 2px solid ${(props) => (props.theme as Theme).accentColor};
     }
 
     &:hover {
@@ -151,7 +151,7 @@ const Institution = styled.div`
     color: ${(props) => (props.theme as Theme).color}AA;
     margin-bottom: 20px;
     letter-spacing: 0.02em;
-    text-align: left;
+    text-align: start;
 `;
 
 const BulletList = styled.ul`
@@ -164,17 +164,17 @@ const BulletList = styled.ul`
 
     li {
         position: relative;
-        padding-left: 20px;
+        padding-inline-start: 20px;
         font-size: 0.92rem;
         line-height: 1.2;
         color: ${(props) => (props.theme as Theme).color}BB;
-        text-align: left;
+        text-align: start;
 
         &::before {
             content: '▸';
             position: absolute;
             margin-top: -0.3em;
-            left: 0;
+            inset-inline-start: 0;
             color: ${(props) => (props.theme as Theme).accentColor};
             font-size: 1.5em;
         }
@@ -194,17 +194,20 @@ interface EducationData {
 }
 
 interface EducationProps {
-    header: string;
+    header?: string;
 }
 
 function Education(props: EducationProps) {
+    const { t } = useTranslation();
     const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
-    const [data] = useState<EducationData>(educationData as EducationData);
+    const data = {
+        education: t('resEducation:education', { returnObjects: true })
+    } as EducationData;
 
     return (
         <>
-            <Header title={header} />
+            <Header title={header || t('layout:sections.education')} />
             {data ? (
                 <MainContainer>
                     <Container fluid style={{ maxWidth: '1400px', padding: '0 24px' }}>
@@ -239,7 +242,7 @@ function Education(props: EducationProps) {
                                             {!item.bulletPoints && item.cardDetailedText && (
                                                 <div
                                                     style={{
-                                                        textAlign: 'left',
+                                                        textAlign: 'start',
                                                         fontSize: '0.92rem',
                                                         color: theme.color + 'BB',
                                                         lineHeight: 1.7,

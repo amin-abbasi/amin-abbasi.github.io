@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import Dashboard from '../components/admin/Dashboard';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import { styled } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const ADMIN_HASH = '$2b$10$4QoV.FxH11vPy92U0hcZXOuzSjpeK0C.J7whXDpKw1z590CUZFWdq';
 
@@ -55,6 +56,7 @@ const StyledButton = styled(Button)`
 `;
 
 export default function Admin() {
+    const { t } = useTranslation();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -67,11 +69,11 @@ export default function Admin() {
                 setIsAuthenticated(true);
                 setError('');
             } else {
-                setError('Invalid password');
+                setError(t('layout:dashboard.login.invalidPassword', { defaultValue: 'Invalid password' }));
             }
         } catch (err) {
             console.error(err);
-            setError('Error verifying password');
+            setError(t('layout:dashboard.login.error', { defaultValue: 'Error verifying password' }));
         }
     };
 
@@ -82,20 +84,20 @@ export default function Admin() {
     return (
         <LoginPage>
             <LoginCard>
-                <h2>RESTRICTED ACCESS</h2>
+                <h2>{t('layout:dashboard.login.restrictedAccess', { defaultValue: 'RESTRICTED ACCESS' })}</h2>
                 {error && <div className="alert alert-danger mb-4">{error}</div>}
                 <Form onSubmit={handleLogin}>
                     <Form.Group>
                         <StyledInput
                             type="password"
-                            placeholder="Enter Access Key"
+                            placeholder={t('layout:dashboard.login.placeholder', { defaultValue: 'Enter Access Key' })}
                             value={password}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                             autoFocus
                         />
                     </Form.Group>
                     <StyledButton variant="outline-primary" type="submit">
-                        AUTHENTICATE
+                        {t('layout:dashboard.login.authenticate', { defaultValue: 'AUTHENTICATE' })}
                     </StyledButton>
                 </Form>
             </LoginCard>

@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "image": "images/projects/ts-boilerplate.png",
+      "title": "Typescript Boilerplate",
+      "bodyText": "- Typescript, MongoDB, Redis ve fazlasını kullanan sunucu taraflı bir boilerplate (şablon)...\n- Tamamen özelleştirilebilir ve dinamik, veri yapısını kolayca değiştirin.",
+      "links": [{"text": "GitHub", "href": "https://github.com/amin-abbasi/typescript-boilerplate"}],
+      "tags": ["Typescript", "Nodejs", "Express", "Koa", "MongoDB", "Redis"]
+    },
+    {
+      "image": "images/projects/js-boilerplate.png",
+      "title": "Javascript Boilerplate",
+      "bodyText": "- Javascript, Express, MongoDB, Redis ve fazlasını kullanan sunucu taraflı bir boilerplate (şablon)...\n- Tamamen özelleştirilebilir ve dinamik, veri yapısını kolayca değiştirin.",
+      "links": [{"text": "GitHub", "href": "https://github.com/amin-abbasi/javascript-boilerplate"}],
+      "tags": ["Javascript", "Nodejs", "Express", "MongoDB", "Redis"]
+    },
+    {
+      "image": "images/projects/gach.png",
+      "title": "Gach Paketi",
+      "bodyText": "- Terminal metin mesajlarınızı renklendirmek için bir paket\n- Önceden tanımlanmış sistem yazı tipi ve arka plan renkleri (kırmızı, yeşil, vb.).\n- 'rgb' ve 'hex' kullanarak yazı tipi rengini ayarlayın.\n- Stilleri zincirlemek için iç içe işlevler.\n- Daha fazla esneklik için bir obje kullanılarak özel stiller uygulanabilir.",
+      "links": [{"text": "GitHub", "href": "https://github.com/amin-abbasi/gach"}, {"text": "NPM", "href": "https://www.npmjs.com/package/gach"}],
+      "tags": ["Javascript", "Typescript", "Nodejs", "Terminal"]
+    },
+    {
+      "image": "images/projects/go-boilerplate.png",
+      "title": "Golang Boilerplate",
+      "bodyText": "- Go, MongoDB ve fazlasını kullanan sunucu taraflı bir boilerplate (şablon)...\n- Tamamen özelleştirilebilir ve dinamik, veri yapısını kolayca değiştirin.",
+      "links": [{"text": "GitHub", "href": "https://github.com/amin-abbasi/go-boilerplate"}],
+      "tags": ["Go", "MongoDB"]
+    }
+  ]
+}

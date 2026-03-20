@@ -1,12 +1,12 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Container, Badge } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
-import experiencesData from '../assets/profile/experiences.json';
 
 // ── Layout shell ─────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -17,16 +17,16 @@ const MainContainer = styled.div`
 // ── Vertical timeline track ───────────────────────────────────────────────────
 const TimelineTrack = styled.div`
     position: relative;
-    padding-left: 80px;
+    padding-inline-start: 80px;
 
     @media (max-width: 768px) {
-        padding-left: 0;
+        padding-inline-start: 0;
     }
 
     &::before {
         content: '';
         position: absolute;
-        left: 28px;
+        inset-inline-start: 28px;
         top: 0;
         bottom: 0;
         width: 1px;
@@ -56,7 +56,7 @@ const EntryWrapper = styled.div`
 // Connector dot on the track
 const TrackDot = styled.div<{ $accent: string }>`
     position: absolute;
-    left: -56px;
+    inset-inline-start: -56px;
     top: 30px;
     width: 12px;
     height: 12px;
@@ -91,14 +91,14 @@ const Card = styled.div`
         top: -1px;
         left: -1px;
         border-top: 2px solid ${(props) => (props.theme as Theme).accentColor};
-        border-left: 2px solid ${(props) => (props.theme as Theme).accentColor};
+        border-inline-start: 2px solid ${(props) => (props.theme as Theme).accentColor};
         border-radius: 6px 0 0 0;
     }
     &::after {
         bottom: -1px;
         right: -1px;
         border-bottom: 2px solid ${(props) => (props.theme as Theme).accentColor};
-        border-right: 2px solid ${(props) => (props.theme as Theme).accentColor};
+        border-inline-end: 2px solid ${(props) => (props.theme as Theme).accentColor};
         border-radius: 0 0 6px 0;
     }
 
@@ -184,17 +184,17 @@ const BulletList = styled.ul`
 
     li {
         position: relative;
-        padding-left: 24px;
+        padding-inline-start: 24px;
         font-size: 0.95rem;
         line-height: 1.7;
         color: ${(props) => (props.theme as Theme).color}CC;
-        text-align: left;
+        text-align: start;
 
         &::before {
             content: '▸';
             margin-top: -0.3em;
             position: absolute;
-            left: 0;
+            inset-inline-start: 0;
             color: ${(props) => (props.theme as Theme).accentColor};
             font-size: 1.5em;
         }
@@ -204,14 +204,14 @@ const BulletList = styled.ul`
 // ── Transfer connector between cards ─────────────────────────────────────────
 const ConnectorLabel = styled.div`
     position: absolute;
-    left: -80px;
+    inset-inline-start: -80px;
     top: 0;
     bottom: 0;
     width: 56px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 8px;
+    padding-inline-end: 8px;
 
     @media (max-width: 768px) {
         display: none;
@@ -239,17 +239,18 @@ interface ExperienceItem {
 }
 
 interface ExperienceProps {
-    header: string;
+    header?: string;
 }
 
 function Experience(props: ExperienceProps) {
+    const { t } = useTranslation();
     const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
-    const [data] = useState<ExperienceItem[]>(experiencesData.experiences as ExperienceItem[]);
+    const data = t('resExperiences:experiences', { returnObjects: true }) as ExperienceItem[];
 
     return (
         <>
-            <Header title={header} />
+            <Header title={header || t('layout:sections.experience')} />
 
             {data ? (
                 <MainContainer>

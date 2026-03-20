@@ -14,11 +14,11 @@ export const routes = [
         children: [
             { index: true, element: <Home /> },
             { path: 'admin', element: <Admin /> },
-            { path: 'about', element: <About header="About" /> },
-            { path: 'skills', element: <Skills header="Skills" /> },
-            { path: 'education', element: <Education header="Education" /> },
-            { path: 'experience', element: <Experience header="Experience" /> },
-            { path: 'projects', element: <Projects header="Projects" /> },
+            { path: 'about', element: <About /> },
+            { path: 'skills', element: <Skills /> },
+            { path: 'education', element: <Education /> },
+            { path: 'experience', element: <Experience /> },
+            { path: 'projects', element: <Projects /> },
         ],
     },
 ];

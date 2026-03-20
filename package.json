@@ -1,7 +1,7 @@
 {
     "homepage": "https://amin-abbasi.github.io",
     "name": "my-portfolio",
-    "version": "4.9.0",
+    "version": "5.0.0",
     "private": true,
     "scripts": {
         "start": "vite",
@@ -17,10 +17,13 @@
         "bootstrap": "5.3.8",
         "firebase": "^12.11.0",
         "gh-pages": "6.3.0",
+        "i18next": "^25.8.20",
+        "i18next-browser-languagedetector": "^8.2.1",
         "react": "18.3.1",
         "react-awesome-reveal": "4.3.1",
         "react-bootstrap": "2.10.10",
         "react-dom": "18.3.1",
+        "react-i18next": "^16.5.8",
         "react-icons": "5.6.0",
         "react-markdown": "10.1.0",
         "react-router-dom": "^6.28.2",

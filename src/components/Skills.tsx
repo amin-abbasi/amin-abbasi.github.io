@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { styled } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { Container } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
-import skillsData from '../assets/profile/skills.json';
 
 const MainContainer = styled.div`
     padding: 40px 0 80px;
@@ -14,10 +13,10 @@ const MainContainer = styled.div`
 
 const IntroTextWrapper = styled.div`
     max-width: 800px;
-    text-align: left;
+    text-align: start;
     margin-bottom: 56px;
-    border-left: 2px solid ${(props) => (props.theme as Theme).accentColor};
-    padding-left: 24px;
+    border-inline-start: 2px solid ${(props) => (props.theme as Theme).accentColor};
+    padding-inline-start: 24px;
 `;
 
 const IntroLine = styled.div`
@@ -134,7 +133,7 @@ const ModuleID = styled.div`
     font-size: 0.6rem;
     color: ${(props) => (props.theme as Theme).accentColor};
     opacity: 0.4;
-    margin-left: auto;
+    margin-inline-start: auto;
 `;
 
 interface SkillItem {
@@ -153,16 +152,20 @@ interface SkillsData {
 }
 
 interface SkillsProps {
-    header: string;
+    header?: string;
 }
 
 function Skills(props: SkillsProps) {
+    const { t } = useTranslation();
     const { header } = props;
-    const [data] = useState<SkillsData>(skillsData as SkillsData);
+    const data = {
+        intro: t('resSkills:intro'),
+        skills: t('resSkills:skills', { returnObjects: true })
+    } as SkillsData;
 
     return (
         <>
-            <Header title={header} />
+            <Header title={header || t('layout:sections.skills')} />
             {data ? (
                 <MainContainer>
                     <Container fluid style={{ maxWidth: '1200px', padding: '0 24px' }}>

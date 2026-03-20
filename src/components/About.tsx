@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Fade } from 'react-awesome-reveal';
 import { styled } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
-import aboutData from '../assets/profile/about.json';
 
 const AboutContainer = styled(Container)`
     padding-top: 2rem;
@@ -15,7 +14,7 @@ const AboutContainer = styled(Container)`
 
 const TextCol = styled(Col)`
     flex-direction: column;
-    text-align: left;
+    text-align: start;
     font-size: 1.05em;
     font-weight: 400;
     line-height: 1.8;
@@ -24,7 +23,7 @@ const TextCol = styled(Col)`
     z-index: 10;
 
     @media (min-width: 992px) {
-        padding-right: 4rem;
+        padding-inline-end: 4rem;
     }
 
     h3 {
@@ -125,10 +124,10 @@ const QuoteText = styled.div`
     }
 
     &::before {
-        left: 0;
+        inset-inline-start: 0;
     }
     &::after {
-        right: 0;
+        inset-inline-end: 0;
     }
 `;
 
@@ -159,7 +158,7 @@ const DocLabel = styled.div`
 `;
 
 interface AboutProps {
-    header: string;
+    header?: string;
 }
 
 interface AboutData {
@@ -168,18 +167,22 @@ interface AboutData {
 }
 
 function About(props: AboutProps) {
+    const { t } = useTranslation();
     const { header } = props;
-    const [data] = useState<AboutData>(aboutData as AboutData);
+    const data = {
+        about: t('resAbout:about'),
+        imageSource: t('resAbout:imageSource')
+    } as AboutData;
 
     return (
         <>
-            <Header title={header} />
+            <Header title={header || t('layout:sections.about')} />
             <AboutContainer>
                 {data ? (
                     <Fade triggerOnce duration={1000}>
                         <Row className="align-items-center align-items-lg-start">
                             <TextCol lg={7} md={12} className="order-2 order-lg-1">
-                                <DocLabel>REF_ID: PRO_BIO_772</DocLabel>
+                                <DocLabel>{t('layout:about.refId', { defaultValue: 'REF_ID: PRO_BIO_772' })}</DocLabel>
                                 <ReactMarkdown>{data.about}</ReactMarkdown>
                             </TextCol>
                             <ImageCol lg={5} md={12} className="order-1 order-lg-2 mb-5 mb-lg-0 mt-lg-4">
@@ -188,7 +191,7 @@ function About(props: AboutProps) {
                                         <ProfileImageContainer>
                                             <ProfileImage src={data.imageSource} alt="profile" loading="lazy" />
                                         </ProfileImageContainer>
-                                        <QuoteText>The best code is the line you didn't have to write.</QuoteText>
+                                        <QuoteText>{t('layout:about.quote', { defaultValue: "The best code is the line you didn't have to write." })}</QuoteText>
                                     </ProfileSection>
                                 </Fade>
                             </ImageCol>

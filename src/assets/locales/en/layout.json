@@ -1,0 +1,49 @@
+{
+    "navbar": {
+        "themeToggle": "Toggle theme"
+    },
+    "projects": {
+        "loadMore": "Load More Projects",
+        "demo": "Demo",
+        "github": "GitHub",
+        "source": "Source"
+    },
+    "sections": {
+        "about": "About",
+        "experience": "Experience",
+        "projects": "Projects",
+        "education": "Education",
+        "skills": "Skills"
+    },
+    "footer": {
+        "globalViews": "Global Views",
+        "localViews": "Local Views",
+        "systemOnline": "System Online",
+        "builtBy": "Built by",
+        "views": "Views",
+        "loading": "Loading..."
+    },
+    "dashboard": {
+        "title": "Site Analytics",
+        "totalViews": "Total Views",
+        "viewsByPage": "Views by Page",
+        "topCountries": "Top Countries",
+        "topBrowsers": "Top Browsers",
+        "topOs": "Top OS",
+        "login": {
+            "restrictedAccess": "RESTRICTED ACCESS",
+            "invalidPassword": "Invalid password",
+            "error": "Error verifying password",
+            "placeholder": "Enter Access Key",
+            "authenticate": "AUTHENTICATE"
+        }
+    },
+    "home": {
+        "systemInit": "// system.init — lead engineer",
+        "scroll": "scroll"
+    },
+    "about": {
+        "refId": "REF_ID: PRO_BIO_772",
+        "quote": "The best code is the line you didn't have to write."
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "logo": {
+    "source": "images/logo.png",
+    "height": 40,
+    "width": 40
+  },
+  "sections": [
+    { "title": "درباره من", "href": "/about" },
+    { "title": "مهارت‌ها", "href": "/skills" },
+    { "title": "سوابق کاری", "href": "/experience" },
+    { "title": "تحصیلات", "href": "/education" },
+    { "title": "پروژه‌ها", "href": "/projects" }
+  ]
+}

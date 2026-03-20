@@ -1,0 +1,116 @@
+{
+  "experiences": [
+    {
+      "title": "Lider Yazılım Mühendisi",
+      "subtitle": "Dannie.CC, Antalya, Türkiye",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "Monolitik bir platformu bağımsız olarak dağıtılabilir servislere ayırarak ERP ve MES mimari evrimini yönetti; bakımı iyileştirdi ve özellik teslim süresini 1 aydan 1 haftaya indirdi.",
+        "Bilgi silolanmasını önlemek için kod incelemelerini ve şeffaflığı birleştirdi, bu da iterasyonlarda %25 azalma sağladı.",
+        "Ekip KPI'larını rafine etti ve görevleri hacim yerine kaliteye öncelik verecek şekilde organize etti; 6 çeyrek boyunca tüm KPI hedeflerine ulaştı.",
+        "Yoğun saatlerde ERP yanıt sürelerini %35 oranında azaltmak için periyodik iyileştirme toplantıları planlama inisiyatifini aldı.",
+        "3 kıdemsiz mühendisin teknik gelişimine mentorluk yaptı ve ekip verimliliğini %20 artırdı.",
+        "Yazılım süreçlerini karmaşık otomotiv gereksinimlerini karşılayacak şekilde hizalayarak IATF 16949 sertifikasyon hazırlığını hızlandırdı.",
+        "Yönetici liderlikle iş birliği yaparak ERP/MES sistemlerini tasarladı; karmaşık iş ihtiyaçlarını operasyonel kapsamda %40 genişleme sağlayan teknik hedeflere dönüştürdü.",
+        "Şirket hedefleriyle %100 uyum sağlamak için geri bildirimleri uygulanabilir görevlere dönüştürerek 9 departman arasında köprü kurması için QA ekibini güçlendirdi."
+      ],
+      "dateText": "01/2025 - Günümüz"
+    },
+    {
+      "title": "Kıdemli Backend Yazılım Mühendisi",
+      "subtitle": "Dannie.CC, Antalya, Türkiye",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "WebSockets kullanarak bir Sunucu Güdümlü UI (SDUI) çerçevesi tasarladı; backend'in karmaşık uygulama modüllerini dinamik olarak işlemesine olanak tanıdı ve frontend dağıtım ihtiyaçlarını %80 azalttı.",
+        "Ana platformun TypeScript'e taşınması, mimari belirsizliği gidererek ve karmaşık veri parçalarında güvenliği sağlayarak yeni geliştiricilerin adaptasyon süresini üç aydan bir aya indirdi.",
+        "Yüksek yoğunluklu yükler altında gecikmeyi 60 ms'ye düşürmek için ArangoDB sorgularını optimize etti; ERP uygulamasının hızını üç kat artırdı.",
+        "WebSocket'in olay güdümlü mimarisini kullanarak, tüm üretim hatlarında neredeyse sıfır gecikme ile birim takibi sağlandı."
+      ],
+      "dateText": "12/2023 - 01/2025"
+    },
+    {
+      "title": "Kıdemli Backend Yazılım Mühendisi",
+      "subtitle": "Actimi GmbH, Antalya, Türkiye",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "Aidbox ve Medplum FHIR tabanlı veri modellerini optimize etti; Alman sağlık hizmeti sağlayıcıları için karmaşık sorgu gecikmesini %30 azaltacak şekilde PostgreSQL şemalarını yeniden tasarladı.",
+        "Hastalar ve pratisyenler tarafından kullanılan dağıtılmış tabletlerin yaşam döngüsünü otomatikleştirmek için Zoho MDM API aracılığıyla güvenli bir uzaktan filo yönetim sistemi tasarladı.",
+        "Cihaz yeniden ataması için sağlam bir veri silme ve UUID yeniden oluşturma iş akışı geliştirdi; hasta geçişleri sırasında %100 GDPR ve HIPAA uyumluluğu sağladı.",
+        "Platform genelinde JavaScript'ten TypeScript'e geçişe öncülük etti; sıkı tip güvenliği getirerek yeni geliştirici adaptasyon süresini 3 aydan 1 aya indirdi.",
+        "ArangoDB (AQL) sorgularını optimize ederek ve saniyede 1.500+ istek alan yoğun yükler altında sistem gecikmesini 60 ms'ye düşürerek tedarik uygulaması performansını üç katına çıkardı.",
+        "GCP üzerindeki Docker ve CI/CD süreçlerini yeniden yapılandırarak geliştirme sunucusu dağıtım sürelerini 15 dakikadan 2 dakikaya indirdi (%85 verimlilik artışı).",
+        "Fabrika sahası ve yönetim sistemleri arasındaki günlük senkronizasyon hatalarını ortadan kaldıran standartlaştırılmış backend veri doğrulama kontrolleri kurdu.",
+        "UI/UX tasarım onayından otomatik test ve UAT (Kullanıcı Kabul Testi) döngülerine kadar 'Uygulama Akışı'nı tanımlamak için CTO ile iş birliği yaptı."
+      ],
+      "dateText": "12/2022 - 12/2023"
+    },
+    {
+      "title": "Serbest Mimar ve Teknik Danışman",
+      "subtitle": "Uzaktan (ABD tabanlı Müşteriler)",
+      "workType": "Sözleşmeli",
+      "workDescription": [
+        "4 Kripto Para platformunu denetledi ve geliştirdi, %30 performans iyileştirmesi sağladı.",
+        "Güvenli OTC, P2P ve HD cüzdan çözümleri tasarladı ve uyguladı, geliştirme maliyetini yarıdan fazla azalttı.",
+        "Temel bileşenleri standartlaştırarak 50'den fazla büyük mimari kusuru giderdi.",
+        "Performans, ölçeklenebilirlik ve maliyet için en iyi mimari konusunda müşterilere danışmanlık yaptı.",
+        "Yeni özellikler planlamak için proje ilerlemesi ve gereksinimleri hakkında raporlar oluşturdu.",
+        "Kullanıcılar ve diğer geliştiriciler tarafından dile getirilen kusurları araştırdı ve çözdü."
+      ],
+      "dateText": "06/2022 - 12/2022"
+    },
+    {
+      "title": "Lider Yazılım Mühendisi",
+      "subtitle": "DigiAlpha, Tahran, İran",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "Kripto Borsası, OTC ve Kopya İşlemleri destekleyen yüksek frekanslı bir alım satım motoru tasarladı ve emir eşleştirme hızında %30 kazanç sağladı.",
+        "Karmaşık emir türleri (Marj, Zarar Durdur) için bloklamayan bir eşleştirme algoritması tasarladı ve yüksek piyasa oynaklığı sırasında paralel yürütme darboğazlarını önledi.",
+        "Gerçek zamanlı fiyat akışlarını ve cüzdan bakiyelerini senkronize etmek için RabbitMQ kullanarak mikroservis iletişimini yeniden tasarladı ve sistem kapasitesini iki katına çıkardı.",
+        "Fiziksel kripto varlıklarını ve sanal bakiyeleri yüksek hassasiyetle yönetmek için tescilli bir HD Cüzdan servisi ve dahili muhasebe sistemi geliştirdi.",
+        "Farklı kullanıcı güven seviyeleri için ulusal kimlik ve banka bilgisi doğrulamasını entegre eden 3 aşamalı bir KYC (Müşterini Tanı) doğrulama servisi uyguladı.",
+        "Gerçek zamanlı veri doğruluğunu korurken depolama yükünü önemli ölçüde azaltan bir 'yarım noda' akış stratejisi kullanarak blok zinciri noda senkronizasyonunu optimize etti.",
+        "Mühendislik departmanını 4'ten 9 geliştiriciye çıkardı; yüksek kod kalitesi ve mimari bütünlüğü sağlamak için teknik lider ve Scrum Master olarak görev yaptı.",
+        "Temiz kod standartlarını tanımladı ve yoğun işlem hacimlerinde sıfır mesaj kaybını sağlayan olay güdümlü bir mimari kurdu."
+      ],
+      "dateText": "06/2021 - 06/2022"
+    },
+    {
+      "title": "Lider Backend Yazılım Mühendisi",
+      "subtitle": "Mobisoft, Tahran, İran",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "Web, iOS ve Android platformlarındaki bir sosyal ağ platformunun sorumluluğunu üstlendi ve 12 kişilik bir ekibe liderlik etti.",
+        "Proje incelemelerini ve çatışma çözümünü yönetti, haftalık sürüm döngüleri boyunca sürekli zamanında teslimatı sağladı.",
+        "Verimliliği %40 artırmak için çok partili video konferans için WebRTC sinyalleşme protokollerini iyileştirdi.",
+        "Geniş çaplı, çapraz işlevli bir ekibi yönetti ve yönlendirdi, detaylı haftalık raporlar hazırladı ve çatışmaları çözdü."
+      ],
+      "dateText": "05/2020 - 05/2021"
+    },
+    {
+      "title": "Backend Yazılım Mühendisi",
+      "subtitle": "Irantom, Tahran, İran",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "Kimlik Doğrulama, Mesajlaşma ve Çoklu Mimari (Multitenancy) modülleri dahil olmak üzere 30'dan fazla Node.js mikroservisinden oluşan dağıtılmış bir CRM ekosistemi tasarladı ve sürdürdü.",
+        "Platform genelinde veri alımını ve depolama verimliliğini optimize etmek için MongoDB, MySQL ve Elasticsearch kullanarak çok dilli (polyglot) bir veri saklama stratejisi kullandı.",
+        "Eski darboğazları yeniden düzenlemek için 16 kişilik bir mühendislik ekibiyle iş birliği yaptı, API yanıt sürelerini %25 iyileştirdi ve genel sistem kararlılığını artırdı.",
+        "Swagger/OpenAPI dokümantasyonunu uygulayarak geliştirme yaşam döngüsünü kolaylaştırdı, manuel dokümantasyon süresini ve yükünü %40 azalttı.",
+        "Karmaşık kullanıcı gereksinimlerini teknik uygulama planlarına dönüştürdü, sürekli özellik teslimini sağlamak için iki haftalık Agile sprintlerini yönetti.",
+        "CRM'in artan kullanıcı yüklerini ve veri karmaşıklığını destekleyebilmesini sağlayarak yüksek kullanılabilirlik odaklı ölçeklenebilir RESTful API'ler tasarladı."
+      ],
+      "dateText": "11/2018 - 04/2020"
+    },
+    {
+      "title": "Backend Yazılım Mühendisi",
+      "subtitle": "Goki, Tahran, İran",
+      "workType": "Tam zamanlı",
+      "workDescription": [
+        "Müşteri ihtiyaçlarına göre servisleri analiz etmek ve uygulamak için 4 geliştirme ekibiyle iş birliği yaptı.",
+        "6-7 web projesi geliştirdi, test etti ve yayına aldı, %100 müşteri teslimat sürelerine uydu.",
+        "Proje hedeflerini ve aşamalarını tartışmak için yöneticilerle yapılan haftalık toplantılarda web geliştirme ekibini temsil etti.",
+        "Yazılım parametrelerini ayarladı ve performansı artırmak için yeni özellikler ekledi."
+      ],
+      "dateText": "03/2016 - 09/2018"
+    }
+  ]
+}

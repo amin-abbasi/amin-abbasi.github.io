@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { styled } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import ProjectCard from './projects/ProjectCard';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
 import { Project } from '../types/profile.types';
-import projectsData from '../assets/profile/projects.json';
 
 const MainContainer = styled.div`
     position: relative;
@@ -45,19 +45,22 @@ interface ProjectsData {
 }
 
 interface ProjectsProps {
-    header: string;
+    header?: string;
 }
 
 function Projects(props: ProjectsProps) {
+    const { t } = useTranslation();
     const { header } = props;
-    const [data] = useState<ProjectsData>(projectsData as ProjectsData);
+    const data = {
+        projects: t('resProjects:projects', { returnObjects: true })
+    } as ProjectsData;
     const [showMore, setShowMore] = useState(false);
 
     const numberOfItems = showMore && data ? data.projects.length : 6;
 
     return (
         <>
-            <Header title={header} />
+            <Header title={header || t('layout:sections.projects')} />
             {data ? (
                 <MainContainer>
                     <Container fluid style={{ maxWidth: '1400px', padding: '0 20px' }}>
@@ -72,9 +75,11 @@ function Projects(props: ProjectsProps) {
                                 ))}
                             </Row>
 
-                            {!showMore && data.projects.length > 6 && (
+                            {!showMore && data && data.projects && data.projects.length > 6 && (
                                 <ShowMoreWrapper>
-                                    <StyledButton onClick={() => setShowMore(true)}>Load More Projects</StyledButton>
+                                    <StyledButton onClick={() => setShowMore(true)}>
+                                        {t('layout:projects.loadMore', { defaultValue: 'Load More Projects' })}
+                                    </StyledButton>
                                 </ShowMoreWrapper>
                             )}
                         </SectionContent>

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { useAnalytics } from './hooks/useAnalytics';
 import NavBarWithRouter from './components/NavBar';
 import Footer from './components/Footer';
+import TranslationWarning from './components/TranslationWarning';
 
 function MainApp() {
     useAnalytics();
@@ -13,6 +14,7 @@ function MainApp() {
                 <Outlet />
             </main>
             <Footer />
+            <TranslationWarning />
         </div>
     );
 }

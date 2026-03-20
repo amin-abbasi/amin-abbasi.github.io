@@ -1,0 +1,49 @@
+{
+    "navbar": {
+        "themeToggle": "Temayı Değiştir"
+    },
+    "projects": {
+        "loadMore": "Daha Fazla Proje Yükle",
+        "demo": "Demo",
+        "github": "GitHub",
+        "source": "Açık Kaynak"
+    },
+    "sections": {
+        "about": "Hakkımda",
+        "experience": "Deneyim",
+        "projects": "Projeler",
+        "education": "Eğitim",
+        "skills": "Yetenekler"
+    },
+    "footer": {
+        "globalViews": "Küresel Görünümler",
+        "localViews": "Yerel Görünümler",
+        "systemOnline": "Sistem Çevrimiçi",
+        "builtBy": "Yapan:",
+        "views": "Görüntüleme",
+        "loading": "Yükleniyor..."
+    },
+    "dashboard": {
+        "title": "Site İstatistikleri",
+        "totalViews": "Toplam Sayfa Görüntüleme",
+        "viewsByPage": "Sayfaya Göre Görünümler",
+        "topCountries": "En İyi Ülkeler",
+        "topBrowsers": "En İyi Tarayıcılar",
+        "topOs": "En İyi İşletim Sistemleri",
+        "login": {
+            "restrictedAccess": "KISITLI ERİŞİM",
+            "invalidPassword": "Geçersiz şifre",
+            "error": "Şifre doğrulanırken hata oluştu",
+            "placeholder": "Erişim Anahtarını Girin",
+            "authenticate": "KİMLİK DOĞRULA"
+        }
+    },
+    "home": {
+        "systemInit": "// sistem.başlat — lider mühendis",
+        "scroll": "kaydır"
+    },
+    "about": {
+        "refId": "REF_NO: PRO_BIO_772",
+        "quote": "En iyi kod, yazmak zorunda kalmadığınız koddur."
+    }
+}

@@ -1,6 +1,7 @@
 import { ViteReactSSG } from 'vite-react-ssg';
 
 import './index.css';
+import './i18n';
 
 import reportWebVitals from './reportWebVitals';
 import { routes } from './routes';

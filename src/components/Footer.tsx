@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { styled, keyframes } from "styled-components";
 import { Container } from "react-bootstrap";
 import { doc, setDoc, getDoc, increment } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 
 import { Theme } from "../theme/themes";
 import { fireStore } from "utils/firebase";
@@ -98,6 +99,7 @@ function getFlagEmoji(countryCode: string) {
 }
 
 export default function Footer() {
+  const { t } = useTranslation();
   const [totalViews, setTotalViews] = useState<number | null>(null);
   const [countryCounts, setCountryCounts] = useState<Record<string, number>>({});
   const [userCountry, setUserCountry] = useState<string | null>(null);
@@ -166,19 +168,19 @@ export default function Footer() {
       <FooterContent>
         <StatusIndicator>
           <div className="dot" />
-          System Online
+          {t('layout:footer.systemOnline', { defaultValue: 'System Online' })}
         </StatusIndicator>
 
         <Copyright>
-          Built by <span>Amin Abbasi</span> &copy; {new Date().getFullYear()}
+          {t('layout:footer.builtBy', { defaultValue: 'Built by' })} <span>Amin Abbasi</span> &copy; {new Date().getFullYear()}
         </Copyright>
 
         <ViewsContainer>
           <ViewBadge>
             <span className="icon">👁</span>
             {totalViews !== null
-              ? `${totalViews.toLocaleString()} Views`
-              : "Loading..."}
+              ? `${totalViews.toLocaleString()} ${t('layout:footer.views', { defaultValue: 'Views' })}`
+              : t('layout:footer.loading', { defaultValue: 'Loading...' })}
           </ViewBadge>
 
           {userCountry && countryCounts[userCountry] !== undefined && (

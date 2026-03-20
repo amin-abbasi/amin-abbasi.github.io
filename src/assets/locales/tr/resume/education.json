@@ -1,0 +1,30 @@
+{
+  "education": [
+    {
+      "title": "Eyl 2011 – Eyl 2013",
+      "cardTitle": "Uzaktan Algılama Yüksek Lisans (MSc)",
+      "cardSubtitle": "İsfahan Üniversitesi, İran",
+      "bulletPoints": [
+        "Teknik Odak: Siber Görüntü İşleme ve Örüntü Tanıma alanında uzmanlık",
+        "Etki: Büyük ölçekli CBS (GIS) ve hiperspektral görüntüler için gelişmiş algoritmalar geliştirmede C++ ve MATLAB kullanımı.",
+        "Bu altyapı, backend veri hassasiyetine olan matematiksel yaklaşımımı belirler."
+      ]
+    },
+    {
+      "title": "Eyl 2006 – Eyl 2010",
+      "cardTitle": "Harita Mühendisliği Lisans",
+      "cardSubtitle": "Tafresh Üniversitesi, İran",
+      "bulletPoints": [
+        "Temel ve İleri Seviye Bilgisayar Programlama",
+        "Uzaktan Algılama ve CBS (GIS) Analizi",
+        "Jeodezi ve Fotogrametri"
+      ]
+    },
+    {
+      "title": "Eyl 2001 – Eyl 2005",
+      "cardTitle": "Lise",
+      "cardSubtitle": "Tahran, İran",
+      "bulletPoints": ["Alan: Matematik ve Fizik", "Onur derecesiyle mezuniyet"]
+    }
+  ]
+}
