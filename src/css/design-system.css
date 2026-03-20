@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;600;700&family=Vazirmatn:wght@100;300;400;500;700&family=Lalezar&display=swap");
 
 [data-theme="dark"],
 :root {
@@ -23,6 +23,18 @@
   /* Transitions */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Farsi Typography Overrides */
+:root[lang="fa"] {
+  --font-main: "Vazirmatn", sans-serif;
+  --font-mono: "Vazirmatn", sans-serif; /* Vazirmatn reads better than mono for Persian technical text */
+}
+
+:root[lang="fa"] h1,
+:root[lang="fa"] .farsi-header {
+  font-family: "Lalezar", cursive !important;
+  letter-spacing: 0 !important; /* Lalezar shouldn't have letter-spacing */
 }
 
 [data-theme="light"] {

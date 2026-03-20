@@ -4,50 +4,59 @@ import { styled } from 'styled-components';
 import { Theme } from '../theme/themes';
 
 const StyledDropdown = styled(NavDropdown)`
-  margin-inline-start: 1em;
   font-family: var(--font-mono);
 
   .dropdown-toggle {
     color: ${(props) => (props.theme as Theme).navbarTheme.linkColor} !important;
-    font-size: 0.82rem;
+    background: transparent;
+    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+    border-radius: 20px;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding-inline-start: 0.75rem;
-    padding-inline-end: 0.75rem;
+    padding: 2px 12px;
+    height: 26px; /* Match ThemeToggler height */
+    transition: all 0.3s ease;
 
     &:hover {
-      color: ${(props) => (props.theme as Theme).navbarTheme.linkHoverColor} !important;
+      border-color: ${(props) => (props.theme as Theme).accentColor};
+      color: ${(props) => (props.theme as Theme).accentColor} !important;
     }
 
     &::after {
-      display: none; /* Hide default arrow to keep it clean */
+      display: none;
     }
   }
 
   .dropdown-menu {
     background-color: ${(props) => (props.theme as Theme).cardBackground};
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    border-radius: 4px;
-    margin-top: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    margin-top: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    padding: 6px 0;
+    /* Center/Align adjustment */
+    inset-inline-end: 0 !important;
+    inset-inline-start: auto !important;
   }
 
   .dropdown-item {
     color: ${(props) => (props.theme as Theme).color};
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    padding: 8px 20px;
+    padding: 6px 16px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     transition: all 0.2s ease;
 
     &:hover {
-      background-color: ${(props) => (props.theme as Theme).accentColor}20;
+      background-color: ${(props) => (props.theme as Theme).accentColor}15;
       color: ${(props) => (props.theme as Theme).accentColor};
     }
 
