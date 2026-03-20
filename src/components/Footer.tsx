@@ -87,15 +87,43 @@ export default function Footer() {
   useEffect(() => {
     async function fetchAndUpdateStats() {
       try {
+        const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
         const ipRes = await fetch("https://get.geojs.io/v1/ip/country.json");
         const ipData = await ipRes.json();
         const country = ipData.country || "UNKNOWN";
+        const ip = ipData.ip;
 
         const totalRef = doc(fireStore, "analytics", "pageViews");
         const countryRef = doc(fireStore, "analytics", "perCountry");
 
-        await setDoc(totalRef, { count: increment(1) }, { merge: true });
-        await setDoc(countryRef, { [country]: increment(1) }, { merge: true });
+        const today = new Date().toDateString();
+        const lastVisitStr = localStorage.getItem("portfolio_last_visit");
+
+        let shouldIncrement = false;
+        if (!isLocalhost) {
+          if (!lastVisitStr) {
+            shouldIncrement = true;
+          } else {
+            try {
+              const lastVisit = JSON.parse(lastVisitStr);
+              if (lastVisit.date !== today || lastVisit.ip !== ip) {
+                shouldIncrement = true;
+              }
+            } catch (e) {
+              shouldIncrement = true;
+            }
+          }
+        }
+
+        if (shouldIncrement) {
+          await setDoc(totalRef, { count: increment(1) }, { merge: true });
+          await setDoc(countryRef, { [country]: increment(1) }, { merge: true });
+          localStorage.setItem(
+            "portfolio_last_visit",
+            JSON.stringify({ date: today, ip })
+          );
+        }
 
         const [totalSnap, countrySnap] = await Promise.all([
           getDoc(totalRef),
