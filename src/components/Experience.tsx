@@ -20,7 +20,7 @@ const TimelineTrack = styled.div`
     padding-left: 80px;
 
     @media (max-width: 768px) {
-        padding-left: 48px;
+        padding-left: 0;
     }
 
     &::before {
@@ -33,7 +33,7 @@ const TimelineTrack = styled.div`
         background: ${(props) => (props.theme as Theme).timelineLineColor};
 
         @media (max-width: 768px) {
-            left: 18px;
+            display: none;
         }
     }
 `;
@@ -66,9 +66,7 @@ const TrackDot = styled.div<{ $accent: string }>`
     box-shadow: 0 0 8px ${(p) => p.$accent}60;
 
     @media (max-width: 768px) {
-        left: -34px;
-        width: 10px;
-        height: 10px;
+        display: none;
     }
 `;
 
