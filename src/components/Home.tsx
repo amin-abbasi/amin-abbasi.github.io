@@ -199,7 +199,8 @@ function Home() {
     return (
         <div
             style={{
-                height: '100vh',
+                flex: 1,
+                width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
                 backgroundColor: bgColor,
