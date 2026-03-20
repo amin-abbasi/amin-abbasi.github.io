@@ -26,7 +26,7 @@ const FooterContent = styled(Container)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -56,6 +56,14 @@ const StatusIndicator = styled.div`
   }
 `;
 
+const ViewsContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
 const ViewBadge = styled.div`
   display: flex;
   align-items: center;
@@ -80,9 +88,19 @@ const Copyright = styled.div`
   }
 `;
 
+function getFlagEmoji(countryCode: string) {
+  if (!countryCode || countryCode === "UNKNOWN") return "🌍";
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+}
+
 export default function Footer() {
   const [totalViews, setTotalViews] = useState<number | null>(null);
   const [countryCounts, setCountryCounts] = useState<Record<string, number>>({});
+  const [userCountry, setUserCountry] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAndUpdateStats() {
@@ -93,6 +111,8 @@ export default function Footer() {
         const ipData = await ipRes.json();
         const country = ipData.country || "UNKNOWN";
         const ip = ipData.ip;
+        
+        setUserCountry(country);
 
         const totalRef = doc(fireStore, "analytics", "pageViews");
         const countryRef = doc(fireStore, "analytics", "perCountry");
@@ -141,10 +161,6 @@ export default function Footer() {
     fetchAndUpdateStats();
   }, []);
 
-  const topCountries = Object.entries(countryCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-
   return (
     <FooterWrapper>
       <FooterContent>
@@ -157,19 +173,21 @@ export default function Footer() {
           Built by <span>Amin Abbasi</span> &copy; {new Date().getFullYear()}
         </Copyright>
 
-        <ViewBadge>
-          <span className="icon">👁</span>
-          {totalViews !== null
-            ? `${totalViews.toLocaleString()} Views`
-            : "Loading..."}
-        </ViewBadge>
-
-        {topCountries.length > 0 && (
+        <ViewsContainer>
           <ViewBadge>
-            <span className="icon">🌍</span>
-            {topCountries.map(([c, n]) => `${c}: ${n.toLocaleString()}`).join(", ")}
+            <span className="icon">👁</span>
+            {totalViews !== null
+              ? `${totalViews.toLocaleString()} Views`
+              : "Loading..."}
           </ViewBadge>
-        )}
+
+          {userCountry && countryCounts[userCountry] !== undefined && (
+            <ViewBadge>
+              <span className="icon">{getFlagEmoji(userCountry)}</span>
+              {userCountry}: {countryCounts[userCountry].toLocaleString()}
+            </ViewBadge>
+          )}
+        </ViewsContainer>
       </FooterContent>
     </FooterWrapper>
   );
