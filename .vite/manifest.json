@@ -1,19 +1,19 @@
 {
-  "_index-CMpiobDC.js": {
-    "file": "assets/index-CMpiobDC.js",
-    "name": "index",
+  "_client-CY94KAXU.js": {
+    "file": "assets/client-CY94KAXU.js",
+    "name": "client",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
   "index.html": {
-    "file": "assets/app-CU8NrjNJ.js",
+    "file": "assets/app-Dq0WbkJu.js",
     "name": "app",
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
-      "_index-CMpiobDC.js",
+      "_client-CY94KAXU.js",
       "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
     ],
     "css": [
@@ -21,7 +21,7 @@
     ]
   },
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
-    "file": "assets/styled-components-DhaQ0OGc.js",
+    "file": "assets/styled-components-BKoTJCpU.js",
     "name": "styled-components",
     "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
     "isDynamicEntry": true,
