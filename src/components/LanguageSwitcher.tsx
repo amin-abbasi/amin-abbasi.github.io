@@ -1,115 +1,85 @@
-import { NavDropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { styled } from 'styled-components';
 import { Theme } from '../theme/themes';
 
-const StyledDropdown = styled(NavDropdown)`
-  font-family: var(--font-mono);
+const ToggleButton = styled.button<{ $isTR: boolean }>`
+  background: ${(props) => (props.theme as Theme).cardBackground};
+  border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+  border-radius: 25px;
+  width: 62px;
+  height: 26px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: all 0.3s ease;
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
+  overflow: hidden;
 
-  .dropdown-toggle {
-    color: ${(props) => (props.theme as Theme).navbarTheme.linkColor} !important;
-    background: transparent;
-    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+  /* Adjust for navbar centering/spacing */
+  margin-bottom: 8px;
+
+  &:hover {
+    border-color: ${(props) => (props.theme as Theme).accentColor};
+  }
+
+  .knob {
+    width: 32px;
+    height: 20px;
+    background: ${(props) => (props.theme as Theme).accentColor};
+    border-radius: 15px;
+    position: absolute;
+    top: 2px;
+    left: ${({ $isTR }) => ($isTR ? '28px' : '2px')};
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 2px 12px;
-    height: 26px; /* Match ThemeToggler height */
-    transition: all 0.3s ease;
-    margin-inline-start: 1em;
-    margin-inline-end: 1em;
-    margin-bottom: 8px;
-
-    &:hover {
-      border-color: ${(props) => (props.theme as Theme).accentColor};
-      color: ${(props) => (props.theme as Theme).accentColor} !important;
-    }
-
-    &::after {
-      display: none;
-    }
-  }
-
-  .dropdown-menu {
-    background-color: ${(props) => (props.theme as Theme).cardBackground};
-    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    border-radius: 8px;
-    margin-top: 2px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    min-width: 120px;
-    padding: 4px 0;
-    /* Center/Align adjustment */
-    inset-inline-end: 0 !important;
-    inset-inline-start: auto !important;
-  }
-
-  .dropdown-item {
-    color: ${(props) => (props.theme as Theme).color};
+    justify-content: center;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 6px 16px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .bg-text {
+    position: absolute;
+    width: 100%;
     display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: ${(props) => (props.theme as Theme).accentColor}15;
-      color: ${(props) => (props.theme as Theme).accentColor};
-    }
-
-    &.active {
-      background-color: ${(props) => (props.theme as Theme).accentColor};
-      color: white;
-    }
+    justify-content: space-between;
+    padding: 0 8px;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    color: ${(props) => (props.theme as Theme).color}50;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 1;
   }
 `;
-
-const FlagContainer = styled.span`
-  font-size: 1.1rem;
-`;
-
-const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸', label: 'EN' },
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷', label: 'TR' },
-  { code: 'fa', name: 'فارسی', flag: '🇮🇷', label: 'FA' },
-];
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
+  const currentLanguage = i18n.language || 'en';
+  const isTR = currentLanguage.startsWith('tr');
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+  const toggleLanguage = () => {
+    const nextLng = isTR ? 'en' : 'tr';
+    i18n.changeLanguage(nextLng);
   };
 
-  const currentLanguage = languages.find((l) => l.code === i18n.language) || languages[0];
-
   return (
-    <StyledDropdown
-      title={
-        <>
-          <FlagContainer>{currentLanguage.flag}</FlagContainer>
-          <span>{currentLanguage.label}</span>
-        </>
-      }
-      id="language-nav-dropdown"
-    >
-      {languages.map((lang) => (
-        <NavDropdown.Item
-          key={lang.code}
-          onClick={() => changeLanguage(lang.code)}
-          active={i18n.language === lang.code}
-        >
-          <FlagContainer>{lang.flag}</FlagContainer>
-          {lang.name}
-        </NavDropdown.Item>
-      ))}
-    </StyledDropdown>
+    <ToggleButton $isTR={isTR} onClick={toggleLanguage} aria-label="Toggle language">
+      <div className="bg-text">
+        <span>EN</span>
+        <span>TR</span>
+      </div>
+      <div className="knob">{isTR ? 'TR' : 'EN'}</div>
+    </ToggleButton>
   );
 };
 

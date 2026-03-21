@@ -24,17 +24,6 @@ import trHome from './assets/locales/tr/resume/home.json';
 import trSocial from './assets/locales/tr/resume/social.json';
 import trNavbar from './assets/locales/tr/resume/navbar.json';
 
-// FA
-import faLayout from './assets/locales/fa/layout.json';
-import faExperiences from './assets/locales/fa/resume/experiences.json';
-import faProjects from './assets/locales/fa/resume/projects.json';
-import faEducation from './assets/locales/fa/resume/education.json';
-import faSkills from './assets/locales/fa/resume/skills.json';
-import faAbout from './assets/locales/fa/resume/about.json';
-import faHome from './assets/locales/fa/resume/home.json';
-import faSocial from './assets/locales/fa/resume/social.json';
-import faNavbar from './assets/locales/fa/resume/navbar.json';
-
 const resources = {
   en: {
     layout: enLayout,
@@ -58,17 +47,6 @@ const resources = {
     resSocial: trSocial,
     resNavbar: trNavbar,
   },
-  fa: {
-    layout: faLayout,
-    resExperiences: faExperiences,
-    resProjects: faProjects,
-    resEducation: faEducation,
-    resSkills: faSkills,
-    resAbout: faAbout,
-    resHome: faHome,
-    resSocial: faSocial,
-    resNavbar: faNavbar,
-  },
 };
 
 i18n
@@ -77,23 +55,23 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    supportedLngs: ['en', 'tr', 'fa'],
+    supportedLngs: ['en', 'tr'],
     interpolation: {
       escapeValue: false, // React already safes from XSS
     },
   });
 
-// Handle RTL layout shifts when Farsi is strictly active
+// Handle layout shifts (Reset to LTR if anything lingers)
 i18n.on('languageChanged', (lng) => {
   if (typeof document !== 'undefined') {
-    document.documentElement.dir = lng === 'fa' ? 'rtl' : 'ltr';
+    document.documentElement.dir = 'ltr';
     document.documentElement.lang = lng;
   }
 });
 
 // Set initial direction block explicitly
 if (typeof document !== 'undefined') {
-  document.documentElement.dir = i18n.language === 'fa' ? 'rtl' : 'ltr';
+  document.documentElement.dir = 'ltr';
   document.documentElement.lang = i18n.language || 'en';
 }
 

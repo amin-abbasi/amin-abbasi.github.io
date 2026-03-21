@@ -1,9 +1,0 @@
-{
-  "sections": [
-    { "component": "About", "path": "/about", "headerTitle": "درباره من" },
-    { "component": "Skills", "path": "/skills", "headerTitle": "مهارت‌ها" },
-    { "component": "Education", "path": "/education", "headerTitle": "تحصیلات" },
-    { "component": "Experience", "path": "/experience", "headerTitle": "سوابق کاری" },
-    { "component": "Projects", "path": "/projects", "headerTitle": "پروژه‌ها" }
-  ]
-}
