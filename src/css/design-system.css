@@ -81,7 +81,8 @@ h3,
 h4,
 .mono-text {
   font-family: var(--font-mono);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em; /* Slightly tighter for better look */
+  color: var(--text-primary);
 }
 
 .blueprint-border {

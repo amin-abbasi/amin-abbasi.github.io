@@ -26,13 +26,24 @@ const TextCol = styled(Col)`
         padding-inline-end: 4rem;
     }
 
-    h3 {
+    h3, h4 {
         font-family: var(--font-mono);
         font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    h3 {
+        margin-top: 2rem;
         margin-bottom: 1.5rem;
         color: ${(props) => (props.theme as Theme).accentColor};
         font-size: 1.5rem;
-        letter-spacing: -0.02em;
+    }
+
+    h4 {
+        margin-top: 1.8rem;
+        margin-bottom: 1rem;
+        color: ${(props) => (props.theme as Theme).color};
+        font-size: 1.2rem;
     }
 
     p {
