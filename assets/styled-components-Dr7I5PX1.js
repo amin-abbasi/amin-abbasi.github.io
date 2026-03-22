@@ -1,0 +1,1 @@
+import{d as r}from"./app-DFLWQP6U.js";async function n(){const t=new r;return{collect(e){return t.collectStyles(e)},toString(){return t.getStyleTags()},cleanup(){t.seal()}}}export{n as default};

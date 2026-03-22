@@ -1,6 +1,6 @@
 {
-  "_client-CjCM9vHa.js": {
-    "file": "assets/client-CjCM9vHa.js",
+  "_client-Dz6nekUu.js": {
+    "file": "assets/client-Dz6nekUu.js",
     "name": "client",
     "isDynamicEntry": true,
     "imports": [
@@ -8,12 +8,12 @@
     ]
   },
   "index.html": {
-    "file": "assets/app-CoFctnsF.js",
+    "file": "assets/app-DFLWQP6U.js",
     "name": "app",
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
-      "_client-CjCM9vHa.js",
+      "_client-Dz6nekUu.js",
       "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
     ],
     "css": [
@@ -21,7 +21,7 @@
     ]
   },
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
-    "file": "assets/styled-components-DFdzuKsI.js",
+    "file": "assets/styled-components-Dr7I5PX1.js",
     "name": "styled-components",
     "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
     "isDynamicEntry": true,
