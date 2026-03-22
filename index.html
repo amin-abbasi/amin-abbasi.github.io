@@ -3,10 +3,10 @@
 data-styled.g1[id="sc-aXZVf"]{content:"geTaBZ,"}/*!sc*/
 .GUuvB{background:#0d1f2d;border:1px solid rgba(0, 160, 255, 0.15);border-radius:25px;width:62px;height:26px;position:relative;cursor:pointer;outline:none;display:flex;align-items:center;padding:0;transition:all 0.3s ease;margin-inline-start:1em;margin-inline-end:1em;overflow:hidden;margin-bottom:8px;}/*!sc*/
 .GUuvB:hover{border-color:#00a0ff;}/*!sc*/
-.GUuvB .knob{width:32px;height:20px;background:#00a0ff;border-radius:15px;position:absolute;top:2px;left:2px;transition:all 0.4s cubic-bezier(0.23, 1, 0.32, 1);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.62rem;font-weight:700;color:white;text-transform:uppercase;z-index:2;box-shadow:0 2px 4px rgba(0, 0, 0, 0.2);}/*!sc*/
-.GUuvB .bg-text{position:absolute;width:100%;display:flex;justify-content:space-between;padding:0 8px;font-family:var(--font-mono);font-size:0.58rem;color:#e6edf350;font-weight:600;pointer-events:none;z-index:1;}/*!sc*/
+.GUuvB .knob{width:32px;height:20px;background:#00a0ff;border-radius:15px;position:absolute;top:2px;left:2px;transition:all 0.4s cubic-bezier(0.23, 1, 0.32, 1);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.73rem;font-weight:700;color:white;text-transform:uppercase;z-index:2;box-shadow:0 2px 4px rgba(0, 0, 0, 0.2);}/*!sc*/
+.GUuvB .bg-text{position:absolute;width:100%;display:flex;justify-content:space-between;padding:0 8px;font-family:var(--font-mono);font-size:0.7rem;color:#e6edf350;font-weight:600;pointer-events:none;z-index:1;}/*!sc*/
 data-styled.g2[id="sc-gEvEes"]{content:"GUuvB,"}/*!sc*/
-.Vhcnr{color:rgba(230, 237, 243, 0.6);margin-inline-start:0.75em;margin-inline-end:0.75em;font-size:0.82rem;font-family:var(--font-mono);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;border-bottom:3px solid transparent;}/*!sc*/
+.Vhcnr{color:rgba(230, 237, 243, 0.6);margin-inline-start:0.75em;margin-inline-end:0.75em;font-size:0.8rem;font-family:var(--font-mono);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;border-bottom:3px solid transparent;}/*!sc*/
 .Vhcnr:hover{color:rgba(230, 237, 243, 0.85);}/*!sc*/
 .Vhcnr::after{background-color:#00a0ff;}/*!sc*/
 .Vhcnr.active{color:#00a0ff;}/*!sc*/
@@ -28,8 +28,8 @@ data-styled.g9[id="sc-imWYAH"]{content:"kmfGcr,"}/*!sc*/
 .eRlAYl{text-align:center;}/*!sc*/
 .eRlAYl span{color:#00a0ff;}/*!sc*/
 data-styled.g10[id="sc-jXbUNf"]{content:"eRlAYl,"}/*!sc*/
-body{background-color:var(--bg-color);color:var(--text-primary);transition:background-color var(--transition-fast);}/*!sc*/
-data-styled.g13[id="sc-global-ftFpzf1"]{content:"sc-global-ftFpzf1,"}/*!sc*/
+body{background-color:#0d1117!important;color:#e6edf3;transition:background-color var(--transition-fast),color var(--transition-fast);}/*!sc*/
+data-styled.g13[id="sc-global-gczDoi1"]{content:"sc-global-gczDoi1,"}/*!sc*/
 @keyframes ftQcSp{0%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(0, 255, 128, 0.7);}70%{transform:scale(1);box-shadow:0 0 0 6px rgba(0, 255, 128, 0);}100%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(0, 255, 128, 0);}}/*!sc*/
 data-styled.g83[id="sc-keyframes-ftQcSp"]{content:"ftQcSp,"}/*!sc*/
 </style>
@@ -69,9 +69,25 @@ data-styled.g83[id="sc-keyframes-ftQcSp"]{content:"ftQcSp,"}/*!sc*/
         }
       })(window.location);
     </script>
+    <!-- Theme Detection Script -->
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('darkMode');
+          var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+          if (theme === 'true' || (theme === null && supportDarkMode)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.body.classList.add('dark-mode');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.body.classList.add('light-mode');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <!-- End Single Page Apps for GitHub Pages -->
-    <script type="module" defer="" crossorigin="" src="/assets/app-DFLWQP6U.js"></script>
-    <link rel="stylesheet" crossorigin="" href="/assets/app-CtldjfCm.css">
+    <script type="module" defer="" crossorigin="" src="/assets/app-CzEV8XAV.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/app-CJFdwSye.css">
   </head>
 
   <body>
@@ -82,7 +98,7 @@ data-styled.g83[id="sc-keyframes-ftQcSp"]{content:"ftQcSp,"}/*!sc*/
           50% { transform: translateX(-50%) translateY(8px); }
         }
       </style></div></main><footer class="sc-dcJsrX kGWagN"><div class="sc-iGgWBk nnIlp container"><div class="sc-gsFSXt fmMBNz"><div class="dot"></div>System Online</div><div class="sc-jXbUNf eRlAYl">Built by<!-- --> <span>Amin Abbasi</span> © <!-- -->2026</div><div class="sc-kAycey eChzHi"><div class="sc-imWYAH kmfGcr"><span class="icon">👁</span>Loading...</div></div></div></footer></div></div><script>window.__staticRouterHydrationData = JSON.parse("{\"loaderData\":{\"0\":null,\"0-0\":null},\"actionData\":null,\"errors\":null}");</script></div>
-<script>window.__VITE_REACT_SSG_HASH__ = '6mm1wt7lz2'</script>
+<script>window.__VITE_REACT_SSG_HASH__ = '10hkcyi1ke'</script>
   
 
 </body></html>

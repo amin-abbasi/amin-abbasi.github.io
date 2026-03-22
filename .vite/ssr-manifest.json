@@ -66,10 +66,10 @@
   "\u0000/home/runner/work/amin-abbasi.github.io/amin-abbasi.github.io/node_modules/react-awesome-reveal/node_modules/react-is/index.js?commonjs-module": [],
   "\u0000/home/runner/work/amin-abbasi.github.io/amin-abbasi.github.io/node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports": [],
   "\u0000/home/runner/work/amin-abbasi.github.io/amin-abbasi.github.io/node_modules/react-dom/client.js?commonjs-es-import": [
-    "/assets/client-Dz6nekUu.js"
+    "/assets/client-Man6E44B.js"
   ],
   "\u0000/home/runner/work/amin-abbasi.github.io/amin-abbasi.github.io/node_modules/react-dom/client.js?commonjs-exports": [
-    "/assets/client-Dz6nekUu.js"
+    "/assets/client-Man6E44B.js"
   ],
   "\u0000/home/runner/work/amin-abbasi.github.io/amin-abbasi.github.io/node_modules/react-dom/index.js?commonjs-es-import": [],
   "\u0000/home/runner/work/amin-abbasi.github.io/amin-abbasi.github.io/node_modules/react-dom/index.js?commonjs-module": [],
@@ -485,17 +485,7 @@
   "node_modules/react-bootstrap/esm/Badge.js": [],
   "node_modules/react-bootstrap/esm/BootstrapModalManager.js": [],
   "node_modules/react-bootstrap/esm/Button.js": [],
-  "node_modules/react-bootstrap/esm/Card.js": [],
-  "node_modules/react-bootstrap/esm/CardBody.js": [],
-  "node_modules/react-bootstrap/esm/CardFooter.js": [],
-  "node_modules/react-bootstrap/esm/CardHeader.js": [],
   "node_modules/react-bootstrap/esm/CardHeaderContext.js": [],
-  "node_modules/react-bootstrap/esm/CardImg.js": [],
-  "node_modules/react-bootstrap/esm/CardImgOverlay.js": [],
-  "node_modules/react-bootstrap/esm/CardLink.js": [],
-  "node_modules/react-bootstrap/esm/CardSubtitle.js": [],
-  "node_modules/react-bootstrap/esm/CardText.js": [],
-  "node_modules/react-bootstrap/esm/CardTitle.js": [],
   "node_modules/react-bootstrap/esm/CloseButton.js": [],
   "node_modules/react-bootstrap/esm/Col.js": [],
   "node_modules/react-bootstrap/esm/Collapse.js": [],
@@ -544,7 +534,7 @@
   "node_modules/react-bootstrap/esm/triggerBrowserReflow.js": [],
   "node_modules/react-dom/cjs/react-dom.production.min.js": [],
   "node_modules/react-dom/client.js": [
-    "/assets/client-Dz6nekUu.js"
+    "/assets/client-Man6E44B.js"
   ],
   "node_modules/react-dom/index.js": [],
   "node_modules/react-helmet-async/lib/index.module.js": [],
@@ -913,7 +903,7 @@
   "node_modules/vite-react-ssg/dist/shared/vite-react-ssg.C6pK7rvr.mjs": [],
   "node_modules/vite-react-ssg/dist/shared/vite-react-ssg.CjIppNIS.mjs": [],
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": [
-    "/assets/styled-components-Dr7I5PX1.js"
+    "/assets/styled-components-BCqQTpBL.js"
   ],
   "src/App.css": [],
   "src/App.tsx": [],
