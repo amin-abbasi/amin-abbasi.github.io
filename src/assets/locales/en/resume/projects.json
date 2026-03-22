@@ -1,5 +1,41 @@
 {
   "projects": [
+        {
+      "image": "images/projects/node-performance-gotchas.png",
+      "title": "Node.js Performance Gotchas",
+      "bodyText": "- A comprehensive, hands-on tutorial for identifying and fixing memory leaks, event loop blocking, and stream backpressure.\n- Features real-world side-by-side 'Problem' vs 'Solution' implementations in an Express.js API.\n- Includes automated testing scripts to demonstrate V8 garbage collection behavior and system responsiveness.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/node-performance-gotchas"
+        }
+      ],
+      "tags": ["Nodejs", "Express", "Typescript", "Performance", "Streams", "V8"]
+    },
+    {
+      "image": "images/projects/arango-edge-patterns.png",
+      "title": "ArangoDB Edge Patterns in ERP",
+      "bodyText": "- A comprehensive showcase of advanced ArangoDB edge collection patterns for hierarchical relationships and graph operations in enterprise ERP systems.\n- Features practical implementations of category trees, warehouse node hierarchies, and complex multi-level traversal queries using AQL.\n- Includes a production-ready Express.js API with TypeScript models and performance-optimized query templates for real-time data aggregation.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/arango-edge-patterns"
+        }
+      ],
+      "tags": ["ArangoDB", "Express", "TypeScript", "Graph", "ERP", "AQL", "Nodejs"]
+    },
+    {
+      "image": "images/projects/system-design-flash-sale.png",
+      "title": "FlashScale — Flash Sale System Design",
+      "bodyText": "- A hands-on Node.js/TypeScript project demonstrating core system design patterns for high-availability scenarios.\n - Implements Database Sharding, Cache-Aside (Redis), and Load Balancing (Round Robin, Sticky Sessions, Least Connections).",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/system-design-flash-sale"
+        }
+      ],
+      "tags": ["Typescript", "Nodejs", "System Design", "Sharding", "Redis", "Load Balancing"]
+    },
     {
       "image": "images/projects/ts-boilerplate.png",
       "title": "Typescript Boilerplate",
