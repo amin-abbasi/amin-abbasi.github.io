@@ -2,6 +2,18 @@ import { configs } from 'constants/configs';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { UAParser } from 'ua-parser-js';
+import { analyticsPromise } from 'utils/firebase';
+import { logEvent } from 'firebase/analytics';
+
+const getVisitorId = () => {
+    if (typeof window === 'undefined') return 'SSR';
+    let id = localStorage.getItem('visitor_id');
+    if (!id) {
+        id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('visitor_id', id);
+    }
+    return id;
+};
 
 export const useAnalytics = () => {
     const location = useLocation();
@@ -9,7 +21,19 @@ export const useAnalytics = () => {
     useEffect(() => {
         const trackPageView = async () => {
             try {
-                // Fetch country from free IPAPI
+                const visitorId = getVisitorId();
+                const path = location.pathname + location.search;
+
+                // 1. Official Firebase Analytics SDK
+                const analytics = await analyticsPromise;
+                if (analytics) {
+                    logEvent(analytics, 'page_view', {
+                        page_path: path,
+                        visitor_id: visitorId,
+                    });
+                }
+
+                // 2. Custom Firestore REST Analytics
                 let country = 'Unknown';
                 try {
                     const response = await fetch('https://ipapi.co/json/');
@@ -22,10 +46,10 @@ export const useAnalytics = () => {
                 const parser = new UAParser();
                 const result = parser.getResult();
 
-                // Firestore REST API expects this format
                 const pageView = {
                     fields: {
-                        path: { stringValue: location.pathname + location.search },
+                        path: { stringValue: path },
+                        visitor_id: { stringValue: visitorId },
                         created_at: { stringValue: new Date().toISOString() },
                         country: { stringValue: country },
                         browser: { stringValue: result.browser.name || 'Unknown' },
@@ -52,7 +76,8 @@ export const useAnalytics = () => {
             }
         };
 
-        if (typeof window !== 'undefined' && configs.isProduction) {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (typeof window !== 'undefined' && (configs.isProduction || isLocal)) {
             trackPageView();
         }
     }, [location]);

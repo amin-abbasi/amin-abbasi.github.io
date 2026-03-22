@@ -39,6 +39,11 @@ const StyledInput = styled(Form.Control)`
     margin-bottom: 1.5rem;
     padding: 10px 15px;
 
+    &::placeholder {
+        color: ${(props) => props.theme.color};
+        opacity: 0.6;
+    }
+
     &:focus {
         background: transparent;
         border-color: ${(props) => props.theme.accentColor};
