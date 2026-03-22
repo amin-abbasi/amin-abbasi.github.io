@@ -14,7 +14,7 @@ const LoginPage = styled(Container)`
     min-height: 100vh;
 `;
 
-const LoginCard = styled(Card)`
+const LoginCard = styled.div`
     background: ${(props) => props.theme.cardBackground};
     border: 1px solid ${(props) => props.theme.cardBorderColor};
     color: ${(props) => props.theme.color};

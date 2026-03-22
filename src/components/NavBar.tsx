@@ -19,7 +19,7 @@ const ExternalNavLink = styled.a<{ theme: Theme }>`
     color: ${(props) => props.theme.navbarTheme.linkColor};
     margin-inline-start: 0.75em;
     margin-inline-end: 0.75em;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-family: var(--font-mono);
     font-weight: 500;
     letter-spacing: 0.12em;
@@ -40,7 +40,7 @@ const InternalNavLink = styled(NavLink)<{ theme: Theme }>`
     color: ${(props) => props.theme.navbarTheme.linkColor};
     margin-inline-start: 0.75em;
     margin-inline-end: 0.75em;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-family: var(--font-mono);
     font-weight: 500;
     letter-spacing: 0.12em;

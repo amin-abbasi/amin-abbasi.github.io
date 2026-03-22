@@ -37,6 +37,22 @@
         }
       })(window.location);
     </script>
+    <!-- Theme Detection Script -->
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('darkMode');
+          var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+          if (theme === 'true' || (theme === null && supportDarkMode)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.body.classList.add('dark-mode');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.body.classList.add('light-mode');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <!-- End Single Page Apps for GitHub Pages -->
   </head>
 

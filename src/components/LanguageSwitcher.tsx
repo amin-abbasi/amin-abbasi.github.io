@@ -39,7 +39,7 @@ const ToggleButton = styled.button<{ $isTR: boolean }>`
     align-items: center;
     justify-content: center;
     font-family: var(--font-mono);
-    font-size: 0.62rem;
+    font-size: 0.73rem;
     font-weight: 700;
     color: white;
     text-transform: uppercase;
@@ -54,7 +54,7 @@ const ToggleButton = styled.button<{ $isTR: boolean }>`
     justify-content: space-between;
     padding: 0 8px;
     font-family: var(--font-mono);
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     color: ${(props) => (props.theme as Theme).color}50;
     font-weight: 600;
     pointer-events: none;

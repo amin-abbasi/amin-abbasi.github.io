@@ -10,6 +10,7 @@ import { Theme } from '../theme/themes';
 const AboutContainer = styled(Container)`
     padding-top: 2rem;
     padding-bottom: 4rem;
+    overflow-x: hidden;
 `;
 
 const TextCol = styled(Col)`
@@ -123,7 +124,11 @@ const QuoteText = styled.div`
     color: ${(props) => (props.theme as Theme).color}BB;
     text-align: center;
     position: relative;
-    padding: 0 20px;
+    padding: 0 25px;
+    width: 100%;
+    max-width: 100%;
+    word-break: break-word;
+    line-height: 1.5;
 
     &::before,
     &::after {

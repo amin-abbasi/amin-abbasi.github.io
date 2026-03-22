@@ -17,7 +17,7 @@ const DashboardContainer = styled(Container)`
   flex-direction: column;
 `;
 
-const StatCard = styled(Card)`
+const StatCard = styled.div`
   background: ${(props) => props.theme.cardBackground};
   border: 1px solid ${(props) => props.theme.cardBorderColor};
   color: ${(props) => props.theme.color};
