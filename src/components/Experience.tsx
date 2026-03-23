@@ -273,7 +273,7 @@ function Experience(props: ExperienceProps) {
                                             <SubtitleRow>
                                                 <CompanyName>{item.subtitle}</CompanyName>
                                                 {item.workType && (
-                                                    <WorkTypeBadge pill bg="secondary">
+                                                    <WorkTypeBadge pill bg="primary">
                                                         {item.workType}
                                                     </WorkTypeBadge>
                                                 )}
