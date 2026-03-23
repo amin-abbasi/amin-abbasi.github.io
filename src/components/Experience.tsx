@@ -161,17 +161,21 @@ const CompanyName = styled.span`
     }
 `;
 
-const WorkTypeBadge = styled(Badge)`
-    font-family: var(--font-mono) !important;
-    font-size: 0.68rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-    background: transparent !important;
-    color: ${(props) => (props.theme as Theme).accentColor} !important;
-    border: 1px solid ${(props) => (props.theme as Theme).accentColor}35 !important;
-    padding: 3px 10px !important;
-    border-radius: 3px !important;
+const WorkTypeBadge = styled.span`
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: transparent;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
+    padding: 3px 10px;
+    border-radius: 50px; /* Force pill shape */
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
 `;
 
 const BulletList = styled.ul`
@@ -272,11 +276,7 @@ function Experience(props: ExperienceProps) {
                                             </CardHeader>
                                             <SubtitleRow>
                                                 <CompanyName>{item.subtitle}</CompanyName>
-                                                {item.workType && (
-                                                    <WorkTypeBadge pill bg="primary">
-                                                        {item.workType}
-                                                    </WorkTypeBadge>
-                                                )}
+                                                {item.workType && (<WorkTypeBadge>{item.workType}</WorkTypeBadge>)}
                                             </SubtitleRow>
                                             <BulletList>
                                                 {item.workDescription.map((point, idx) => (
