@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Theme } from '../../theme/themes';
 import { Project } from '../../types/profile.types';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { trackEvent } from '../../hooks/useAnalytics';
 
 // ── Container ─────────────────────────────────────────────────────────────────
 const CardContainer = styled.div`
@@ -230,6 +231,10 @@ function ProjectCard(props: ProjectCardProps) {
     const { t } = useTranslation();
     const { project } = props;
 
+    const handleLinkClick = (type: string) => {
+        trackEvent(`CLICK: ${project.title} (${type})`);
+    };
+
     return (
         <CardContainer>
             {/* Mini "case study" header strip */}
@@ -262,25 +267,43 @@ function ProjectCard(props: ProjectCardProps) {
                 <LinkContainer>
                     {project.links?.map((link) =>
                         link.text.toLowerCase() === 'github' ? (
-                            <ActionButton key={link.href} href={link.href} target="_blank">
+                            <ActionButton 
+                                key={link.href} 
+                                href={link.href} 
+                                target="_blank"
+                                onClick={() => handleLinkClick('GitHub')}
+                            >
                                 <FaGithub size={14} />
                                 {t('layout:projects.github', { defaultValue: 'GitHub' })}
                             </ActionButton>
                         ) : (
-                            <SecondaryButton key={link.href} href={link.href} target="_blank">
+                            <SecondaryButton 
+                                key={link.href} 
+                                href={link.href} 
+                                target="_blank"
+                                onClick={() => handleLinkClick(link.text)}
+                            >
                                 <FaExternalLinkAlt size={12} />
                                 {link.text}
                             </SecondaryButton>
                         ),
                     )}
                     {project.source && (
-                        <ActionButton href={project.source} target="_blank">
+                        <ActionButton 
+                            href={project.source} 
+                            target="_blank"
+                            onClick={() => handleLinkClick('Source')}
+                        >
                             <FaGithub size={14} />
                             {t('layout:projects.source', { defaultValue: 'Source' })}
                         </ActionButton>
                     )}
                     {project.demo && (
-                        <SecondaryButton href={project.demo} target="_blank">
+                        <SecondaryButton 
+                            href={project.demo} 
+                            target="_blank"
+                            onClick={() => handleLinkClick('Demo')}
+                        >
                             <FaExternalLinkAlt size={12} />
                             {t('layout:projects.demo', { defaultValue: 'Demo' })}
                         </SecondaryButton>

@@ -15,70 +15,70 @@ const getVisitorId = () => {
     return id;
 };
 
+export const trackEvent = async (customPath?: string) => {
+    try {
+        const visitorId = getVisitorId();
+        const path = customPath || (typeof window !== 'undefined' ? window.location.pathname + window.location.search : '/');
+
+        // 1. Official Firebase Analytics SDK
+        const analytics = await analyticsPromise;
+        if (analytics) {
+            logEvent(analytics, 'page_view', {
+                page_path: path,
+                visitor_id: visitorId,
+            });
+        }
+
+        // 2. Custom Firestore REST Analytics
+        let country = 'Unknown';
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            country = data.country_name || 'Unknown';
+        } catch (e) {
+            console.error('IPAPI error:', e);
+        }
+
+        const parser = new UAParser();
+        const result = parser.getResult();
+
+        const pageView = {
+            fields: {
+                path: { stringValue: path },
+                visitor_id: { stringValue: visitorId },
+                created_at: { stringValue: new Date().toISOString() },
+                country: { stringValue: country },
+                browser: { stringValue: result.browser.name || 'Unknown' },
+                os: { stringValue: result.os.name || 'Unknown' },
+                device: { stringValue: result.device.type || 'Desktop' },
+                referrer: { stringValue: document.referrer || 'Direct' },
+                screen_resolution: { stringValue: `${window.screen.width}x${window.screen.height}` },
+                language: { stringValue: navigator.language },
+            }
+        };
+
+        const projectId = configs.firebaseProjectId;
+        if (!projectId) return;
+
+        await fetch(`https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/page_views`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pageView),
+        });
+    } catch (error) {
+        if (typeof window !== 'undefined') {
+            console.error('Analytics error:', error);
+        }
+    }
+};
+
 export const useAnalytics = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const trackPageView = async () => {
-            try {
-                const visitorId = getVisitorId();
-                const path = location.pathname + location.search;
-
-                // 1. Official Firebase Analytics SDK
-                const analytics = await analyticsPromise;
-                if (analytics) {
-                    logEvent(analytics, 'page_view', {
-                        page_path: path,
-                        visitor_id: visitorId,
-                    });
-                }
-
-                // 2. Custom Firestore REST Analytics
-                let country = 'Unknown';
-                try {
-                    const response = await fetch('https://ipapi.co/json/');
-                    const data = await response.json();
-                    country = data.country_name || 'Unknown';
-                } catch (e) {
-                    console.error('IPAPI error:', e);
-                }
-
-                const parser = new UAParser();
-                const result = parser.getResult();
-
-                const pageView = {
-                    fields: {
-                        path: { stringValue: path },
-                        visitor_id: { stringValue: visitorId },
-                        created_at: { stringValue: new Date().toISOString() },
-                        country: { stringValue: country },
-                        browser: { stringValue: result.browser.name || 'Unknown' },
-                        os: { stringValue: result.os.name || 'Unknown' },
-                        device: { stringValue: result.device.type || 'Desktop' },
-                        referrer: { stringValue: document.referrer || 'Direct' },
-                        screen_resolution: { stringValue: `${window.screen.width}x${window.screen.height}` },
-                        language: { stringValue: navigator.language },
-                    }
-                };
-
-                const projectId = configs.firebaseProjectId;
-                if (!projectId) return;
-
-                await fetch(`https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/page_views`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(pageView),
-                });
-            } catch (error) {
-                if (typeof window !== 'undefined') {
-                    console.error('Analytics error:', error);
-                }
-            }
-        };
-
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         if (typeof window !== 'undefined' && (configs.isProduction || isLocal)) {
-            trackPageView();
+            trackEvent();
         }
     }, [location]);
 };
