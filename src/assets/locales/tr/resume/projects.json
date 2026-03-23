@@ -1,6 +1,42 @@
 {
   "projects": [
     {
+      "image": "images/projects/node-performance-gotchas.png",
+      "title": "Node.js Performans Püf Noktaları",
+      "bodyText": "- Bellek sızıntıları, olay döngüsü (event loop) bloklanması ve akış (stream) geri basıncını tanımlama ve düzeltme üzerine kapsamlı, uygulamalı bir eğitim.\n- Bir Express.js API'sinde gerçek hayattan yan yana 'Problem' ve 'Çözüm' uygulamaları içerir.\n- V8 çöp toplama (garbage collection) davranışını ve sistem yanıt verebilirliğini göstermek için otomatik test betikleri içerir.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/node-performance-gotchas"
+        }
+      ],
+      "tags": ["Nodejs", "Express", "Typescript", "Performance", "Streams", "V8"]
+    },
+    {
+      "image": "images/projects/arango-edge-patterns.png",
+      "title": "ERP Sistemlerinde ArangoDB Edge Desenleri",
+      "bodyText": "- Kurumsal ERP sistemlerinde hiyerarşik ilişkiler ve grafik işlemleri için gelişmiş ArangoDB edge koleksiyonu desenlerinin kapsamlı bir gösterimi.\n- Kategori ağaçları, depo düğüm hiyerarşileri ve AQL kullanarak karmaşık çok seviyeli gezinme sorgularının pratik uygulamalarını içerir.\n- TypeScript modellerine ve gerçek zamanlı veri toplama için performans odaklı sorgu şablonlarına sahip, üretime hazır bir Express.js API içerir.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/arango-edge-patterns"
+        }
+      ],
+      "tags": ["ArangoDB", "Express", "TypeScript", "Graph", "ERP", "AQL", "Nodejs"]
+    },
+    {
+      "image": "images/projects/system-design-flash-sale.png",
+      "title": "FlashScale — Flaş Satış Sistem Tasarımı",
+      "bodyText": "- Yüksek erişilebilirlik senaryoları için temel sistem tasarımı kalıplarını gösteren uygulamalı bir Node.js/TypeScript projesi.\n- Veritabanı Sharding, Cache-Aside (Redis) ve Yük Dengeleme (Round Robin, Sticky Sessions, Least Connections) uygulamalarını içerir.",
+      "links": [
+        {
+          "text": "GitHub",
+          "href": "https://github.com/amin-abbasi/system-design-flash-sale"
+        }
+      ],
+      "tags": ["Typescript", "Nodejs", "System Design", "Sharding", "Redis", "Load Balancing"]
+    },
+    {
       "image": "images/projects/ts-boilerplate.png",
       "title": "Typescript Boilerplate",
       "bodyText": "- Typescript, MongoDB, Redis ve fazlasını kullanan sunucu taraflı bir boilerplate (şablon)...\n- Tamamen özelleştirilebilir ve dinamik, veri yapısını kolayca değiştirin.",

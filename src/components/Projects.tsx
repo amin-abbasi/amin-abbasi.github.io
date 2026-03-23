@@ -65,7 +65,7 @@ function Projects(props: ProjectsProps) {
                 <MainContainer>
                     <Container fluid style={{ maxWidth: '1400px', padding: '0 20px' }}>
                         <SectionContent>
-                            <Row xs={1} md={2} lg={3} className="g-5">
+                            <Row xs={1} md={2} lg={3} className="g-4">
                                 {data.projects?.slice(0, numberOfItems).map((project, index) => (
                                     <Col key={project.title}>
                                         <Fade direction="up" triggerOnce duration={600} delay={index * 100} style={{ height: '100%' }}>

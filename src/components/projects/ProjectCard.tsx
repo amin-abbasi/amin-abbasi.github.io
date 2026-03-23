@@ -71,8 +71,8 @@ const CaseStudyHeader = styled.div`
 
 const CaseLabel = styled.span`
     font-family: var(--font-mono);
-    font-size: 0.62rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: ${(props) => (props.theme as Theme).accentColor};
