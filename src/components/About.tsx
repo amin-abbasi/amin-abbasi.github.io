@@ -1,8 +1,10 @@
+import { useState, useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Fade } from 'react-awesome-reveal';
-import { styled } from 'styled-components';
+import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { FaLinkedin } from 'react-icons/fa';
 import { LuDownload } from 'react-icons/lu';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
@@ -295,7 +297,56 @@ const TestimonialText = styled.p`
 const TestimonialAuthor = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
+    margin-top: 12px;
+`;
+
+const AuthorMeta = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+`;
+
+const LinkedInLink = styled.a`
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
+    border-radius: 4px;
+    background: ${(props) => (props.theme as Theme).accentColor}08;
+
+    &:hover {
+        opacity: 1;
+        background: ${(props) => (props.theme as Theme).accentColor}12;
+        border-color: ${(props) => (props.theme as Theme).accentColor}80;
+        transform: translateY(-1px);
+    }
+`;
+
+const ExpandButton = styled.button`
+    background: none;
+    border: none;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.8;
+    
+    &:hover {
+        opacity: 1;
+    }
 `;
 
 const AuthorBadge = styled.div`
@@ -384,7 +435,15 @@ interface AboutProps {
 
 function About(props: AboutProps) {
     const { t } = useTranslation();
+    const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
+
+    const [expandedIds, setExpandedIds] = useState<string[]>([]);
+    const toggleExpand = (id: string) => {
+        setExpandedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    };
+
+    const CHAR_LIMIT = 180;
     const data = {
         about: t('resAbout:about'),
         quote: t('resAbout:quote', { defaultValue: '' }),
@@ -422,18 +481,46 @@ function About(props: AboutProps) {
                                 {Array.isArray(data.testimonials) && data.testimonials.length > 0 && (
                                     <TestimonialsSection>
                                         <TestimonialsTitle>{t('layout:about.testimonials')}</TestimonialsTitle>
-                                        {data.testimonials.map((testimonial: any) => (
-                                            <TestimonialCard key={testimonial.name}>
-                                                <TestimonialText>{testimonial.text}</TestimonialText>
-                                                <TestimonialAuthor>
-                                                    <AuthorBadge>{testimonial.initials}</AuthorBadge>
-                                                    <AuthorInfo>
-                                                        <strong>{testimonial.name}</strong>
-                                                        <span>{testimonial.role}</span>
-                                                    </AuthorInfo>
-                                                </TestimonialAuthor>
-                                            </TestimonialCard>
-                                        ))}
+                                        {data.testimonials.map((testimonial: any) => {
+                                            const isExpanded = expandedIds.includes(testimonial.name);
+                                            const shouldTruncate = testimonial.text.length > CHAR_LIMIT;
+                                            const displayText = isExpanded 
+                                                ? testimonial.text 
+                                                : testimonial.text.substring(0, CHAR_LIMIT) + (shouldTruncate ? '...' : '');
+
+                                            return (
+                                                <TestimonialCard key={testimonial.name}>
+                                                    <TestimonialText>
+                                                        {displayText}
+                                                        {shouldTruncate && (
+                                                            <ExpandButton onClick={() => toggleExpand(testimonial.name)}>
+                                                                {isExpanded ? t('layout:about.showLess', { defaultValue: 'Show less' }) : t('layout:about.showMore', { defaultValue: 'Show more' })}
+                                                            </ExpandButton>
+                                                        )}
+                                                    </TestimonialText>
+                                                    <TestimonialAuthor>
+                                                        <AuthorMeta>
+                                                            <AuthorBadge>{testimonial.initials}</AuthorBadge>
+                                                            <AuthorInfo>
+                                                                <strong>{testimonial.name}</strong>
+                                                                <span>{testimonial.role}</span>
+                                                            </AuthorInfo>
+                                                        </AuthorMeta>
+                                                        {testimonial.linkedinUrl && (
+                                                            <LinkedInLink 
+                                                                href={testimonial.linkedinUrl} 
+                                                                target="_blank" 
+                                                                rel="noopener noreferrer"
+                                                                title={t('layout:about.viewOnLinkedin')}
+                                                            >
+                                                                <FaLinkedin size={14} />
+                                                                {t('layout:about.viewOnLinkedin')}
+                                                            </LinkedInLink>
+                                                        )}
+                                                    </TestimonialAuthor>
+                                                </TestimonialCard>
+                                            );
+                                        })}
                                     </TestimonialsSection>
                                 )}
 

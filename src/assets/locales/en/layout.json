@@ -57,7 +57,10 @@
     "about": {
         "refId": "REF_ID: PRO_BIO_772",
         "quote": "The best code is the line you didn't have to write.",
-        "testimonials": "// What colleagues say"
+        "testimonials": "// What colleagues say",
+        "viewOnLinkedin": "View on LinkedIn",
+        "showMore": "Show more",
+        "showLess": "Show less"
     },
     "contact": {
         "init": "// contact.init",

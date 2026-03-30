@@ -16,16 +16,25 @@
   },
   "testimonials": [
     {
-      "text": "Amin, derin teknik uzmanlık ve samimi liderlik empatisinin nadir bir kombinasyonuna sahip. O sadece sistemleri mimari olarak tasarlamakla kalmıyor, aynı zamanda ekipleri de inşa ediyor. Platform göçümüzü yönetirken aynı zamanda genç mühendislerimize mentorluk yapmasını izlemek gerçekten etkileyiciydi.",
-      "name": "CTO, HealthTech Şirketi",
-      "initials": "CT",
-      "role": "Teknoloji Başkanı"
+      "text": "Amin ile çalışmak benim için gerçekten değerli bir deneyimdi. Onu diğerlerinden ayıran şey, sorunlara yüzeysel değil, kök neden düzeyinde yaklaşabilmesidir. Hızlı veya geçici çözümlerle yetinmez; bunun yerine meseleleri derinlemesine analiz eder, varsayımları sorgular ve doğru sonuca ulaşmak için sistematik bir şekilde ilerler. Güçlü bir mühendislik zihniyetine sahip olduğu kadar farklı bakış açılarına da açık olduğu için kendisiyle yapılan teknik tartışmalar her zaman verimli geçti. Etki ve sonuç odaklıdır. Sorumluluk almaktan çekinmez, gerçekten değer yaratan işlere odaklanır ve tartışmaları verimli bir şekilde eyleme dönüştürür. Analitik düşünme yeteneği, güvenilirliği ve çözüm odaklı yaklaşımıyla, bulunduğu ekiplere sürekli olarak somut katkılar sağlıyor. Amin'in katıldığı her ekipte ölçülebilir ve sürdürülebilir bir etki yaratacağından hiç şüphem yok. Her ekip onunla çalıştığı için şanslı olacaktır ve onu şiddetle tavsiye ediyorum.",
+      "name": "Necdet Yiğit Eroğlu",
+      "initials": "NYE",
+      "role": "Team Lead @ Actimi",
+      "linkedinUrl": "https://linkedin.com/in/abbasi-h/details/recommendations/"
     },
     {
-      "text": "Amin ile ilgili dikkat çeken şey, karmaşık mimari kararları tüm ekip için net ve anlaşılır bir gerekçeye nasıl dönüştürebildiğiydi. Teknik terim duvarları yok, ego yok — sadece netlik. Bu, lider seviyesinde nadir bulunan bir beceridir.",
-      "name": "Kıdemli Mühendis, Fintech Girişimi",
-      "initials": "SE",
-      "role": "Kıdemli Yazılım Mühendisi"
+      "text": "Amin Abbasi ile Dannie bünyesinde üç yıldan fazla süre birlikte çalıştık. Ben full stack geliştiriciydim, Amin ise kıdemli backend geliştirici olarak başladı ve sonrasında liderlik rolüne yükseltildi. İlk iki yıl boyunca günlük bazda birlikte çalıştık ve çekirdek sistemler üzerinde çok yakın iş birliği yaptık. Amin, özellikle TypeScript ve Node konularında olağanüstü güçlü bir backend mühendisi. Büyük ölçekli sistemler hakkında derin bir anlayışa sahip ve devasa kod tabanlarının sürdürülmesinde ve iyileştirilmesinde etkili oldu. Yaptığı yeniden yapılandırma (refactoring) çalışmaları, sabır, hassasiyet ve güçlü bir mimari zihniyet gerektiren alanlarda kod kalitesini ve uzun vadeli sürdürülebilirliği önemli ölçüde artırdı. Teknik gücünün ötesinde Amin, karakteriyle de öne çıkıyor. Uyumlu, ilgili ve birlikte çalıştığı insanlara gerçekten değer veren biri. Bilgi paylaşmaktan ve başkalarının büyümesine yardımcı olmaktan keyif alan doğal bir eğitmen. Problem çözme sırasında sürekli fikrimi sordu, farklı bakış açılarına değer verdi ve fikirlerin güvenli bir şekilde tartışılabildiği iş birlikçi bir ortam yarattı. Bir lider olarak Amin, sorumluluk almaktan da korkmadı. İşler ters gittiğinde sorumluluğu üstlendi ve gerektiğinde ekibi korudu. Net iletişim kuran, empati ile hesap verebilirliği dengeleyen güçlü bir karakteri var. Ayrıca ekip olarak WebSocket tabanlı sistemler üzerinde çalışırken, karmaşık gerçek zamanlı sorunları birlikte ele alarak çok şey öğrendik ve geliştik. Amin, her ekibin fayda sağlayacağı türden bir lider ve mühendistir. Teknik açıdan güçlü, sorumlu ve gerçekten insancıl bir lider arayan her şirket onunla çalışabileceği için şanslı olacaktır.",
+      "name": "Alp Sarıyer",
+      "initials": "AS",
+      "role": "System Designer @ Dannie.cc",
+      "linkedinUrl": "https://linkedin.com/in/abbasi-h/details/recommendations/"
+    },
+    {
+      "text": "Irantom şirketinde bir yıl boyunca Amin ile birlikte çalışma ve çeşitli proje ekiplerinde iş birliği yapma zevkine sahip oldum. Bir Node.js Backend Geliştiricisi olarak Amin’in hem ana rolündeki hem de bunun ötesine geçen projelerdeki ustalığı, şirketin büyümesi için kritik öneme sahipti. Amin’in çalışmaları buradaki görev süresinden çok sonra bile değer katmaya devam etse de, onunla her gün çalışmayı kesinlikle özlüyorum.",
+      "name": "Mert Mehralian",
+      "initials": "MM",
+      "role": "Senior Full-Stack Engineer @ Irantom",
+      "linkedinUrl": "https://linkedin.com/in/abbasi-h/details/recommendations/"
     }
   ]
 }
