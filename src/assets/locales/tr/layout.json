@@ -45,5 +45,9 @@
     "about": {
         "refId": "REF_NO: PRO_BIO_772",
         "quote": "En iyi kod, yazmak zorunda kalmadığınız koddur."
+    },
+    "buttons": {
+        "cv": "ÖZGEÇMİŞ",
+        "downloadCv": "Özgeçmişimi İndir"
     }
 }

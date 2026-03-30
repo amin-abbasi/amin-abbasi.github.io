@@ -222,6 +222,65 @@ const ConnectorLabel = styled.div`
     }
 `;
 
+// ── Tech Stack tags ───────────────────────────────────────────────────────────
+const TechStackRow = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+`;
+
+const TechTag = styled.span`
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: ${(props) => (props.theme as Theme).accentColor}0D;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}20;
+    letter-spacing: 0.04em;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background: ${(props) => (props.theme as Theme).accentColor}18;
+        border-color: ${(props) => (props.theme as Theme).accentColor}45;
+    }
+`;
+
+// ── Promoted connector ────────────────────────────────────────────────────────
+const PromotionBanner = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -90px 0 30px;
+    position: relative;
+    z-index: 5;
+
+    @media (max-width: 768px) {
+        margin: -40px 0 20px;
+    }
+`;
+
+const PromotionPill = styled.div`
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    background: ${(props) => (props.theme as Theme).accentColor}15;
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+`;
+
 // ── Index counter ─────────────────────────────────────────────────────────────
 const EntryIndex = styled.div`
     font-family: var(--font-mono);
@@ -239,6 +298,9 @@ interface ExperienceItem {
     subtitle: string;
     dateText: string;
     workType?: string;
+    promoted?: boolean;
+    promotionNote?: string;
+    techStack?: string[];
     workDescription: string[];
 }
 
@@ -269,6 +331,18 @@ function Experience(props: ExperienceProps) {
 
                                         <TrackDot $accent={theme.accentColor} />
 
+                                        {/* Promoted connector — show between the two Dannie.CC entries */}
+                                        {item.promotionNote && (
+                                            <PromotionBanner>
+                                                <PromotionPill>
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                        <polyline points="18 15 12 9 6 15"/>
+                                                    </svg>
+                                                    {item.promotionNote}
+                                                </PromotionPill>
+                                            </PromotionBanner>
+                                        )}
+
                                         <Card>
                                             <CardHeader>
                                                 <JobTitle>{item.title}</JobTitle>
@@ -285,6 +359,14 @@ function Experience(props: ExperienceProps) {
                                                     </li>
                                                 ))}
                                             </BulletList>
+                                            {/* Tech Stack */}
+                                            {item.techStack && item.techStack.length > 0 && (
+                                                <TechStackRow>
+                                                    {item.techStack.map((tech) => (
+                                                        <TechTag key={tech}>{tech}</TechTag>
+                                                    ))}
+                                                </TechStackRow>
+                                            )}
                                         </Card>
                                     </EntryWrapper>
                                 </Fade>

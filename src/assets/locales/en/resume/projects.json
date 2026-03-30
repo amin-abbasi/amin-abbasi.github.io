@@ -1,6 +1,6 @@
 {
   "projects": [
-        {
+    {
       "image": "images/projects/node-performance-gotchas.png",
       "title": "Node.js Performance Gotchas",
       "bodyText": "- A comprehensive, hands-on tutorial for identifying and fixing memory leaks, event loop blocking, and stream backpressure.\n- Features real-world side-by-side 'Problem' vs 'Solution' implementations in an Express.js API.\n- Includes automated testing scripts to demonstrate V8 garbage collection behavior and system responsiveness.",

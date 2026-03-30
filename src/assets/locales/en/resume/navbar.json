@@ -1,8 +1,8 @@
 {
   "logo": {
     "source": "images/logo.png",
-    "height": 40,
-    "width": 40
+    "height": 45,
+    "width": 45
   },
   "sections": [
     {
@@ -10,20 +10,28 @@
       "href": "/about"
     },
     {
-      "title": "Skills",
-      "href": "/skills"
-    },
-    {
       "title": "Experience",
       "href": "/experience"
+    },
+    {
+      "title": "Case Studies",
+      "href": "/case-studies"
+    },
+    {
+      "title": "Projects",
+      "href": "/projects"
+    },
+    {
+      "title": "Skills",
+      "href": "/skills"
     },
     {
       "title": "Education",
       "href": "/education"
     },
     {
-      "title": "Projects",
-      "href": "/projects"
+      "title": "Contact",
+      "href": "/contact"
     }
   ]
 }

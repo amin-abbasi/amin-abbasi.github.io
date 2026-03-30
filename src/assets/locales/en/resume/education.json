@@ -1,18 +1,18 @@
 {
   "education": [
     {
-      "title": "Sep 2011 \u2013 Sep 2013",
+      "title": "Sep 2011 – Sep 2013",
       "cardTitle": "Master of Science in Remote Sensing",
-      "cardSubtitle": "Isfahan University, Iran",
+      "cardSubtitle": "Isfahan University, Iran — Postgraduate Research Program",
       "bulletPoints": [
-        "Technical Focus: Specialized in Digital Image Processing and Pattern Recognition",
-        "Impact: Leveraged C++ and MATLAB to develop advanced algorithms for large-scale GIS and hyper-spectral imagery.",
-        "This background drives my mathematical approach to backend data precision."
+        "Technical Focus: Digital Image Processing & Pattern Recognition",
+        "Developed advanced C++ and MATLAB algorithms for large-scale GIS and hyper-spectral imagery analysis",
+        "This foundation in mathematical modelling and data precision directly informs my approach to backend architecture and database design"
       ]
     },
     {
-      "title": "Sep 2006 \u2013 Sep 2010",
-      "cardTitle": "Bachelors in Surveying Engineering",
+      "title": "Sep 2006 – Sep 2010",
+      "cardTitle": "Bachelor of Science in Surveying Engineering",
       "cardSubtitle": "Tafresh University, Iran",
       "bulletPoints": [
         "Fundamental & Advanced Computer Programming",
@@ -21,10 +21,14 @@
       ]
     },
     {
-      "title": "Sep 2001 \u2013 Sep 2005",
-      "cardTitle": "High School",
-      "cardSubtitle": "Tehran, Iran",
-      "bulletPoints": ["Major: Mathematics & Physics", "Graduated with Honors"]
+      "title": "Continuous Learning",
+      "cardTitle": "Self-directed Growth & Professional Development",
+      "cardSubtitle": "Ongoing",
+      "bulletPoints": [
+        "Regular deep-dives into distributed systems literature (Designing Data-Intensive Applications, Clean Architecture)",
+        "Active participant in backend engineering communities and open-source ecosystems",
+        "Built and maintained public TypeScript, Go, and JS boilerplate libraries on GitHub with community adoption"
+      ]
     }
   ]
 }

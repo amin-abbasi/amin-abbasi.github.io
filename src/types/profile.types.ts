@@ -29,6 +29,7 @@ export interface RoutesData {
 
 export interface HomeData {
   name: string;
+  tagline?: string;
   roles: string[];
 }
 

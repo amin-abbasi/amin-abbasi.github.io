@@ -189,6 +189,7 @@ function Home() {
     const context = useContext(AppContext);
     const data = {
         name: t('resHome:name'),
+        tagline: t('resHome:tagline', { defaultValue: '' }),
         roles: t('resHome:roles', { returnObjects: true })
     } as HomeData;
 
@@ -288,6 +289,107 @@ function Home() {
                                 strings: data?.roles,
                             }}
                         />
+                    </div>
+
+                    {/* Tagline */}
+                    {data?.tagline && (
+                        <p
+                            style={{
+                                fontFamily: 'var(--font-main)',
+                                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
+                                fontWeight: 400,
+                                color: 'var(--text-secondary)',
+                                marginBottom: '2rem',
+                                lineHeight: 1.6,
+                                maxWidth: 520,
+                                margin: '0 auto 2rem',
+                            }}
+                        >
+                            {data.tagline}
+                        </p>
+                    )}
+
+                    {/* CTA Buttons */}
+                    <div
+                        style={{
+                            display: 'flex',
+                            gap: 12,
+                            justifyContent: 'center',
+                            flexWrap: 'wrap',
+                            marginBottom: '2rem',
+                        }}
+                    >
+                        <a
+                            href="/experience"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: 8,
+                                padding: '10px 24px',
+                                background: accent,
+                                color: '#fff',
+                                borderRadius: 4,
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.8rem',
+                                fontWeight: 600,
+                                letterSpacing: '0.08em',
+                                textDecoration: 'none',
+                                transition: 'all 0.2s ease',
+                            }}
+                            onMouseEnter={e => (e.currentTarget.style.filter = 'brightness(1.15)')}
+                            onMouseLeave={e => (e.currentTarget.style.filter = '')}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            View Experience
+                        </a>
+                        <a
+                            href="/public/amin-abbasi-cv.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: 8,
+                                padding: '10px 24px',
+                                background: 'transparent',
+                                color: accent,
+                                border: `1.5px solid ${accent}55`,
+                                borderRadius: 4,
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.8rem',
+                                fontWeight: 600,
+                                letterSpacing: '0.08em',
+                                textDecoration: 'none',
+                                transition: 'all 0.2s ease',
+                            }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.background = `${accent}10`; }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = `${accent}55`; e.currentTarget.style.background = 'transparent'; }}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Download CV
+                        </a>
+                    </div>
+
+                    {/* Availability badge */}
+                    <div
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: 8,
+                            padding: '6px 16px',
+                            background: `${accent}10`,
+                            border: `1px solid ${accent}30`,
+                            borderRadius: 50,
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.68rem',
+                            fontWeight: 500,
+                            color: accent,
+                            letterSpacing: '0.06em',
+                            marginBottom: '2.2rem',
+                        }}
+                    >
+                        <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00e676', display: 'inline-block', animation: 'bpBounce 2s ease-in-out infinite' }} />
+                        ✦ Available for Lead / Architect Roles · Remote or Antalya
                     </div>
 
                     <Social />

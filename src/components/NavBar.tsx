@@ -7,6 +7,7 @@ import ThemeToggler from './ThemeToggler';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Theme } from '../theme/themes';
 import { NavbarData } from '../types/profile.types';
+import { CV_DOWNLOAD_URL } from '../constants/config';
 
 const styles = {
     logoStyle: {
@@ -60,6 +61,33 @@ const InternalNavLink = styled(NavLink)<{ theme: Theme }>`
     }
 `;
 
+const CVButton = styled.a<{ theme: Theme }>`
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    margin-inline-start: 0.75rem;
+    margin-inline-end: 0.75rem;
+    background: ${(props) => props.theme.accentColor};
+    color: #fff !important;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+
+    &:hover {
+        filter: brightness(1.12);
+        transform: translateY(-1px);
+    }
+`;
+
 function NavBar() {
     const { t } = useTranslation();
     const theme = useContext(ThemeContext) as Theme;
@@ -105,7 +133,22 @@ function NavBar() {
                                     </InternalNavLink>
                                 ),
                             )}
-                        <div className="d-flex align-items-center" style={{ marginInlineStart: '1rem' }}>
+                        <div className="d-flex align-items-center" style={{ gap: '0.5rem', height: '100%' }}>
+                            <CVButton
+                                href={CV_DOWNLOAD_URL}
+                                download="Amin_Abbasi_CV.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                theme={theme}
+                                onClick={() => setExpanded(false)}
+                            >
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                {t('layout:buttons.cv')}
+                            </CVButton>
                             <ThemeToggler onClick={() => setExpanded(false)} />
                             <LanguageSwitcher />
                         </div>
