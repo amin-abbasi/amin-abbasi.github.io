@@ -12,6 +12,7 @@ import enAbout from './assets/locales/en/resume/about.json';
 import enHome from './assets/locales/en/resume/home.json';
 import enSocial from './assets/locales/en/resume/social.json';
 import enNavbar from './assets/locales/en/resume/navbar.json';
+import enCaseStudies from './assets/locales/en/resume/caseStudies.json';
 
 // TR
 import trLayout from './assets/locales/tr/layout.json';
@@ -23,7 +24,7 @@ import trAbout from './assets/locales/tr/resume/about.json';
 import trHome from './assets/locales/tr/resume/home.json';
 import trSocial from './assets/locales/tr/resume/social.json';
 import trNavbar from './assets/locales/tr/resume/navbar.json';
-
+import trCaseStudies from './assets/locales/tr/resume/caseStudies.json';
 const resources = {
   en: {
     layout: enLayout,
@@ -35,6 +36,7 @@ const resources = {
     resHome: enHome,
     resSocial: enSocial,
     resNavbar: enNavbar,
+    resCaseStudies: enCaseStudies,
   },
   tr: {
     layout: trLayout,
@@ -46,6 +48,7 @@ const resources = {
     resHome: trHome,
     resSocial: trSocial,
     resNavbar: trNavbar,
+    resCaseStudies: trCaseStudies,
   },
 };
 

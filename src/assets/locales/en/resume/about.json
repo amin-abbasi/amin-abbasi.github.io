@@ -3,10 +3,22 @@
   "quote": "I care less about the cleverness of the code and more about whether the next developer can understand it at 2am.",
   "imageSource": "images/about/me.png",
   "stats": [
-    { "value": "10+", "label": "Years Experience" },
-    { "value": "5", "label": "Industries" },
-    { "value": "30+", "label": "Engineers Mentored" },
-    { "value": "8", "label": "Companies" }
+    {
+      "value": "10+",
+      "label": "Years Experience"
+    },
+    {
+      "value": "5",
+      "label": "Industries"
+    },
+    {
+      "value": "30+",
+      "label": "Engineers Mentored"
+    },
+    {
+      "value": "8",
+      "label": "Companies"
+    }
   ],
   "availability": {
     "location": "Antalya, Turkey",

@@ -239,120 +239,21 @@ interface CaseStudy {
     outcome: string;
 }
 
-const CASE_STUDIES: CaseStudy[] = [
-    {
-        id: 'sdui-dannie',
-        label: 'CASE_001 · ERP / Industrial',
-        title: 'Server-Driven UI Framework for an Industrial ERP',
-        subtitle: 'Dannie.CC · 2023–2024',
-        tags: ['Node.js', 'TypeScript', 'WebSocket', 'ArangoDB', 'SDUI', 'ERP', 'Real-time'],
-        problem:
-            'The Dannie.CC ERP served 9 departments across a manufacturing facility. Every UI change required a full frontend deployment cycle averaging 3–4 hours, blocking product velocity and forcing QA to retest hundreds of screens per release. The frontend team was perpetually blocked by the backend release schedule.',
-        approach: [
-            'Designed a JSON-based UI schema that the backend emits over WebSocket connections — each "module descriptor" contains component type, data bindings, conditional visibility rules, and action handlers.',
-            'Built a thin React frontend runtime that interprets these descriptors and renders accordingly, with zero application-specific logic in the frontend codebase.',
-            'Implemented a versioning system for schema changes so legacy clients could gracefully degrade without hard failures.',
-            'Added a server-side A/B testing layer by emitting different module descriptors based on user roles and feature flags.',
-        ],
-        decisions: [
-            {
-                title: 'WebSocket over HTTP polling',
-                rationale: 'The ERP needed real-time production line data. REST polling would have introduced 500ms–2s latency that operators found unacceptable for quality control decisions. WebSocket allowed us to push UI state AND data in a single channel.',
-            },
-            {
-                title: 'JSON schema over GraphQL fragments',
-                rationale: 'GraphQL was considered but rejected — the UI schema needed to be fully server-controlled with no client-side query negotiation. A simple JSON contract gave us full control over what the server renders without client-side complexity.',
-            },
-        ],
-        metrics: [
-            { value: '80%', label: 'Fewer frontend deployments' },
-            { value: '1 week', label: 'Feature delivery (from 1 month)' },
-            { value: '9', label: 'Departments unified' },
-            { value: '35%', label: 'Response time improvement' },
-        ],
-        outcome:
-            'The SDUI approach eliminated 80% of frontend deployments while allowing the product team to iterate on UI modules daily. QA scope per release dropped dramatically. The architecture later became the foundation for the company\'s IATF 16949 certification alignment, as all business logic remained server-side and fully auditable.',
-    },
-    {
-        id: 'trading-engine-digialpha',
-        label: 'CASE_002 · Fintech / High-Frequency Trading',
-        title: 'High-Frequency Crypto Exchange Trading Engine',
-        subtitle: 'DigiAlpha · 2021–2022',
-        tags: ['Node.js', 'TypeScript', 'RabbitMQ', 'PostgreSQL', 'Redis', 'Microservices', 'HD Wallet', 'KYC'],
-        problem:
-            'DigiAlpha needed to build a crypto exchange from scratch supporting Spot, OTC, Margin, Copy-Trading, and Stop-Loss orders. The primary challenge was building a lock-free order matching engine that could process thousands of orders per second without parallel execution bottlenecks — while maintaining exact ledger accuracy across complex multi-currency positions.',
-        approach: [
-            'Designed a non-blocking order matching algorithm using an immutable event log as the source of truth, with in-memory order books rebuilt from events on startup.',
-            'Partitioned the microservices by domain: Order Management, Matching Engine, Wallet Service, Ledger, Price Feed, KYC Service — each with its own database and event queue.',
-            'Used RabbitMQ topic exchanges to broadcast price feed updates and wallet balance changes across services with guaranteed ordering and zero message loss.',
-            'Implemented a proprietary HD Wallet service that derived user addresses deterministically from a master seed, enabling address rotation without re-issuance.',
-            'Built a 3-tier KYC pipeline integrating national ID verification, bank account linking, and liveness detection — gating trading limits at each tier.',
-        ],
-        decisions: [
-            {
-                title: 'Single-threaded matching engine over distributed actor model',
-                rationale: 'A distributed matching engine would have introduced consensus latency. The matching algorithm was designed to run single-threaded within a single Node.js process with an external event queue feeding it. This eliminated distributed locking and gave us deterministic execution order — critical for audit trails.',
-            },
-            {
-                title: 'Internal ledger vs. relying on blockchain confirmations',
-                rationale: 'Waiting for on-chain confirmations for every trade would have made the UX unusable. We maintained an internal double-entry ledger for virtual balances, with a separate reconciliation process that settled confirmed blockchain transactions asynchronously.',
-            },
-        ],
-        metrics: [
-            { value: '30%', label: 'Faster order matching' },
-            { value: '2×', label: 'System throughput gain' },
-            { value: '9', label: 'Engineers scaled to' },
-            { value: '0', label: 'Message loss events' },
-        ],
-        outcome:
-            'The exchange launched supporting 5 trading modes within 12 months. The event-driven architecture handled peak trading volumes during high-volatility market events with zero message loss. The platform later expanded to include Copy-Trading — a feature only possible because of the clean separation between order execution and portfolio mirror logic.',
-    },
-    {
-        id: 'fhir-actimi',
-        label: 'CASE_003 · HealthTech / FHIR Compliance',
-        title: 'FHIR-Compliant Healthcare Data Platform',
-        subtitle: 'Actimi GmbH · 2022–2023',
-        tags: ['Node.js', 'TypeScript', 'FHIR', 'Aidbox', 'Medplum', 'PostgreSQL', 'GDPR', 'HIPAA', 'GCP', 'CI/CD'],
-        problem:
-            'Actimi provided remote patient monitoring for German healthcare providers. The platform needed to be simultaneously FHIR R4 compliant, GDPR/HIPAA compliant, and capable of managing a distributed fleet of patient tablets. The main technical debt: heavy reliance on raw JSON storage in PostgreSQL without proper FHIR resource indexing, causing query latency above 800ms for complex clinical queries.',
-        approach: [
-            'Redesigned the PostgreSQL schema to align with FHIR resource types, adding targeted GIN indexes on FHIR search parameters (patient.name, observation.code, encounter.date).',
-            'Evaluated Aidbox vs. Medplum as FHIR server layers and built adapters for both, allowing the platform to operate on either depending on client requirements.',
-            'Built a GDPR-compliant device lifecycle system: each patient tablet had a unique UUID tied to its assignment; re-assignment triggered an automated wipe + UUID regeneration workflow via Zoho MDM API.',
-            'Containerized all services with Docker and restructured the GCP CI/CD pipeline, introducing staging environments and parallel test execution.',
-        ],
-        decisions: [
-            {
-                title: 'Dual FHIR adapter over single vendor lock-in',
-                rationale: 'German healthcare clients had different procurement preferences. Rather than betting on one FHIR server vendor, we built thin adapters over both Aidbox and Medplum, with the business logic layer remaining vendor-agnostic. This added 3 weeks of development but saved 3+ months of future migration risk.',
-            },
-            {
-                title: 'MDM-based wipe vs. application-layer data deletion',
-                rationale: 'GDPR requires verifiable data erasure. Application-layer deletion leaves database artifacts. MDM-enforced factory wipe gave us a hardware-level audit trail that satisfied German DPA (Datenschutzbehörde) requirements without code complexity.',
-            },
-        ],
-        metrics: [
-            { value: '30%', label: 'Query latency reduction' },
-            { value: '85%', label: 'CI/CD time improvement' },
-            { value: '100%', label: 'GDPR & HIPAA compliance' },
-            { value: '1 month', label: 'Onboarding (from 3 months)' },
-        ],
-        outcome:
-            'Clinical query latency dropped from 800ms+ to under 560ms. The device lifecycle system processed 300+ patient transitions without a single GDPR audit finding. The TypeScript migration reduced developer onboarding from 3 months to 1 month, enabling faster team expansion as Actimi grew its provider network across Germany.',
-    },
-];
-
-// ── Component ─────────────────────────────────────────────────────────────────
 interface CaseStudiesProps {
     header?: string;
 }
 
-function CaseStudies(props: CaseStudiesProps) {
+export default function CaseStudies(props: CaseStudiesProps) {
     const { t } = useTranslation();
     const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
-    const [openIds, setOpenIds] = useState<string[]>([CASE_STUDIES[0].id]);
-
+    
+    const introText = t('resCaseStudies:intro', { defaultValue: '' });
+    const CASE_STUDIES = (t('resCaseStudies:studies', { returnObjects: true }) as CaseStudy[]) || [];
+    
+    // Safety check in case translation isn't loaded yet
+    const initialOpenId = CASE_STUDIES.length > 0 ? CASE_STUDIES[0].id : '';
+    const [openIds, setOpenIds] = useState<string[]>(initialOpenId ? [initialOpenId] : []);
     const toggle = (id: string) => {
         setOpenIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
     };
@@ -363,9 +264,8 @@ function CaseStudies(props: CaseStudiesProps) {
             <MainContainer>
                 <Container fluid style={{ maxWidth: '1100px', padding: '0 24px' }}>
                     <Fade direction="up" triggerOnce duration={700}>
-                        <IntroBlock>
-                            Real architectural challenges I've solved — the problem, the decisions, the tradeoffs, and the measurable outcomes.
-                            No proprietary code shared; this is about the thinking.
+                        <IntroBlock style={{ whiteSpace: 'pre-line' }}>
+                            {introText}
                         </IntroBlock>
                     </Fade>
 
@@ -469,4 +369,3 @@ function CaseStudies(props: CaseStudiesProps) {
     );
 }
 
-export default CaseStudies;

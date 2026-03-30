@@ -331,7 +331,6 @@ function Contact(props: ContactProps) {
                                 <ContactItem href="mailto:amin.abbasi.rs@gmail.com">
                                     <ContactIcon><FaEnvelope size={16} /></ContactIcon>
                                     <ContactText>
-                                        <strong>Email</strong>
                                         <span>amin.abbasi.rs@gmail.com</span>
                                     </ContactText>
                                 </ContactItem>
@@ -339,7 +338,6 @@ function Contact(props: ContactProps) {
                                 <ContactItem href="https://linkedin.com/in/amin4193" target="_blank" rel="noopener noreferrer">
                                     <ContactIcon><FaLinkedin size={16} /></ContactIcon>
                                     <ContactText>
-                                        <strong>LinkedIn</strong>
                                         <span>linkedin.com/in/amin4193</span>
                                     </ContactText>
                                 </ContactItem>
@@ -347,7 +345,6 @@ function Contact(props: ContactProps) {
                                 <ContactItem href="https://github.com/amin-abbasi" target="_blank" rel="noopener noreferrer">
                                     <ContactIcon><FaGithub size={16} /></ContactIcon>
                                     <ContactText>
-                                        <strong>GitHub</strong>
                                         <span>github.com/amin-abbasi</span>
                                     </ContactText>
                                 </ContactItem>
@@ -355,7 +352,6 @@ function Contact(props: ContactProps) {
                                 <ContactItem as="div">
                                     <ContactIcon><FaMapMarkerAlt size={16} /></ContactIcon>
                                     <ContactText>
-                                        <strong>Location</strong>
                                         <span>Antalya, Turkey · GMT+3</span>
                                     </ContactText>
                                 </ContactItem>
@@ -363,7 +359,6 @@ function Contact(props: ContactProps) {
                                 <ContactItem as="div">
                                     <ContactIcon><FaClock size={16} /></ContactIcon>
                                     <ContactText>
-                                        <strong>Availability</strong>
                                         <span>EU & NA time zones supported</span>
                                     </ContactText>
                                 </ContactItem>
