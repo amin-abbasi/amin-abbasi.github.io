@@ -1,8 +1,8 @@
 {
-  "intro": "Yeni şeyler öğrenmeyi و yeni teknolojilerle deneyler yapmayı seviyorum. Bunlar çalıştığım başlıca diller, teknolojiler, araçlar ve platformlardan bazılarıdır:",
+  "intro": "Yeni şeyler öğrenmeyi ve yeni teknolojilerle deneyler yapmayı seviyorum. Bunlar üzerinde çalıştığım başlıca diller, teknolojiler, araçlar ve platformlardan bazılarıdır:",
   "skills": [
     {
-      "title": "Backend Dilleri و Framework'leri",
+      "title": "Backend Dilleri ve Framework'leri",
       "items": [
         { "icon": "images/skills/typescript.png", "title": "TypeScript" },
         { "icon": "images/skills/nodejs.svg", "title": "Node.js" },
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "title": "Mimari و Gerçek Zamanlı",
+      "title": "Mimari ve Gerçek Zamanlı",
       "items": [
         { "icon": "images/skills/api.svg", "title": "API Tasarımı" },
         { "icon": "images/skills/microservice.svg", "title": "Mikroservisler" },
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "title": "DevOps و Bulut",
+      "title": "DevOps ve Bulut",
       "items": [
         { "icon": "images/skills/docker.png", "title": "Docker" },
         { "icon": "images/skills/gitlab.svg", "title": "GitLab CI/CD" },
@@ -53,12 +53,12 @@
       ]
     },
     {
-      "title": "Güvenlik, Test و Araçlar",
+      "title": "Güvenlik, Test ve Araçlar",
       "items": [
         { "icon": "images/skills/jest.svg", "title": "Jest (TDD/BDD)" },
         { "icon": "images/skills/oauth.svg", "title": "OAuth2" },
         { "icon": "images/skills/jwt.svg", "title": "JWT" },
-        { "icon": "images/skills/vscode.svg", "title": "RBAC" },
+        { "icon": "images/skills/rbac.svg", "title": "RBAC" },
         { "icon": "images/skills/jira.svg", "title": "Jira" },
         { "icon": "images/skills/vscode.svg", "title": "VS-Code" },
         { "icon": "images/skills/git.png", "title": "Git" },

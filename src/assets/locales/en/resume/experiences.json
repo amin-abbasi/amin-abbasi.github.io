@@ -5,6 +5,7 @@
       "subtitle": "Dannie.CC, Antalya, Turkey",
       "workType": "Full-time",
       "promoted": true,
+      "promotionNote": "Promoted to Lead",
       "techStack": ["Node.js", "TypeScript", "ArangoDB", "WebSocket", "Docker", "Microservices", "NestJS", "Redis", "PostgreSQL"],
       "workDescription": [
         "Drove ERP and MES architectural evolution by breaking down a monolithic platform into independently deployable services, improving maintainability and cutting feature delivery time from **1 month to 1 week**.",

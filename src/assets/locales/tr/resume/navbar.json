@@ -1,14 +1,16 @@
 {
   "logo": {
     "source": "images/logo.png",
-    "height": 40,
-    "width": 40
+    "height": 45,
+    "width": 45
   },
   "sections": [
     { "title": "Hakkımda", "href": "/about" },
     { "title": "Yetenekler", "href": "/skills" },
     { "title": "Deneyim", "href": "/experience" },
+    { "title": "Vaka Çalışmaları", "href": "/case-studies" },
     { "title": "Eğitim", "href": "/education" },
-    { "title": "Projeler", "href": "/projects" }
+    { "title": "Projeler", "href": "/projects" },
+    { "title": "İletişim", "href": "/contact" }
   ]
 }

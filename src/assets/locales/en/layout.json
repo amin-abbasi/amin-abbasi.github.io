@@ -11,9 +11,18 @@
     "sections": {
         "about": "About",
         "experience": "Experience",
+        "caseStudies": "Case Studies",
         "projects": "Projects",
         "education": "Education",
-        "skills": "Skills"
+        "skills": "Skills",
+        "contact": "Contact"
+    },
+    "caseStudies": {
+        "problem": "// The Problem",
+        "approach": "// Approach & Design",
+        "decisions": "// Key Architecture Decisions",
+        "metrics": "// Measurable Outcomes",
+        "outcome": "// What We Shipped"
     },
     "footer": {
         "globalViews": "Global Views",
@@ -40,11 +49,39 @@
     },
     "home": {
         "systemInit": "// system.init — lead engineer",
-        "scroll": "scroll"
+        "scroll": "scroll",
+        "viewExperience": "View Experience",
+        "downloadCv": "Download CV",
+        "availability": "✦ Available for Lead / Architect Roles · Remote or Antalya"
     },
     "about": {
         "refId": "REF_ID: PRO_BIO_772",
-        "quote": "The best code is the line you didn't have to write."
+        "quote": "The best code is the line you didn't have to write.",
+        "testimonials": "// What colleagues say"
+    },
+    "contact": {
+        "init": "// contact.init",
+        "title": "Let's Talk",
+        "subtitle": "Whether you have an architecture challenge, a lead role opening, or just want to connect, I'm happy to chat. I typically respond within 24 hours.",
+        "location": "Antalya, Turkey · GMT+3",
+        "timezone": "EU & NA time zones supported",
+        "status": "Open to Lead / Architect roles — Remote or Relocation",
+        "sendInit": "// send.message",
+        "sendTitle": "Send a Message",
+        "form": {
+            "name": "Name",
+            "namePlaceholder": "Your name",
+            "email": "Email",
+            "emailPlaceholder": "your@email.com",
+            "subject": "Subject",
+            "subjectPlaceholder": "e.g. Lead Engineer role — your company",
+            "message": "Message",
+            "messagePlaceholder": "Tell me about the role, the challenge, or just say hi...",
+            "submit": "Send Message",
+            "sending": "Sending..."
+        },
+        "success": "✓ Message sent! I'll get back to you within 24 hours.",
+        "error": "Something went wrong. Try emailing directly at amin.abbasi.rs@gmail.com"
     },
     "buttons": {
         "cv": "CV",

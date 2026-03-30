@@ -1,5 +1,16 @@
 {
-  "linkedin": "https://linkedin.com/in/abbasi-h",
-  "github": "https://github.com/amin-abbasi",
-  "email": "amin.abbasi.rs@gmail.com"
+  "social": [
+    {
+      "network": "linkedin",
+      "href": "https://linkedin.com/in/abbasi-h"
+    },
+    {
+      "network": "github",
+      "href": "https://github.com/amin-abbasi"
+    },
+    {
+      "network": "email",
+      "href": "mailto:amin.abbasi.rs@gmail.com"
+    }
+  ]
 }

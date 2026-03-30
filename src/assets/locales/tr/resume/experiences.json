@@ -4,6 +4,9 @@
       "title": "Lider Yazılım Mühendisi",
       "subtitle": "Dannie.CC, Antalya, Türkiye",
       "workType": "Tam zamanlı",
+      "promoted": true,
+      "promotionNote": "Lider Pozisyonuna Yükseltildi",
+      "techStack": ["Node.js", "TypeScript", "ArangoDB", "WebSocket", "Docker", "Microservices", "NestJS", "Redis", "PostgreSQL"],
       "workDescription": [
         "Monolitik bir platformu bağımsız olarak dağıtılabilir servislere ayırarak ERP ve MES mimari evrimini yönetti; bakımı iyileştirdi ve özellik teslim süresini 1 aydan 1 haftaya indirdi.",
         "Bilgi silolanmasını önlemek için kod incelemelerini ve şeffaflığı birleştirdi, bu da iterasyonlarda %25 azalma sağladı.",
@@ -20,6 +23,7 @@
       "title": "Kıdemli Backend Yazılım Mühendisi",
       "subtitle": "Dannie.CC, Antalya, Türkiye",
       "workType": "Tam zamanlı",
+      "techStack": ["Node.js", "TypeScript", "JavaScript", "ArangoDB", "WebSocket", "Socket.IO", "Docker", "Express"],
       "workDescription": [
         "WebSockets kullanarak bir Sunucu Güdümlü UI (SDUI) çerçevesi tasarladı; backend'in karmaşık uygulama modüllerini dinamik olarak işlemesine olanak tanıdı ve frontend dağıtım ihtiyaçlarını %80 azalttı.",
         "Ana platformun TypeScript'e taşınması, mimari belirsizliği gidererek ve karmaşık veri parçalarında güvenliği sağlayarak yeni geliştiricilerin adaptasyon süresini üç aydan bir aya indirdi.",
@@ -32,6 +36,7 @@
       "title": "Kıdemli Backend Yazılım Mühendisi",
       "subtitle": "Actimi GmbH, Antalya, Türkiye",
       "workType": "Tam zamanlı",
+      "techStack": ["Node.js", "TypeScript", "PostgreSQL", "FHIR", "Aidbox", "Medplum", "Redis", "Docker", "GCP", "CI/CD"],
       "workDescription": [
         "Aidbox ve Medplum FHIR tabanlı veri modellerini optimize etti; Alman sağlık hizmeti sağlayıcıları için karmaşık sorgu gecikmesini %30 azaltacak şekilde PostgreSQL şemalarını yeniden tasarladı.",
         "Hastalar ve pratisyenler tarafından kullanılan dağıtılmış tabletlerin yaşam döngüsünü otomatikleştirmek için Zoho MDM API aracılığıyla güvenli bir uzaktan filo yönetim sistemi tasarladı.",
@@ -48,6 +53,7 @@
       "title": "Serbest Mimar ve Teknik Danışman",
       "subtitle": "Uzaktan (ABD tabanlı Müşteriler)",
       "workType": "Sözleşmeli",
+      "techStack": ["Node.js", "TypeScript", "Blockchain", "HD Wallet", "PostgreSQL", "MongoDB", "Redis", "RabbitMQ", "Python", "Swagger", "Agile", "Microservices"],
       "workDescription": [
         "4 Kripto Para platformunu denetledi ve geliştirdi, %30 performans iyileştirmesi sağladı.",
         "Güvenli OTC, P2P ve HD cüzdan çözümleri tasarladı ve uyguladı, geliştirme maliyetini yarıdan fazla azalttı.",
@@ -62,6 +68,7 @@
       "title": "Lider Yazılım Mühendisi",
       "subtitle": "DigiAlpha, Tahran, İran",
       "workType": "Tam zamanlı",
+      "techStack": ["Node.js", "TypeScript", "RabbitMQ", "PostgreSQL", "MongoDB", "Redis", "Microservices", "HD Wallet", "Python", "Swagger", "Agile"],
       "workDescription": [
         "Kripto Borsası, OTC ve Kopya İşlemleri destekleyen yüksek frekanslı bir alım satım motoru tasarladı ve emir eşleştirme hızında %30 kazanç sağladı.",
         "Karmaşık emir türleri (Marj, Zarar Durdur) için bloklamayan bir eşleştirme algoritması tasarladı ve yüksek piyasa oynaklığı sırasında paralel yürütme darboğazlarını önledi.",
@@ -78,6 +85,7 @@
       "title": "Lider Backend Yazılım Mühendisi",
       "subtitle": "Mobisoft, Tahran, İran",
       "workType": "Tam zamanlı",
+      "techStack": ["Node.js", "WebRTC", "Socket.IO", "MongoDB", "Redis", "iOS", "Android", "TypeScript", "Swagger", "Agile", "Microservices"],
       "workDescription": [
         "Web, iOS ve Android platformlarındaki bir sosyal ağ platformunun sorumluluğunu üstlendi ve 12 kişilik bir ekibe liderlik etti.",
         "Proje incelemelerini ve çatışma çözümünü yönetti, haftalık sürüm döngüleri boyunca sürekli zamanında teslimatı sağladı.",
@@ -90,6 +98,7 @@
       "title": "Backend Yazılım Mühendisi",
       "subtitle": "Irantom, Tahran, İran",
       "workType": "Tam zamanlı",
+      "techStack": ["Node.js", "MongoDB", "MySQL", "Elasticsearch", "Swagger", "Agile", "Microservices", "TypeScript", "JavaScript", "Redis", "RabbitMQ"],
       "workDescription": [
         "Kimlik Doğrulama, Mesajlaşma ve Çoklu Mimari (Multitenancy) modülleri dahil olmak üzere 30'dan fazla Node.js mikroservisinden oluşan dağıtılmış bir CRM ekosistemi tasarladı ve sürdürdü.",
         "Platform genelinde veri alımını ve depolama verimliliğini optimize etmek için MongoDB, MySQL ve Elasticsearch kullanarak çok dilli (polyglot) bir veri saklama stratejisi kullandı.",
@@ -104,6 +113,7 @@
       "title": "Backend Yazılım Mühendisi",
       "subtitle": "Goki, Tahran, İran",
       "workType": "Tam zamanlı",
+      "techStack": ["Node.js", "JavaScript", "MongoDB", "REST API", "Hapi.js", "Agile", "Elasticsearch", "Redis", "Swagger", "Monolithic"],
       "workDescription": [
         "Müşteri ihtiyaçlarına göre servisleri analiz etmek ve uygulamak için 4 geliştirme ekibiyle iş birliği yaptı.",
         "6-7 web projesi geliştirdi, test etti ve yayına aldı, %100 müşteri teslimat sürelerine uydu.",

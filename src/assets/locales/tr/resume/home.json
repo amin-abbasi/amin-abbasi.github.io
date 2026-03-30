@@ -1,4 +1,11 @@
 {
   "name": "Amin Abbasi",
-  "roles": ["Lider Yazılım Mühendisi", "Backend Mimarı"]
+  "tagline": "Takımların sürdürmekten keyif aldığı ölçeklenebilir backend sistemler inşa ediyorum.",
+  "roles": [
+    "Lider Yazılım Mühendisi",
+    "Backend Mimarı · Fintech & HealthTech",
+    "Sistem Tasarımcısı · 10+ Yıl Deneyim",
+    "İnsan Odaklı Mühendislik Lideri",
+    "Mikroservisler & Gerçek Zamanlı Sistemler"
+  ]
 }

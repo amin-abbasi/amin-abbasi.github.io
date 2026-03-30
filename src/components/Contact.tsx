@@ -7,7 +7,6 @@ import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react
 import { LuLoaderCircle, LuSend } from 'react-icons/lu';
 import Header from './Header';
 import { Theme } from '../theme/themes';
-import socialInfo from '../assets/locales/en/resume/social.json';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -287,6 +286,11 @@ function Contact(props: ContactProps) {
     const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
 
+    const socialLinks = t('resSocial:social', { returnObjects: true }) as any[];
+    const email = socialLinks?.find(s => s.network === 'email')?.href?.replace('mailto:', '') || '';
+    const linkedin = socialLinks?.find(s => s.network === 'linkedin')?.href || '';
+    const github = socialLinks?.find(s => s.network === 'github')?.href || '';
+
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
@@ -326,62 +330,62 @@ function Contact(props: ContactProps) {
                         <Grid>
                             {/* Left: Contact Info */}
                             <InfoCard>
-                                <InfoLabel>// contact.init</InfoLabel>
-                                <InfoTitle>Let's Talk</InfoTitle>
+                                <InfoLabel>{t('layout:contact.init')}</InfoLabel>
+                                <InfoTitle>{t('layout:contact.title')}</InfoTitle>
                                 <InfoSubtitle>
-                                    Whether you have an architecture challenge, a lead role opening, or just want to connect, I'm happy to chat. I typically respond within 24 hours.
+                                    {t('layout:contact.subtitle')}
                                 </InfoSubtitle>
 
-                                <ContactItem href={`mailto:${socialInfo.email}`}>
+                                <ContactItem href={`mailto:${email}`}>
                                     <ContactIcon><FaEnvelope size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>{socialInfo.email}</span>
+                                        <span>{email}</span>
                                     </ContactText>
                                 </ContactItem>
 
-                                <ContactItem href={socialInfo.linkedin} target="_blank" rel="noopener noreferrer">
+                                <ContactItem href={linkedin} target="_blank" rel="noopener noreferrer">
                                     <ContactIcon><FaLinkedin size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>{socialInfo.linkedin}</span>
+                                        <span>{linkedin}</span>
                                     </ContactText>
                                 </ContactItem>
 
-                                <ContactItem href={socialInfo.github} target="_blank" rel="noopener noreferrer">
+                                <ContactItem href={github} target="_blank" rel="noopener noreferrer">
                                     <ContactIcon><FaGithub size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>{socialInfo.github}</span>
+                                        <span>{github}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <ContactItem as="div">
                                     <ContactIcon><FaMapMarkerAlt size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>Antalya, Turkey · GMT+3</span>
+                                        <span>{t('layout:contact.location')}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <ContactItem as="div">
                                     <ContactIcon><FaClock size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>EU & NA time zones supported</span>
+                                        <span>{t('layout:contact.timezone')}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <StatusCard>
                                     <PulseDot />
-                                    <StatusText>Open to Lead / Architect roles — Remote or Relocation</StatusText>
+                                    <StatusText>{t('layout:contact.status')}</StatusText>
                                 </StatusCard>
                             </InfoCard>
 
                             {/* Right: Contact Form */}
                             <FormCard>
-                                <InfoLabel>// send.message</InfoLabel>
-                                <InfoTitle style={{ marginBottom: '1.5rem' }}>Send a Message</InfoTitle>
+                                <InfoLabel>{t('layout:contact.sendInit')}</InfoLabel>
+                                <InfoTitle style={{ marginBottom: '1.5rem' }}>{t('layout:contact.sendTitle')}</InfoTitle>
 
                                 <form onSubmit={handleSubmit}>
                                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                                         <FormGroup>
-                                            <FormLabel htmlFor="contact-name">Name</FormLabel>
+                                            <FormLabel htmlFor="contact-name">{t('layout:contact.form.name')}</FormLabel>
                                             <InputField
                                                 id="contact-name"
                                                 $theme={theme}
@@ -389,12 +393,12 @@ function Contact(props: ContactProps) {
                                                 name="name"
                                                 value={form.name}
                                                 onChange={handleChange}
-                                                placeholder="Your name"
+                                                placeholder={t('layout:contact.form.namePlaceholder')}
                                                 required
                                             />
                                         </FormGroup>
                                         <FormGroup>
-                                            <FormLabel htmlFor="contact-email">Email</FormLabel>
+                                            <FormLabel htmlFor="contact-email">{t('layout:contact.form.email')}</FormLabel>
                                             <InputField
                                                 id="contact-email"
                                                 $theme={theme}
@@ -402,13 +406,13 @@ function Contact(props: ContactProps) {
                                                 name="email"
                                                 value={form.email}
                                                 onChange={handleChange}
-                                                placeholder="your@email.com"
+                                                placeholder={t('layout:contact.form.emailPlaceholder')}
                                                 required
                                             />
                                         </FormGroup>
                                     </div>
                                     <FormGroup>
-                                        <FormLabel htmlFor="contact-subject">Subject</FormLabel>
+                                        <FormLabel htmlFor="contact-subject">{t('layout:contact.form.subject')}</FormLabel>
                                         <InputField
                                             id="contact-subject"
                                             $theme={theme}
@@ -416,19 +420,19 @@ function Contact(props: ContactProps) {
                                             name="subject"
                                             value={form.subject}
                                             onChange={handleChange}
-                                            placeholder="e.g. Lead Engineer role — your company"
+                                            placeholder={t('layout:contact.form.subjectPlaceholder')}
                                             required
                                         />
                                     </FormGroup>
                                     <FormGroup>
-                                        <FormLabel htmlFor="contact-message">Message</FormLabel>
+                                        <FormLabel htmlFor="contact-message">{t('layout:contact.form.message')}</FormLabel>
                                         <TextareaField
                                             id="contact-message"
                                             $theme={theme}
                                             name="message"
                                             value={form.message}
                                             onChange={handleChange}
-                                            placeholder="Tell me about the role, the challenge, or just say hi..."
+                                            placeholder={t('layout:contact.form.messagePlaceholder')}
                                             required
                                         />
                                     </FormGroup>
@@ -442,24 +446,24 @@ function Contact(props: ContactProps) {
                                         {isSending ? (
                                             <>
                                                 <LuLoaderCircle width="14" height="14" style={{ animation: 'spin 1.2s linear infinite' }} />
-                                                Sending...
+                                                {t('layout:contact.form.sending')}
                                             </>
                                         ) : (
                                             <>
                                                 <LuSend width="14" height="14" />
-                                                Send Message
+                                                {t('layout:contact.form.submit')}
                                             </>
                                         )}
                                     </SubmitButton>
 
                                     {status === 'success' && (
                                         <SuccessMessage>
-                                            ✓ Message sent! I'll get back to you within 24 hours.
+                                            {t('layout:contact.success')}
                                         </SuccessMessage>
                                     )}
                                     {status === 'error' && (
                                         <ErrorMessage>
-                                            Something went wrong. Try emailing directly at amin.abbasi.rs@gmail.com
+                                            {t('layout:contact.error')}
                                         </ErrorMessage>
                                     )}
                                 </form>

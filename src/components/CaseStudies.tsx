@@ -299,7 +299,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                     <CaseBody $open={isOpen}>
                                         {/* Problem */}
                                         <Section>
-                                            <SectionTitle>// The Problem</SectionTitle>
+                                            <SectionTitle>{t('layout:caseStudies.problem')}</SectionTitle>
                                             <SectionText>{cs.problem}</SectionText>
                                         </Section>
 
@@ -307,7 +307,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
 
                                         {/* Approach */}
                                         <Section>
-                                            <SectionTitle>// Approach & Design</SectionTitle>
+                                            <SectionTitle>{t('layout:caseStudies.approach')}</SectionTitle>
                                             <BulletList>
                                                 {cs.approach.map((point, idx) => <li key={idx}>{point}</li>)}
                                             </BulletList>
@@ -317,7 +317,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
 
                                         {/* Key Decisions */}
                                         <Section>
-                                            <SectionTitle>// Key Architecture Decisions</SectionTitle>
+                                            <SectionTitle>{t('layout:caseStudies.decisions')}</SectionTitle>
                                             {cs.decisions.map((d, idx) => (
                                                 <div key={idx} style={{ marginBottom: idx < cs.decisions.length - 1 ? 20 : 0 }}>
                                                     <p style={{
@@ -348,7 +348,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
 
                                         {/* Metrics */}
                                         <Section>
-                                            <SectionTitle>// Measurable Outcomes</SectionTitle>
+                                            <SectionTitle>{t('layout:caseStudies.metrics')}</SectionTitle>
                                             <MetricsRow>
                                                 {cs.metrics.map((m) => (
                                                     <MetricPill key={m.label}>
@@ -363,7 +363,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
 
                                         {/* Outcome */}
                                         <Section>
-                                            <SectionTitle>// What We Shipped</SectionTitle>
+                                            <SectionTitle>{t('layout:caseStudies.outcome')}</SectionTitle>
                                             <SectionText>{cs.outcome}</SectionText>
                                         </Section>
                                     </CaseBody>

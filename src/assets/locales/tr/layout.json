@@ -11,9 +11,18 @@
     "sections": {
         "about": "Hakkımda",
         "experience": "Deneyim",
+        "caseStudies": "Vaka Çalışmaları",
         "projects": "Projeler",
         "education": "Eğitim",
-        "skills": "Yetenekler"
+        "skills": "Yetenekler",
+        "contact": "İletişim"
+    },
+    "caseStudies": {
+        "problem": "// Problem",
+        "approach": "// Yaklaşım ve Tasarım",
+        "decisions": "// Temel Mimari Kararlar",
+        "metrics": "// Ölçülebilir Sonuçlar",
+        "outcome": "// Ne Sunduk"
     },
     "footer": {
         "globalViews": "Küresel Görünümler",
@@ -40,11 +49,39 @@
     },
     "home": {
         "systemInit": "// sistem.başlat — lider mühendis",
-        "scroll": "kaydır"
+        "scroll": "kaydır",
+        "viewExperience": "Deneyimi Görüntüle",
+        "downloadCv": "Özgeçmişi İndir",
+        "availability": "✦ Lider / Mimar Roller için Uygun · Uzaktan veya Antalya"
     },
     "about": {
         "refId": "REF_NO: PRO_BIO_772",
-        "quote": "En iyi kod, yazmak zorunda kalmadığınız koddur."
+        "quote": "En iyi kod, yazmak zorunda kalmadığınız koddur.",
+        "testimonials": "// İş arkadaşlarım ne diyor"
+    },
+    "contact": {
+        "init": "// iletisim.baslat",
+        "title": "Hadi Konuşalım",
+        "subtitle": "Bir mimari zorluğunuz, liderlik rolü açığınız varsa veya sadece bağlantı kurmak istiyorsanız, sohbet etmekten mutluluk duyarım. Genellikle 24 saat içinde yanıt veririm.",
+        "location": "Antalya, Türkiye · GMT+3",
+        "timezone": "AB ve KA saat dilimleri desteklenmektedir",
+        "status": "Lider / Mimar rollerine açık — Uzaktan veya Yer Değiştirme",
+        "sendInit": "// mesaj.gonder",
+        "sendTitle": "Bir Mesaj Gönderin",
+        "form": {
+            "name": "İsim",
+            "namePlaceholder": "İsminiz",
+            "email": "E-posta",
+            "emailPlaceholder": "eposta@adresiniz.com",
+            "subject": "Konu",
+            "subjectPlaceholder": "Örn: Lider Mühendis rolü — şirketiniz",
+            "message": "Mesaj",
+            "messagePlaceholder": "Bana rolden, zorluktan bahsedin veya sadece merhaba deyin...",
+            "submit": "Mesaj Gönder",
+            "sending": "Gönderiliyor..."
+        },
+        "success": "✓ Mesaj gönderildi! 24 saat içinde size döneceğim.",
+        "error": "Bir şeyler ters gitti. Doğrudan amin.abbasi.rs@gmail.com adresine e-posta göndermeyi deneyin."
     },
     "buttons": {
         "cv": "ÖZGEÇMİŞ",

@@ -2,8 +2,10 @@
   "sections": [
     { "component": "About", "path": "/about", "headerTitle": "Hakkımda" },
     { "component": "Skills", "path": "/skills", "headerTitle": "Yetenekler" },
+    { "component": "CaseStudies", "path": "/case-studies", "headerTitle": "Vaka Çalışmaları" },
     { "component": "Education", "path": "/education", "headerTitle": "Eğitim" },
     { "component": "Experience", "path": "/experience", "headerTitle": "Deneyim" },
-    { "component": "Projects", "path": "/projects", "headerTitle": "Projeler" }
+    { "component": "Projects", "path": "/projects", "headerTitle": "Projeler" },
+    { "component": "Contact", "path": "/contact", "headerTitle": "İletişim" }
   ]
 }

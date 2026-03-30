@@ -3,11 +3,11 @@
     {
       "title": "Eyl 2011 – Eyl 2013",
       "cardTitle": "Uzaktan Algılama Yüksek Lisans (MSc)",
-      "cardSubtitle": "İsfahan Üniversitesi, İran",
+      "cardSubtitle": "İsfahan Üniversitesi, İran — Lisansüstü Araştırma Programı",
       "bulletPoints": [
-        "Teknik Odak: Siber Görüntü İşleme ve Örüntü Tanıma alanında uzmanlık",
-        "Etki: Büyük ölçekli CBS (GIS) ve hiperspektral görüntüler için gelişmiş algoritmalar geliştirmede C++ ve MATLAB kullanımı.",
-        "Bu altyapı, backend veri hassasiyetine olan matematiksel yaklaşımımı belirler."
+        "Teknik Odak: Dijital Görüntü İşleme ve Örüntü Tanıma",
+        "Büyük ölçekli CBS (GIS) ve hiperspektral görüntü analizi için gelişmiş C++ ve MATLAB algoritmaları geliştirdi",
+        "Matematiksel modelleme ve veri hassasiyeti üzerine kurulu bu temel, backend mimarisi ve veritabanı tasarımı yaklaşımımı doğrudan şekillendirmektedir"
       ]
     },
     {
@@ -21,10 +21,14 @@
       ]
     },
     {
-      "title": "Eyl 2001 – Eyl 2005",
-      "cardTitle": "Lise",
-      "cardSubtitle": "Tahran, İran",
-      "bulletPoints": ["Alan: Matematik ve Fizik", "Onur derecesiyle mezuniyet"]
+      "title": "Sürekli Gelişim",
+      "cardTitle": "Kendi Başına Öğrenme ve Profesyonel Gelişim",
+      "cardSubtitle": "Devam Ediyor",
+      "bulletPoints": [
+        "Dağıtılmış sistemler literatürü (Designing Data-Intensive Applications, Clean Architecture) üzerine düzenli derinlemesine çalışmalar",
+        "Backend mühendisliği topluluklarına ve açık kaynak ekosistemlerine aktif katılım",
+        "GitHub üzerinde topluluk tarafından benimsenen TypeScript, Go ve JS boilerplate kütüphaneleri oluşturup sürdürdü"
+      ]
     }
   ]
 }

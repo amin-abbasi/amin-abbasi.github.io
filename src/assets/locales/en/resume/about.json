@@ -25,5 +25,19 @@
     "timezone": "GMT+3",
     "status": "Open to Lead / Architect Roles",
     "remote": true
-  }
+  },
+  "testimonials": [
+    {
+      "text": "Amin has a rare combination of deep technical expertise and genuine leadership empathy. He doesn't just architect systems — he architects teams. Watching him mentor junior engineers while simultaneously steering our platform migration was genuinely impressive.",
+      "name": "CTO, HealthTech Company",
+      "initials": "CT",
+      "role": "Chief Technology Officer"
+    },
+    {
+      "text": "What stood out about Amin was how he could translate complex architecture decisions into clear, understandable rationale for the whole team. No jargon walls, no ego — just clarity. That's a rare skill at the lead level.",
+      "name": "Senior Engineer, Fintech Startup",
+      "initials": "SE",
+      "role": "Senior Software Engineer"
+    }
+  ]
 }

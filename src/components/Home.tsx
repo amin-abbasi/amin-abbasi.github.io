@@ -341,7 +341,7 @@ function Home() {
                             onMouseLeave={e => (e.currentTarget.style.filter = '')}
                         >
                             <LuBriefcase size={14} />
-                            View Experience
+                            {t('layout:home.viewExperience')}
                         </a>
                         <a
                             href="/public/amin-abbasi-cv.pdf"
@@ -367,7 +367,7 @@ function Home() {
                             onMouseLeave={e => { e.currentTarget.style.borderColor = `${accent}55`; e.currentTarget.style.background = 'transparent'; }}
                         >
                             <LuDownload size={14} />
-                            Download CV
+                            {t('layout:home.downloadCv')}
                         </a>
                     </div>
 
@@ -390,7 +390,7 @@ function Home() {
                         }}
                     >
                         <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00e676', display: 'inline-block', animation: 'bpBounce 2s ease-in-out infinite' }} />
-                        ✦ Available for Lead / Architect Roles · Remote or Antalya
+                        {t('layout:home.availability')}
                     </div>
 
                     <Social />

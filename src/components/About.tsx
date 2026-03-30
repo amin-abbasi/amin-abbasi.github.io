@@ -381,20 +381,6 @@ interface AboutProps {
     header?: string;
 }
 
-const TESTIMONIALS = [
-    {
-        text: "Amin has a rare combination of deep technical expertise and genuine leadership empathy. He doesn't just architect systems — he architects teams. Watching him mentor junior engineers while simultaneously steering our platform migration was genuinely impressive.",
-        name: "CTO, HealthTech Company",
-        initials: "CT",
-        role: "Chief Technology Officer",
-    },
-    {
-        text: "What stood out about Amin was how he could translate complex architecture decisions into clear, understandable rationale for the whole team. No jargon walls, no ego — just clarity. That's a rare skill at the lead level.",
-        name: "Senior Engineer, Fintech Startup",
-        initials: "SE",
-        role: "Senior Software Engineer",
-    },
-];
 
 function About(props: AboutProps) {
     const { t } = useTranslation();
@@ -405,7 +391,8 @@ function About(props: AboutProps) {
         imageSource: t('resAbout:imageSource'),
         stats: t('resAbout:stats', { returnObjects: true }),
         availability: t('resAbout:availability', { returnObjects: true }),
-    } as AboutData;
+        testimonials: t('resAbout:testimonials', { returnObjects: true }),
+    } as AboutData & { testimonials?: any[] };
 
     return (
         <>
@@ -431,22 +418,24 @@ function About(props: AboutProps) {
                                     </Fade>
                                 )}
 
-                                {/* Testimonials */}
-                                <TestimonialsSection>
-                                    <TestimonialsTitle>// What colleagues say</TestimonialsTitle>
-                                    {TESTIMONIALS.map((t) => (
-                                        <TestimonialCard key={t.name}>
-                                            <TestimonialText>{t.text}</TestimonialText>
-                                            <TestimonialAuthor>
-                                                <AuthorBadge>{t.initials}</AuthorBadge>
-                                                <AuthorInfo>
-                                                    <strong>{t.name}</strong>
-                                                    <span>{t.role}</span>
-                                                </AuthorInfo>
-                                            </TestimonialAuthor>
-                                        </TestimonialCard>
-                                    ))}
-                                </TestimonialsSection>
+                                 {/* Testimonials */}
+                                {Array.isArray(data.testimonials) && data.testimonials.length > 0 && (
+                                    <TestimonialsSection>
+                                        <TestimonialsTitle>{t('layout:about.testimonials')}</TestimonialsTitle>
+                                        {data.testimonials.map((testimonial: any) => (
+                                            <TestimonialCard key={testimonial.name}>
+                                                <TestimonialText>{testimonial.text}</TestimonialText>
+                                                <TestimonialAuthor>
+                                                    <AuthorBadge>{testimonial.initials}</AuthorBadge>
+                                                    <AuthorInfo>
+                                                        <strong>{testimonial.name}</strong>
+                                                        <span>{testimonial.role}</span>
+                                                    </AuthorInfo>
+                                                </TestimonialAuthor>
+                                            </TestimonialCard>
+                                        ))}
+                                    </TestimonialsSection>
+                                )}
 
                                 {/* CV Download */}
                                 <CVButton 

@@ -1,5 +1,31 @@
 {
-  "about": "### Lider Backend Mimarı & İnsan Odaklı Lider\n\nBir **Lider Backend Mimarı** olarak on yılı aşkın süredir, **Fintech ve HealthTech** gibi yüksek risk taşıyan sektörler için dijital temeller oluşturma konusunda uzmanlaştım. Yaklaşımım sadece kod yazmanın ötesine geçerek; karmaşık ve dağınık sistem zorluklarını düzenli, güvenilir mimarilere dönüştürmeye odaklanır. Teknik hassasiyet ile iş hedefleri arasındaki köprüyü kurarak, şirketlerin teknolojik borçlanmalar yaşamadan sorunsuz bir şekilde ölçeklenmelerini sağlıyorum.\n\n#### Liderlik ve Mentorluk\n\nBir sistemin yalnızca onu arkasındaki takım kadar güçlü olduğuna inanan \"insan odaklı\" bir liderim. Net iletişim ve profesyonel gelişime dayalı bir ortam oluşturarak, **12 geliştiriciye** kadar varan ekipleri yönetme ve onlara mentorluk etme konusunda kanıtlanmış bir geçmişe sahibim. Liderlik tarzımın temelinde; geliştiriciler desteklendiğinde üretilen yazılımın da doğal olarak daha sağlam olacağı düşüncesi yatar.\n\n#### Teknik Uzmanlık\n\nTeknik açıdan oldukça geniş bir altyapıya sahibim; **C++ ve C#** gibi alt seviye dillerden **Node.js ve TypeScript** gibi modern ortamlara kadar uzmanım. Geleneksel Monolitik bir sistem tasarlarken de, modern bir Mikroservis ağı kurarken de önceliğim her zaman verimlilik ve veri bütünlüğüdür. SQL ve NoSQL veritabanlarıyla çalışırken oldukça rahatım ve her çözümün canlı ortama çıkmadan önce stabil olmasını garanti altına almak için **Jest ve Mocha** gibi framework'leri kullanarak test aşamasına son derece disiplinli yaklaşıyorum.\n\n#### Küresel Uygunluk\n\nŞu anda **Antalya'da** yaşıyorum. Bununla beraber deneyimim tamamen küresel boyuttadır; **Avrupa veya Kuzey Amerika** saat dilimlerindeki ekipleri destekleyebilirim. Yüksek lisans seviyesindeki analitik derinliğimi, backend mühendisliğine pratik ve çözüm odaklı yaklaşımımla birleştirerek, organizasyonunuzun geleceğe hazır, yüksek performanslı sistemler inşa etmesine yardımcı olmak için sabırsızlanıyorum.",
+  "about": "### Merhaba, Ben Amin 👋\n\nSon on yılımı tek bir soruya odaklanarak geçirdim: **Sadece teknik olarak değil, aynı zamanda gece saat 02:00'de bakımını yapacak ekip için de ölçeklenebilir yazılımlar nasıl inşa edilir?**\n\n**Fintech ve HealthTech** gibi risklerin yüksek, kesintilerin ise hayati veya maddi sonuçlar doğurduğu sektörlerde derin köklere sahip bir Lider Backend Mimarıyım. Yüz binlerce emri işleyen ticaret motorları, Alman sağlık sağlayıcıları genelinde FHIR uyumlu sağlık platformları ve fabrika sahalarını gerçek zamanlı yöneten dağıtılmış ERP sistemleri tasarladım.\n\nAncak dürüst olmak gerekirse, en gurur duyduğum şey bu sistemler değil; onların yanında büyüdüğünü izlediğim mühendislerdir.\n\n#### Liderlik ve Mentorluk\n\n5 farklı şirkette **30'dan fazla geliştiriciye** liderlik etme ve mentorluk yapma ayrıcalığına sahip oldum. Bir sistemin ancak onu koruyan ekip kadar iyi olduğuna yürekten inanıyorum. Yaklaşımım doğrudan ama sabırlıdır — kimsenin anlamadığı bir şeyi yayına almaktaysa, mimari bir kararın arkasındaki *nedeni* açıklamak için bir saat harcamayı tercih ederim.\n\nHatalı kararlar verdim, mükemmel olduğundan emin olduğum şeyleri yeniden düzenledim ve öğrendim ki: **Temiz mimari, zarafetten ziyade gelecekteki benliğinize nazik davranmakla ilgilidir**.\n\n#### Teknik Derinlik\n\nAna teknoloji yığınım **Node.js + TypeScript** olup; PostgreSQL, ArangoDB, MongoDB ve Redis üzerinde üretim deneyimine sahibim. Mikroservis ağları, RabbitMQ ile olay güdümlü boru hatları, WebSockets kullanarak gerçek zamanlı sistemler ve render kontrolünü backend'e taşıyan sunucu güdümlü UI framework'leri tasarladım.\n\nKariyerime C++ ile uzaktan algılama araştırmaları için görüntü işleme algoritmaları yazarak başladım — bu matematiksel temel, veri hassasiyeti ve performans hakkındaki düşünce yapımı bugün de şekillendirmeye devam ediyor.\n\n#### Uygunluk ve İletişim\n\nŞu anda **Antalya, Türkiye'de** yaşıyorum ve devredilebilir bir çalışma iznim var. **AB veya Kuzey Amerika** saat dilimlerini desteklemekten mutluluk duyarım. Uzaktan veya yerinde tam zamanlı liderlik rollerine veya kıdemli danışmanlık sözleşmelerine açığım.",
   "imageSource": "images/about/me.png",
-  "quote": "En iyi kod, yazmak zorunda kalmadığın koddur."
+  "quote": "En iyi kod, yazmak zorunda kalmadığın koddur.",
+  "stats": [
+    { "value": "10+", "label": "Yıl Deneyim" },
+    { "value": "5", "label": "Sektör" },
+    { "value": "30+", "label": "Mentorluk Yapılan Mühendis" },
+    { "value": "8", "label": "Şirket" }
+  ],
+  "availability": {
+    "location": "Antalya, Türkiye",
+    "timezone": "GMT+3",
+    "status": "Lider / Mimar Roller için Uygun",
+    "remote": true
+  },
+  "testimonials": [
+    {
+      "text": "Amin, derin teknik uzmanlık ve samimi liderlik empatisinin nadir bir kombinasyonuna sahip. O sadece sistemleri mimari olarak tasarlamakla kalmıyor, aynı zamanda ekipleri de inşa ediyor. Platform göçümüzü yönetirken aynı zamanda genç mühendislerimize mentorluk yapmasını izlemek gerçekten etkileyiciydi.",
+      "name": "CTO, HealthTech Şirketi",
+      "initials": "CT",
+      "role": "Teknoloji Başkanı"
+    },
+    {
+      "text": "Amin ile ilgili dikkat çeken şey, karmaşık mimari kararları tüm ekip için net ve anlaşılır bir gerekçeye nasıl dönüştürebildiğiydi. Teknik terim duvarları yok, ego yok — sadece netlik. Bu, lider seviyesinde nadir bulunan bir beceridir.",
+      "name": "Kıdemli Mühendis, Fintech Girişimi",
+      "initials": "SE",
+      "role": "Kıdemli Yazılım Mühendisi"
+    }
+  ]
 }
