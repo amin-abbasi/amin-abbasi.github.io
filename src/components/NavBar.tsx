@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { LuDownload } from 'react-icons/lu';
 import ThemeToggler from './ThemeToggler';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Theme } from '../theme/themes';
@@ -65,12 +66,14 @@ const CVButton = styled.a<{ theme: Theme }>`
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 16px;
+    padding: 0 16px;
+    height: 26px;
     margin-inline-start: 0.75rem;
     margin-inline-end: 0.75rem;
+    margin-bottom: 8px;
     background: ${(props) => props.theme.accentColor};
     color: #fff !important;
-    border-radius: 4px;
+    border-radius: 25px;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 700;
@@ -142,11 +145,7 @@ function NavBar() {
                                 theme={theme}
                                 onClick={() => setExpanded(false)}
                             >
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="7 10 12 15 17 10"/>
-                                    <line x1="12" y1="15" x2="12" y2="3"/>
-                                </svg>
+                                <LuDownload size={14} strokeWidth={2.5} />
                                 {t('layout:buttons.cv')}
                             </CVButton>
                             <ThemeToggler onClick={() => setExpanded(false)} />

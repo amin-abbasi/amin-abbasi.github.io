@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import AppContext from '../AppContext';
 import Social from './Social';
 import FallbackSpinner from './FallbackSpinner';
+import { LuBriefcase, LuDownload, LuMouse } from 'react-icons/lu';
 import { HomeData } from '../types/profile.types';
 
 // ---------------------------------------------------------------------------
@@ -339,7 +340,7 @@ function Home() {
                             onMouseEnter={e => (e.currentTarget.style.filter = 'brightness(1.15)')}
                             onMouseLeave={e => (e.currentTarget.style.filter = '')}
                         >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <LuBriefcase size={14} />
                             View Experience
                         </a>
                         <a
@@ -365,7 +366,7 @@ function Home() {
                             onMouseEnter={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.background = `${accent}10`; }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = `${accent}55`; e.currentTarget.style.background = 'transparent'; }}
                         >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <LuDownload size={14} />
                             Download CV
                         </a>
                     </div>
@@ -418,10 +419,7 @@ function Home() {
                             }}>
                             {t('layout:home.scroll', { defaultValue: 'scroll' })}
                         </span>
-                        <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
-                            <rect x="1" y="1" width="12" height="18" rx="6" stroke={accent} strokeWidth="1.5" />
-                            <rect x="5.5" y="4" width="3" height="5" rx="1.5" fill={accent} />
-                        </svg>
+                        <LuMouse size={20} stroke={accent} strokeWidth={1.5} />
                     </div>
                 </Fade>
             </div>

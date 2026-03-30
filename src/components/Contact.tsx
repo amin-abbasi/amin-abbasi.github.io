@@ -4,6 +4,7 @@ import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { LuLoaderCircle, LuSend } from 'react-icons/lu';
 import Header from './Header';
 import { Theme } from '../theme/themes';
 import socialInfo from '../assets/locales/en/resume/social.json';
@@ -440,17 +441,12 @@ function Contact(props: ContactProps) {
                                     >
                                         {isSending ? (
                                             <>
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ animation: 'spin 1s linear infinite' }}>
-                                                    <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
-                                                </svg>
+                                                <LuLoaderCircle width="14" height="14" style={{ animation: 'spin 1.2s linear infinite' }} />
                                                 Sending...
                                             </>
                                         ) : (
                                             <>
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                    <line x1="22" y1="2" x2="11" y2="13"/>
-                                                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                                                </svg>
+                                                <LuSend width="14" height="14" />
                                                 Send Message
                                             </>
                                         )}

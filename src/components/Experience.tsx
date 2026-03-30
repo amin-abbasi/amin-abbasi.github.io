@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
+import { LuChevronUp } from 'react-icons/lu';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
@@ -335,9 +336,7 @@ function Experience(props: ExperienceProps) {
                                         {item.promotionNote && (
                                             <PromotionBanner>
                                                 <PromotionPill>
-                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                                        <polyline points="18 15 12 9 6 15"/>
-                                                    </svg>
+                                                    <LuChevronUp size={12} strokeWidth={2.5} />
                                                     {item.promotionNote}
                                                 </PromotionPill>
                                             </PromotionBanner>
