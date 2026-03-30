@@ -17,6 +17,7 @@ export interface Theme {
   chronoTheme: ChronoTheme;
   timelineLineColor: string;
   cardBackground: string;
+  cardSecondaryBackground: string;
   cardFooterBackground: string;
   cardBorderColor: string;
   navbarTheme: NavbarTheme;
@@ -36,6 +37,7 @@ export const lightTheme: Theme = {
   },
   timelineLineColor: "rgba(0, 112, 186, 0.2)",
   cardBackground: "#ffffff",
+  cardSecondaryBackground: "#f8f9fa",
   cardFooterBackground: "#f0f4f8",
   cardBorderColor: "rgba(0, 112, 186, 0.15)",
   navbarTheme: {
@@ -59,6 +61,7 @@ export const darkTheme: Theme = {
   },
   timelineLineColor: "rgba(0, 160, 255, 0.2)",
   cardBackground: "#0d1f2d",
+  cardSecondaryBackground: "#060d13",
   cardFooterBackground: "#0a1929",
   cardBorderColor: "rgba(0, 160, 255, 0.15)",
   navbarTheme: {

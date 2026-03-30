@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import Header from './Header';
 import { Theme } from '../theme/themes';
+import socialInfo from '../assets/locales/en/resume/social.json';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -69,13 +70,14 @@ const InfoSubtitle = styled.p`
     line-height: 1.7;
     color: ${(props) => (props.theme as Theme).color}BB;
     margin-bottom: 2rem;
+    text-align: justify;
 `;
 
 const ContactItem = styled.a`
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 0;
+    padding: 10px 0;
     border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     text-decoration: none;
     transition: all 0.2s ease;
@@ -186,6 +188,7 @@ const FormLabel = styled.label`
     color: ${(props) => (props.theme as Theme).accentColor};
     margin-bottom: 8px;
     opacity: 0.9;
+    text-align: start;
 `;
 
 const sharedInputStyles = (theme: Theme) => `
@@ -325,27 +328,27 @@ function Contact(props: ContactProps) {
                                 <InfoLabel>// contact.init</InfoLabel>
                                 <InfoTitle>Let's Talk</InfoTitle>
                                 <InfoSubtitle>
-                                    Whether you have an architecture challenge, a lead role opening, or just want to connect — I'm happy to chat. I typically respond within 24 hours.
+                                    Whether you have an architecture challenge, a lead role opening, or just want to connect, I'm happy to chat. I typically respond within 24 hours.
                                 </InfoSubtitle>
 
-                                <ContactItem href="mailto:amin.abbasi.rs@gmail.com">
+                                <ContactItem href={`mailto:${socialInfo.email}`}>
                                     <ContactIcon><FaEnvelope size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>amin.abbasi.rs@gmail.com</span>
+                                        <span>{socialInfo.email}</span>
                                     </ContactText>
                                 </ContactItem>
 
-                                <ContactItem href="https://linkedin.com/in/amin4193" target="_blank" rel="noopener noreferrer">
+                                <ContactItem href={socialInfo.linkedin} target="_blank" rel="noopener noreferrer">
                                     <ContactIcon><FaLinkedin size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>linkedin.com/in/amin4193</span>
+                                        <span>{socialInfo.linkedin}</span>
                                     </ContactText>
                                 </ContactItem>
 
-                                <ContactItem href="https://github.com/amin-abbasi" target="_blank" rel="noopener noreferrer">
+                                <ContactItem href={socialInfo.github} target="_blank" rel="noopener noreferrer">
                                     <ContactIcon><FaGithub size={16} /></ContactIcon>
                                     <ContactText>
-                                        <span>github.com/amin-abbasi</span>
+                                        <span>{socialInfo.github}</span>
                                     </ContactText>
                                 </ContactItem>
 

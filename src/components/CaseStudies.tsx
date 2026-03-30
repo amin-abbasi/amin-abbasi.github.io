@@ -12,19 +12,20 @@ const MainContainer = styled.div`
 `;
 
 const IntroBlock = styled.div`
-    max-width: 720px;
-    margin-bottom: 56px;
+    max-width: 1200px;
+    margin-bottom: 36px;
     border-inline-start: 2px solid ${(props) => (props.theme as Theme).accentColor};
     padding-inline-start: 24px;
     font-size: 1rem;
     line-height: 1.8;
     color: ${(props) => (props.theme as Theme).color}CC;
     font-family: var(--font-main);
+    text-align: start;
 `;
 
 // ── Case study card ───────────────────────────────────────────────────────────
 const CaseCard = styled.div`
-    background: ${(props) => (props.theme as Theme).cardBackground};
+    background: ${(props) => (props.theme as Theme).cardSecondaryBackground};
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     border-radius: 6px;
     margin-bottom: 40px;
@@ -75,6 +76,7 @@ const CaseLabel = styled.p`
     color: ${(props) => (props.theme as Theme).accentColor};
     margin: 0 0 8px;
     opacity: 0.8;
+    text-align: start;
 `;
 
 const CaseTitle = styled.h3`
@@ -90,6 +92,7 @@ const CaseSubtitle = styled.p`
     font-size: 0.88rem;
     color: ${(props) => (props.theme as Theme).color}88;
     margin: 0;
+    text-align: start;
 `;
 
 const TagRow = styled.div`
@@ -127,6 +130,7 @@ const ExpandIcon = styled.span<{ $open: boolean }>`
 const CaseBody = styled.div<{ $open: boolean }>`
     display: ${(props) => props.$open ? 'block' : 'none'};
     padding: 28px 32px 32px;
+    background: ${(props) => (props.theme as Theme).cardBackground};
 `;
 
 // ── Sections within the body ──────────────────────────────────────────────────
@@ -145,6 +149,7 @@ const SectionTitle = styled.h4`
     color: ${(props) => (props.theme as Theme).accentColor};
     margin: 0 0 12px;
     opacity: 0.9;
+    text-align: start;
 `;
 
 const SectionText = styled.p`
@@ -152,6 +157,7 @@ const SectionText = styled.p`
     line-height: 1.75;
     color: ${(props) => (props.theme as Theme).color}CC;
     margin: 0;
+    text-align: start;
 `;
 
 const BulletList = styled.ul`
@@ -168,6 +174,7 @@ const BulletList = styled.ul`
         font-size: 0.9rem;
         line-height: 1.65;
         color: ${(props) => (props.theme as Theme).color}CC;
+        text-align: start;
 
         &::before {
             content: '▸';
@@ -195,7 +202,7 @@ const MetricPill = styled.div`
     background: ${(props) => (props.theme as Theme).accentColor}0D;
     border: 1px solid ${(props) => (props.theme as Theme).accentColor}25;
     border-radius: 6px;
-    text-align: center;
+    text-align: start;
     min-width: 100px;
 `;
 
@@ -320,6 +327,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                                         fontWeight: 700,
                                                         color: theme.color,
                                                         margin: '0 0 6px',
+                                                        textAlign: 'start',
                                                     }}>
                                                         ◆ {d.title}
                                                     </p>
@@ -329,6 +337,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                                         color: theme.color + 'BB',
                                                         margin: 0,
                                                         paddingInlineStart: 18,
+                                                        textAlign: 'start',
                                                     }}>
                                                         {d.rationale}
                                                     </p>
@@ -368,4 +377,3 @@ export default function CaseStudies(props: CaseStudiesProps) {
         </>
     );
 }
-

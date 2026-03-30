@@ -116,11 +116,11 @@ const QuoteText = styled.div`
     color: ${(props) => (props.theme as Theme).color}BB;
     text-align: center;
     position: relative;
-    padding: 0 25px;
+    padding: 0 14px;
     width: 100%;
     max-width: 100%;
     word-break: break-word;
-    line-height: 1.6;
+    line-height: 1.4;
 
     &::before,
     &::after {

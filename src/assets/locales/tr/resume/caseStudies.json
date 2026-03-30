@@ -33,8 +33,39 @@
         "outcome": "SDUI yaklaşımı, frontend dağıtımlarını %80 oranında azaltırken, ürün ekibinin UI modülleri üzerinde günlük olarak yeni versiyonlar çıkarmasına (iterate) olanak tanıdı. Sürüm başına QA kapsamı драsтik olarak düştü. Tüm iş mantığı sunucu tarafında kaldığı ve tamamen denetlenebilir olduğu için bu mimari daha sonra şirketin IATF 16949 sertifikasyon uyumunun da temelini oluşturdu."
     },
     {
+        "id": "fhir-actimi",
+        "label": "CASE_002 · HealthTech / FHIR Uyumluluğu",
+        "title": "FHIR Uyumlu Sağlık Verileri Platformu",
+        "subtitle": "Actimi GmbH · 2022–2023",
+        "tags": ["Node.js", "TypeScript", "FHIR", "Aidbox", "Medplum", "PostgreSQL", "GDPR", "HIPAA", "GCP", "CI/CD"],
+        "problem": "Actimi Almanya'daki sağlık kuruluşları için uzaktan hasta takibi hizmeti sağlıyordu. Platformun eşzamanlı olarak FHIR R4 uyumlu, GDPR/HIPAA standartlarına uygun ve hastalara dağıtılan tabletlerin yönetimini yapabilecek kapasitede olması şarttı. Ana teknik borç: PostgreSQL üzerindeki raw JSON dosyalarına olan yoğun bağımlılık, FHIR kaynak indekslemesinin olmaması yüzünden karmaşık klinik sorgularda gecikmenin (latency) 800ms üzerine çıkmasına sebep oluyordu.",
+        "approach": [
+            "PostgreSQL şeması FHIR kaynak türlerine uyacak şekilde yeniden biçimlendirildi. FHIR arama parametrelerine (hasta.adi, degerlendirme.kodu, karsilasma.tarihi) odaklanan özel GIN indekslemeleri entegre edildi.",
+            "FHIR sunucu katmanı için Aidbox ile Medplum seçenekleri incelendi. Karşılaştırmalı testler yapılarak farklı istemci ihtiyaçlarına her iki sistemin de entegre olabilmesini sağlayan özel sistem bağımsız adaptörler yaratıldı.",
+            "GDPR uyumlu cihaz yaşam döngüsü sistemi oluşturuldu: her tablet kendisine ait bir atamayla ilişkilendirilmiş eşsiz bir UUID içeriyordu; atama değiştiğinde (yeni bir hastaya geçtiğinde) Zoho MDM API kanalı ile veriyi silip kendini sıfırlayarak UUID yenileyen bir iş akışı geliştirildi.",
+            "Docker bünyesinde tüm hizmetlerin sanallaştırma (containerization) işlemleri yürütüldü. Test-ortamı yaratıp eş zamanlı test ortamı sağlayan CI/CD alt yapısı GCP kapsamında güncellendi."
+        ],
+        "decisions": [
+            {
+                "title": "Tek bir üreticiye (vendor lock-in) bağımlı kalmak yerine çoklu FHIR adaptörü kullanma",
+                "rationale": "Alman sağlık müşterilerinin farklı sistem gereksinimleri mevcuttu. Doğrudan bir FHIR sunucu satıcısına bağlılık kurmaktansa Aidbox ve Medplum'un her ikisi için ince adaptörler oluşturarak iş mantığı katmanlarını sağlayıcı bağımsız kıldık. Bu, uygulamaya yaklaşık 3 hafta ekstradan efor mal olsa da potansiyel tehlike taşıyan gelecekteki geçiş süreçlerinin zorluklarına 3 aylık bir zaman telafisi sundu."
+            },
+            {
+                "title": "Uygulama katmanındaki veriyi silme (App-level delete) vs. Mobil Cihaz Yönetimi tabanlı cihaz formatlama (MDM-based Wipe)",
+                "rationale": "GDPR verilerin doğrulanabilir şekilde kaldırılmasını zorunlu kılar. Uygulama üzerinden silinme, arkasında veri tabanı eseri (database artifacts) / çöp dosyalar bırakabilirdi. MDM tabanlı sıfırlama bize ekstra kod karmaşıklığı yaratmadan Alman Veri Koruma Yetkilileri'nin (Datenschutzbehörde) koşullarını karşılayabilecek düzeyde donanım güvencesinde veri izlerini de silme imkânı verdi."
+            }
+        ],
+        "metrics": [
+            { "value": "30%", "label": "Sorgu hızlandırılması (Azalan bekleme süresi)" },
+            { "value": "85%", "label": "CI/CD süreç hızı iyileşmesi" },
+            { "value": "100%", "label": "GDPR & HIPAA Uyumluluğu" },
+            { "value": "1 ay", "label": "Hizmete oryantasyon hızı (3 aydan azaldı)" }
+        ],
+        "outcome": "Klinik sorgulama süreleri ortalamada 800ms'in üzerinden 560ms limitlerine çekildi. Kurulan donanım cihazının yaşam döngüleri ile toplamda tek bir veri ihlali/GDPR kural kırılımı yaratmadan başarıyla 300'ü aşkın hasta transferine imkân tanındı. TypeScript altyapısına olan geçiş yeni yazılımcı oryantasyon zamanını çeyrek yıla yakın süreden sacede tek bir aya çekme başarısı gösterirken takım organizasyonu daha hızlı büyüyen Almanya tabanlı Actimi için yeni ağ bağlantıları (networkler) getirdi."
+    },
+    {
         "id": "trading-engine-digialpha",
-        "label": "CASE_002 · Fintech / Yüksek Frekanslı İşlemler (HFT)",
+        "label": "CASE_003 · Fintech / Yüksek Frekanslı İşlemler (HFT)",
         "title": "Yüksek Frekanslı Kripto Borsa Alım-Satım Motoru",
         "subtitle": "DigiAlpha · 2021–2022",
         "tags": ["Node.js", "TypeScript", "RabbitMQ", "PostgreSQL", "Redis", "Microservices", "HD Wallet", "KYC"],
@@ -63,37 +94,6 @@
             { "value": "0", "label": "Sıfır mesaj kaybı" }
         ],
         "outcome": "Borsa, 12 ay içerisinde 5 işlem modunu destekleyerek kullanıma sunuldu. Olay güdümlü mimari, yüksek volatiliteye sahip piyasa koşulları sırasında bile herhangi bir mesaj kaybı yaşanmadan yoğun işlem hacimlerini kaldırabildi. Platform daha sonra Kopya İşlem (Copy-Trading) özelliğini kapsayacak şekilde genişletildi — bu özellik yalnızca sipariş işleme ile portföy yansıtma mantığı arasındaki net ayrım nedeniyle mümkündü."
-    },
-    {
-        "id": "fhir-actimi",
-        "label": "CASE_003 · HealthTech / FHIR Uyumluluğu",
-        "title": "FHIR Uyumlu Sağlık Verileri Platformu",
-        "subtitle": "Actimi GmbH · 2022–2023",
-        "tags": ["Node.js", "TypeScript", "FHIR", "Aidbox", "Medplum", "PostgreSQL", "GDPR", "HIPAA", "GCP", "CI/CD"],
-        "problem": "Actimi Almanya'daki sağlık kuruluşları için uzaktan hasta takibi hizmeti sağlıyordu. Platformun eşzamanlı olarak FHIR R4 uyumlu, GDPR/HIPAA standartlarına uygun ve hastalara dağıtılan tabletlerin yönetimini yapabilecek kapasitede olması şarttı. Ana teknik borç: PostgreSQL üzerindeki raw JSON dosyalarına olan yoğun bağımlılık, FHIR kaynak indekslemesinin olmaması yüzünden karmaşık klinik sorgularda gecikmenin (latency) 800ms üzerine çıkmasına sebep oluyordu.",
-        "approach": [
-            "PostgreSQL şeması FHIR kaynak türlerine uyacak şekilde yeniden biçimlendirildi. FHIR arama parametrelerine (hasta.adi, degerlendirme.kodu, karsilasma.tarihi) odaklanan özel GIN indekslemeleri entegre edildi.",
-            "FHIR sunucu katmanı için Aidbox ile Medplum seçenekleri incelendi. Karşılaştırmalı testler yapılarak farklı istemci ihtiyaçlarına her iki sistemin de entegre olabilmesini sağlayan özel sistem bağımsız adaptörler yaratıldı.",
-            "GDPR uyumlu cihaz yaşam döngüsü sistemi oluşturuldu: her tablet kendisine ait bir atamayla ilişkilendirilmiş eşsiz bir UUID içeriyordu; atama değiştiğinde (yeni bir hastaya geçtiğinde) Zoho MDM API kanalı ile veriyi silip kendini sıfırlayarak UUID yenileyen bir iş akışı geliştirildi.",
-            "Docker bünyesinde tüm hizmetlerin sanallaştırma (containerization) işlemleri yürütüldü. Test-ortamı yaratıp eş zamanlı test ortamı sağlayan CI/CD alt yapısı GCP kapsamında güncellendi."
-        ],
-        "decisions": [
-            {
-                "title": "Tek bir üreticiye (vendor lock-in) bağımlı kalmak yerine çoklu FHIR adaptörü kullanma",
-                "rationale": "Alman sağlık müşterilerinin farklı sistem gereksinimleri mevcuttu. Doğrudan bir FHIR sunucu satıcısına bağlılık kurmaktansa Aidbox ve Medplum'un her ikisi için ince adaptörler oluşturarak iş mantığı katmanlarını sağlayıcı bağımsız kıldık. Bu, uygulamaya yaklaşık 3 hafta ekstradan efor mal olsa da potansiyel tehlike taşıyan gelecekteki geçiş süreçlerinin zorluklarına 3 aylık bir zaman telafisi sundu."
-            },
-            {
-                "title": "Uygulama katmanındaki veriyi silme (App-level delete) vs. Mobil Cihaz Yönetimi tabanlı cihaz formatlama (MDM-based Wipe)",
-                "rationale": "GDPR verilerin doğrulanabilir şekilde kaldırılmasını zorunlu kılar. Uygulama üzerinden silinme, arkasında veri tabanı eseri (database artifacts) / çöp dosyalar bırakabilirdi. MDM tabanlı sıfırlama bize ekstra kod karmaşıklığı yaratmadan Alman Veri Koruma Yetkilileri'nin (Datenschutzbehörde) koşullarını karşılayabilecek düzeyde donanım güvencesinde veri izlerini de silme imkânı verdi."
-            }
-        ],
-        "metrics": [
-            { "value": "30%", "label": "Sorgu hızlandırılması (Azalan bekleme süresi)" },
-            { "value": "85%", "label": "CI/CD süreç hızı iyileşmesi" },
-            { "value": "100%", "label": "GDPR & HIPAA Uyumluluğu" },
-            { "value": "1 ay", "label": "Hizmete oryantasyon hızı (3 aydan azaldı)" }
-        ],
-        "outcome": "Klinik sorgulama süreleri ortalamada 800ms'in üzerinden 560ms limitlerine çekildi. Kurulan donanım cihazının yaşam döngüleri ile toplamda tek bir veri ihlali/GDPR kural kırılımı yaratmadan başarıyla 300'ü aşkın hasta transferine imkân tanındı. TypeScript altyapısına olan geçiş yeni yazılımcı oryantasyon zamanını çeyrek yıla yakın süreden sacede tek bir aya çekme başarısı gösterirken takım organizasyonu daha hızlı büyüyen Almanya tabanlı Actimi için yeni ağ bağlantıları (networkler) getirdi."
     }
   ]
 }

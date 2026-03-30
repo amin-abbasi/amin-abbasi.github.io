@@ -33,8 +33,39 @@
         "outcome": "The SDUI approach eliminated 80% of frontend deployments while allowing the product team to iterate on UI modules daily. QA scope per release dropped dramatically. The architecture later became the foundation for the company's IATF 16949 certification alignment, as all business logic remained server-side and fully auditable."
     },
     {
+        "id": "fhir-actimi",
+        "label": "CASE_002 · HealthTech / FHIR Compliance",
+        "title": "FHIR-Compliant Healthcare Data Platform",
+        "subtitle": "Actimi GmbH · 2022–2023",
+        "tags": ["Node.js", "TypeScript", "FHIR", "Aidbox", "Medplum", "PostgreSQL", "GDPR", "HIPAA", "GCP", "CI/CD"],
+        "problem": "Actimi provided remote patient monitoring for German healthcare providers. The platform needed to be simultaneously FHIR R4 compliant, GDPR/HIPAA compliant, and capable of managing a distributed fleet of patient tablets. The main technical debt: heavy reliance on raw JSON storage in PostgreSQL without proper FHIR resource indexing, causing query latency above 800ms for complex clinical queries.",
+        "approach": [
+            "Redesigned the PostgreSQL schema to align with FHIR resource types, adding targeted GIN indexes on FHIR search parameters (patient.name, observation.code, encounter.date).",
+            "Evaluated Aidbox vs. Medplum as FHIR server layers and built adapters for both, allowing the platform to operate on either depending on client requirements.",
+            "Built a GDPR-compliant device lifecycle system: each patient tablet had a unique UUID tied to its assignment; re-assignment triggered an automated wipe + UUID regeneration workflow via Zoho MDM API.",
+            "Containerized all services with Docker and restructured the GCP CI/CD pipeline, introducing staging environments and parallel test execution."
+        ],
+        "decisions": [
+            {
+                "title": "Dual FHIR adapter over single vendor lock-in",
+                "rationale": "German healthcare clients had different procurement preferences. Rather than betting on one FHIR server vendor, we built thin adapters over both Aidbox and Medplum, with the business logic layer remaining vendor-agnostic. This added 3 weeks of development but saved 3+ months of future migration risk."
+            },
+            {
+                "title": "MDM-based wipe vs. application-layer data deletion",
+                "rationale": "GDPR requires verifiable data erasure. Application-layer deletion leaves database artifacts. MDM-enforced factory wipe gave us a hardware-level audit trail that satisfied German DPA (Datenschutzbehörde) requirements without code complexity."
+            }
+        ],
+        "metrics": [
+            { "value": "30%", "label": "Query latency reduction" },
+            { "value": "85%", "label": "CI/CD time improvement" },
+            { "value": "100%", "label": "GDPR & HIPAA compliance" },
+            { "value": "1 month", "label": "Onboarding (from 3 months)" }
+        ],
+        "outcome": "Clinical query latency dropped from 800ms+ to under 560ms. The device lifecycle system processed 300+ patient transitions without a single GDPR audit finding. The TypeScript migration reduced developer onboarding from 3 months to 1 month, enabling faster team expansion as Actimi grew its provider network across Germany."
+    },
+    {
         "id": "trading-engine-digialpha",
-        "label": "CASE_002 · Fintech / High-Frequency Trading",
+        "label": "CASE_003 · Fintech / High-Frequency Trading",
         "title": "High-Frequency Crypto Exchange Trading Engine",
         "subtitle": "DigiAlpha · 2021–2022",
         "tags": ["Node.js", "TypeScript", "RabbitMQ", "PostgreSQL", "Redis", "Microservices", "HD Wallet", "KYC"],
@@ -63,37 +94,6 @@
             { "value": "0", "label": "Message loss events" }
         ],
         "outcome": "The exchange launched supporting 5 trading modes within 12 months. The event-driven architecture handled peak trading volumes during high-volatility market events with zero message loss. The platform later expanded to include Copy-Trading — a feature only possible because of the clean separation between order execution and portfolio mirror logic."
-    },
-    {
-        "id": "fhir-actimi",
-        "label": "CASE_003 · HealthTech / FHIR Compliance",
-        "title": "FHIR-Compliant Healthcare Data Platform",
-        "subtitle": "Actimi GmbH · 2022–2023",
-        "tags": ["Node.js", "TypeScript", "FHIR", "Aidbox", "Medplum", "PostgreSQL", "GDPR", "HIPAA", "GCP", "CI/CD"],
-        "problem": "Actimi provided remote patient monitoring for German healthcare providers. The platform needed to be simultaneously FHIR R4 compliant, GDPR/HIPAA compliant, and capable of managing a distributed fleet of patient tablets. The main technical debt: heavy reliance on raw JSON storage in PostgreSQL without proper FHIR resource indexing, causing query latency above 800ms for complex clinical queries.",
-        "approach": [
-            "Redesigned the PostgreSQL schema to align with FHIR resource types, adding targeted GIN indexes on FHIR search parameters (patient.name, observation.code, encounter.date).",
-            "Evaluated Aidbox vs. Medplum as FHIR server layers and built adapters for both, allowing the platform to operate on either depending on client requirements.",
-            "Built a GDPR-compliant device lifecycle system: each patient tablet had a unique UUID tied to its assignment; re-assignment triggered an automated wipe + UUID regeneration workflow via Zoho MDM API.",
-            "Containerized all services with Docker and restructured the GCP CI/CD pipeline, introducing staging environments and parallel test execution."
-        ],
-        "decisions": [
-            {
-                "title": "Dual FHIR adapter over single vendor lock-in",
-                "rationale": "German healthcare clients had different procurement preferences. Rather than betting on one FHIR server vendor, we built thin adapters over both Aidbox and Medplum, with the business logic layer remaining vendor-agnostic. This added 3 weeks of development but saved 3+ months of future migration risk."
-            },
-            {
-                "title": "MDM-based wipe vs. application-layer data deletion",
-                "rationale": "GDPR requires verifiable data erasure. Application-layer deletion leaves database artifacts. MDM-enforced factory wipe gave us a hardware-level audit trail that satisfied German DPA (Datenschutzbehörde) requirements without code complexity."
-            }
-        ],
-        "metrics": [
-            { "value": "30%", "label": "Query latency reduction" },
-            { "value": "85%", "label": "CI/CD time improvement" },
-            { "value": "100%", "label": "GDPR & HIPAA compliance" },
-            { "value": "1 month", "label": "Onboarding (from 3 months)" }
-        ],
-        "outcome": "Clinical query latency dropped from 800ms+ to under 560ms. The device lifecycle system processed 300+ patient transitions without a single GDPR audit finding. The TypeScript migration reduced developer onboarding from 3 months to 1 month, enabling faster team expansion as Actimi grew its provider network across Germany."
     }
   ]
 }
