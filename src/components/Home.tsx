@@ -229,7 +229,7 @@ function Home() {
                             fontWeight: 500,
                             color: accent,
                             letterSpacing: '0.06em',
-                            marginBottom: '0.2rem',
+                            marginBottom: '0.1rem',
                         }}
                     >
                         <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#00e676', display: 'inline-block', animation: 'bpBounce 2s ease-in-out infinite' }} />

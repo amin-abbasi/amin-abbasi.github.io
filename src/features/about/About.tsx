@@ -7,7 +7,7 @@ import FallbackSpinner from '../../components/FallbackSpinner';
 import StatsBar from '../../components/about/StatsBar';
 import AvailabilityCard from '../../components/about/AvailabilityCard';
 import { StyledContainer, Grid, Column } from '@shared/components/layout';
-import { TestimonialCard } from './components/TestimonialCard';
+import { TestimonialCard } from '@shared/components/TestimonialCard';
 import { useAboutData } from './hooks/useAboutData';
 import * as S from './About.styles';
 
@@ -18,21 +18,25 @@ interface AboutProps {
 const About = ({ header }: AboutProps) => {
     const { data, t } = useAboutData();
     const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const expandName = params.get('expand');
     const [scrolledToTestimonials, setScrolledToTestimonials] = useState(false);
 
     useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        const expandName = params.get('expand');
         if (expandName && !scrolledToTestimonials) {
             setTimeout(() => {
-                const element = document.getElementById('testimonials');
+                const element = document.getElementById(`testimonial-${expandName}`);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     setScrolledToTestimonials(true);
+                } else {
+                    // Fallback to section if card not found
+                    const section = document.getElementById('testimonials');
+                    if (section) section.scrollIntoView({ behavior: 'smooth' });
                 }
             }, 500);
         }
-    }, [location, scrolledToTestimonials]);
+    }, [location, scrolledToTestimonials, expandName]);
 
     if (!data.about) return <FallbackSpinner />;
 
@@ -82,6 +86,8 @@ const About = ({ header }: AboutProps) => {
                                         <TestimonialCard 
                                             key={testimonial.name} 
                                             testimonial={testimonial} 
+                                            showLinkedIn={true}
+                                            initiallyExpanded={testimonial.name === expandName}
                                         />
                                     ))}
                                 </S.TestimonialsGrid>
