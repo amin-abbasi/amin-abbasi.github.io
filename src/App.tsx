@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useState, useCallback } from 'react';
 import './App.css';
 import './css/design-system.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,16 +23,41 @@ function App() {
     }
 
     const darkMode = useDarkMode(true);
+    const [bgSettings, setBgSettings] = useState({
+        initials: "AA",
+        showLogo: false,
+        logoSize: 48,
+        logoThickness: 18,
+    });
 
-    // Sync theme with document element for global CSS variables (client only)
-    useEffect(() => {
-        if (typeof document !== 'undefined') {
-            document.documentElement.setAttribute('data-theme', darkMode.value ? 'dark' : 'light');
-        }
-    }, [darkMode.value]);
+    const setLogo = useCallback((show: boolean, initials?: string, size?: number, thickness?: number) => {
+        setBgSettings((prev: typeof bgSettings) => {
+            const nextInitials = initials ?? prev.initials;
+            const nextSize = size ?? prev.logoSize;
+            const nextThickness = thickness ?? prev.logoThickness;
+            
+            if (prev.showLogo === show && 
+                prev.initials === nextInitials &&
+                prev.logoSize === nextSize &&
+                prev.logoThickness === nextThickness) {
+                return prev;
+            }
+
+            return {
+                ...prev,
+                showLogo: show,
+                initials: nextInitials,
+                logoSize: nextSize,
+                logoThickness: nextThickness,
+            };
+        });
+    }, []);
 
     // Memoize the value object to prevent it from changing on each render
-    const contextValue = useMemo(() => ({ darkMode }), [darkMode]);
+    const contextValue = useMemo(() => ({ 
+        darkMode,
+        background: { ...bgSettings, setLogo }
+    }), [darkMode, bgSettings, setLogo]);
 
     return (
         <AppContext.Provider value={contextValue}>

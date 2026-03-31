@@ -11,176 +11,7 @@ import { HomeData } from '../types/profile.types';
 // ---------------------------------------------------------------------------
 //  Blueprint Canvas — animated engineering grid with nodes and connection lines
 // ---------------------------------------------------------------------------
-function BlueprintCanvas({ darkMode }: { darkMode: boolean }) {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const animRef = useRef<number>(0);
-    const mouseRef = useRef({ x: -9999, y: -9999 });
-
-    const handleMouseMove = useCallback((e: MouseEvent) => {
-        mouseRef.current = { x: e.clientX, y: e.clientY };
-    }, []);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        const accent = darkMode ? '#00a0ff' : '#0070ba';
-        const gridColor = darkMode ? 'rgba(0,160,255,0.07)' : 'rgba(0,112,186,0.08)';
-
-        // Nodes that drift slowly
-        const NUM_NODES = 28;
-        interface Node {
-            x: number;
-            y: number;
-            vx: number;
-            vy: number;
-            r: number;
-        }
-        const nodes: Node[] = [];
-
-        const resize = () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            nodes.length = 0;
-            for (let i = 0; i < NUM_NODES; i++) {
-                nodes.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.35,
-                    vy: (Math.random() - 0.5) * 0.35,
-                    r: 2 + Math.random() * 2,
-                });
-            }
-        };
-
-        resize();
-        window.addEventListener('resize', resize);
-        window.addEventListener('mousemove', handleMouseMove);
-
-        const draw = () => {
-            const W = canvas.width;
-            const H = canvas.height;
-            ctx.clearRect(0, 0, W, H);
-
-            // ── Grid ────────────────────────────────────────────────────────────
-            const STEP = 50;
-            ctx.strokeStyle = gridColor;
-            ctx.lineWidth = 0.8;
-            for (let x = 0; x <= W; x += STEP) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, H);
-                ctx.stroke();
-            }
-            for (let y = 0; y <= H; y += STEP) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(W, y);
-                ctx.stroke();
-            }
-
-            // ── Corner markers on grid intersections (sparse) ───────────────────
-            ctx.strokeStyle = darkMode ? 'rgba(0,160,255,0.2)' : 'rgba(0,112,186,0.18)';
-            ctx.lineWidth = 1;
-            for (let x = 0; x <= W; x += STEP * 3) {
-                for (let y = 0; y <= H; y += STEP * 3) {
-                    const S = 5;
-                    ctx.beginPath();
-                    ctx.moveTo(x - S, y);
-                    ctx.lineTo(x, y);
-                    ctx.lineTo(x, y - S);
-                    ctx.moveTo(x + S, y);
-                    ctx.lineTo(x, y);
-                    ctx.lineTo(x, y + S);
-                    ctx.stroke();
-                }
-            }
-
-            // ── Move nodes ───────────────────────────────────────────────────────
-            for (const n of nodes) {
-                n.x += n.vx;
-                n.y += n.vy;
-                if (n.x < 0 || n.x > W) n.vx *= -1;
-                if (n.y < 0 || n.y > H) n.vy *= -1;
-            }
-
-            // ── Connections ──────────────────────────────────────────────────────
-            const LINK_DIST = 160;
-            const mx = mouseRef.current.x;
-            const my = mouseRef.current.y;
-
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < LINK_DIST) {
-                        const alpha = (1 - dist / LINK_DIST) * 0.35;
-                        ctx.strokeStyle = accent;
-                        ctx.globalAlpha = alpha;
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
-                        ctx.globalAlpha = 1;
-                    }
-                }
-
-                // Mouse proximity glow
-                const dmx = nodes[i].x - mx;
-                const dmy = nodes[i].y - my;
-                const distMouse = Math.sqrt(dmx * dmx + dmy * dmy);
-                if (distMouse < 180) {
-                    const glowAlpha = (1 - distMouse / 180) * 0.5;
-                    ctx.strokeStyle = accent;
-                    ctx.globalAlpha = glowAlpha;
-                    ctx.lineWidth = 0.6;
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(mx, my);
-                    ctx.stroke();
-                    ctx.globalAlpha = 1;
-                }
-            }
-
-            // ── Nodes ────────────────────────────────────────────────────────────
-            for (const n of nodes) {
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                ctx.fillStyle = accent;
-                ctx.globalAlpha = 0.6;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-            }
-
-            animRef.current = requestAnimationFrame(draw);
-        };
-
-        animRef.current = requestAnimationFrame(draw);
-
-        return () => {
-            cancelAnimationFrame(animRef.current);
-            window.removeEventListener('resize', resize);
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, [darkMode, handleMouseMove]);
-
-    return (
-        <canvas
-            ref={canvasRef}
-            style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                display: 'block',
-            }}
-        />
-    );
-}
+// Blueprint Canvas has been moved to GlobalBackground.tsx for application-wide persistence.
 
 // ---------------------------------------------------------------------------
 //  Home Component
@@ -188,6 +19,18 @@ function BlueprintCanvas({ darkMode }: { darkMode: boolean }) {
 function Home() {
     const { t, i18n } = useTranslation();
     const context = useContext(AppContext);
+    
+    useEffect(() => {
+        if (context?.background) {
+            // Activate the 3D "AA" Core for the Home page
+            context.background.setLogo(true, "AA", 48, 22);
+        }
+        return () => {
+            // Deactivate Core when leaving Home
+            context?.background.setLogo(false);
+        };
+    }, [context?.background.setLogo]);
+
     const data = {
         name: t('resHome:name'),
         tagline: t('resHome:tagline', { defaultValue: '' }),
@@ -209,14 +52,13 @@ function Home() {
                 width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
-                backgroundColor: bgColor,
+                backgroundColor: 'transparent',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
             }}>
-            {/* Animated blueprint canvas */}
-            <BlueprintCanvas darkMode={darkMode.value} />
+            {/* 3D Core is now rendered globally via GlobalBackground.tsx */}
 
             {/* Hero content */}
             <div
