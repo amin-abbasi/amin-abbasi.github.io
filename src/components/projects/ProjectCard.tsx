@@ -69,7 +69,7 @@ const CaseStudyHeader = styled.div`
     background: ${(props) => (props.theme as Theme).cardBackground};
 `;
 
-const CaseLabel = styled.span`
+const CaseLabel = styled.h3`
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
@@ -77,6 +77,7 @@ const CaseLabel = styled.span`
     text-transform: uppercase;
     color: ${(props) => (props.theme as Theme).accentColor};
     opacity: 0.7;
+    margin: 0;
 `;
 
 const WindowDots = styled.div`
