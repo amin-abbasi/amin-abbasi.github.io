@@ -89,6 +89,7 @@ const CaseTitle = styled.h3`
     color: ${(props) => (props.theme as Theme).color};
     margin: 0 0 6px;
     letter-spacing: -0.02em;
+    text-align: start;
 `;
 
 const CaseSubtitle = styled.p`
@@ -107,9 +108,9 @@ const TagRow = styled.div`
 
 const Tag = styled.span`
     font-family: var(--font-mono);
-    font-size: 0.6rem;
-    padding: 3px 9px;
-    border-radius: 3px;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 4px;
     background: ${(props) => (props.theme as Theme).accentColor}0D;
     color: ${(props) => (props.theme as Theme).accentColor};
     border: 1px solid ${(props) => (props.theme as Theme).accentColor}20;
@@ -145,8 +146,7 @@ const CaseBody = styled.div`
 
 // ── Sections within the body ──────────────────────────────────────────────────
 const Section = styled.div`
-    margin-top: 28px;
-
+    margin-top: 1px;
     &:first-child { margin-top: 32px; }
 `;
 
@@ -157,23 +157,21 @@ const SectionTitle = styled.h4`
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: ${(props) => (props.theme as Theme).accentColor};
-    margin: 0 0 12px;
+    margin: 0 0 6px;
     opacity: 0.9;
     text-align: start;
 `;
 
 const SectionText = styled.div`
     font-size: 0.92rem;
-    line-height: 1.75;
+    line-height: 1.5;
     color: ${(props) => (props.theme as Theme).color}CC;
     margin: 0;
     text-align: start;
-
     strong {
         color: ${(props) => (props.theme as Theme).accentColor};
         font-weight: 600;
     }
-    
     p { margin: 0; }
 `;
 
@@ -183,11 +181,10 @@ const BulletList = styled.ul`
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-
+    gap: 4px;
     li {
         position: relative;
-        padding-inline-start: 22px;
+        padding-inline-start: 16px;
         font-size: 0.9rem;
         line-height: 1.65;
         color: ${(props) => (props.theme as Theme).color}CC;
@@ -241,7 +238,7 @@ const MetricValue = styled.span`
 
 const MetricLabel = styled.span`
     font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -252,7 +249,7 @@ const MetricLabel = styled.span`
 const Divider = styled.hr`
     border: none;
     border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    margin: 24px 0;
+    margin: 16px 0;
 `;
 
 // ── Data ──────────────────────────────────────────────────────────────────────
@@ -359,23 +356,16 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                                     <div key={idx} style={{ 
                                                         marginBottom: idx < cs.decisions.length - 1 ? 12 : 0,
                                                         textAlign: 'start',
-                                                        lineHeight: 1.6
+                                                        lineHeight: 0.75
                                                     }}>
                                                         <span style={{
                                                             fontFamily: 'var(--font-mono)',
-                                                            fontSize: '0.82rem',
+                                                            fontSize: '0.88rem',
                                                             fontWeight: 700,
                                                             color: theme.accentColor,
-                                                            marginInlineEnd: '8px'
-                                                        }}>
-                                                            ◆ {d.title}:
-                                                        </span>
-                                                        <span style={{
-                                                            fontSize: '0.88rem',
-                                                            color: theme.color + 'BB'
-                                                        }}>
-                                                            {d.rationale}
-                                                        </span>
+                                                            marginInlineEnd: '4px'
+                                                        }}>◆ {d.title}:</span>
+                                                        <span style={{ fontSize: '0.88rem', color: theme.color + 'BB' }}>{d.rationale}</span>
                                                     </div>
                                                 ))}
                                             </Section>
