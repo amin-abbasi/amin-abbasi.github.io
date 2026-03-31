@@ -9,7 +9,7 @@ const styles = {
     iconStyle: {
         marginInlineStart: 10,
         marginInlineEnd: 10,
-        marginBottom: 10,
+        marginBottom: 5,
     } as CSSProperties,
 };
 

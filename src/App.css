@@ -45,17 +45,20 @@
 }
 
 .MainApp {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .main {
+  flex: 1 0 auto; /* Allow growth but fixed base */
   display: flex;
   flex-direction: column;
-  flex: 1;
   width: 100%;
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 .section-content-container {

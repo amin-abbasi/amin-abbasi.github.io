@@ -7,6 +7,7 @@ import Social from './Social';
 import FallbackSpinner from './FallbackSpinner';
 import { LuBriefcase, LuDownload, LuMouse } from 'react-icons/lu';
 import { HomeData } from '../types/profile.types';
+import HomeTestimonial from './HomeTestimonial';
 
 // ---------------------------------------------------------------------------
 //  Blueprint Canvas — animated engineering grid with nodes and connection lines
@@ -219,7 +220,7 @@ function Home() {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: 8,
-                            padding: '6px 16px',
+                            padding: '4px 16px',
                             background: `${accent}10`,
                             border: `1px solid ${accent}30`,
                             borderRadius: 50,
@@ -228,14 +229,19 @@ function Home() {
                             fontWeight: 500,
                             color: accent,
                             letterSpacing: '0.06em',
-                            marginBottom: '2.2rem',
+                            marginBottom: '0.2rem',
                         }}
                     >
-                        <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00e676', display: 'inline-block', animation: 'bpBounce 2s ease-in-out infinite' }} />
+                        <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#00e676', display: 'inline-block', animation: 'bpBounce 2s ease-in-out infinite' }} />
                         {t('layout:home.availability')}
                     </div>
 
                     <Social />
+
+                    {/* Social Proof: Featured Testimonial */}
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '0 12px' }}>
+                        <HomeTestimonial />
+                    </div>
 
                     {/* Blueprint scroll indicator */}
                     <div

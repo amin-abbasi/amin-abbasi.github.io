@@ -56,7 +56,7 @@
       ]
     },
     {
-      "title": "Güvenlik, Test ve Araçlar",
+      "title": "Güvenlik ve Test Araçlar",
       "items": [
         { "icon": "images/skills/antigravity.svg", "title": "Antigravity", "isCore": true },
         { "icon": "images/skills/jest.svg", "title": "Jest (TDD/BDD)", "isCore": true },

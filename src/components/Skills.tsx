@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { styled, css } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { Container } from 'react-bootstrap';
@@ -14,7 +15,7 @@ const MainContainer = styled.div`
 const IntroTextWrapper = styled.div`
     max-width: 800px;
     text-align: start;
-    margin-bottom: 56px;
+    margin-bottom: 36px;
     border-inline-start: 2px solid ${(props) => (props.theme as Theme).accentColor};
     padding-inline-start: 24px;
 `;
@@ -115,33 +116,43 @@ const SkillBadge = styled.div<{ isCore?: boolean }>`
     ${(props) => props.isCore && css`
         box-shadow: 0 0 12px rgba(0, 242, 255, 0.25), inset 0 0 4px rgba(0, 242, 255, 0.1);
         
-        /* Subtle lamp indicator */
+        /* Vibrant glassmorphic lamp indicator */
         &::after {
             content: '';
             position: absolute;
             top: 50%;
-            right: 6px;
+            right: 8px;
             transform: translateY(-50%);
-            width: 3px;
-            height: 3px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: #00f2ff;
-            box-shadow: 0 0 8px #00f2ff;
-            opacity: 0.8;
+            box-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+            opacity: 0.9;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.05), transparent);
+            border-radius: 2px;
+            pointer-events: none;
         }
     `}
 
     &:hover {
         background: ${(props) => (props.isCore 
-            ? '#00f2ff12' 
+            ? 'rgba(0, 242, 255, 0.15)' 
             : `${(props.theme as Theme).accentColor}12`)};
         border-color: ${(props) => (props.isCore 
             ? '#00f2ff' 
             : `${(props.theme as Theme).accentColor}50`)};
-        transform: translateY(-1px) scale(1.02);
+        transform: translateY(-2px) scale(1.05);
         box-shadow: ${(props) => (props.isCore 
-            ? '0 4px 15px rgba(0, 242, 255, 0.4)' 
+            ? '0 8px 25px rgba(0, 242, 255, 0.4)' 
             : '0 4px 12px rgba(0, 0, 0, 0.05)')};
+        z-index: 10;
     }
 `;
 
@@ -167,6 +178,36 @@ const ModuleID = styled.div`
     margin-inline-start: auto;
 `;
 
+// ── Filter System ─────────────────────────────────────────────────────────────
+const FilterContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}40;
+`;
+
+const FilterButton = styled.button<{ $active: boolean }>`
+    background: ${(props) => (props.$active ? `${(props.theme as Theme).accentColor}15` : 'transparent')};
+    border: 1px solid ${(props) => (props.$active ? (props.theme as Theme).accentColor : `${(props.theme as Theme).cardBorderColor}`)};
+    color: ${(props) => (props.$active ? (props.theme as Theme).accentColor : `${(props.theme as Theme).color}88`)};
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: ${(props) => (props.theme as Theme).accentColor};
+        color: ${(props) => (props.theme as Theme).accentColor};
+    }
+`;
+
 interface SkillItem {
     title: string;
     icon: string;
@@ -190,10 +231,28 @@ interface SkillsProps {
 function Skills(props: SkillsProps) {
     const { t } = useTranslation();
     const { header } = props;
+    const [filter, setFilter] = useState('ALL');
+
     const data = {
         intro: t('resSkills:intro'),
         skills: t('resSkills:skills', { returnObjects: true })
     } as SkillsData;
+
+    const categories = ['ALL', 'CORE', ...new Set((data.skills || []).map(s => s.title.split(' ')[0].toUpperCase()))];
+
+    const filteredSkills = (data.skills || []).filter(category => {
+        if (filter === 'ALL') return true;
+        if (filter === 'CORE') return category.items.some(item => item.isCore);
+        return category.title.toUpperCase().startsWith(filter);
+    }).map(category => {
+        if (filter === 'CORE') {
+            return {
+                ...category,
+                items: category.items.filter(item => item.isCore)
+            };
+        }
+        return category;
+    });
 
     return (
         <>
@@ -217,8 +276,22 @@ function Skills(props: SkillsProps) {
                             </IntroTextWrapper>
                         </Fade>
 
+                        <Fade direction="up" triggerOnce delay={200}>
+                            <FilterContainer>
+                                {categories.map(cat => (
+                                    <FilterButton 
+                                        key={cat} 
+                                        $active={filter === cat}
+                                        onClick={() => setFilter(cat)}
+                                    >
+                                        {cat}
+                                    </FilterButton>
+                                ))}
+                            </FilterContainer>
+                        </Fade>
+
                         <CategoryGrid>
-                            {data.skills?.map((category, idx) => {
+                            {filteredSkills?.map((category, idx) => {
                                 // Sort core skills to the top
                                 const sortedItems = [...category.items].sort((a, b) => {
                                     if (a.isCore && !b.isCore) return -1;
@@ -227,7 +300,7 @@ function Skills(props: SkillsProps) {
                                 });
 
                                 return (
-                                    <Fade key={category.title} direction="up" triggerOnce duration={600} delay={idx * 100}>
+                                    <Fade key={category.title} direction="up" triggerOnce duration={600} delay={idx * 50}>
                                         <CategoryCard>
                                             <CategoryHeader>
                                                 <CategoryTitle>{category.title}</CategoryTitle>
@@ -236,7 +309,7 @@ function Skills(props: SkillsProps) {
                                             <SkillList>
                                                 {sortedItems.map((item) => (
                                                     <SkillBadge key={item.title} isCore={item.isCore}>
-                                                        <SkillIcon src={item.icon} alt={item.title} />
+                                                        {item.icon && <SkillIcon src={item.icon} alt={item.title} />}
                                                         <SkillName>{item.title}</SkillName>
                                                     </SkillBadge>
                                                 ))}

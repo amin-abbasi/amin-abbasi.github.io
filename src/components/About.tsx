@@ -1,13 +1,16 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Fade } from 'react-awesome-reveal';
 import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { FaLinkedin } from 'react-icons/fa';
 import { LuChevronDown, LuChevronUp } from 'react-icons/lu';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
+import StatsBar from './about/StatsBar';
+import AvailabilityCard from './about/AvailabilityCard';
 import { Theme } from '../theme/themes';
 
 const AboutContainer = styled(Container)`
@@ -151,101 +154,9 @@ const ProfileImage = styled.img`
     }
 `;
 
-// ── By the Numbers ────────────────────────────────────────────────────────────
-const StatsBar = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    margin: 2rem 0;
-    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    border-radius: 6px;
-    overflow: hidden;
-`;
+// ── By the Numbers ──────────────────────────────────────────────────────────── (Moved to modular component)
 
-const StatItem = styled.div`
-    flex: 1;
-    min-width: 120px;
-    text-align: center;
-    padding: 16px 12px;
-    border-right: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    position: relative;
-
-    &:last-child {
-        border-right: none;
-    }
-`;
-
-const StatValue = styled.div`
-    font-family: var(--font-mono);
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: ${(props) => (props.theme as Theme).accentColor};
-    line-height: 1;
-    margin-bottom: 4px;
-`;
-
-const StatLabel = styled.div`
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: ${(props) => (props.theme as Theme).color}77;
-`;
-
-// ── Availability Card ─────────────────────────────────────────────────────────
-const AvailabilityCard = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 20px;
-    margin-top: 2rem;
-    background: ${(props) => (props.theme as Theme).cardBackground};
-    border: 1px solid ${(props) => (props.theme as Theme).accentColor}30;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset-inline-start: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: ${(props) => (props.theme as Theme).accentColor};
-        border-radius: 0 2px 2px 0;
-    }
-`;
-
-const PulseDot = styled.span`
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #00e676;
-    display: inline-block;
-    flex-shrink: 0;
-    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7);
-    animation: availPulse 2s infinite;
-
-    @keyframes availPulse {
-        0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
-        70% { box-shadow: 0 0 0 8px rgba(0, 230, 118, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
-    }
-`;
-
-const AvailText = styled.div`
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    line-height: 1.5;
-    color: ${(props) => (props.theme as Theme).color}CC;
-
-    strong {
-        color: ${(props) => (props.theme as Theme).accentColor};
-        font-weight: 600;
-    }
-`;
+// ── Availability Card ───────────────────────────────────────────────────────── (Moved to modular component)
 
 // ── Testimonials ─────────────────────────────────────────────────────────────
 const TestimonialsSection = styled.div`
@@ -478,13 +389,29 @@ interface AboutProps {
 
 function About(props: AboutProps) {
     const { t } = useTranslation();
-    const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
-
+    const location = useLocation();
     const [expandedIds, setExpandedIds] = useState<string[]>([]);
     const toggleExpand = (id: string) => {
         setExpandedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
     };
+
+    // Auto-expand and scroll to testimonial if URL param is present
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const expandName = params.get('expand');
+        if (expandName) {
+            setExpandedIds(prev => prev.includes(expandName) ? prev : [...prev, expandName]);
+            
+            // Wait for render, then scroll
+            setTimeout(() => {
+                const element = document.getElementById('testimonials');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300);
+        }
+    }, [location]);
 
     const CHAR_LIMIT = 180;
     const data = {
@@ -507,18 +434,7 @@ function About(props: AboutProps) {
                                 <ReactMarkdown>{data.about}</ReactMarkdown>
 
                                 {/* By the Numbers */}
-                                {Array.isArray(data.stats) && data.stats.length > 0 && (
-                                    <Fade direction="up" triggerOnce delay={200}>
-                                        <StatsBar>
-                                            {data.stats.map((s) => (
-                                                <StatItem key={s.label}>
-                                                    <StatValue>{s.value}</StatValue>
-                                                    <StatLabel>{s.label}</StatLabel>
-                                                </StatItem>
-                                            ))}
-                                        </StatsBar>
-                                    </Fade>
-                                )}
+                                <StatsBar stats={data.stats || []} />
                             </TextCol>
 
                             <ImageCol lg={5} md={12} className="order-1 order-lg-2 mb-5 mb-lg-0 mt-lg-4">
@@ -531,18 +447,7 @@ function About(props: AboutProps) {
                                         {data.quote && <QuoteText>{data.quote}</QuoteText>}
 
                                         {/* Availability Card */}
-                                        {data.availability && (
-                                            <AvailabilityCard>
-                                                <PulseDot />
-                                                <AvailText>
-                                                    <strong style={{ display: 'block', marginBottom: '4px' }}>{data.availability.status}</strong>
-                                                    <span>
-                                                        {data.availability.location} &middot; {data.availability.timezone}
-                                                        {data.availability.remote && ' \u00B7 Remote OK'}
-                                                    </span>
-                                                </AvailText>
-                                            </AvailabilityCard>
-                                        )}
+                                        {data.availability && <AvailabilityCard availability={data.availability} />}
                                     </ProfileSection>
                                 </Fade>
                             </ImageCol>
@@ -550,7 +455,7 @@ function About(props: AboutProps) {
 
                         {/* Testimonials (Full Width) */}
                         {Array.isArray(data.testimonials) && data.testimonials.length > 0 && (
-                            <Row className="mt-5">
+                            <Row className="mt-5" id="testimonials">
                                 <Col xs={12}>
                                     <TestimonialsSection>
                                         <TestimonialsTitle>{t('layout:about.testimonials', { defaultValue: 'Testimonials' })}</TestimonialsTitle>
@@ -560,7 +465,7 @@ function About(props: AboutProps) {
                                             const hasExpansion = testimonial.text.length > CHAR_LIMIT_FOR_BUTTON;
 
                                             return (
-                                                <TestimonialCard key={testimonial.name}>
+                                                <TestimonialCard key={testimonial.name} id={`testimonial-${testimonial.name}`}>
                                                     <div style={{ flex: 1 }}>
                                                         <TestimonialContent $expanded={isExpanded}>
                                                             <TestimonialText>{testimonial.text}</TestimonialText>
