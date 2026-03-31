@@ -69,15 +69,15 @@ const InfoSubtitle = styled.p`
     font-size: 0.9rem;
     line-height: 1.7;
     color: ${(props) => (props.theme as Theme).color}BB;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     text-align: justify;
 `;
 
 const ContactItem = styled.a`
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 10px 0;
+    gap: 10px;
+    padding: 7px 0;
     border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     text-decoration: none;
     transition: all 0.2s ease;
