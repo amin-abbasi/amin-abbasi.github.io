@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -97,20 +97,51 @@ const SkillList = styled.div`
     gap: 10px;
 `;
 
-const SkillBadge = styled.div`
+const SkillBadge = styled.div<{ isCore?: boolean }>`
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 6px 14px;
-    background: ${(props) => (props.theme as Theme).accentColor}08;
-    border: 1px solid ${(props) => (props.theme as Theme).accentColor}15;
+    background: ${(props) => (props.isCore 
+        ? `${(props.theme as Theme).accentColor}18` 
+        : `${(props.theme as Theme).accentColor}08`)};
+    border: 1px solid ${(props) => (props.isCore 
+        ? '#00f2ff' 
+        : `${(props.theme as Theme).accentColor}15`)};
     border-radius: 2px;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+
+    ${(props) => props.isCore && css`
+        box-shadow: 0 0 12px rgba(0, 242, 255, 0.25), inset 0 0 4px rgba(0, 242, 255, 0.1);
+        
+        /* Subtle lamp indicator */
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 6px;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: #00f2ff;
+            box-shadow: 0 0 8px #00f2ff;
+            opacity: 0.8;
+        }
+    `}
 
     &:hover {
-        background: ${(props) => (props.theme as Theme).accentColor}12;
-        border-color: ${(props) => (props.theme as Theme).accentColor}50;
-        transform: scale(1.02);
+        background: ${(props) => (props.isCore 
+            ? '#00f2ff12' 
+            : `${(props.theme as Theme).accentColor}12`)};
+        border-color: ${(props) => (props.isCore 
+            ? '#00f2ff' 
+            : `${(props.theme as Theme).accentColor}50`)};
+        transform: translateY(-1px) scale(1.02);
+        box-shadow: ${(props) => (props.isCore 
+            ? '0 4px 15px rgba(0, 242, 255, 0.4)' 
+            : '0 4px 12px rgba(0, 0, 0, 0.05)')};
     }
 `;
 
@@ -139,6 +170,7 @@ const ModuleID = styled.div`
 interface SkillItem {
     title: string;
     icon: string;
+    isCore?: boolean;
 }
 
 interface SkillRow {
@@ -186,24 +218,33 @@ function Skills(props: SkillsProps) {
                         </Fade>
 
                         <CategoryGrid>
-                            {data.skills?.map((category, idx) => (
-                                <Fade key={category.title} direction="up" triggerOnce duration={600} delay={idx * 100}>
-                                    <CategoryCard>
-                                        <CategoryHeader>
-                                            <CategoryTitle>{category.title}</CategoryTitle>
-                                            <ModuleID>MOD_{String(idx + 1).padStart(2, '0')}</ModuleID>
-                                        </CategoryHeader>
-                                        <SkillList>
-                                            {category.items.map((item) => (
-                                                <SkillBadge key={item.title}>
-                                                    <SkillIcon src={item.icon} alt={item.title} />
-                                                    <SkillName>{item.title}</SkillName>
-                                                </SkillBadge>
-                                            ))}
-                                        </SkillList>
-                                    </CategoryCard>
-                                </Fade>
-                            ))}
+                            {data.skills?.map((category, idx) => {
+                                // Sort core skills to the top
+                                const sortedItems = [...category.items].sort((a, b) => {
+                                    if (a.isCore && !b.isCore) return -1;
+                                    if (!a.isCore && b.isCore) return 1;
+                                    return 0;
+                                });
+
+                                return (
+                                    <Fade key={category.title} direction="up" triggerOnce duration={600} delay={idx * 100}>
+                                        <CategoryCard>
+                                            <CategoryHeader>
+                                                <CategoryTitle>{category.title}</CategoryTitle>
+                                                <ModuleID>MOD_{String(idx + 1).padStart(2, '0')}</ModuleID>
+                                            </CategoryHeader>
+                                            <SkillList>
+                                                {sortedItems.map((item) => (
+                                                    <SkillBadge key={item.title} isCore={item.isCore}>
+                                                        <SkillIcon src={item.icon} alt={item.title} />
+                                                        <SkillName>{item.title}</SkillName>
+                                                    </SkillBadge>
+                                                ))}
+                                            </SkillList>
+                                        </CategoryCard>
+                                    </Fade>
+                                );
+                            })}
                         </CategoryGrid>
                     </Container>
                 </MainContainer>

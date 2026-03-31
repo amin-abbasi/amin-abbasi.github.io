@@ -5,24 +5,29 @@
       "title": "Backend Languages & Frameworks",
       "items": [
         {
-          "icon": "images/skills/typescript.png",
-          "title": "TypeScript"
+          "icon": "images/skills/nodejs.svg",
+          "title": "Node.js",
+          "isCore": true
         },
         {
-          "icon": "images/skills/nodejs.svg",
-          "title": "Node.js"
+          "icon": "images/skills/typescript.png",
+          "title": "TypeScript",
+          "isCore": true
         },
         {
           "icon": "images/skills/nestjs.svg",
-          "title": "NestJS"
+          "title": "NestJS",
+          "isCore": true
         },
         {
           "icon": "images/skills/expressjs.svg",
-          "title": "Express"
+          "title": "Express",
+          "isCore": true
         },
         {
           "icon": "images/skills/js.png",
-          "title": "JavaScript"
+          "title": "JavaScript",
+          "isCore": true
         },
         {
           "icon": "images/skills/python.png",
@@ -43,19 +48,33 @@
       "items": [
         {
           "icon": "images/skills/api.svg",
-          "title": "API Design"
+          "title": "API Design",
+          "isCore": true
         },
         {
           "icon": "images/skills/microservice.svg",
-          "title": "Microservices"
+          "title": "Microservices",
+          "isCore": true
         },
         {
           "icon": "images/skills/architecture.svg",
-          "title": "Clean Architecture"
+          "title": "Clean Architecture",
+          "isCore": true
         },
         {
           "icon": "images/skills/websocket.svg",
-          "title": "WebSocket"
+          "title": "WebSocket",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/rabbit-mq.svg",
+          "title": "RabbitMQ",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/kafka.svg",
+          "title": "Kafka",
+          "isCore": true
         },
         {
           "icon": "images/skills/webrtc.svg",
@@ -64,10 +83,6 @@
         {
           "icon": "images/skills/socket-io.svg",
           "title": "Socket-IO"
-        },
-        {
-          "icon": "images/skills/rabbit-mq.svg",
-          "title": "RabbitMQ"
         }
       ]
     },
@@ -75,20 +90,24 @@
       "title": "Databases",
       "items": [
         {
-          "icon": "images/skills/arangodb.png",
-          "title": "ArangoDB"
-        },
-        {
           "icon": "images/skills/postgresql.svg",
-          "title": "PostgreSQL"
+          "title": "PostgreSQL",
+          "isCore": true
         },
         {
           "icon": "images/skills/mongo-db.png",
-          "title": "MongoDB"
+          "title": "MongoDB",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/arangodb.png",
+          "title": "ArangoDB",
+          "isCore": true
         },
         {
           "icon": "images/skills/redis.svg",
-          "title": "Redis"
+          "title": "Redis",
+          "isCore": true
         },
         {
           "icon": "images/skills/couchdb.svg",
@@ -105,15 +124,33 @@
       "items": [
         {
           "icon": "images/skills/docker.png",
-          "title": "Docker"
+          "title": "Docker",
+          "isCore": true
         },
         {
           "icon": "images/skills/gitlab.svg",
-          "title": "GitLab CI/CD"
+          "title": "GitLab CI/CD",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/kubernetes.svg",
+          "title": "Kubernetes",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/terraform.svg",
+          "title": "Terraform",
+          "isCore": true
         },
         {
           "icon": "images/skills/bash.svg",
-          "title": "Linux/Bash"
+          "title": "Linux/Bash",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/nginx.svg",
+          "title": "Nginx",
+          "isCore": true
         },
         {
           "icon": "images/skills/ubuntu.svg",
@@ -138,10 +175,6 @@
         {
           "icon": "images/skills/cloudflare.png",
           "title": "Cloudflare"
-        },
-        {
-          "icon": "images/skills/nginx.svg",
-          "title": "Nginx"
         }
       ]
     },
@@ -149,16 +182,43 @@
       "title": "Security, Testing & Tools",
       "items": [
         {
+          "icon": "images/skills/antigravity.svg",
+          "title": "Antigravity",
+          "isCore": true
+        },
+        {
           "icon": "images/skills/jest.svg",
-          "title": "Jest (TDD/BDD)"
+          "title": "Jest (TDD/BDD)",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/jwt.svg",
+          "title": "JWT",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/vscode.svg",
+          "title": "VS-Code",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/git.png",
+          "title": "Git",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/github.svg",
+          "title": "Github",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/gitlab.svg",
+          "title": "Gitlab",
+          "isCore": true
         },
         {
           "icon": "images/skills/oauth.svg",
           "title": "OAuth2"
-        },
-        {
-          "icon": "images/skills/jwt.svg",
-          "title": "JWT"
         },
         {
           "icon": "images/skills/rbac.svg",
@@ -167,22 +227,6 @@
         {
           "icon": "images/skills/jira.svg",
           "title": "Jira"
-        },
-        {
-          "icon": "images/skills/vscode.svg",
-          "title": "VS-Code"
-        },
-        {
-          "icon": "images/skills/git.png",
-          "title": "Git"
-        },
-        {
-          "icon": "images/skills/github.svg",
-          "title": "Github"
-        },
-        {
-          "icon": "images/skills/gitlab.svg",
-          "title": "Gitlab"
         },
         {
           "icon": "images/skills/graphql.svg",
@@ -195,15 +239,32 @@
       "items": [
         {
           "icon": "images/skills/typescript.png",
-          "title": "TypeScript"
+          "title": "TypeScript",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/react.png",
+          "title": "React",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/tailwind.svg",
+          "title": "Tailwind",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/lucide.svg",
+          "title": "Lucide",
+          "isCore": true
+        },
+        {
+          "icon": "images/skills/shadcn.svg",
+          "title": "Shadcn",
+          "isCore": true
         },
         {
           "icon": "images/skills/js.png",
           "title": "JavaScript"
-        },
-        {
-          "icon": "images/skills/react.png",
-          "title": "React"
         },
         {
           "icon": "images/skills/redux.svg",
