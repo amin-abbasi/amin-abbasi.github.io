@@ -5,11 +5,10 @@ import { Fade } from 'react-awesome-reveal';
 import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { FaLinkedin } from 'react-icons/fa';
-import { LuDownload } from 'react-icons/lu';
+import { LuChevronDown, LuChevronUp } from 'react-icons/lu';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../theme/themes';
-import { CV_DOWNLOAD_URL } from '../constants/config';
 
 const AboutContainer = styled(Container)`
     padding-top: 2rem;
@@ -23,7 +22,6 @@ const TextCol = styled(Col)`
     font-size: 1.05em;
     font-weight: 400;
     line-height: 1.8;
-    margin-bottom: 2rem;
     position: relative;
     z-index: 10;
 
@@ -251,7 +249,12 @@ const AvailText = styled.div`
 
 // ── Testimonials ─────────────────────────────────────────────────────────────
 const TestimonialsSection = styled.div`
-    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 `;
 
 const TestimonialsTitle = styled.p`
@@ -261,17 +264,27 @@ const TestimonialsTitle = styled.p`
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: ${(props) => (props.theme as Theme).accentColor};
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.2rem;
+    grid-column: 1 / -1;
     opacity: 0.8;
+    text-align: start;
 `;
 
 const TestimonialCard = styled.div`
-    padding: 20px 24px;
+    padding: 24px;
     background: ${(props) => (props.theme as Theme).cardBackground};
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    border-radius: 6px;
-    margin-bottom: 1rem;
+    border-radius: 8px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: ${(props) => (props.theme as Theme).accentColor}40;
+        transform: translateY(-4px);
+    }
 
     &::before {
         content: '"';
@@ -286,20 +299,43 @@ const TestimonialCard = styled.div`
     }
 `;
 
+const TestimonialContent = styled.div<{ $expanded: boolean }>`
+    position: relative;
+    max-height: ${(props) => (props.$expanded ? '1000px' : '135px')};
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 12px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(to bottom, transparent, ${(props) => (props.theme as Theme).cardBackground});
+        opacity: ${(props) => (props.$expanded ? 0 : 1)};
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+`;
+
 const TestimonialText = styled.p`
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     line-height: 1.7;
     color: ${(props) => (props.theme as Theme).color}CC;
-    margin: 0 0 12px;
+    margin: 0;
     padding-inline-start: 8px;
 `;
 
 const TestimonialAuthor = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 12px;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}40;
+    text-align: start;
 `;
 
 const AuthorMeta = styled.div`
@@ -311,24 +347,25 @@ const AuthorMeta = styled.div`
 const LinkedInLink = styled.a`
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     font-family: var(--font-mono);
     font-size: 0.65rem;
     font-weight: 600;
     color: ${(props) => (props.theme as Theme).accentColor};
     text-decoration: none;
-    opacity: 0.7;
+    opacity: 0.75;
     transition: all 0.2s ease;
-    padding: 6px 12px;
-    border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
+    padding: 8px 12px;
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}30;
     border-radius: 4px;
     background: ${(props) => (props.theme as Theme).accentColor}08;
+    width: 100%;
 
     &:hover {
         opacity: 1;
         background: ${(props) => (props.theme as Theme).accentColor}12;
-        border-color: ${(props) => (props.theme as Theme).accentColor}80;
-        transform: translateY(-1px);
+        border-color: ${(props) => (props.theme as Theme).accentColor}60;
     }
 `;
 
@@ -337,12 +374,18 @@ const ExpandButton = styled.button`
     border: none;
     color: ${(props) => (props.theme as Theme).accentColor};
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 2px 8px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    margin-top: 8px;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     
     &:hover {
         opacity: 1;
@@ -476,64 +519,6 @@ function About(props: AboutProps) {
                                         </StatsBar>
                                     </Fade>
                                 )}
-
-                                 {/* Testimonials */}
-                                {Array.isArray(data.testimonials) && data.testimonials.length > 0 && (
-                                    <TestimonialsSection>
-                                        <TestimonialsTitle>{t('layout:about.testimonials')}</TestimonialsTitle>
-                                        {data.testimonials.map((testimonial: any) => {
-                                            const isExpanded = expandedIds.includes(testimonial.name);
-                                            const shouldTruncate = testimonial.text.length > CHAR_LIMIT;
-                                            const displayText = isExpanded 
-                                                ? testimonial.text 
-                                                : testimonial.text.substring(0, CHAR_LIMIT) + (shouldTruncate ? '...' : '');
-
-                                            return (
-                                                <TestimonialCard key={testimonial.name}>
-                                                    <TestimonialText>
-                                                        {displayText}
-                                                        {shouldTruncate && (
-                                                            <ExpandButton onClick={() => toggleExpand(testimonial.name)}>
-                                                                {isExpanded ? t('layout:about.showLess', { defaultValue: 'Show less' }) : t('layout:about.showMore', { defaultValue: 'Show more' })}
-                                                            </ExpandButton>
-                                                        )}
-                                                    </TestimonialText>
-                                                    <TestimonialAuthor>
-                                                        <AuthorMeta>
-                                                            <AuthorBadge>{testimonial.initials}</AuthorBadge>
-                                                            <AuthorInfo>
-                                                                <strong>{testimonial.name}</strong>
-                                                                <span>{testimonial.role}</span>
-                                                            </AuthorInfo>
-                                                        </AuthorMeta>
-                                                        {testimonial.linkedinUrl && (
-                                                            <LinkedInLink 
-                                                                href={testimonial.linkedinUrl} 
-                                                                target="_blank" 
-                                                                rel="noopener noreferrer"
-                                                                title={t('layout:about.viewOnLinkedin')}
-                                                            >
-                                                                <FaLinkedin size={14} />
-                                                                {t('layout:about.viewOnLinkedin')}
-                                                            </LinkedInLink>
-                                                        )}
-                                                    </TestimonialAuthor>
-                                                </TestimonialCard>
-                                            );
-                                        })}
-                                    </TestimonialsSection>
-                                )}
-
-                                {/* CV Download */}
-                                <CVButton 
-                                    href={CV_DOWNLOAD_URL} 
-                                    download="Amin_Abbasi_CV.pdf" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                >
-                                    <LuDownload size={15} />
-                                    {t('layout:buttons.downloadCv')}
-                                </CVButton>
                             </TextCol>
 
                             <ImageCol lg={5} md={12} className="order-1 order-lg-2 mb-5 mb-lg-0 mt-lg-4">
@@ -562,6 +547,63 @@ function About(props: AboutProps) {
                                 </Fade>
                             </ImageCol>
                         </Row>
+
+                        {/* Testimonials (Full Width) */}
+                        {Array.isArray(data.testimonials) && data.testimonials.length > 0 && (
+                            <Row className="mt-5">
+                                <Col xs={12}>
+                                    <TestimonialsSection>
+                                        <TestimonialsTitle>{t('layout:about.testimonials', { defaultValue: 'Testimonials' })}</TestimonialsTitle>
+                                        {data.testimonials.map((testimonial: any) => {
+                                            const isExpanded = expandedIds.includes(testimonial.name);
+                                            const CHAR_LIMIT_FOR_BUTTON = 180;
+                                            const hasExpansion = testimonial.text.length > CHAR_LIMIT_FOR_BUTTON;
+
+                                            return (
+                                                <TestimonialCard key={testimonial.name}>
+                                                    <div style={{ flex: 1 }}>
+                                                        <TestimonialContent $expanded={isExpanded}>
+                                                            <TestimonialText>{testimonial.text}</TestimonialText>
+                                                        </TestimonialContent>
+                                                        
+                                                        {hasExpansion && (
+                                                            <ExpandButton onClick={() => toggleExpand(testimonial.name)}>
+                                                                {isExpanded ? (
+                                                                    <><LuChevronUp size={14} /> {t('layout:about.showLess', { defaultValue: 'Show less' })}</>
+                                                                ) : (
+                                                                    <><LuChevronDown size={14} /> {t('layout:about.showMore', { defaultValue: 'Show more' })}</>
+                                                                )}
+                                                            </ExpandButton>
+                                                        )}
+                                                    </div>
+
+                                                    <TestimonialAuthor>
+                                                        <AuthorMeta>
+                                                            <AuthorBadge>{testimonial.initials}</AuthorBadge>
+                                                            <AuthorInfo>
+                                                                <strong>{testimonial.name}</strong>
+                                                                <span>{testimonial.role}</span>
+                                                            </AuthorInfo>
+                                                        </AuthorMeta>
+                                                        {testimonial.linkedinUrl && (
+                                                            <LinkedInLink 
+                                                                href={testimonial.linkedinUrl} 
+                                                                target="_blank" 
+                                                                rel="noopener noreferrer"
+                                                                title={t('layout:about.viewOnLinkedin', { defaultValue: 'View on LinkedIn' })}
+                                                            >
+                                                                <FaLinkedin size={14} />
+                                                                {t('layout:about.viewOnLinkedin', { defaultValue: 'LinkedIn' })}
+                                                            </LinkedInLink>
+                                                        )}
+                                                    </TestimonialAuthor>
+                                                </TestimonialCard>
+                                            );
+                                        })}
+                                    </TestimonialsSection>
+                                </Col>
+                            </Row>
+                        )}
                     </Fade>
                 ) : (
                     <FallbackSpinner />

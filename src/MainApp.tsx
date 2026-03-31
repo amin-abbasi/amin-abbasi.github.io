@@ -4,12 +4,14 @@ import NavBarWithRouter from './components/NavBar';
 import Footer from './components/Footer';
 import TranslationWarning from './components/TranslationWarning';
 import GlobalBackground from './components/GlobalBackground';
+import ScrollToTop from './components/ScrollToTop';
 
 function MainApp() {
     useAnalytics();
 
     return (
         <div className="MainApp">
+            <ScrollToTop />
             <GlobalBackground />
             <NavBarWithRouter />
             <main className="main">
