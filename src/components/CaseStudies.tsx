@@ -4,8 +4,10 @@ import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { LuChevronUp } from 'react-icons/lu';
+import ReactMarkdown from 'react-markdown';
 import Header from './Header';
 import { Theme } from '../theme/themes';
+import DiagramViewer from './DiagramViewer';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -128,17 +130,24 @@ const ExpandIcon = styled.span<{ $open: boolean }>`
     transform: rotate(${(props) => props.$open ? '180deg' : '0deg'});
 `;
 
-const CaseBody = styled.div<{ $open: boolean }>`
-    display: ${(props) => props.$open ? 'block' : 'none'};
-    padding: 28px 32px 32px;
+const CaseBodyWrapper = styled.div<{ $open: boolean }>`
+    display: grid;
+    grid-template-rows: ${props => props.$open ? '1fr' : '0fr'};
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: ${(props) => (props.theme as Theme).cardBackground};
+`;
+
+const CaseBody = styled.div`
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 32px 32px;
 `;
 
 // ── Sections within the body ──────────────────────────────────────────────────
 const Section = styled.div`
-    margin-bottom: 28px;
+    margin-top: 28px;
 
-    &:last-child { margin-bottom: 0; }
+    &:first-child { margin-top: 32px; }
 `;
 
 const SectionTitle = styled.h4`
@@ -153,12 +162,19 @@ const SectionTitle = styled.h4`
     text-align: start;
 `;
 
-const SectionText = styled.p`
+const SectionText = styled.div`
     font-size: 0.92rem;
     line-height: 1.75;
     color: ${(props) => (props.theme as Theme).color}CC;
     margin: 0;
     text-align: start;
+
+    strong {
+        color: ${(props) => (props.theme as Theme).accentColor};
+        font-weight: 600;
+    }
+    
+    p { margin: 0; }
 `;
 
 const BulletList = styled.ul`
@@ -185,6 +201,13 @@ const BulletList = styled.ul`
             margin-top: -0.25em;
             font-size: 1.4em;
         }
+
+        strong {
+            color: ${(props) => (props.theme as Theme).accentColor};
+            font-weight: 600;
+        }
+        
+        p { display: inline; margin: 0; }
     }
 `;
 
@@ -245,6 +268,7 @@ interface CaseStudy {
     decisions: { title: string; rationale: string }[];
     metrics: Metric[];
     outcome: string;
+    diagram?: string;
 }
 
 interface CaseStudiesProps {
@@ -296,77 +320,92 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                         </ExpandIcon>
                                     </CaseHeader>
 
-                                    <CaseBody $open={isOpen}>
-                                        {/* Problem */}
-                                        <Section>
-                                            <SectionTitle>{t('layout:caseStudies.problem')}</SectionTitle>
-                                            <SectionText>{cs.problem}</SectionText>
-                                        </Section>
+                                    <CaseBodyWrapper $open={isOpen}>
+                                        <CaseBody>
+                                            {Boolean(cs.diagram) && (
+                                                <Section>
+                                                    <DiagramViewer code={cs.diagram!} id={cs.id} />
+                                                </Section>
+                                            )}
 
-                                        <Divider />
+                                            {/* Problem */}
+                                            <Section>
+                                                <SectionTitle>{t('layout:caseStudies.problem')}</SectionTitle>
+                                                <SectionText>
+                                                    <ReactMarkdown>{cs.problem}</ReactMarkdown>
+                                                </SectionText>
+                                            </Section>
 
-                                        {/* Approach */}
-                                        <Section>
-                                            <SectionTitle>{t('layout:caseStudies.approach')}</SectionTitle>
-                                            <BulletList>
-                                                {cs.approach.map((point, idx) => <li key={idx}>{point}</li>)}
-                                            </BulletList>
-                                        </Section>
+                                            <Divider />
 
-                                        <Divider />
+                                            {/* Approach */}
+                                            <Section>
+                                                <SectionTitle>{t('layout:caseStudies.approach')}</SectionTitle>
+                                                <BulletList>
+                                                    {cs.approach.map((point, idx) => (
+                                                        <li key={idx}>
+                                                            <ReactMarkdown>{point}</ReactMarkdown>
+                                                        </li>
+                                                    ))}
+                                                </BulletList>
+                                            </Section>
 
-                                        {/* Key Decisions */}
-                                        <Section>
-                                            <SectionTitle>{t('layout:caseStudies.decisions')}</SectionTitle>
-                                            {cs.decisions.map((d, idx) => (
-                                                <div key={idx} style={{ marginBottom: idx < cs.decisions.length - 1 ? 20 : 0 }}>
-                                                    <p style={{
-                                                        fontFamily: 'var(--font-mono)',
-                                                        fontSize: '0.82rem',
-                                                        fontWeight: 700,
-                                                        color: theme.color,
-                                                        margin: '0 0 6px',
+                                            <Divider />
+
+                                            {/* Key Decisions */}
+                                            <Section>
+                                                <SectionTitle>{t('layout:caseStudies.decisions')}</SectionTitle>
+                                                {cs.decisions.map((d, idx) => (
+                                                    <div key={idx} style={{ 
+                                                        marginBottom: idx < cs.decisions.length - 1 ? 12 : 0,
                                                         textAlign: 'start',
+                                                        lineHeight: 1.6
                                                     }}>
-                                                        ◆ {d.title}
-                                                    </p>
-                                                    <p style={{
-                                                        fontSize: '0.88rem',
-                                                        lineHeight: 1.7,
-                                                        color: theme.color + 'BB',
-                                                        margin: 0,
-                                                        paddingInlineStart: 18,
-                                                        textAlign: 'start',
-                                                    }}>
-                                                        {d.rationale}
-                                                    </p>
-                                                </div>
-                                            ))}
-                                        </Section>
-
-                                        <Divider />
-
-                                        {/* Metrics */}
-                                        <Section>
-                                            <SectionTitle>{t('layout:caseStudies.metrics')}</SectionTitle>
-                                            <MetricsRow>
-                                                {cs.metrics.map((m) => (
-                                                    <MetricPill key={m.label}>
-                                                        <MetricValue>{m.value}</MetricValue>
-                                                        <MetricLabel>{m.label}</MetricLabel>
-                                                    </MetricPill>
+                                                        <span style={{
+                                                            fontFamily: 'var(--font-mono)',
+                                                            fontSize: '0.82rem',
+                                                            fontWeight: 700,
+                                                            color: theme.accentColor,
+                                                            marginInlineEnd: '8px'
+                                                        }}>
+                                                            ◆ {d.title}:
+                                                        </span>
+                                                        <span style={{
+                                                            fontSize: '0.88rem',
+                                                            color: theme.color + 'BB'
+                                                        }}>
+                                                            {d.rationale}
+                                                        </span>
+                                                    </div>
                                                 ))}
-                                            </MetricsRow>
-                                        </Section>
+                                            </Section>
 
-                                        <Divider />
+                                            <Divider />
 
-                                        {/* Outcome */}
-                                        <Section>
-                                            <SectionTitle>{t('layout:caseStudies.outcome')}</SectionTitle>
-                                            <SectionText>{cs.outcome}</SectionText>
-                                        </Section>
-                                    </CaseBody>
+                                            {/* Metrics */}
+                                            <Section>
+                                                <SectionTitle>{t('layout:caseStudies.metrics')}</SectionTitle>
+                                                <MetricsRow>
+                                                    {cs.metrics.map((m) => (
+                                                        <MetricPill key={m.label}>
+                                                            <MetricValue>{m.value}</MetricValue>
+                                                            <MetricLabel>{m.label}</MetricLabel>
+                                                        </MetricPill>
+                                                    ))}
+                                                </MetricsRow>
+                                            </Section>
+
+                                            <Divider />
+
+                                            {/* Outcome */}
+                                            <Section>
+                                                <SectionTitle>{t('layout:caseStudies.outcome')}</SectionTitle>
+                                                <SectionText>
+                                                    <ReactMarkdown>{cs.outcome}</ReactMarkdown>
+                                                </SectionText>
+                                            </Section>
+                                        </CaseBody>
+                                    </CaseBodyWrapper>
                                 </CaseCard>
                             </Fade>
                         );

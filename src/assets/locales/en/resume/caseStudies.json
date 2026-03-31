@@ -1,99 +1,98 @@
 {
-  "intro": "Real architectural challenges I've solved — the problem, the decisions, the tradeoffs, and the measurable outcomes.\nNo proprietary code shared; this is about the thinking.",
+  "intro": "Real architectural challenges I've solved — the problem, the decisions, and the technical blueprints.\nNo proprietary code shared; focusing on the engineering logic.",
   "studies": [
     {
         "id": "sdui-dannie",
         "label": "CASE_001 · ERP / Industrial",
-        "title": "Server-Driven UI Framework for an Industrial ERP",
+        "title": "Server-Driven UI Framework with Custom DAO",
         "subtitle": "Dannie.CC · 2023–2024",
-        "tags": ["Node.js", "TypeScript", "WebSocket", "ArangoDB", "SDUI", "ERP", "Real-time"],
-        "problem": "The Dannie.CC ERP served 9 departments across a manufacturing facility. Every UI change required a full frontend deployment cycle averaging 3–4 hours, blocking product velocity and forcing QA to retest hundreds of screens per release. The frontend team was perpetually blocked by the backend release schedule.",
+        "tags": ["Node.js", "TypeScript", "WebSocket", "ArangoDB", "DAO ORM", "SDUI", "Real-time"],
+        "problem": "Manufacturing facility with 9 departments required real-time UI updates across complex production lines. Standard deployment cycles (3-4 hours) were blocking business velocity, and legacy database interactions were becoming untraceable.",
         "approach": [
-            "Designed a JSON-based UI schema that the backend emits over WebSocket connections — each \"module descriptor\" contains component type, data bindings, conditional visibility rules, and action handlers.",
-            "Built a thin React frontend runtime that interprets these descriptors and renders accordingly, with zero application-specific logic in the frontend codebase.",
-            "Implemented a versioning system for schema changes so legacy clients could gracefully degrade without hard failures.",
-            "Added a server-side A/B testing layer by emitting different module descriptors based on user roles and feature flags."
+            "Architected a **TypeScript-based Platform** delivering JSON UI descriptors over WebSocket channels.",
+            "Designed and built **DAO (Data Access Object)**: a custom ArangoDB ORM for high-performance graph/document queries and audit-safe ledgering.",
+            "Implemented a **Dynamic Frontend Runtime** in React that renders complex terminal views from server-side fragment definitions.",
+            "Centralized all business logic in the backend, enabling daily UI iterations with zero client-side deployments."
         ],
         "decisions": [
             {
-                "title": "WebSocket over HTTP polling",
-                "rationale": "The ERP needed real-time production line data. REST polling would have introduced 500ms–2s latency that operators found unacceptable for quality control decisions. WebSocket allowed us to push UI state AND data in a single channel."
+                "title": "WebSocket over HTTP",
+                "rationale": "Eliminated 2s polling latency for quality control decisions."
             },
             {
-                "title": "JSON schema over GraphQL fragments",
-                "rationale": "GraphQL was considered but rejected — the UI schema needed to be fully server-controlled with no client-side query negotiation. A simple JSON contract gave us full control over what the server renders without client-side complexity."
+                "title": "Custom ORM (DAO)",
+                "rationale": "Optimized complex manufacturing graph queries while ensuring strict data traceability."
             }
         ],
         "metrics": [
-            { "value": "80%", "label": "Fewer frontend deployments" },
-            { "value": "1 week", "label": "Feature delivery (from 1 month)" },
-            { "value": "9", "label": "Departments unified" },
-            { "value": "35%", "label": "Response time improvement" }
+            { "value": "80%", "label": "Deployment Reduction" },
+            { "value": "1 week", "label": "Feature Velocity" },
+            { "value": "0ms", "label": "UI Latency (Internal)" }
         ],
-        "outcome": "The SDUI approach eliminated 80% of frontend deployments while allowing the product team to iterate on UI modules daily. QA scope per release dropped dramatically. The architecture later became the foundation for the company's IATF 16949 certification alignment, as all business logic remained server-side and fully auditable."
+        "diagram": "sequenceDiagram\n    participant B as Backend (Node.js/TS)\n    participant D as DAO (Custom ORM)\n    participant A as ArangoDB\n    participant W as WebSocket (SDUI Loop)\n    participant F as Dynamic React Frontend\n\n    F->>W: Initial Connection (Dept ID)\n    W->>B: User Session Handshake\n    B->>D: queryProductionGraph()\n    D->>A: AQL Query execution\n    A-->>D: Graph Result\n    D-->>B: Entity Mapping\n    B->>B: Generate UI Descriptor (JSON)\n    B->>W: Push Module Definitions + Data\n    W->>F: Render Components (Fragments)",
+        "outcome": "Digitized 9 departments with an 80% reduction in frontend overhead. The system became the backbone for IATF 16949 certification by ensuring 100% server-side logic auditability."
     },
     {
         "id": "fhir-actimi",
         "label": "CASE_002 · HealthTech / FHIR Compliance",
-        "title": "FHIR-Compliant Healthcare Data Platform",
+        "title": "Professional IoT & FHIR Data Platform",
         "subtitle": "Actimi GmbH · 2022–2023",
-        "tags": ["Node.js", "TypeScript", "FHIR", "Aidbox", "Medplum", "PostgreSQL", "GDPR", "HIPAA", "GCP", "CI/CD"],
-        "problem": "Actimi provided remote patient monitoring for German healthcare providers. The platform needed to be simultaneously FHIR R4 compliant, GDPR/HIPAA compliant, and capable of managing a distributed fleet of patient tablets. The main technical debt: heavy reliance on raw JSON storage in PostgreSQL without proper FHIR resource indexing, causing query latency above 800ms for complex clinical queries.",
+        "tags": ["FHIR R4", "IoT", "ECG/Pulse", "Medplum", "PostgreSQL", "GDPR", "GCP", "CI/CD"],
+        "problem": "Building a remote monitoring platform for German providers required strict FHIR R4 and GDPR compliance. Existing medical data storage lacked proper clinical resource indexing, and device lifecycle management was manually error-prone.",
         "approach": [
-            "Redesigned the PostgreSQL schema to align with FHIR resource types, adding targeted GIN indexes on FHIR search parameters (patient.name, observation.code, encounter.date).",
-            "Evaluated Aidbox vs. Medplum as FHIR server layers and built adapters for both, allowing the platform to operate on either depending on client requirements.",
-            "Built a GDPR-compliant device lifecycle system: each patient tablet had a unique UUID tied to its assignment; re-assignment triggered an automated wipe + UUID regeneration workflow via Zoho MDM API.",
-            "Containerized all services with Docker and restructured the GCP CI/CD pipeline, introducing staging environments and parallel test execution."
+            "Integrated **IoT Medical Devices** (Tablets, ECG, Blood Pressure monitors) into a unified clinical pipeline.",
+            "Automated **Device Lifecycle Management**: factory wipe + UUID regeneration via MDM for 100% GDPR traceability.",
+            "Redesigned the database with **PostgreSQL GIN Indexes** for high-frequency clinical FHIR searches (Patient, Observation, Encounter).",
+            "Implemented vendor-agnostic **FHIR Adapters** supporting both Aidbox and Medplum layers."
         ],
         "decisions": [
             {
-                "title": "Dual FHIR adapter over single vendor lock-in",
-                "rationale": "German healthcare clients had different procurement preferences. Rather than betting on one FHIR server vendor, we built thin adapters over both Aidbox and Medplum, with the business logic layer remaining vendor-agnostic. This added 3 weeks of development but saved 3+ months of future migration risk."
+                "title": "Dual-Vendor Adapter Layer",
+                "rationale": "Avoided lock-in, allowing seamless switching between Aidbox and Medplum."
             },
             {
-                "title": "MDM-based wipe vs. application-layer data deletion",
-                "rationale": "GDPR requires verifiable data erasure. Application-layer deletion leaves database artifacts. MDM-enforced factory wipe gave us a hardware-level audit trail that satisfied German DPA (Datenschutzbehörde) requirements without code complexity."
+                "title": "Hardware-Level Data Wipe",
+                "rationale": "Ensured verifiable GDPR erasure that satisfied German DPA requirement."
             }
         ],
         "metrics": [
-            { "value": "30%", "label": "Query latency reduction" },
-            { "value": "85%", "label": "CI/CD time improvement" },
-            { "value": "100%", "label": "GDPR & HIPAA compliance" },
-            { "value": "1 month", "label": "Onboarding (from 3 months)" }
+            { "value": "100%", "label": "GDPR Compliance" },
+            { "value": "30%", "label": "Search Performance" },
+            { "value": "300+", "label": "Linked IoT Devices" }
         ],
-        "outcome": "Clinical query latency dropped from 800ms+ to under 560ms. The device lifecycle system processed 300+ patient transitions without a single GDPR audit finding. The TypeScript migration reduced developer onboarding from 3 months to 1 month, enabling faster team expansion as Actimi grew its provider network across Germany."
+        "diagram": "graph LR\n    subgraph Devices [IoT Devices]\n        HW1[Tablet]\n        HW2[ECG]\n        HW3[BP]\n    end\n    Devices --> IGW[IoT Gateway]\n    IGW --> |MQTT| FS[FHIR Server]\n    FS --> DB[(PostgreSQL)]\n    DB --> CL[Dashboard]\n    MDM[MDM Service] -.-> |GDPR Wipe| HW1",
+        "outcome": "Reduced clinical query latency from 800ms+ to 560ms while successfully passing three GDPR audits and scaling across Germany."
     },
     {
         "id": "trading-engine-digialpha",
-        "label": "CASE_003 · Fintech / High-Frequency Trading",
-        "title": "High-Frequency Crypto Exchange Trading Engine",
+        "label": "CASE_003 · Fintech / High-Performance Crypto",
+        "title": "High-Frequency Crypto Trading & Copy-Trade Engine",
         "subtitle": "DigiAlpha · 2021–2022",
-        "tags": ["Node.js", "TypeScript", "RabbitMQ", "PostgreSQL", "Redis", "Microservices", "HD Wallet", "KYC"],
-        "problem": "DigiAlpha needed to build a crypto exchange from scratch supporting Spot, OTC, Margin, Copy-Trading, and Stop-Loss orders. The primary challenge was building a lock-free order matching engine that could process thousands of orders per second without parallel execution bottlenecks — while maintaining exact ledger accuracy across complex multi-currency positions.",
+        "tags": ["Microservices", "Matching Engine", "RabbitMQ", "HD Wallet", "Ledger", "KYC", "Copy-Trading"],
+        "problem": "DigiAlpha needed a scalable exchange architecture for thousands of orders per second. The challenge was building a lock-free matching engine while managing complex multi-currency positions and virtual ledger balances.",
         "approach": [
-            "Designed a non-blocking order matching algorithm using an immutable event log as the source of truth, with in-memory order books rebuilt from events on startup.",
-            "Partitioned the microservices by domain: Order Management, Matching Engine, Wallet Service, Ledger, Price Feed, KYC Service — each with its own database and event queue.",
-            "Used RabbitMQ topic exchanges to broadcast price feed updates and wallet balance changes across services with guaranteed ordering and zero message loss.",
-            "Implemented a proprietary HD Wallet service that derived user addresses deterministically from a master seed, enabling address rotation without re-issuance.",
-            "Built a 3-tier KYC pipeline integrating national ID verification, bank account linking, and liveness detection — gating trading limits at each tier."
+            "Designed a **Single-Threaded Matching Engine** avoiding distributed consensus latency, fed by ordered event logs.",
+            "Built a **Microservices Mesh** handling KYC, Payment (Fiat/Crypto), Order Management, and Wallet services.",
+            "Developed an **Internal Double-Entry Ledger** for instant virtual settlements, reconciled asynchronously with blockchain confirmations.",
+            "Implemented **Copy-Trading Logic** using message broadcasting via RabbitMQ to trigger mirror orders with near-zero latency."
         ],
         "decisions": [
             {
-                "title": "Single-threaded matching engine over distributed actor model",
-                "rationale": "A distributed matching engine would have introduced consensus latency. The matching algorithm was designed to run single-threaded within a single Node.js process with an external event queue feeding it. This eliminated distributed locking and gave us deterministic execution order — critical for audit trails."
+                "title": "Event-Driven Partitioning",
+                "rationale": "Used RabbitMQ to broadcast price updates and wallet movements across services effortlessly."
             },
             {
-                "title": "Internal ledger vs. relying on blockchain confirmations",
-                "rationale": "Waiting for on-chain confirmations for every trade would have made the UX unusable. We maintained an internal double-entry ledger for virtual balances, with a separate reconciliation process that settled confirmed blockchain transactions asynchronously."
+                "title": "Internal Virtual Ledger",
+                "rationale": "Avoided blockchain confirmation bottlenecks for a fluent, real-time trading experience."
             }
         ],
         "metrics": [
-            { "value": "30%", "label": "Faster order matching" },
-            { "value": "2×", "label": "System throughput gain" },
-            { "value": "9", "label": "Engineers scaled to" },
-            { "value": "0", "label": "Message loss events" }
+            { "value": "30%", "label": "Engine Performance" },
+            { "value": "2×", "label": "Throughput Gain" },
+            { "value": "0", "label": "Message Loss Events" }
         ],
-        "outcome": "The exchange launched supporting 5 trading modes within 12 months. The event-driven architecture handled peak trading volumes during high-volatility market events with zero message loss. The platform later expanded to include Copy-Trading — a feature only possible because of the clean separation between order execution and portfolio mirror logic."
+        "diagram": "graph LR\n    U[User Client] --> AG[API Gateway]\n    AG --> KYC[KYC Service]\n    AG --> OS[Order Service]\n    OS --> RMQ{RabbitMQ ordered log}\n    RMQ --> ME[Matching Engine]\n    ME --> L[Internal Ledger]\n    ME --> WS[Wallet Service]\n    WS --> HDW[HD Wallet - Master Seed]\n    L --> TR[Trade Reconciliation]\n    ME -.-> |Broadcast| CT[Copy-Trade Engine]",
+        "outcome": "Launched 5 trading modes in 12 months with zero data loss. The modular architecture easily scaled to support high-volume Copy-Trading features."
     }
   ]
 }

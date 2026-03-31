@@ -1,99 +1,98 @@
 {
-  "intro": "Çözdüğüm mimari zorluklar — sorunlar, alınan kararlar, ödünleşimler (tradeoffs) ve ölçülebilir sonuçlar.\nÖzel mülkiyet kod paylaşılmamıştır; bu tamamen düşünce yapısını aktarmak içindir.",
+  "intro": "Çözdüğüm teknik zorluklar — problemler, kararlar ve mimari planlar.\nGizli kod paylaşımı yapılmamıştır; odak noktası mühendislik mantığıdır.",
   "studies": [
     {
         "id": "sdui-dannie",
         "label": "CASE_001 · ERP / Endüstriyel",
-        "title": "Endüstriyel ERP için Sunucu Yönlendirmeli (SDUI) UI Framework'ü",
+        "title": "Özel DAO ORM ile Sunucu Güdümlü UI Framework",
         "subtitle": "Dannie.CC · 2023–2024",
-        "tags": ["Node.js", "TypeScript", "WebSocket", "ArangoDB", "SDUI", "ERP", "Real-time"],
-        "problem": "Dannie.CC ERP sistemi, üretim tesisindeki 9 farklı departmana hizmet veriyordu. Yapılacak her UI değişikliği ortalama 3–4 saat süren tam bir frontend dağıtım (deployment) döngüsü gerektiriyordu. Bu durum ürün hızını düşürüyor ve QA ekibini her sürümde yüzlerce ekranı yeniden test etmeye zorluyordu. Kısacası frontend ekibi, backend yayın programına sürekli bağlı kalıyordu.",
+        "tags": ["Node.js", "TypeScript", "WebSocket", "ArangoDB", "DAO ORM", "SDUI", "Gerçek Zamanlı"],
+        "problem": "9 departmanlı bir üretim tesisinde, karmaşık üretim hatları için gerçek zamanlı UI güncellemeleri gerekiyordu. Standart canlıya alım süreçleri (3-4 saat) iş hızını engelliyor ve eski veritabanı etkileşimleri izlenemez hale geliyordu.",
         "approach": [
-            "WebSocket bağlantıları üzerinden backend'den gönderilen JSON tabanlı bir UI şeması tasarlandı — her bir 'modül tanımlayıcısı' bileşen (component) tipini, veri bağlamalarını (data bindings), koşullu görünürlük kurallarını ve eylem yöneticilerini (action handlers) içeriyor.",
-            "Bu tanımlayıcıları yorumlayan ve frontend kod tabanında uygulamaya özgü hiçbir iş mantığı (business logic) içermeyen ince yapılı bir React runtime geliştirildi.",
-            "Eski istemcilerin sert hatalar olmadan uyum sağlayabilmesi için şema değişikliklerinde sürümleme (versioning) sistemi uygulandı.",
-            "Kullanıcı rolleri ve özellik bayraklarına (feature flags) bağlı olarak farklı modül tanımlayıcıları gönderilerek sunucu tarafı A/B testi katmanı eklendi."
+            "WebSocket kanalları üzerinden JSON UI tanımları sunan **TypeScript tabanlı bir platform** tasarlandı.",
+            "Yüksek performanslı graf/doküman sorguları ve denetim güvenli kayıt tutma (ledgering) için özel bir ArangoDB ORM'u olan **DAO** geliştirildi.",
+            "Backend tanımlarından (fragments) karmaşık terminal görünümleri oluşturan **Dinamik React Runtime** inşa edildi.",
+            "Tüm iş mantığı backend'de merkezileştirildi; böylece frontend güncellemesi gerekmeden anlık UI iterasyonları mümkün kılındı."
         ],
         "decisions": [
             {
-                "title": "HTTP polling yerine WebSocket tercihi",
-                "rationale": "ERP sisteminin gerçek zamanlı üretim hattı verisine ihtiyacı vardı. REST polling, kalite kontrol kararları için kabul edilemez olan 500ms–2s gibi gecikmelere neden olabilirdi. WebSocket, tek bir kanal üzerinden hem UI durumunu hem de verileri push etmemize olanak sağladı."
+                "title": "HTTP Polling yerine WebSocket",
+                "rationale": "Kalite kontrol kararlarında 2 saniyelik gecikme payı ortadan kaldırıldı."
             },
             {
-                "title": "GraphQL fragments yerine JSON şeması",
-                "rationale": "GraphQL değerlendirildi ancak reddedildi — UI şemasının istemci tarafı sorgu uzlaşması (query negotiation) olmadan tamamen sunucu kontrollü olması gerekiyordu. Basit bir JSON kontratı, istemci tarafına ekstra karmaşıklık katmadan sunucunun ne render edeceğini tam olarak kontrol etmemizi sağladı."
+                "title": "Özel ORM (DAO)",
+                "rationale": "Karmaşık üretim grafiği sorguları optimize edilirken, veri izlenebilirliği garanti altına alındı."
             }
         ],
         "metrics": [
-            { "value": "80%", "label": "Daha az frontend dağıtımı (deployment)" },
-            { "value": "1 hafta", "label": "Özellik tamamlama (1 aydan düştü)" },
-            { "value": "9", "label": "Birleştirilen departman sayısı" },
-            { "value": "35%", "label": "Yanıt süresinde iyileşme" }
+            { "value": "80%", "label": "Frontend Dağıtım Azalışı" },
+            { "value": "1 Hafta", "label": "Özellik Teslim Hızı" },
+            { "value": "0ms", "label": "UI Gecikmesi (Internal)" }
         ],
-        "outcome": "SDUI yaklaşımı, frontend dağıtımlarını %80 oranında azaltırken, ürün ekibinin UI modülleri üzerinde günlük olarak yeni versiyonlar çıkarmasına (iterate) olanak tanıdı. Sürüm başına QA kapsamı драsтik olarak düştü. Tüm iş mantığı sunucu tarafında kaldığı ve tamamen denetlenebilir olduğu için bu mimari daha sonra şirketin IATF 16949 sertifikasyon uyumunun da temelini oluşturdu."
+        "diagram": "sequenceDiagram\n    participant B as Backend (Node.js/TS)\n    participant D as DAO (Özel ORM)\n    participant A as ArangoDB\n    participant W as WebSocket (SDUI Loop)\n    participant F as Dinamik React Frontend\n\n    F->>W: İlk Bağlantı (Bölüm ID)\n    W->>B: Kullanıcı Oturumu Doğrulama\n    B->>D: queryProductionGraph()\n    D->>A: AQL Sorgu Çalıştırma\n    A-->>D: Graf Sonucu\n    D-->>B: Varlık Eşleme\n    B->>B: UI Tanımı Oluştur (JSON)\n    B->>W: Modül Tanımlarını + Veriyi Gönder\n    W->>F: Bileşenleri Oluştur (Fragments)",
+        "outcome": "9 departman dijitalleştirildi ve frontend operasyon yükü %80 azaltıldı. Sistem, tüm iş mantığının backend-side ve denetlenebilir kalmasıyla IATF 16949 sertifikasyon sürecinin omurgası oldu."
     },
     {
         "id": "fhir-actimi",
         "label": "CASE_002 · HealthTech / FHIR Uyumluluğu",
-        "title": "FHIR Uyumlu Sağlık Verileri Platformu",
+        "title": "Profesyonel IoT ve FHIR Veri Platformu",
         "subtitle": "Actimi GmbH · 2022–2023",
-        "tags": ["Node.js", "TypeScript", "FHIR", "Aidbox", "Medplum", "PostgreSQL", "GDPR", "HIPAA", "GCP", "CI/CD"],
-        "problem": "Actimi Almanya'daki sağlık kuruluşları için uzaktan hasta takibi hizmeti sağlıyordu. Platformun eşzamanlı olarak FHIR R4 uyumlu, GDPR/HIPAA standartlarına uygun ve hastalara dağıtılan tabletlerin yönetimini yapabilecek kapasitede olması şarttı. Ana teknik borç: PostgreSQL üzerindeki raw JSON dosyalarına olan yoğun bağımlılık, FHIR kaynak indekslemesinin olmaması yüzünden karmaşık klinik sorgularda gecikmenin (latency) 800ms üzerine çıkmasına sebep oluyordu.",
+        "tags": ["FHIR R4", "IoT", "EKG/Nabız", "Medplum", "PostgreSQL", "GDPR", "GCP", "CI/CD"],
+        "problem": "Alman sağlık sağlayıcıları için uzaktan izleme platformu kurmak, katı FHIR R4 ve KVKK (GDPR) uyumluluğu gerektiriyordu. Mevcut veri yapıları klinik indekslemeden yoksundu ve cihaz yönetimi manuel hatalara açıktı.",
         "approach": [
-            "PostgreSQL şeması FHIR kaynak türlerine uyacak şekilde yeniden biçimlendirildi. FHIR arama parametrelerine (hasta.adi, degerlendirme.kodu, karsilasma.tarihi) odaklanan özel GIN indekslemeleri entegre edildi.",
-            "FHIR sunucu katmanı için Aidbox ile Medplum seçenekleri incelendi. Karşılaştırmalı testler yapılarak farklı istemci ihtiyaçlarına her iki sistemin de entegre olabilmesini sağlayan özel sistem bağımsız adaptörler yaratıldı.",
-            "GDPR uyumlu cihaz yaşam döngüsü sistemi oluşturuldu: her tablet kendisine ait bir atamayla ilişkilendirilmiş eşsiz bir UUID içeriyordu; atama değiştiğinde (yeni bir hastaya geçtiğinde) Zoho MDM API kanalı ile veriyi silip kendini sıfırlayarak UUID yenileyen bir iş akışı geliştirildi.",
-            "Docker bünyesinde tüm hizmetlerin sanallaştırma (containerization) işlemleri yürütüldü. Test-ortamı yaratıp eş zamanlı test ortamı sağlayan CI/CD alt yapısı GCP kapsamında güncellendi."
+            "**IoT Tıbbi Cihazlar** (Tablet, EKG, Tansiyon aletleri) tek bir klinik veri hattına entegre edildi.",
+            "MDM üzerinden fabrika sıfırlama + UUID yenileme ile **Otomatik Cihaz Yaşam Döngüsü** yönetimi kuruldu.",
+            "Klinik FHIR aramaları (Hasta, Gözlem) için **PostgreSQL GIN İndeksleri** ile veritabanı yeniden modellendi.",
+            "Aidbox ve Medplum katmanlarını destekleyen, satıcıdan bağımsız **FHIR Adaptörleri** uygulandı."
         ],
         "decisions": [
             {
-                "title": "Tek bir üreticiye (vendor lock-in) bağımlı kalmak yerine çoklu FHIR adaptörü kullanma",
-                "rationale": "Alman sağlık müşterilerinin farklı sistem gereksinimleri mevcuttu. Doğrudan bir FHIR sunucu satıcısına bağlılık kurmaktansa Aidbox ve Medplum'un her ikisi için ince adaptörler oluşturarak iş mantığı katmanlarını sağlayıcı bağımsız kıldık. Bu, uygulamaya yaklaşık 3 hafta ekstradan efor mal olsa da potansiyel tehlike taşıyan gelecekteki geçiş süreçlerinin zorluklarına 3 aylık bir zaman telafisi sundu."
+                "title": "Çift Katmanlı Adaptör Yapısı",
+                "rationale": "Aidbox ve Medplum arasında sorunsuz geçiş sağlanarak satıcı bağımlılığı (lock-in) önlendi."
             },
             {
-                "title": "Uygulama katmanındaki veriyi silme (App-level delete) vs. Mobil Cihaz Yönetimi tabanlı cihaz formatlama (MDM-based Wipe)",
-                "rationale": "GDPR verilerin doğrulanabilir şekilde kaldırılmasını zorunlu kılar. Uygulama üzerinden silinme, arkasında veri tabanı eseri (database artifacts) / çöp dosyalar bırakabilirdi. MDM tabanlı sıfırlama bize ekstra kod karmaşıklığı yaratmadan Alman Veri Koruma Yetkilileri'nin (Datenschutzbehörde) koşullarını karşılayabilecek düzeyde donanım güvencesinde veri izlerini de silme imkânı verdi."
+                "title": "Donanım Seviyesinde Veri Silme",
+                "rationale": "Alman DPA (KVKK Kurumu) gerekliliklerini karşılayan doğrulanabilir veri silme süreci sağlandı."
             }
         ],
         "metrics": [
-            { "value": "30%", "label": "Sorgu hızlandırılması (Azalan bekleme süresi)" },
-            { "value": "85%", "label": "CI/CD süreç hızı iyileşmesi" },
-            { "value": "100%", "label": "GDPR & HIPAA Uyumluluğu" },
-            { "value": "1 ay", "label": "Hizmete oryantasyon hızı (3 aydan azaldı)" }
+            { "value": "%100", "label": "GDPR Uyumluluğu" },
+            { "value": "%30", "label": "Sorgu Performansı" },
+            { "value": "300+", "label": "Bağlı IoT Cihazı" }
         ],
-        "outcome": "Klinik sorgulama süreleri ortalamada 800ms'in üzerinden 560ms limitlerine çekildi. Kurulan donanım cihazının yaşam döngüleri ile toplamda tek bir veri ihlali/GDPR kural kırılımı yaratmadan başarıyla 300'ü aşkın hasta transferine imkân tanındı. TypeScript altyapısına olan geçiş yeni yazılımcı oryantasyon zamanını çeyrek yıla yakın süreden sacede tek bir aya çekme başarısı gösterirken takım organizasyonu daha hızlı büyüyen Almanya tabanlı Actimi için yeni ağ bağlantıları (networkler) getirdi."
+        "diagram": "graph LR\n    subgraph Cihazlar [IoT Cihazları]\n        HW1[Tablet]\n        HW2[EKG]\n        HW3[Tansiyon]\n    end\n    Cihazlar --> IGW[IoT Geçidi]\n    IGW --> |MQTT| FS[FHIR Sunucu]\n    FS --> DB[(PostgreSQL)]\n    DB --> CL[Panel]\n    MDM[MDM Servisi] -.-> |GDPR Sıfırlama| HW1",
+        "outcome": "Klinik sorgu gecikmesi 800ms'den 560ms'nin altına indirildi. Sistem, üç ayrı GDPR denetiminden başarıyla geçerek Almanya genelinde ölçeklendi."
     },
     {
         "id": "trading-engine-digialpha",
-        "label": "CASE_003 · Fintech / Yüksek Frekanslı İşlemler (HFT)",
-        "title": "Yüksek Frekanslı Kripto Borsa Alım-Satım Motoru",
+        "label": "CASE_003 · Fintech / Yüksek Performanslı Kripto",
+        "title": "Kripto Alım-Satım ve Copy-Trade Motoru",
         "subtitle": "DigiAlpha · 2021–2022",
-        "tags": ["Node.js", "TypeScript", "RabbitMQ", "PostgreSQL", "Redis", "Microservices", "HD Wallet", "KYC"],
-        "problem": "DigiAlpha'nın Spot, OTC, Margin, Copy-Trading (Kopya İşlem) ve Stop-Loss (Zarar-Kes) emirlerini destekleyen bir kripto borsasını sıfırdan kurması gerekiyordu. Temel zorluk, karmaşık çoklu para birimi pozisyonlarında kesin hesap defteri doğruluğunu korurken paralel yürütme darboğazları olmadan saniyede binlerce emri işleyebilen, kitlenme yapmayan (lock-free) bir emir eşleştirme motoru tasarlamaktı.",
+        "tags": ["Mikroservisler", "Matching Engine", "RabbitMQ", "HD Wallet", "Ledger", "KYC", "Copy-Trading"],
+        "problem": "Saniyede binlerce emir işleyebilecek ölçeklenebilir bir borsa mimarisi gerekiyordu. Temel zorluk, çoklu para birimi pozisyonlarını ve sanal defter bakiyelerini yönetirken kilitsiz (lock-free) bir eşleştirme motoru kurmaktı.",
         "approach": [
-            "Başlangıçta olaylardan yeniden inşa edilen bellek içi sipariş defterleri içeren, mutlak bir gerçeklik kaynağı olarak değiştirilemez (immutable) bir olay günlüğünü kullanan, bloklamayan (non-blocking) bir eşleştirme algoritması tasarlandı.",
-            "Mikro hizmetler alanlara göre ayrıldı: Sipariş Yönetimi, Eşleştirme Motoru, Cüzdan Hizmeti, Ana Defter, Fiyat Verisi (Price Feed), KYC Servisi — her birinin kendi veritabanı ve olay kuyruğu oluşturuldu.",
-            "Fiyat verisi güncellemelerini ve cüzdan bakiyesi değişikliklerini garantili sıralama ve sıfır mesaj kaybı ile servisler arasında yayınlamak için RabbitMQ topic değişimleri (exchanges) kullanıldı.",
-            "Ana tohumdan (master seed) deterministik olarak kullanıcı adresleri türeten özel bir HD Cüzdan hizmeti uygulandı ve bu sayede yeniden ihraç etmeden adres rotasyonu sağlandı.",
-            "Ulusal kimlik doğrulama, banka hesabı bağlama ve canlılık (liveness) tespitini entegre eden 3 aşamalı bir KYC hattı oluşturuldu — her seviye için işlem limitleri sınırlandırıldı."
+            "Dağıtık mutabakat gecikmesini (consensus latency) önleyen, sıralı olay logları ile beslenen **Tek İş parçacıklı Eşleştirme Motoru** tasarlandı.",
+            "KYC, Ödeme, Emir Yönetimi ve Cüzdan servislerini yöneten kapsamlı bir **Mikroservis Ağı** kuruldu.",
+            "Blockchain onaylarını beklemeden anlık sanal mutabakat sağlayan **Dahili Çift Taraflı Defter (Ledger)** yapısı geliştirildi.",
+            "Sıfıra yakın gecikmeyle emirleri kopyalayan RabbitMQ tabanlı **Copy-Trading Mantığı** uygulandı."
         ],
         "decisions": [
             {
-                "title": "Dağıtık aktör modeli yerine tek iş parçacıklı (single-threaded) eşleştirme motoru",
-                "rationale": "Dağıtık (distributed) bir eşleştirme motoru consensus (uzlaşma) gecikmesine yol açabilirdi. Eşleştirme algoritması, tek bir Node.js process'i içinde tek iş parçacığı üzerinden çalışıp harici bir olay kuyruğundan beslenecek şekilde tasarlandı. Bu, dağıtık kilitlemeyi ortadan kaldırdı ve denetim kayıtları için kritik olan deterministik yürütme sırası sağladı."
+                "title": "Olay Güdümlü Bölümleme",
+                "rationale": "RabbitMQ kullanılarak fiyat güncellemeleri ve cüzdan hareketleri servisler arası sorunsuzca yayınlandı."
             },
             {
-                "title": "Blockchain doğrulamalarına güvenmek yerine dahili hesap defteri kullanmak",
-                "rationale": "Her işlem için blok zincirinden onay (on-chain confirmation) beklemek UX (Kullanıcı Deneyimi) açısından kabul edilemezdi. Sanal bakiyeler için dahili çift kayıtlı bir hesap defteri tuttuk ve onaylanmış blokzincir işlemlerini asenkron olarak sonuçlandıran ayrı bir mutabakat süreci işlettik."
+                "title": "Dahili Sanal Defter",
+                "rationale": "Akıcı ve gerçek zamanlı bir ticaret deneyimi için blockchain onay darboğazlarından kaçınıldı."
             }
         ],
         "metrics": [
-            { "value": "30%", "label": "Daha hızlı sipariş eşleşmesi" },
-            { "value": "2×", "label": "Sistem verimliliğinde (throughput) artış" },
-            { "value": "9", "label": "Genişleyen mühendis ekibi" },
-            { "value": "0", "label": "Sıfır mesaj kaybı" }
+            { "value": "%30", "label": "Motor Performansı" },
+            { "value": "2 Kat", "label": "Hacim Artışı" },
+            { "value": "0", "label": "Veri Kaybı" }
         ],
-        "outcome": "Borsa, 12 ay içerisinde 5 işlem modunu destekleyerek kullanıma sunuldu. Olay güdümlü mimari, yüksek volatiliteye sahip piyasa koşulları sırasında bile herhangi bir mesaj kaybı yaşanmadan yoğun işlem hacimlerini kaldırabildi. Platform daha sonra Kopya İşlem (Copy-Trading) özelliğini kapsayacak şekilde genişletildi — bu özellik yalnızca sipariş işleme ile portföy yansıtma mantığı arasındaki net ayrım nedeniyle mümkündü."
+        "diagram": "graph LR\n    U[Kullanıcı] --> AG[API Geçidi]\n    AG --> KYC[KYC Servisi]\n    AG --> OS[Emir Servisi]\n    OS --> RMQ{RabbitMQ Sıralı Log}\n    RMQ --> ME[Eşleştirme Motoru]\n    ME --> L[Dahili Defter]\n    ME --> WS[Cüzdan Servisi]\n    WS --> HDW[HD Cüzdan - Master Seed]\n    L --> TR[Blockchain Takas]\n    ME -.-> |Broadcast| CT[Copy-Trade Motoru]",
+        "outcome": "12 ay içinde 5 farklı ticaret modu sıfır veri kaybıyla yayına alındı. Modüler mimari, yüksek hacimli Copy-Trading özelliklerini desteklemek için kolayca ölçeklendi."
     }
   ]
 }
