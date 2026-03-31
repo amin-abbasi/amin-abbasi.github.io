@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import ProjectCard from './projects/ProjectCard';
 import FallbackSpinner from './FallbackSpinner';
-import { Theme } from '../theme/themes';
-import { Project } from '../types/profile.types';
+import { Theme } from '../app/theme/themes';
+import { Project } from '../app/types/profile.types';
 
 const MainContainer = styled.div`
     position: relative;

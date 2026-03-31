@@ -2,11 +2,11 @@ import { useState, useEffect, useContext, useRef, useCallback } from 'react';
 import Typewriter from 'typewriter-effect';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import AppContext from '../AppContext';
+import AppContext from '../app/AppContext';
 import Social from './Social';
 import FallbackSpinner from './FallbackSpinner';
-import { LuBriefcase, LuDownload, LuMouse } from 'react-icons/lu';
-import { HomeData } from '../types/profile.types';
+import { Briefcase, Download, MousePointer2 } from 'lucide-react';
+import { HomeData } from '../app/types/profile.types';
 import HomeTestimonial from './HomeTestimonial';
 
 // ---------------------------------------------------------------------------
@@ -183,7 +183,7 @@ function Home() {
                             onMouseEnter={e => (e.currentTarget.style.filter = 'brightness(1.15)')}
                             onMouseLeave={e => (e.currentTarget.style.filter = '')}
                         >
-                            <LuBriefcase size={14} />
+                            <Briefcase size={14} />
                             {t('layout:home.viewExperience')}
                         </a>
                         <a
@@ -209,7 +209,7 @@ function Home() {
                             onMouseEnter={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.background = `${accent}10`; }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = `${accent}55`; e.currentTarget.style.background = 'transparent'; }}
                         >
-                            <LuDownload size={14} />
+                            <Download size={14} />
                             {t('layout:home.downloadCv')}
                         </a>
                     </div>
@@ -267,7 +267,7 @@ function Home() {
                             }}>
                             {t('layout:home.scroll', { defaultValue: 'scroll' })}
                         </span>
-                        <LuMouse size={20} stroke={accent} strokeWidth={1.5} />
+                        <MousePointer2 size={20} color={accent} strokeWidth={1.5} />
                     </div>
                 </Fade>
             </div>

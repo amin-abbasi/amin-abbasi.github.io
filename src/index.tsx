@@ -1,10 +1,11 @@
 import { ViteReactSSG } from 'vite-react-ssg';
-
-import './index.css';
-import './i18n';
-
+import './app/styles/index.css';
+import { initI18n } from './core/i18n';
 import reportWebVitals from './reportWebVitals';
-import { routes } from './routes';
+import { routes } from './app/routes';
+
+// Initialize i18n domain
+initI18n();
 
 export const createRoot = ViteReactSSG({ routes }, undefined, {
     getStyleCollector: async () => {

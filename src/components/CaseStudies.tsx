@@ -3,10 +3,10 @@ import { Container } from 'react-bootstrap';
 import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import { LuChevronUp } from 'react-icons/lu';
+import { ChevronUp } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import Header from './Header';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 import DiagramViewer from './DiagramViewer';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
@@ -313,7 +313,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                             </TagRow>
                                         </CaseMeta>
                                         <ExpandIcon $open={isOpen}>
-                                            <LuChevronUp size={14} strokeWidth={2.5} />
+                                            <ChevronUp size={14} strokeWidth={2.5} />
                                         </ExpandIcon>
                                     </CaseHeader>
 

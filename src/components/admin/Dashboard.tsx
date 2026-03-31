@@ -1,7 +1,7 @@
-import Header from 'components/Header';
-import { configs } from 'constants/configs';
+import Header from '../../components/Header';
+import { configs } from '../../app/constants/configs';
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 import { styled, createGlobalStyle } from 'styled-components';
 

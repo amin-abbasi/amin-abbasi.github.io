@@ -1,5 +1,5 @@
 // src/utils/firebase.ts
-import { configs } from "constants/configs";
+import { configs } from "../constants/configs";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics, isSupported } from "firebase/analytics";

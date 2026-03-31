@@ -4,8 +4,8 @@ import { Container } from "react-bootstrap";
 import { doc, setDoc, getDoc, increment } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 
-import { Theme } from "../theme/themes";
-import { fireStore } from "utils/firebase";
+import { Theme } from "../app/theme/themes";
+import { fireStore } from "src/app/utils/firebase";
 
 const FooterWrapper = styled.footer`
   width: 100%;

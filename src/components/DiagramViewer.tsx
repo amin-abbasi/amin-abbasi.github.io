@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 
 const DiagramContainer = styled.div`
   width: 100%;

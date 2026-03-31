@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 
 const MainContainer = styled.div`
     padding: 40px 0 80px;

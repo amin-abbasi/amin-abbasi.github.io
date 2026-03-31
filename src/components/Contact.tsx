@@ -3,10 +3,9 @@ import { Container } from 'react-bootstrap';
 import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
-import { LuLoaderCircle, LuSend } from 'react-icons/lu';
+import { Linkedin, Github, Mail, MapPin, Clock, Loader2, Send } from 'lucide-react';
 import Header from './Header';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -337,35 +336,35 @@ function Contact(props: ContactProps) {
                                 </InfoSubtitle>
 
                                 <ContactItem href={`mailto:${email}`}>
-                                    <ContactIcon><FaEnvelope size={16} /></ContactIcon>
+                                    <ContactIcon><Mail size={16} /></ContactIcon>
                                     <ContactText>
                                         <span>{email}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <ContactItem href={linkedin} target="_blank" rel="noopener noreferrer">
-                                    <ContactIcon><FaLinkedin size={16} /></ContactIcon>
+                                    <ContactIcon><Linkedin size={16} /></ContactIcon>
                                     <ContactText>
                                         <span>{linkedin}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <ContactItem href={github} target="_blank" rel="noopener noreferrer">
-                                    <ContactIcon><FaGithub size={16} /></ContactIcon>
+                                    <ContactIcon><Github size={16} /></ContactIcon>
                                     <ContactText>
                                         <span>{github}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <ContactItem as="div">
-                                    <ContactIcon><FaMapMarkerAlt size={16} /></ContactIcon>
+                                    <ContactIcon><MapPin size={16} /></ContactIcon>
                                     <ContactText>
                                         <span>{t('layout:contact.location')}</span>
                                     </ContactText>
                                 </ContactItem>
 
                                 <ContactItem as="div">
-                                    <ContactIcon><FaClock size={16} /></ContactIcon>
+                                    <ContactIcon><Clock size={16} /></ContactIcon>~
                                     <ContactText>
                                         <span>{t('layout:contact.timezone')}</span>
                                     </ContactText>
@@ -445,12 +444,12 @@ function Contact(props: ContactProps) {
                                     >
                                         {isSending ? (
                                             <>
-                                                <LuLoaderCircle width="14" height="14" style={{ animation: 'spin 1.2s linear infinite' }} />
+                                                <Loader2 size={14} style={{ animation: 'spin 1.2s linear infinite' }} />
                                                 {t('layout:contact.form.sending')}
                                             </>
                                         ) : (
                                             <>
-                                                <LuSend width="14" height="14" />
+                                                <Send size={14} />
                                                 {t('layout:contact.form.submit')}
                                             </>
                                         )}

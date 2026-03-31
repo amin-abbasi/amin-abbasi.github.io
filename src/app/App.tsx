@@ -1,6 +1,6 @@
-import { useMemo, useEffect, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import './App.css';
-import './css/design-system.css';
+import './styles/design-system.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'styled-components';
 import useDarkMode from 'use-dark-mode';
@@ -31,7 +31,7 @@ function App() {
     });
 
     const setLogo = useCallback((show: boolean, initials?: string, size?: number, thickness?: number) => {
-        setBgSettings((prev: typeof bgSettings) => {
+        setBgSettings((prev: any) => {
             const nextInitials = initials ?? prev.initials;
             const nextSize = size ?? prev.logoSize;
             const nextThickness = thickness ?? prev.logoThickness;
@@ -53,7 +53,6 @@ function App() {
         });
     }, []);
 
-    // Memoize the value object to prevent it from changing on each render
     const contextValue = useMemo(() => ({ 
         darkMode,
         background: { ...bgSettings, setLogo }

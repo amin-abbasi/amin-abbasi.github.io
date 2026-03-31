@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { styled } from 'styled-components';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 
 const ToggleButton = styled.button<{ $isTR: boolean }>`
   background: ${(props) => (props.theme as Theme).cardBackground};

@@ -2,10 +2,10 @@
 import { styled } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
-import { Theme } from '../../theme/themes';
-import { Project } from '../../types/profile.types';
+import { Theme } from '../../app/theme/themes';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { trackEvent } from '../../hooks/useAnalytics';
+import { Project } from 'src/app/types/profile.types';
+import { trackEvent } from 'src/app/hooks/useAnalytics';
 
 // ── Container ─────────────────────────────────────────────────────────────────
 const CardContainer = styled.div`

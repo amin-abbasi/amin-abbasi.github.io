@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback, useContext } from 'react';
-import AppContext from '../AppContext';
-import { getMeshForString } from '../utils/3d-mesh-utils';
+import AppContext from '../app/AppContext';
+import { getMeshForString } from '../app/utils/3d-mesh-utils';
 
 const GlobalBackground: React.FC = () => {
     const context = useContext(AppContext);

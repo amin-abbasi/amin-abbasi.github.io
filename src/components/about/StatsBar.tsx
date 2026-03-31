@@ -1,6 +1,6 @@
 import { Fade } from 'react-awesome-reveal';
 import { styled } from 'styled-components';
-import { Theme } from '../../theme/themes';
+import { Theme } from '@app/theme/themes';
 
 const StatsBarContainer = styled.div`
     display: flex;

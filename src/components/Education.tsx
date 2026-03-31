@@ -4,10 +4,10 @@ import { styled, ThemeContext } from 'styled-components';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import { FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa';
+import { GraduationCap, MapPin } from 'lucide-react';
 import Header from './Header';
 import FallbackSpinner from './FallbackSpinner';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 
 const MainContainer = styled.div`
     padding: 40px 0 80px;
@@ -220,14 +220,14 @@ function Education(props: EducationProps) {
                                             <CardHeader>
                                                 <TitleRow>
                                                     <div style={{ flexShrink: 0 }}>
-                                                        <FaGraduationCap size={18} color={theme.accentColor} style={{ opacity: 0.8 }} />
+                                                        <GraduationCap size={18} color={theme.accentColor} style={{ opacity: 0.8 }} />
                                                     </div>
                                                     <DegreeTitle>{item.cardTitle}</DegreeTitle>
                                                 </TitleRow>
                                                 <DateBadge>{item.title}</DateBadge>
                                             </CardHeader>
                                             <Institution>
-                                                <FaMapMarkerAlt size={14} color={theme.accentColor} style={{ opacity: 0.7 }} />
+                                                <MapPin size={14} color={theme.accentColor} style={{ opacity: 0.7 }} />
                                                 <span>{item.cardSubtitle}</span>
                                             </Institution>
                                             {item.bulletPoints && (

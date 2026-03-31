@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Fade } from 'react-awesome-reveal';
-import { LuQuote, LuArrowRight } from 'react-icons/lu';
+import { Quote, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 
 const CardWrapper = styled.div`
     margin-top: 2rem;
@@ -108,7 +108,7 @@ function HomeTestimonial() {
         <Fade direction="up" triggerOnce delay={400}>
             <CardWrapper onClick={() => window.location.href = `/about?expand=${encodeURIComponent(featured.name)}#testimonials`}>
                 <QuoteIcon>
-                    <LuQuote size={40} />
+                    <Quote size={40} />
                 </QuoteIcon>
                 <SummaryText>
                     "{featured.summaryDescription || featured.text.substring(0, 100) + '...'}"
@@ -119,7 +119,7 @@ function HomeTestimonial() {
                         <AuthorRole>{featured.role}</AuthorRole>
                     </AuthorInfo>
                     <JumpLink to={`/about?expand=${encodeURIComponent(featured.name)}#testimonials`}>
-                        Full Review <LuArrowRight size={14} />
+                        Full Review <ArrowRight size={14} />
                     </JumpLink>
                 </AuthorSection>
             </CardWrapper>

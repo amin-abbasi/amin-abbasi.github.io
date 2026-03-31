@@ -3,12 +3,12 @@ import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { LuDownload } from 'react-icons/lu';
+import { Download } from 'lucide-react';
 import ThemeToggler from './ThemeToggler';
 import LanguageSwitcher from './LanguageSwitcher';
-import { Theme } from '../theme/themes';
-import { NavbarData } from '../types/profile.types';
-import { CV_DOWNLOAD_URL } from '../constants/config';
+import { Theme } from '../app/theme/themes';
+import { NavbarData } from '../app/types/profile.types';
+import { CV_DOWNLOAD_URL } from '../app/constants/config';
 
 const styles = {
     logoStyle: {
@@ -145,7 +145,7 @@ function NavBar() {
                                 theme={theme}
                                 onClick={() => setExpanded(false)}
                             >
-                                <LuDownload size={14} strokeWidth={2.5} />
+                                <Download size={14} strokeWidth={2.5} />
                                 {t('layout:buttons.cv')}
                             </CVButton>
                             <ThemeToggler onClick={() => setExpanded(false)} />

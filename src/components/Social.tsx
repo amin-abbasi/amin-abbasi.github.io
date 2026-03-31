@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Theme } from '../theme/themes';
+import { Theme } from '../app/theme/themes';
 import { CSSProperties } from 'react';
 
 const styles = {

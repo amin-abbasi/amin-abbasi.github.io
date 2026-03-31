@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
-import { Theme } from "../theme/themes";
+import { Theme } from "../app/theme/themes";
 
 interface HeaderProps {
   title: string;

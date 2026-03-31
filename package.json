@@ -1,7 +1,7 @@
 {
     "homepage": "https://amin-abbasi.github.io",
     "name": "my-portfolio",
-    "version": "8.7.0",
+    "version": "9.0.0",
     "private": true,
     "scripts": {
         "start": "vite",
@@ -19,6 +19,7 @@
         "gh-pages": "6.3.0",
         "i18next": "25.8.20",
         "i18next-browser-languagedetector": "8.2.1",
+        "lucide-react": "^0.469.0",
         "react": "18.3.1",
         "react-awesome-reveal": "4.3.1",
         "react-bootstrap": "2.10.10",
@@ -49,14 +50,18 @@
         ]
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.2",
         "@types/bcryptjs": "3.0.0",
         "@types/node": "25.5.0",
         "@types/react": "18.3.18",
         "@types/react-dom": "18.3.5",
         "@types/ua-parser-js": "0.7.39",
         "@vitejs/plugin-react": "4.7.0",
+        "jsdom": "^29.0.1",
         "vite": "6.4.1",
         "vite-plugin-static-copy": "3.3.0",
-        "vite-react-ssg": "0.8.4"
+        "vite-react-ssg": "0.8.4",
+        "vitest": "^4.1.2"
     }
 }

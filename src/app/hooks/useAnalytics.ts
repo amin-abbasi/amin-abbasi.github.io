@@ -1,8 +1,8 @@
-import { configs } from 'constants/configs';
+import { configs } from '../constants/configs';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { UAParser } from 'ua-parser-js';
-import { analyticsPromise } from 'utils/firebase';
+import { analyticsPromise } from '../utils/firebase';
 import { logEvent } from 'firebase/analytics';
 
 const getVisitorId = () => {

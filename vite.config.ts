@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
@@ -5,14 +6,26 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.ts",
+  },
   resolve: {
     alias: {
       src: path.resolve(__dirname, "./src"),
-      constants: path.resolve(__dirname, "./src/constants"),
+      "@core": path.resolve(__dirname, "./src/core"),
+      "@shared": path.resolve(__dirname, "./src/shared"),
+      "@features": path.resolve(__dirname, "./src/features"),
+      "@app": path.resolve(__dirname, "./src/app"),
+      constants: path.resolve(__dirname, "./src/app/constants"),
       components: path.resolve(__dirname, "./src/components"),
-      hooks: path.resolve(__dirname, "./src/hooks"),
-      utils: path.resolve(__dirname, "./src/utils"),
+      hooks: path.resolve(__dirname, "./src/app/hooks"),
+      utils: path.resolve(__dirname, "./src/app/utils"),
     },
+  },
+  ssr: {
+    noExternal: ["styled-components", "@emotion/*"],
   },
   plugins: [
     react(),

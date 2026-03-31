@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
-import Dashboard from '../components/admin/Dashboard';
+import Dashboard from '../../components/admin/Dashboard';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import { styled } from 'styled-components';
 import { useTranslation } from 'react-i18next';
