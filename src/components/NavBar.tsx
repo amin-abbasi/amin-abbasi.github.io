@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { styled, ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Download } from 'lucide-react';
-import ThemeToggler from './ThemeToggler';
-import LanguageSwitcher from './LanguageSwitcher';
-import { Theme } from '../app/theme/themes';
-import { NavbarData } from '../app/types/profile.types';
-import { CV_DOWNLOAD_URL } from '../app/constants/config';
+import ThemeToggler from '@components/ThemeToggler';
+import LanguageSwitcher from '@components/LanguageSwitcher';
+import { Theme } from '@app/theme/themes';
+import { NavbarData } from '@domain-types/profile.types';
+import { CV_DOWNLOAD_URL } from '@constants/config';
 
 const styles = {
     logoStyle: {

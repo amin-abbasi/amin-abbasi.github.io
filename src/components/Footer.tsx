@@ -4,8 +4,8 @@ import { Container } from "react-bootstrap";
 import { doc, setDoc, getDoc, increment } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 
-import { Theme } from "../app/theme/themes";
-import { fireStore } from "src/app/utils/firebase";
+import { Theme } from "@app/theme/themes";
+import { fireStore } from "@utils/firebase";
 
 const FooterWrapper = styled.footer`
   width: 100%;
@@ -105,6 +105,12 @@ export default function Footer() {
   const [userCountry, setUserCountry] = useState<string | null>(null);
 
   useEffect(() => {
+    /**
+     * LEAD ARCHITECT NOTE: 
+     * Implementing a lightweight, GDPR-compliant visitor tracking system 
+     * using Firebase Firestore. Logic includes basic deduplication via 
+     * localStorage and IP hash to avoid inflating view counts during development.
+     */
     async function fetchAndUpdateStats() {
       try {
         const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";

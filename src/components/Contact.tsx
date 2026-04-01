@@ -1,11 +1,12 @@
 import { useState, useContext, FormEvent } from 'react';
+import { Head } from 'vite-react-ssg';
 import { Container } from 'react-bootstrap';
 import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { Linkedin, Github, Mail, MapPin, Clock, Loader2, Send } from 'lucide-react';
-import Header from './Header';
-import { Theme } from '../app/theme/themes';
+import Header from '@components/Header';
+import { Theme } from '@app/theme/themes';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -276,6 +277,11 @@ const ErrorMessage = styled.div`
     margin-top: 16px;
 `;
 
+interface SocialLink {
+    network: string;
+    href: string;
+}
+
 interface ContactProps {
     header?: string;
 }
@@ -285,7 +291,8 @@ function Contact(props: ContactProps) {
     const theme = useContext(ThemeContext) as Theme;
     const { header } = props;
 
-    const socialLinks = t('resSocial:social', { returnObjects: true }) as any[];
+    // Fetch localized social data with proper typing
+    const socialLinks = t('resSocial:social', { returnObjects: true }) as SocialLink[];
     const email = socialLinks?.find(s => s.network === 'email')?.href?.replace('mailto:', '') || '';
     const linkedin = socialLinks?.find(s => s.network === 'linkedin')?.href || '';
     const github = socialLinks?.find(s => s.network === 'github')?.href || '';
@@ -322,6 +329,10 @@ function Contact(props: ContactProps) {
 
     return (
         <>
+            <Head>
+                <title>{header || t('layout:sections.contact', { defaultValue: 'Contact' })} | Amin Abbasi</title>
+                <meta name="description" content="Reach out to Amin Abbasi for Lead Backend and Architecture roles." />
+            </Head>
             <Header title={header || t('layout:sections.contact', { defaultValue: 'Contact' })} />
             <MainContainer>
                 <Container fluid style={{ maxWidth: '1200px', padding: '0 24px' }}>

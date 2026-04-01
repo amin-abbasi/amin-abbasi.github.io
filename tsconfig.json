@@ -21,7 +21,14 @@
       "@core/*": ["src/core/*"],
       "@shared/*": ["src/shared/*"],
       "@features/*": ["src/features/*"],
-      "@app/*": ["src/app/*"]
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/app/styles/*"],
+      "@constants/*": ["src/app/constants/*"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/app/hooks/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@domain-types/*": ["src/core/types/*"]
     },
     "types": ["vite/client"]
   },

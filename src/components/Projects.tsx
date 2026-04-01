@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { styled } from 'styled-components';
+import { Head } from 'vite-react-ssg';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import ProjectCard from './projects/ProjectCard';
 import FallbackSpinner from './FallbackSpinner';
 import { Theme } from '../app/theme/themes';
-import { Project } from '../app/types/profile.types';
+import { Project } from '@domain-types/profile.types';
 
 const MainContainer = styled.div`
     position: relative;
@@ -60,6 +61,10 @@ function Projects(props: ProjectsProps) {
 
     return (
         <>
+            <Head>
+                <title>{header || t('layout:sections.projects')} | Amin Abbasi</title>
+                <meta name="description" content="Showcasing high-scale distributed systems and backend architecture projects." />
+            </Head>
             <Header title={header || t('layout:sections.projects')} />
             {data ? (
                 <MainContainer>

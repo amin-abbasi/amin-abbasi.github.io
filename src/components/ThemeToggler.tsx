@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
-import AppContext from "../app/AppContext";
+import AppContext from "@app/AppContext";
 
 const ToggleButton = styled.button<{ $isDark: boolean }>`
   background: ${({ $isDark }) => ($isDark ? "#1e3a8a" : "#87CEEB")};

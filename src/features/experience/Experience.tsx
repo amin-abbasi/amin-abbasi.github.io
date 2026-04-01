@@ -1,11 +1,12 @@
 import { useContext } from 'react';
+import { Head } from 'vite-react-ssg';
 import { ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { ChevronUp } from 'lucide-react';
-import Header from '../../components/Header';
-import FallbackSpinner from '../../components/FallbackSpinner';
+import Header from '@components/Header';
+import FallbackSpinner from '@components/FallbackSpinner';
 import { StyledContainer } from '@shared/components/layout';
 import { ExperienceItem } from '@core/types/resume';
 import { Theme } from '@app/theme/themes';
@@ -24,6 +25,10 @@ const Experience = ({ header }: ExperienceProps) => {
 
     return (
         <>
+            <Head>
+                <title>{header || t('layout:sections.experience')} | Amin Abbasi</title>
+                <meta name="description" content="Detailed professional experience as a Lead Software Engineer and Backend Architect." />
+            </Head>
             <Header title={header || t('layout:sections.experience')} />
             <S.TimelineSection>
                 <StyledContainer>

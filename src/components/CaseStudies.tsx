@@ -1,13 +1,14 @@
 import { useState, useContext } from 'react';
+import { Head } from 'vite-react-ssg';
 import { Container } from 'react-bootstrap';
 import { styled, ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { ChevronUp } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import Header from './Header';
-import { Theme } from '../app/theme/themes';
-import DiagramViewer from './DiagramViewer';
+import Header from '@components/Header';
+import { Theme } from '@app/theme/themes';
+import DiagramViewer from '@components/DiagramViewer';
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 const MainContainer = styled.div`
@@ -289,6 +290,10 @@ export default function CaseStudies(props: CaseStudiesProps) {
 
     return (
         <>
+            <Head>
+                <title>{header || t('layout:sections.caseStudies', { defaultValue: 'Case Studies' })} | Amin Abbasi</title>
+                <meta name="description" content="Deep technical dives into architectural challenges and solutions in Fintech and HealthTech." />
+            </Head>
             <Header title={header || t('layout:sections.caseStudies', { defaultValue: 'Case Studies' })} />
             <MainContainer>
                 <Container fluid style={{ maxWidth: '1100px', padding: '0 24px' }}>

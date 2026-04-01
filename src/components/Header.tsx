@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "styled-components";
-import { Theme } from "../app/theme/themes";
+import { Theme } from "@app/theme/themes";
 
 interface HeaderProps {
   title: string;
@@ -10,15 +10,6 @@ function Header(props: HeaderProps) {
   const { title } = props;
   const theme = useContext(ThemeContext) as Theme;
 
-  useEffect(() => {
-    const originalTitle = document.title;
-    if (title) {
-        document.title = `${title} | Amin Abbasi`;
-    }
-    return () => {
-        document.title = originalTitle;
-    };
-  }, [title]);
 
   return (
     <div

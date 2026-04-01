@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Head } from 'vite-react-ssg';
 import ReactMarkdown from 'react-markdown';
 import { Fade } from 'react-awesome-reveal';
 import { useLocation } from 'react-router-dom';
-import Header from '../../components/Header';
-import FallbackSpinner from '../../components/FallbackSpinner';
-import StatsBar from '../../components/about/StatsBar';
-import AvailabilityCard from '../../components/about/AvailabilityCard';
+import Header from '@components/Header';
+import FallbackSpinner from '@components/FallbackSpinner';
+import StatsBar from '@components/about/StatsBar';
+import AvailabilityCard from '@components/about/AvailabilityCard';
 import { StyledContainer, Grid, Column } from '@shared/components/layout';
 import { TestimonialCard } from '@shared/components/TestimonialCard';
 import { useAboutData } from './hooks/useAboutData';
@@ -42,6 +43,10 @@ const About = ({ header }: AboutProps) => {
 
     return (
         <>
+            <Head>
+                <title>{header || t('layout:sections.about')} | Amin Abbasi</title>
+                <meta name="description" content="Learn more about Amin Abbasi, a Lead Backend Architect with 10+ years of experience." />
+            </Head>
             <Header title={header || t('layout:sections.about')} />
             <S.AboutSection>
                 <StyledContainer>

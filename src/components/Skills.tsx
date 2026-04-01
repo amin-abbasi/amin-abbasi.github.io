@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { Head } from 'vite-react-ssg';
 import { styled, css } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Header from './Header';
-import FallbackSpinner from './FallbackSpinner';
-import { Theme } from '../app/theme/themes';
+import Header from '@components/Header';
+import FallbackSpinner from '@components/FallbackSpinner';
+import { Theme } from '@app/theme/themes';
 
 const MainContainer = styled.div`
     padding: 40px 0 80px;
@@ -256,6 +257,10 @@ function Skills(props: SkillsProps) {
 
     return (
         <>
+            <Head>
+                <title>{header || t('layout:sections.skills')} | Amin Abbasi</title>
+                <meta name="description" content="Technical skill set including Node.js, Distributed Systems, and Pipeline Architecture." />
+            </Head>
             <Header title={header || t('layout:sections.skills')} />
             {data ? (
                 <MainContainer>
@@ -263,8 +268,9 @@ function Skills(props: SkillsProps) {
                         <Fade direction="up" triggerOnce duration={800}>
                             <IntroTextWrapper>
                                 {(() => {
+                                    if (!data?.intro) return null;
                                     const parts = data.intro.split('. ');
-                                    const firstLine = parts[0] + '.';
+                                    const firstLine = parts[0] + (parts[0].endsWith('.') ? '' : '.');
                                     const secondLine = parts.slice(1).join('. ');
                                     return (
                                         <>

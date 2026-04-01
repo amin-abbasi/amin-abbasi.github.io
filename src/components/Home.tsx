@@ -1,14 +1,15 @@
-import { useState, useEffect, useContext, useRef, useCallback } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ViteReactSSG, Head } from 'vite-react-ssg';
 import Typewriter from 'typewriter-effect';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import AppContext from '../app/AppContext';
-import Social from './Social';
-import FallbackSpinner from './FallbackSpinner';
+import AppContext from '@app/AppContext';
+import Social from '@components/Social';
+import FallbackSpinner from '@components/FallbackSpinner';
 import { Briefcase, Download, MousePointer2 } from 'lucide-react';
-import { HomeData } from '../app/types/profile.types';
-import HomeTestimonial from './HomeTestimonial';
-import { CV_DOWNLOAD_URL } from '../app/constants/config';
+import { HomeData } from '@domain-types/profile.types';
+import HomeTestimonial from '@components/HomeTestimonial';
+import { CV_DOWNLOAD_URL } from '@constants/config';
 
 // ---------------------------------------------------------------------------
 //  Blueprint Canvas — animated engineering grid with nodes and connection lines
@@ -45,8 +46,13 @@ function Home() {
 
     const { darkMode } = context;
     const accent = darkMode.value ? '#00a0ff' : '#0070ba';
-    const bgColor = darkMode.value ? '#0d1117' : '#f0f4f8';
 
+    /**
+     * LEAD ARCHITECT NOTE: 
+     * The Home component serves as the primary entry point. 
+     * 3D Core and Blueprint background are managed globally to ensure 
+     * smooth state transitions across routes.
+     */
     return (
         <div
             style={{
@@ -60,6 +66,10 @@ function Home() {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}>
+            <Head>
+                <title>{data.name} | Lead Backend Architect</title>
+                <meta name="description" content={data.roles.join(', ')} />
+            </Head>
             {/* 3D Core is now rendered globally via GlobalBackground.tsx */}
 
             {/* Hero content */}
