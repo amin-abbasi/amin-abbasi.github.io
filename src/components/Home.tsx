@@ -8,6 +8,7 @@ import FallbackSpinner from './FallbackSpinner';
 import { Briefcase, Download, MousePointer2 } from 'lucide-react';
 import { HomeData } from '../app/types/profile.types';
 import HomeTestimonial from './HomeTestimonial';
+import { CV_DOWNLOAD_URL } from '../app/constants/config';
 
 // ---------------------------------------------------------------------------
 //  Blueprint Canvas — animated engineering grid with nodes and connection lines
@@ -187,9 +188,10 @@ function Home() {
                             {t('layout:home.viewExperience')}
                         </a>
                         <a
-                            href="/public/amin-abbasi-cv.pdf"
+                            href={CV_DOWNLOAD_URL}
                             target="_blank"
                             rel="noopener noreferrer"
+                            download="amin-abbasi-cv.pdf"
                             style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
