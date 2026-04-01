@@ -1,27 +1,18 @@
 {
-  "_client-Cntv5Qf5.js": {
-    "file": "assets/client-Cntv5Qf5.js",
-    "name": "client",
-    "isDynamicEntry": true,
-    "imports": [
-      "index.html"
-    ]
-  },
   "index.html": {
-    "file": "assets/app-bbqxQMki.js",
+    "file": "assets/app-DcBzReb3.js",
     "name": "app",
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
-      "_client-Cntv5Qf5.js",
       "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
     ],
     "css": [
-      "assets/app-CJFdwSye.css"
+      "assets/app-CkfOkGKf.css"
     ]
   },
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
-    "file": "assets/styled-components-Dn2EcJI8.js",
+    "file": "assets/styled-components-CgL7bVXv.js",
     "name": "styled-components",
     "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
     "isDynamicEntry": true,
