@@ -8,6 +8,7 @@ import Experience from '../features/experience/Experience';
 import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import CaseStudies from '../components/CaseStudies';
+import NotFound from './pages/NotFound';
 
 export const routes = [
     {
@@ -23,6 +24,7 @@ export const routes = [
             { path: 'projects', element: <Projects /> },
             { path: 'contact', element: <Contact /> },
             { path: 'case-studies', element: <CaseStudies /> },
+            { path: '*', element: <NotFound /> },
         ],
     },
 ];

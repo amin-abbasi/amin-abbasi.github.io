@@ -89,5 +89,10 @@
     "buttons": {
         "cv": "ÖZGEÇMİŞ",
         "downloadCv": "Özgeçmişimi İndir"
+    },
+    "notFound": {
+        "title": "404 — ROTA_BULUNAMADI",
+        "subtitle": "İstenen bileşen veya yol mevcut yapıda bulunmuyor.",
+        "backHome": "SİSTEM.YENİDEN.BAŞLAT (Ana Sayfa)"
     }
 }
