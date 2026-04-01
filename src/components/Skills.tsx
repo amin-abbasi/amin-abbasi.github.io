@@ -99,22 +99,22 @@ const SkillList = styled.div`
     gap: 10px;
 `;
 
-const SkillBadge = styled.div<{ isCore?: boolean }>`
+const SkillBadge = styled.div<{ $isCore?: boolean }>`
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 6px 14px;
-    background: ${(props) => (props.isCore 
+    background: ${(props) => (props.$isCore 
         ? `${(props.theme as Theme).accentColor}18` 
         : `${(props.theme as Theme).accentColor}08`)};
-    border: 1px solid ${(props) => (props.isCore 
+    border: 1px solid ${(props) => (props.$isCore 
         ? '#00f2ff' 
         : `${(props.theme as Theme).accentColor}15`)};
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
 
-    ${(props) => props.isCore && css`
+    ${(props) => props.$isCore && css`
         box-shadow: 0 0 12px rgba(0, 242, 255, 0.25), inset 0 0 4px rgba(0, 242, 255, 0.1);
         
         /* Vibrant glassmorphic lamp indicator */
@@ -143,14 +143,14 @@ const SkillBadge = styled.div<{ isCore?: boolean }>`
     `}
 
     &:hover {
-        background: ${(props) => (props.isCore 
+        background: ${(props) => (props.$isCore 
             ? 'rgba(0, 242, 255, 0.15)' 
             : `${(props.theme as Theme).accentColor}12`)};
-        border-color: ${(props) => (props.isCore 
+        border-color: ${(props) => (props.$isCore 
             ? '#00f2ff' 
             : `${(props.theme as Theme).accentColor}50`)};
         transform: translateY(-2px) scale(1.05);
-        box-shadow: ${(props) => (props.isCore 
+        box-shadow: ${(props) => (props.$isCore 
             ? '0 8px 25px rgba(0, 242, 255, 0.4)' 
             : '0 4px 12px rgba(0, 0, 0, 0.05)')};
         z-index: 10;
@@ -314,7 +314,7 @@ function Skills(props: SkillsProps) {
                                             </CategoryHeader>
                                             <SkillList>
                                                 {sortedItems.map((item) => (
-                                                    <SkillBadge key={item.title} isCore={item.isCore}>
+                                                    <SkillBadge key={item.title} $isCore={item.isCore}>
                                                         {item.icon && <SkillIcon src={item.icon} alt={item.title} />}
                                                         <SkillName>{item.title}</SkillName>
                                                     </SkillBadge>
