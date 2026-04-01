@@ -14,8 +14,16 @@ const styles = {
     logoStyle: {
         width: 40,
         height: 40,
+        objectFit: 'contain' as const,
     },
 };
+
+const StyledNavbar = styled(Navbar)<{ theme: Theme }>`
+    background-color: ${(props) => props.theme.background} !important;
+    border-bottom: 1px solid ${(props) => props.theme.cardBorderColor};
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+`;
 
 const ExternalNavLink = styled.a<{ theme: Theme }>`
     color: ${(props) => props.theme.navbarTheme.linkColor};
@@ -101,7 +109,7 @@ function NavBar() {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <Navbar fixed="top" expand="md" bg={theme.bsPrimaryVariant} variant={theme.bsPrimaryVariant} className="navbar-custom" expanded={expanded}>
+        <StyledNavbar fixed="top" expand="md" variant={theme.bsPrimaryVariant} className="navbar-custom" expanded={expanded} theme={theme}>
             <Container>
                 {data?.logo && (
                     <Navbar.Brand as={NavLink} to="/">
@@ -154,7 +162,7 @@ function NavBar() {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </StyledNavbar>
     );
 }
 
