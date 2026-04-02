@@ -55,6 +55,7 @@ function Home() {
      */
     return (
         <div
+            className="hero-wrapper"
             style={{
                 flex: 1,
                 width: '100%',
@@ -63,8 +64,6 @@ function Home() {
                 backgroundColor: 'transparent',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
             }}>
             <Head>
                 <title>{data.name} | Lead Backend Architect</title>
@@ -82,10 +81,12 @@ function Home() {
                     padding: '0 24px',
                     maxWidth: 760,
                     width: '100%',
+                    margin: '0 auto',
                 }}>
                 <Fade direction="up" triggerOnce duration={800}>
                     {/* Monospace label */}
                     <p
+                        className="system-init-label"
                         style={{
                             fontFamily: 'var(--font-mono)',
                             fontSize: '0.8rem',
@@ -287,14 +288,26 @@ function Home() {
             </div>
 
             <style>{`
+        .hero-wrapper {
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 100px;
+        }
         @keyframes bpBounce {
           0%, 100% { transform: translateX(-50%) translateY(0); }
           50% { transform: translateX(-50%) translateY(8px); }
         }
+        @media (max-width: 991px) {
+          .hero-wrapper {
+            padding-top: 120px;
+          }
+        }
         @media (max-width: 480px) {
+          .hero-wrapper {
+            padding-top: calc(140px + env(safe-area-inset-top)) !important;
+          }
           .hero-content {
-            padding-top: calc(110px + env(safe-area-inset-top)) !important;
-            padding-bottom: 40px;
+            padding-bottom: 80px;
           }
           .hero-cta-group {
             flex-direction: column;
