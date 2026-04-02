@@ -293,7 +293,8 @@ function Home() {
         }
         @media (max-width: 480px) {
           .hero-content {
-            padding-top: calc(85px + env(safe-area-inset-top)) !important;
+            padding-top: calc(110px + env(safe-area-inset-top)) !important;
+            padding-bottom: 40px;
           }
           .hero-cta-group {
             flex-direction: column;
