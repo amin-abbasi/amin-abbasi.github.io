@@ -918,7 +918,7 @@
   "node_modules/vite-react-ssg/dist/shared/vite-react-ssg.CfJcpdWF.mjs": [],
   "node_modules/vite-react-ssg/dist/shared/vite-react-ssg.CjIppNIS.mjs": [],
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": [
-    "/assets/styled-components-DXBupMUv.js"
+    "/assets/styled-components-CLe7o5wg.js"
   ],
   "src/app/App.css": [],
   "src/app/App.tsx": [],
@@ -928,6 +928,7 @@
   "src/app/constants/configs.ts": [],
   "src/app/hooks/useAnalytics.ts": [],
   "src/app/pages/Admin.tsx": [],
+  "src/app/pages/NotFound.tsx": [],
   "src/app/routes.tsx": [],
   "src/app/styles/design-system.css": [],
   "src/app/styles/index.css": [],

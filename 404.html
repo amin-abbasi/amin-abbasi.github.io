@@ -2,51 +2,72 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Page Not Found | Redirecting...</title>
+    <title>404 — Page Not Found</title>
+    <style>
+      body {
+        background-color: #0d1117;
+        color: #e6edf3;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      }
+      .error-code {
+        font-size: 8rem;
+        font-weight: bold;
+        color: #00a0ff;
+        margin: 0;
+        letter-spacing: -0.02em;
+        text-shadow: 0 0 20px rgba(0, 160, 255, 0.2);
+        font-family: "Courier New", Courier, monospace;
+      }
+      .message {
+        font-size: 1.5rem;
+        margin: 1rem 0 2rem;
+        opacity: 0.8;
+      }
+      .loader {
+        border: 2px solid rgba(0, 160, 255, 0.1);
+        border-top: 2px solid #00a0ff;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .redirect-text {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #8b949e;
+        letter-spacing: 0.1em;
+      }
+    </style>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafrex/spa-github-pages
+      // SPA for GitHub Pages - Redirecting to index with route parameters
       var segmentCount = 0;
-
       var l = window.location;
       l.replace(
-        l.protocol +
-          "//" +
-          l.hostname +
-          (l.port ? ":" + l.port : "") +
-          l.pathname
-            .split("/")
-            .slice(0, 1 + segmentCount)
-            .join("/") +
-          "/?p=/" +
-          l.pathname
-            .slice(1)
-            .split("/")
-            .slice(segmentCount)
-            .join("/")
-            .replace(/&/g, "~and~") +
-          (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
-          l.hash,
+        l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") +
+        l.pathname.split("/").slice(0, 1 + segmentCount).join("/") +
+        "/?p=/" + l.pathname.slice(1).split("/").slice(segmentCount).join("/").replace(/&/g, "~and~") +
+        (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+        l.hash
       );
     </script>
   </head>
   <body>
-    <!--
-      The file must be > 512 bytes for Internet Explorer to not show its own custom 404 error page.
-      This dummy text ensures the file size constraint is met and it gracefully handles
-      redirections to the index fallback on GitHub pages!
-      
-      We are currently redirecting your request to the single-page application router...
-      The process should take less than a second, and your app will load momentarily.
-      
-      GitHub Pages doesn't natively support dynamic HTML5 PushState routing natively. 
-      This page catches the initial 404, transforms the requested nested path (e.g. /admin) 
-      into query parameters (e.g. /?p=/admin), and redirects to the index.html page. 
-      Then, the index script processes those query parameters and uses history.replaceState()
-      to restore the URL cleanly to /admin, letting React Router take over naturally!
-      
-      Redirecting... Please wait!
-    -->
+    <div class="error-code">404</div>
+    <div class="message">PAGE_NOT_FOUND</div>
+    <div class="loader"></div>
+    <div class="redirect-text">INITIALIZING_REDIRECT...</div>
   </body>
 </html>
