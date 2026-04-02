@@ -113,6 +113,7 @@ const SkillBadge = styled.div<{ $isCore?: boolean }>`
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
+    margin-bottom: 4px;
 
     ${(props) => props.$isCore && css`
         box-shadow: 0 0 12px rgba(0, 242, 255, 0.25), inset 0 0 4px rgba(0, 242, 255, 0.1);
@@ -182,11 +183,22 @@ const ModuleID = styled.div`
 // ── Filter System ─────────────────────────────────────────────────────────────
 const FilterContainer = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 12px;
     margin-bottom: 20px;
     padding-bottom: 24px;
     border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}40;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    @media (min-width: 601px) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
 `;
 
 const FilterButton = styled.button<{ $active: boolean }>`

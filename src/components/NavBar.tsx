@@ -109,7 +109,7 @@ function NavBar() {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <StyledNavbar fixed="top" expand="md" variant={theme.bsPrimaryVariant} className="navbar-custom" expanded={expanded} theme={theme}>
+        <StyledNavbar fixed="top" expand="lg" variant={theme.bsPrimaryVariant} className="navbar-custom" expanded={expanded} theme={theme}>
             <Container>
                 {data?.logo && (
                     <Navbar.Brand as={NavLink} to="/">
@@ -144,7 +144,7 @@ function NavBar() {
                                     </InternalNavLink>
                                 ),
                             )}
-                        <div className="d-flex align-items-center" style={{ gap: '0.5rem', height: '100%' }}>
+                        <div className="navbar-controls d-flex align-items-center">
                             <CVButton
                                 href={CV_DOWNLOAD_URL}
                                 download="Amin_Abbasi_CV.pdf"
@@ -156,12 +156,37 @@ function NavBar() {
                                 <Download size={14} strokeWidth={2.5} />
                                 {t('layout:buttons.cv')}
                             </CVButton>
-                            <ThemeToggler onClick={() => setExpanded(false)} />
-                            <LanguageSwitcher />
+                            <div className="d-flex align-items-center" style={{ gap: '0.5rem' }}>
+                                <ThemeToggler onClick={() => setExpanded(false)} />
+                                <LanguageSwitcher />
+                            </div>
                         </div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+            <style>{`
+                .navbar-controls {
+                    gap: 0.5rem;
+                    height: 100%;
+                }
+                @media (max-width: 991px) {
+                    .navbar-controls {
+                        margin-top: 1.5rem;
+                        padding-top: 1rem;
+                        border-top: 1px solid ${theme.cardBorderColor}40;
+                        width: 100%;
+                        justify-content: center;
+                        gap: 1.5rem;
+                        flex-wrap: wrap;
+                    }
+                    .navbar__link {
+                        padding: 12px 0;
+                        width: 100%;
+                        text-align: center;
+                        border-bottom: 1px solid ${theme.cardBorderColor}20;
+                    }
+                }
+            `}</style>
         </StyledNavbar>
     );
 }

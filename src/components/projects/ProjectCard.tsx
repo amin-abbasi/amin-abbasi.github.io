@@ -4,8 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import { Theme } from '../../app/theme/themes';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { Project } from 'src/app/types/profile.types';
-import { trackEvent } from 'src/app/hooks/useAnalytics';
+import { Project } from '@domain-types/profile.types';
+import { trackEvent } from '../../app/hooks/useAnalytics';
 
 // ── Container ─────────────────────────────────────────────────────────────────
 const CardContainer = styled.div`
@@ -157,7 +157,7 @@ const ProjectDescription = styled.div`
 const TagContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
     margin-bottom: 18px;
 `;
 
@@ -170,6 +170,7 @@ const Tag = styled.span`
     background: ${(props) => (props.theme as Theme).accentColor}10;
     color: ${(props) => (props.theme as Theme).accentColor};
     border: 1px solid ${(props) => (props.theme as Theme).accentColor}20;
+    margin-bottom: 4px;
 `;
 
 // ── Links ─────────────────────────────────────────────────────────────────────
@@ -259,14 +260,14 @@ function ProjectCard(props: ProjectCardProps) {
 
                 {project.tags && project.tags.length > 0 && (
                     <TagContainer>
-                        {project.tags.map((tag) => (
+                        {project.tags.map((tag: string) => (
                             <Tag key={tag}>{tag}</Tag>
                         ))}
                     </TagContainer>
                 )}
 
                 <LinkContainer>
-                    {project.links?.map((link) =>
+                    {project.links?.map((link: { text: string; href: string }) =>
                         link.text.toLowerCase() === 'github' ? (
                             <ActionButton 
                                 key={link.href} 

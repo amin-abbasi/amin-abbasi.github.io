@@ -166,6 +166,7 @@ function Home() {
 
                     {/* CTA Buttons */}
                     <div
+                        className="hero-cta-group"
                         style={{
                             display: 'flex',
                             gap: 12,
@@ -288,6 +289,17 @@ function Home() {
         @keyframes bpBounce {
           0%, 100% { transform: translateX(-50%) translateY(0); }
           50% { transform: translateX(-50%) translateY(8px); }
+        }
+        @media (max-width: 480px) {
+          .hero-cta-group {
+            flex-direction: column;
+            width: 100%;
+            padding: 0 10%;
+          }
+          .hero-cta-group > a {
+            width: 100%;
+            justify-content: center;
+          }
         }
       `}</style>
         </div>

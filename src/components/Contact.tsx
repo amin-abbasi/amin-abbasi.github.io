@@ -393,7 +393,7 @@ function Contact(props: ContactProps) {
                                 <InfoTitle style={{ marginBottom: '1.5rem' }}>{t('layout:contact.sendTitle')}</InfoTitle>
 
                                 <form onSubmit={handleSubmit}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
                                         <FormGroup>
                                             <FormLabel htmlFor="contact-name">{t('layout:contact.form.name')}</FormLabel>
                                             <InputField

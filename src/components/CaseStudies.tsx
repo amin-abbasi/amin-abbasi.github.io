@@ -103,18 +103,19 @@ const CaseSubtitle = styled.p`
 const TagRow = styled.div`
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     margin-top: 12px;
 `;
 
 const Tag = styled.span`
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    padding: 1px 6px;
+    padding: 2px 8px;
     border-radius: 4px;
     background: ${(props) => (props.theme as Theme).accentColor}0D;
     color: ${(props) => (props.theme as Theme).accentColor};
     border: 1px solid ${(props) => (props.theme as Theme).accentColor}20;
+    margin-bottom: 4px;
 `;
 
 const ExpandIcon = styled.span<{ $open: boolean }>`
