@@ -31,10 +31,10 @@ export const TimelineTrack = styled.div`
 
 export const EntryWrapper = styled.div`
     position: relative;
-    margin-bottom: 120px;
+    margin-bottom: 72px;
 
     @media (max-width: 768px) {
-        margin-bottom: 80px;
+        margin-bottom: 56px;
     }
 
     &:last-child {
@@ -65,6 +65,7 @@ export const Card = styled.div`
     border-radius: 8px;
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 0.5rem;
 
     &::before,
     &::after {
@@ -131,6 +132,30 @@ export const SubtitleRow = styled.div`
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
+
+    .badges-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .promotion-badge {
+        order: -1;
+    }
+
+    .work-type-badge {
+        order: 0;
+    }
+
+    @media (max-width: 768px) {
+        .promotion-badge {
+            order: 1;
+        }
+        .work-type-badge {
+            order: 0;
+        }
+    }
 `;
 
 export const CompanyName = styled.span`
@@ -145,19 +170,34 @@ export const CompanyName = styled.span`
     }
 `;
 
+export const WorkTypeBadge = styled.span`
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    background: transparent;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+`;
+
 export const BulletList = styled.ul`
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
 
     li {
         position: relative;
         padding-inline-start: 1.75rem;
         font-size: 0.95rem;
-        line-height: 1.7;
+        line-height: 1.2;
         color: ${(props) => (props.theme as Theme).color}DD;
         text-align: start;
 
@@ -202,29 +242,23 @@ export const TechTag = styled.span`
 export const PromotionBanner = styled.div`
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin: -100px 0 40px;
     position: relative;
     z-index: 5;
-
-    @media (max-width: 768px) {
-        margin: -50px 0 25px;
-    }
 `;
 
 export const PromotionPill = styled.div`
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 1.2rem;
+    gap: 0.4rem;
+    padding: 0.2rem 0.8rem;
     background: ${(props) => (props.theme as Theme).accentColor}1A;
     border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
     border-radius: 50px;
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.64rem;
     font-weight: 700;
     color: ${(props) => (props.theme as Theme).accentColor};
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
 `;
 

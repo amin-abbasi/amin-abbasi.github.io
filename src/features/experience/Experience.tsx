@@ -48,15 +48,6 @@ const Experience = ({ header }: ExperienceProps) => {
 
                                     <S.TrackDot $accent={theme.accentColor} />
 
-                                    {item.promotionNote && (
-                                        <S.PromotionBanner>
-                                            <S.PromotionPill>
-                                                <ChevronUp size={12} strokeWidth={2.5} />
-                                                {item.promotionNote}
-                                            </S.PromotionPill>
-                                        </S.PromotionBanner>
-                                    )}
-
                                     <S.Card>
                                         <S.CardHeader>
                                             <S.JobTitle>{item.title}</S.JobTitle>
@@ -65,11 +56,24 @@ const Experience = ({ header }: ExperienceProps) => {
                                         
                                         <S.SubtitleRow>
                                             <S.CompanyName>{item.subtitle}</S.CompanyName>
-                                            {item.workType && (
-                                                <span className="badge rounded-pill border border-primary-subtle text-primary bg-transparent py-1 px-2" style={{ fontSize: '0.64rem', fontFamily: 'var(--font-mono)' }}>
-                                                    {item.workType}
-                                                </span>
-                                            )}
+                                            
+                                            {/* Badges container */}
+                                            <div className="badges-container">
+                                                {item.promotionNote && (
+                                                    <S.PromotionBanner className="promotion-badge">
+                                                        <S.PromotionPill>
+                                                            <ChevronUp size={12} strokeWidth={2.5} />
+                                                            {item.promotionNote}
+                                                        </S.PromotionPill>
+                                                    </S.PromotionBanner>
+                                                )}
+                                                
+                                                {item.workType && (
+                                                    <S.WorkTypeBadge className="work-type-badge">
+                                                        {item.workType}
+                                                    </S.WorkTypeBadge>
+                                                )}
+                                            </div>
                                         </S.SubtitleRow>
 
                                         <S.BulletList>

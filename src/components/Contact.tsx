@@ -67,7 +67,7 @@ const InfoTitle = styled.h3`
 
 const InfoSubtitle = styled.p`
     font-size: 0.9rem;
-    line-height: 1.7;
+    line-height: 1.6;
     color: ${(props) => (props.theme as Theme).color}BB;
     margin-bottom: 0.5rem;
     text-align: justify;
