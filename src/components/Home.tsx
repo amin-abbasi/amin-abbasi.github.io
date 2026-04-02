@@ -74,6 +74,7 @@ function Home() {
 
             {/* Hero content */}
             <div
+                className="hero-content"
                 style={{
                     position: 'relative',
                     zIndex: 2,
@@ -291,6 +292,9 @@ function Home() {
           50% { transform: translateX(-50%) translateY(8px); }
         }
         @media (max-width: 480px) {
+          .hero-content {
+            padding-top: calc(85px + env(safe-area-inset-top)) !important;
+          }
           .hero-cta-group {
             flex-direction: column;
             width: 100%;
