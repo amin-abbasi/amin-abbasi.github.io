@@ -111,15 +111,10 @@ function Home() {
                     <Social />
 
                     {/* Social Proof: Featured Testimonial */}
-                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '0 12px' }}>
-                        <HomeTestimonial />
-                    </div>
+                    {/* <div style={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '0 12px', marginTop: '2rem' }}> */}
+                    {/* <HomeTestimonial /> */}
+                    {/* </div> */}
 
-                    {/* Blueprint scroll indicator */}
-                    <S.ScrollIndicator accent={accent}>
-                        <span>{t('layout:home.scroll', { defaultValue: 'scroll' })}</span>
-                        <MousePointer2 size={20} color={accent} strokeWidth={1.5} />
-                    </S.ScrollIndicator>
                 </Fade>
             </S.HeroContent>
         </S.HeroWrapper>
