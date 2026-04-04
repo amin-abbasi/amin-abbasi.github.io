@@ -39,7 +39,7 @@ export default defineConfig({
     },
   },
   ssr: {
-    noExternal: ["styled-components", "@emotion/*"],
+    noExternal: ["styled-components", "react-awesome-reveal", "@emotion/react", "@emotion/styled"],
   },
   plugins: [
     react(),
