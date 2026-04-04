@@ -11,6 +11,12 @@
   --grid-line: rgba(0, 160, 255, 0.1);
   --blueprint-line: rgba(255, 255, 255, 0.05);
 
+  /* Blueprint Monochromatic Scale (Dark) */
+  --blueprint-cyan-primary: #00a0ff;
+  --blueprint-cyan-secondary: #007cc2;
+  --blueprint-cyan-dark: #005a8e;
+  --blueprint-cyan-faded: rgba(0, 160, 255, 0.12);
+
   /* Typography */
   --font-main: "Outfit", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -33,6 +39,12 @@
   --text-secondary: #586069;
   --grid-line: rgba(0, 112, 186, 0.1);
   --blueprint-line: rgba(0, 0, 0, 0.05);
+
+  /* Blueprint Monochromatic Scale (Light) */
+  --blueprint-cyan-primary: #0070ba;
+  --blueprint-cyan-secondary: #005a8e;
+  --blueprint-cyan-dark: #003a5c;
+  --blueprint-cyan-faded: rgba(0, 112, 186, 0.12);
 }
 
 body {

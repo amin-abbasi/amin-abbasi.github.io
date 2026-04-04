@@ -22,7 +22,13 @@
         "approach": "// Approach & Design",
         "decisions": "// Key Architecture Decisions",
         "metrics": "// Measurable Outcomes",
-        "outcome": "// What We Shipped"
+        "outcome": "// What We Shipped",
+        "terminal": {
+            "title": "Terminal Preview",
+            "system": "System.log",
+            "status": "Ready",
+            "executing": "Executing..."
+        }
     },
     "footer": {
         "globalViews": "Global Views",
@@ -39,6 +45,19 @@
         "topCountries": "Top Countries",
         "topBrowsers": "Top Browsers",
         "topOs": "Top OS",
+        "traffic": "Traffic (Last 14 Days)",
+        "pages": "Content Distribution",
+        "sources": "Referrer Sources",
+        "metrics": {
+            "hits": "Total Hits",
+            "uniques": "Uniques",
+            "countries": "Countries",
+            "topPath": "Top Path"
+        },
+        "charts": {
+            "views": "Views",
+            "uniques": "Uniques"
+        },
         "login": {
             "restrictedAccess": "RESTRICTED ACCESS",
             "invalidPassword": "Invalid password",

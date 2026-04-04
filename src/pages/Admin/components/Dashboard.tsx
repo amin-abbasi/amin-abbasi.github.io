@@ -1,13 +1,8 @@
-import Header from 'src/components/Header';
 import { configs } from '@constants/configs';
 import { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
-import { styled, createGlobalStyle } from 'styled-components';
-
-// Hide global footer on the dashboard to save space
-const HideFooterStyle = createGlobalStyle`
-  footer { display: none !important; }
-`;
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area } from 'recharts';
+import { styled } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const DashboardContainer = styled.div`
   padding: 1rem;
@@ -15,6 +10,7 @@ const DashboardContainer = styled.div`
   min-height: calc(100vh - 4rem);
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 `;
 
 const StatCard = styled.div`
@@ -52,7 +48,7 @@ const StatCard = styled.div`
   p {
     font-size: 0.65rem;
     opacity: 0.7;
-    margin: 0;
+    margin: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -64,7 +60,7 @@ const ChartWrapper = styled.div<{ $height?: string }>`
   padding: 0.75rem;
   border-radius: 10px;
   margin-bottom: 0.5rem;
-  height: ${props => props.$height || '200px'};
+  height: ${props => props.$height || '300px'};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
@@ -81,7 +77,14 @@ const ChartWrapper = styled.div<{ $height?: string }>`
   }
 `;
 
-const COLORS = ['#00a0ff', '#00ffcc', '#ffcc00', '#ff3366', '#9933ff', '#66ff33', '#33ccff'];
+const BLUEPRINT_COLORS = [
+  '#00d1ff', // Vibrant Cyan
+  '#2ba878ff', // Green
+  '#bd00ff', // Cyber Purple
+  '#ff0055', // Neon Pink
+  '#ff9900', // Warning Orange
+  '#3366ff'  // Deep Sea Blue
+];
 
 interface PageView {
   id: string;
@@ -95,6 +98,7 @@ interface PageView {
 }
 
 export default function Dashboard() {
+  const { t } = useTranslation(['layout']);
   const [data, setData] = useState<PageView[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -147,7 +151,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <DashboardContainer>
-        <h3 className="text-center mt-5" style={{ color: '#00a0ff', fontSize: '1rem' }}>INITIALIZING ENGINE...</h3>
+        <h3 className="text-center mt-5" style={{ color: 'var(--blueprint-cyan-primary)', fontSize: '1rem', fontFamily: 'var(--font-mono)' }}>INITIALIZING_ENGINE...</h3>
       </DashboardContainer>
     );
   }
@@ -222,86 +226,137 @@ export default function Dashboard() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
         <StatCard>
-          <p>Total Hits</p>
+          <p>{t('layout:dashboard.metrics.hits')}</p>
           <h2>{totalViews}</h2>
         </StatCard>
         <StatCard>
-          <p>Uniques</p>
+          <p>{t('layout:dashboard.metrics.uniques')}</p>
           <h2>{uniqueVisitors}</h2>
         </StatCard>
         <StatCard>
-          <p>Countries</p>
+          <p>{t('layout:dashboard.metrics.countries')}</p>
           <h2>{totalCountries}</h2>
         </StatCard>
         <StatCard>
-          <p>Top Path</p>
+          <p>{t('layout:dashboard.metrics.topPath')}</p>
           <h2>{pagesData[0]?.name || '/'}</h2>
         </StatCard>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem', marginTop: '1rem' }}>
         <ChartWrapper $height="250px">
-          <h4>Traffic (Last 14 Days)</h4>
+          <h4>{t('layout:dashboard.traffic')}</h4>
           <ResponsiveContainer width="100%" height="90%">
-            <LineChart data={dailyTraffic}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.05} />
-              <XAxis dataKey="name" stroke="#8b949e" fontSize={9} />
-              <YAxis stroke="#8b949e" fontSize={9} />
+            <AreaChart data={dailyTraffic}>
+              <defs>
+                <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="var(--blueprint-cyan-primary)" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="var(--blueprint-cyan-primary)" stopOpacity={0}/>
+                </linearGradient>
+                <linearGradient id="colorUniques" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="var(--blueprint-cyan-secondary)" stopOpacity={0.2}/>
+                  <stop offset="95%" stopColor="var(--blueprint-cyan-secondary)" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--grid-line)" opacity={0.5} />
+              <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={9} tick={{ fontFamily: 'var(--font-mono)' }} />
+              <YAxis stroke="var(--text-secondary)" fontSize={9} tick={{ fontFamily: 'var(--font-mono)' }} />
               <Tooltip 
-                  contentStyle={{ backgroundColor: '#0d1117', border: '1px solid #30363d', fontSize: '0.7rem' }}
+                  contentStyle={{ 
+                    backgroundColor: 'var(--bg-blueprint)', 
+                    border: '1px solid var(--accent-color)', 
+                    fontSize: '0.7rem',
+                    fontFamily: 'var(--font-mono)',
+                    borderRadius: '4px'
+                  }}
+                  itemStyle={{ color: 'var(--text-primary)' }}
               />
-              <Legend iconSize={8} wrapperStyle={{ fontSize: '0.65rem' }} />
-              <Line type="monotone" dataKey="views" name="Views" stroke="#00a0ff" strokeWidth={2} dot={{ r: 2 }} />
-              <Line type="monotone" dataKey="uniques" name="Uniques" stroke="#00ffcc" strokeWidth={1.5} dot={{ r: 1.5 }} />
-            </LineChart>
+              <Legend iconSize={8} wrapperStyle={{ fontSize: '0.65rem', fontFamily: 'var(--font-mono)' }} />
+              <Area type="monotone" dataKey="views" name={t('layout:dashboard.charts.views')} stroke="var(--blueprint-cyan-primary)" strokeWidth={2} fillOpacity={1} fill="url(#colorViews)" />
+              <Area type="monotone" dataKey="uniques" name={t('layout:dashboard.charts.uniques')} stroke="var(--blueprint-cyan-secondary)" strokeWidth={1.5} fillOpacity={1} fill="url(#colorUniques)" />
+            </AreaChart>
           </ResponsiveContainer>
         </ChartWrapper>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '0.5rem', marginTop: '1rem' }}>
-        <ChartWrapper $height="180px">
-          <h4>Pages</h4>
+        <ChartWrapper $height="250px">
+          <h4>{t('layout:dashboard.pages')}</h4>
           <ResponsiveContainer width="100%" height="90%">
             <BarChart data={pagesData} layout="vertical">
+              <defs>
+                <linearGradient id="colorBar" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="var(--blueprint-cyan-primary)" />
+                  <stop offset="100%" stopColor="var(--blueprint-cyan-secondary)" />
+                </linearGradient>
+              </defs>
               <XAxis type="number" hide />
-              <YAxis dataKey="name" type="category" stroke="#8b949e" fontSize={8} width={50} />
-              <Tooltip />
-              <Bar dataKey="views" fill="#00a0ff" radius={[0, 2, 2, 0]} />
+              <YAxis dataKey="name" type="category" stroke="var(--text-secondary)" fontSize={8} width={50} tick={{ fontFamily: 'var(--font-mono)' }} />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: 'var(--bg-blueprint)', 
+                  border: '1px solid var(--accent-color)', 
+                  fontSize: '0.7rem',
+                  fontFamily: 'var(--font-mono)'
+                }} 
+              />
+              <Bar dataKey="views" fill="url(#colorBar)" radius={[0, 2, 2, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartWrapper>
 
-        <ChartWrapper $height="180px">
-          <h4>Sources</h4>
+        <ChartWrapper $height="250px">
+          <h4>{t('layout:dashboard.sources')}</h4>
           <ResponsiveContainer width="100%" height="90%">
             <PieChart>
               <Pie
                 data={referrerData}
                 cx="50%" cy="50%"
-                outerRadius={50}
-                innerRadius={30}
+                outerRadius={65}
+                innerRadius={45}
+                paddingAngle={5}
                 dataKey="value"
-                label={({ name }) => (name || '').substring(0, 6)}
-                style={{ fontSize: '8px' }}
+                style={{ fontFamily: 'var(--font-mono)' }}
               >
                 {referrerData.map((_, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={BLUEPRINT_COLORS[index % BLUEPRINT_COLORS.length]} 
+                    stroke="var(--bg-blueprint)" 
+                    strokeWidth={2}
+                  />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: 'var(--bg-blueprint)', 
+                  border: '1px solid var(--accent-color)', 
+                  fontSize: '0.7rem',
+                  fontFamily: 'var(--font-mono)',
+                  borderRadius: '4px'
+                }} 
+              />
+              <Legend verticalAlign="bottom" height={36} iconSize={10} wrapperStyle={{ fontSize: '10px', fontFamily: 'var(--font-mono)', marginTop: '10px' }} />
             </PieChart>
           </ResponsiveContainer>
         </ChartWrapper>
 
-        <ChartWrapper $height="180px">
-            <h4>Top Countries</h4>
+        <ChartWrapper $height="250px">
+            <h4>{t('layout:dashboard.topCountries')}</h4>
             <ResponsiveContainer width="100%" height="90%">
                 <BarChart data={countryData}>
-                    <CartesianGrid strokeDasharray="3 3" opacity={0.05} />
-                    <XAxis dataKey="name" stroke="#8b949e" fontSize={8} />
-                    <YAxis stroke="#8b949e" fontSize={8} />
-                    <Tooltip />
-                    <Bar dataKey="value" fill="#9933ff" radius={[2, 2, 0, 0]} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--grid-line)" opacity={0.5} />
+                    <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={8} tick={{ fontFamily: 'var(--font-mono)' }} />
+                    <YAxis stroke="var(--text-secondary)" fontSize={8} tick={{ fontFamily: 'var(--font-mono)' }} />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'var(--bg-blueprint)', 
+                        border: '1px solid var(--accent-color)', 
+                        fontSize: '0.7rem',
+                        fontFamily: 'var(--font-mono)'
+                      }} 
+                    />
+                    <Bar dataKey="value" fill="var(--blueprint-cyan-primary)" radius={[2, 2, 0, 0]} />
                 </BarChart>
             </ResponsiveContainer>
         </ChartWrapper>

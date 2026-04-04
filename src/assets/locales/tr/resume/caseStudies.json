@@ -30,7 +30,9 @@
             { "value": "0ms", "label": "UI Gecikmesi (Internal)" }
         ],
         "diagram": "sequenceDiagram\n    participant B as Backend (Node.js/TS)\n    participant D as DAO (Özel ORM)\n    participant A as ArangoDB\n    participant W as WebSocket (SDUI Loop)\n    participant F as Dinamik React Frontend\n\n    F->>W: İlk Bağlantı (Bölüm ID)\n    W->>B: Kullanıcı Oturumu Doğrulama\n    B->>D: queryProductionGraph()\n    D->>A: AQL Sorgu Çalıştırma\n    A-->>D: Graf Sonucu\n    D-->>B: Varlık Eşleme\n    B->>B: UI Tanımı Oluştur (JSON)\n    B->>W: Modül Tanımlarını + Veriyi Gönder\n    W->>F: Bileşenleri Oluştur (Fragments)",
-        "outcome": "9 departman dijitalleştirildi ve frontend operasyon yükü %80 azaltıldı. Sistem, tüm iş mantığının backend-side ve denetlenebilir kalmasıyla IATF 16949 sertifikasyon sürecinin omurgası oldu."
+        "outcome": "9 departman dijitalleştirildi ve frontend operasyon yükü %80 azaltıldı. Sistem, tüm iş mantığının backend-side ve denetlenebilir kalmasıyla IATF 16949 sertifikasyon sürecinin omurgası oldu.",
+        "previewSnippet": "const dao = new ArangoDAO(config);\nconst graph = await dao.queryGraph(departmentId);\nconst ui = graph.map(SDUI.fragment);\nreturn { \n  type: 'SOCKET_PUSH', \n  payload: ui \n};",
+        "previewLanguage": "typescript"
     },
     {
         "id": "fhir-actimi",
@@ -61,7 +63,9 @@
             { "value": "300+", "label": "Bağlı IoT Cihazı" }
         ],
         "diagram": "graph LR\n    subgraph Cihazlar [IoT Cihazları]\n        HW1[Tablet]\n        HW2[EKG]\n        HW3[Tansiyon]\n    end\n    Cihazlar --> IGW[IoT Geçidi]\n    IGW --> |MQTT| FS[FHIR Sunucu]\n    FS --> DB[(PostgreSQL)]\n    DB --> CL[Panel]\n    MDM[MDM Servisi] -.-> |GDPR Sıfırlama| HW1",
-        "outcome": "Klinik sorgu gecikmesi 800ms'den 560ms'nin altına indirildi. Sistem, üç ayrı GDPR denetiminden başarıyla geçerek Almanya genelinde ölçeklendi."
+        "outcome": "Klinik sorgu gecikmesi 800ms'den 560ms'nin altına indirildi. Sistem, üç ayrı GDPR denetiminden başarıyla geçerek Almanya genelinde ölçeklendi.",
+        "previewSnippet": "{\n  \"resourceType\": \"Observation\",\n  \"status\": \"final\",\n  \"code\": {\n    \"coding\": [{ \"code\": \"8867-4\" }]\n  },\n  \"subject\": { \"reference\": \"Patient/S1\" },\n  \"valueQuantity\": { \"value\": 72, \"unit\": \"bpm\" }\n}",
+        "previewLanguage": "json"
     },
     {
         "id": "trading-engine-digialpha",
@@ -92,7 +96,9 @@
             { "value": "0", "label": "Veri Kaybı" }
         ],
         "diagram": "graph LR\n    U[Kullanıcı] --> AG[API Geçidi]\n    AG --> KYC[KYC Servisi]\n    AG --> OS[Emir Servisi]\n    OS --> RMQ{RabbitMQ Sıralı Log}\n    RMQ --> ME[Eşleştirme Motoru]\n    ME --> L[Dahili Defter]\n    ME --> WS[Cüzdan Servisi]\n    WS --> HDW[HD Cüzdan - Master Seed]\n    L --> TR[Blockchain Takas]\n    ME -.-> |Broadcast| CT[Copy-Trade Motoru]",
-        "outcome": "12 ay içinde 5 farklı ticaret modu sıfır veri kaybıyla yayına alındı. Modüler mimari, yüksek hacimli Copy-Trading özelliklerini desteklemek için kolayca ölçeklendi."
+        "outcome": "12 ay içinde 5 farklı ticaret modu sıfır veri kaybıyla yayına alındı. Modüler mimari, yüksek hacimli Copy-Trading özelliklerini desteklemek için kolayca ölçeklendi.",
+        "previewSnippet": "while (orderBook.hasLiquidity) {\n  const match = matchEngine.match(incomingOrder);\n  if (!match) break;\n  \n  ledger.settle(match);\n  rmq.broadcast('TRADE_EXECUTED', match);\n}",
+        "previewLanguage": "typescript"
     }
   ]
 }

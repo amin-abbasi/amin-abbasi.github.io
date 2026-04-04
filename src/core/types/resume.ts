@@ -102,6 +102,8 @@ export interface CaseStudy {
   metrics: Metric[];
   outcome: string;
   diagram?: string;
+  previewSnippet?: string;
+  previewLanguage?: string;
 }
 
 export interface HomeData {

@@ -1,5 +1,5 @@
 // src/pages/CaseStudies/CaseStudies.tsx
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useCallback } from 'react';
 import { Head } from 'vite-react-ssg';
 import { ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
@@ -10,6 +10,7 @@ import { StyledContainer } from '@components/shared/layout';
 import { Theme } from '@app/theme/themes';
 import { CaseStudy } from '@core/types/resume';
 import DiagramViewer from './components/DiagramViewer';
+import TerminalPreview from './components/TerminalPreview';
 import * as S from './CaseStudies.styles';
 
 interface CaseStudiesProps {
@@ -32,12 +33,27 @@ export default function CaseStudies(props: CaseStudiesProps) {
     // Initial state: open the first case study
     const initialOpenId = studies.length > 0 ? studies[0].id : '';
     const [openIds, setOpenIds] = useState<string[]>(initialOpenId ? [initialOpenId] : []);
+    const [isMobile, setIsMobile] = useState(false);
+    const [preview, setPreview] = useState<{ id: string | null; x: number; y: number }>({ id: null, x: 0, y: 0 });
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 992);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const toggle = (id: string) => {
         setOpenIds((prev) => 
             prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
         );
     };
+
+    const handleMouseMove = useCallback((e: React.MouseEvent, id: string) => {
+        if (!isMobile) {
+            setPreview({ id, x: e.clientX, y: e.clientY });
+        }
+    }, [isMobile]);
 
     return (
         <>
@@ -55,11 +71,25 @@ export default function CaseStudies(props: CaseStudiesProps) {
                         </S.IntroBlock>
                     </Fade>
 
+                    {!isMobile && preview.id && (
+                        <TerminalPreview 
+                            visible={true}
+                            snippet={studies.find(s => s.id === preview.id)?.previewSnippet || ''}
+                            x={preview.x}
+                            y={preview.y}
+                            floating={true}
+                        />
+                    )}
+
                     {studies.map((cs, i) => {
                         const isOpen = openIds.includes(cs.id);
                         return (
                             <Fade key={cs.id} direction="up" triggerOnce duration={600} delay={i * 100}>
-                                <S.CaseCard>
+                                <S.CaseCard
+                                    onMouseEnter={(e) => !isMobile && setPreview({ id: cs.id, x: e.clientX, y: e.clientY })}
+                                    onMouseMove={(e) => handleMouseMove(e, cs.id)}
+                                    onMouseLeave={() => !isMobile && setPreview({ id: null, x: 0, y: 0 })}
+                                >
                                     <S.CaseHeader onClick={() => toggle(cs.id)}>
                                         <S.CaseMeta>
                                             <S.CaseLabel>{cs.label}</S.CaseLabel>
@@ -68,6 +98,21 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                             <S.TagRow>
                                                 {cs.tags.map((tag) => <S.Tag key={tag}>{tag}</S.Tag>)}
                                             </S.TagRow>
+
+                                            {isMobile && cs.previewSnippet && (
+                                                <S.StaticTerminalBlock>
+                                                    <TerminalPreview 
+                                                        visible={true} 
+                                                        snippet={cs.previewSnippet} 
+                                                        floating={false} 
+                                                    />
+                                                    <div style={{ padding: '0 16px 12px' }}>
+                                                        <S.TerminalStatus>
+                                                            {t('layout:caseStudies.terminal.status', { defaultValue: 'Ready' })}
+                                                        </S.TerminalStatus>
+                                                    </div>
+                                                </S.StaticTerminalBlock>
+                                            )}
                                         </S.CaseMeta>
                                         <S.ExpandIcon $open={isOpen}>
                                             <S.ChevronUpStyled size={14} strokeWidth={2.5} />

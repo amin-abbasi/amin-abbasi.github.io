@@ -22,7 +22,13 @@
         "approach": "// Yaklaşım ve Tasarım",
         "decisions": "// Temel Mimari Kararlar",
         "metrics": "// Ölçülebilir Sonuçlar",
-        "outcome": "// Ne Sunduk"
+        "outcome": "// Ne Sunduk",
+        "terminal": {
+            "title": "Terminal Önizleme",
+            "system": "Sistem.günlük",
+            "status": "Hazır",
+            "executing": "Çalıştırılıyor..."
+        }
     },
     "footer": {
         "globalViews": "Küresel Görünümler",
@@ -39,6 +45,19 @@
         "topCountries": "En İyi Ülkeler",
         "topBrowsers": "En İyi Tarayıcılar",
         "topOs": "En İyi İşletim Sistemleri",
+        "traffic": "Trafik (Son 14 Gün)",
+        "pages": "İçerik Dağılımı",
+        "sources": "Referans Kaynakları",
+        "metrics": {
+            "hits": "Toplam Hit",
+            "uniques": "Tekil",
+            "countries": "Ülke",
+            "topPath": "En Çok İzlenen"
+        },
+        "charts": {
+            "views": "Görüntüleme",
+            "uniques": "Tekil"
+        },
         "login": {
             "restrictedAccess": "KISITLI ERİŞİM",
             "invalidPassword": "Geçersiz şifre",

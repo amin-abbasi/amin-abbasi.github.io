@@ -241,7 +241,129 @@ export const MetricLabel = styled.span`
 `;
 
 export const Divider = styled.hr`
-    border: none;
     border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     margin: 16px 0;
 `;
+
+/* Terminal Preview Styles */
+
+export const TerminalContainer = styled.div<{ $floating?: boolean; $x?: number; $y?: number }>`
+    background: ${(props) => (props.theme as Theme).background === '#0d1117' ? '#161b22' : '#f6f8fa'};
+    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+    border-radius: 6px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    z-index: 2000;
+    overflow: hidden;
+    pointer-events: none;
+    font-family: var(--font-mono);
+    
+    ${props => props.$floating ? `
+        position: fixed;
+        left: ${props.$x}px;
+        top: ${props.$y}px;
+        transform: translate(20px, 20px);
+    ` : `
+        position: relative;
+        width: 100%;
+        margin-top: 16px;
+        box-shadow: none;
+    `}
+`;
+
+export const TerminalHeader = styled.div`
+    background: ${(props) => (props.theme as Theme).background === '#0d1117' ? '#21262d' : '#ebf0f4'};
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+`;
+
+export const TerminalDots = styled.div`
+    display: flex;
+    gap: 6px;
+    margin-right: 12px;
+    
+    span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        &:nth-child(1) { background: #ff5f56; }
+        &:nth-child(2) { background: #ffbd2e; }
+        &:nth-child(3) { background: #27c93f; }
+    }
+`;
+
+export const TerminalTitle = styled.div`
+    font-size: 0.65rem;
+    color: ${(props) => (props.theme as Theme).color}88;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+`;
+
+export const TerminalBody = styled.div`
+    padding: 14px;
+    min-height: 120px;
+    background: ${(props) => (props.theme as Theme).background === '#0d1117' ? '#0d1117' : '#ffffff'};
+    text-align: left;
+    
+    * {
+        font-size: 11px !important; /* Force small code-like font */
+        font-family: var(--font-mono) !important;
+        line-height: 1.5 !important;
+        white-space: pre-wrap; /* Preserve indentation spaces */
+    }
+    
+    .Typewriter__cursor {
+        color: ${(props) => (props.theme as Theme).accentColor};
+    }
+`;
+
+export const TerminalLine = styled.div`
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    justify-content: flex-start; /* Ensure left alignment */
+    
+    &::before {
+        content: '>';
+        color: ${(props) => (props.theme as Theme).accentColor};
+        opacity: 0.7;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+
+    .Typewriter {
+        width: 100%;
+        text-align: left;
+    }
+`;
+
+export const StaticTerminalBlock = styled.div`
+    margin-top: 12px;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}20;
+    background: ${(props) => (props.theme as Theme).accentColor}05;
+`;
+
+export const TerminalStatus = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 0.6rem;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    opacity: 0.8;
+    
+    &::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: ${(props) => (props.theme as Theme).accentColor};
+        box-shadow: 0 0 8px ${(props) => (props.theme as Theme).accentColor};
+    }
+`;
+

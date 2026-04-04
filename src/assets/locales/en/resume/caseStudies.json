@@ -30,7 +30,9 @@
             { "value": "0ms", "label": "UI Latency (Internal)" }
         ],
         "diagram": "sequenceDiagram\n    participant B as Backend (Node.js/TS)\n    participant D as DAO (Custom ORM)\n    participant A as ArangoDB\n    participant W as WebSocket (SDUI Loop)\n    participant F as Dynamic React Frontend\n\n    F->>W: Initial Connection (Dept ID)\n    W->>B: User Session Handshake\n    B->>D: queryProductionGraph()\n    D->>A: AQL Query execution\n    A-->>D: Graph Result\n    D-->>B: Entity Mapping\n    B->>B: Generate UI Descriptor (JSON)\n    B->>W: Push Module Definitions + Data\n    W->>F: Render Components (Fragments)",
-        "outcome": "Digitized 9 departments with an 80% reduction in frontend overhead. The system became the backbone for IATF 16949 certification by ensuring 100% server-side logic auditability."
+        "outcome": "Digitized 9 departments with an 80% reduction in frontend overhead. The system became the backbone for IATF 16949 certification by ensuring 100% server-side logic auditability.",
+        "previewSnippet": "const dao = new ArangoDAO(config);\nconst graph = await dao.queryGraph(departmentId);\nconst ui = graph.map(SDUI.fragment);\nreturn { \n  type: 'SOCKET_PUSH', \n  payload: ui \n};",
+        "previewLanguage": "typescript"
     },
     {
         "id": "fhir-actimi",
@@ -61,7 +63,9 @@
             { "value": "300+", "label": "Linked IoT Devices" }
         ],
         "diagram": "graph LR\n    subgraph Devices [IoT Devices]\n        HW1[Tablet]\n        HW2[ECG]\n        HW3[BP]\n    end\n    Devices --> IGW[IoT Gateway]\n    IGW --> |MQTT| FS[FHIR Server]\n    FS --> DB[(PostgreSQL)]\n    DB --> CL[Dashboard]\n    MDM[MDM Service] -.-> |GDPR Wipe| HW1",
-        "outcome": "Reduced clinical query latency from 800ms+ to 560ms while successfully passing three GDPR audits and scaling across Germany."
+        "outcome": "Reduced clinical query latency from 800ms+ to 560ms while successfully passing three GDPR audits and scaling across Germany.",
+        "previewSnippet": "{\n  \"resourceType\": \"Observation\",\n  \"status\": \"final\",\n  \"code\": {\n    \"coding\": [{ \"code\": \"8867-4\" }]\n  },\n  \"subject\": { \"reference\": \"Patient/S1\" },\n  \"valueQuantity\": { \"value\": 72, \"unit\": \"bpm\" }\n}",
+        "previewLanguage": "json"
     },
     {
         "id": "trading-engine-digialpha",
@@ -92,7 +96,9 @@
             { "value": "0", "label": "Message Loss Events" }
         ],
         "diagram": "graph LR\n    U[User Client] --> AG[API Gateway]\n    AG --> KYC[KYC Service]\n    AG --> OS[Order Service]\n    OS --> RMQ{RabbitMQ ordered log}\n    RMQ --> ME[Matching Engine]\n    ME --> L[Internal Ledger]\n    ME --> WS[Wallet Service]\n    WS --> HDW[HD Wallet - Master Seed]\n    L --> TR[Trade Reconciliation]\n    ME -.-> |Broadcast| CT[Copy-Trade Engine]",
-        "outcome": "Launched 5 trading modes in 12 months with zero data loss. The modular architecture easily scaled to support high-volume Copy-Trading features."
+        "outcome": "Launched 5 trading modes in 12 months with zero data loss. The modular architecture easily scaled to support high-volume Copy-Trading features.",
+        "previewSnippet": "while (orderBook.hasLiquidity) {\n  const match = matchEngine.match(incomingOrder);\n  if (!match) break;\n  \n  ledger.settle(match);\n  rmq.broadcast('TRADE_EXECUTED', match);\n}",
+        "previewLanguage": "typescript"
     }
   ]
 }
