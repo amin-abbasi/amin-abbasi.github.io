@@ -18,7 +18,7 @@ export const StyledNavbar = styled.nav<{ $expanded: boolean }>`
 
 export const NavContainer = styled.div`
     display: flex;
-    flex-wrap: inherit;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -140,6 +140,7 @@ export const InternalNavLink = styled(NavLink)`
         padding: 12px 0;
         margin: 0;
         border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}20;
+        font-size: 1.1rem; /* Slightly larger for easier tapping on mobile */
     }
 `;
 
@@ -167,6 +168,7 @@ export const ExternalNavLink = styled.a`
         padding: 12px 0;
         margin: 0;
         border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}20;
+        font-size: 1.1rem;
     }
 `;
 
