@@ -1,8 +1,8 @@
 {
   "logo": {
     "source": "/logo.png",
-    "height": 45,
-    "width": 45
+    "height": 40,
+    "width": 70
   },
   "sections": [
     { "title": "Hakkımda", "href": "/about" },

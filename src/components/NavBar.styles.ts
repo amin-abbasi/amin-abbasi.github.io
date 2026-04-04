@@ -190,9 +190,9 @@ export const Controls = styled.div`
 export const CVButton = styled.a`
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 0 16px;
-    height: 28px;
+    gap: 8px;
+    padding: 0 18px;
+    height: 24px;
     background: ${(props) => (props.theme as Theme).accentColor};
     color: #fff !important;
     border-radius: 25px;
@@ -206,6 +206,8 @@ export const CVButton = styled.a`
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
+    margin-top: -0.5rem;
+    margin-right: 1rem;
 
     &:hover {
         filter: brightness(1.12);
