@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/app-CGT3fVN4.js",
+    "file": "assets/app-ByGyOYEX.js",
     "name": "app",
     "src": "index.html",
     "isEntry": true,
@@ -8,11 +8,11 @@
       "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs"
     ],
     "css": [
-      "assets/app-CkfOkGKf.css"
+      "assets/app-IAL9I_D_.css"
     ]
   },
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
-    "file": "assets/styled-components-CLe7o5wg.js",
+    "file": "assets/styled-components-8JUihhzL.js",
     "name": "styled-components",
     "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
     "isDynamicEntry": true,
