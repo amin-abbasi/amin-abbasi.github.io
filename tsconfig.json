@@ -28,9 +28,10 @@
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/app/hooks/*"],
       "@utils/*": ["src/app/utils/*"],
-      "@domain-types/*": ["src/core/types/*"]
+      "@domain-types/*": ["src/core/types/*"],
+      "@pages/*": ["src/pages/*"]
     },
-    "types": ["vite/client"]
+    "types": ["vite/client", "vitest/globals"]
   },
   "include": ["src"]
 }

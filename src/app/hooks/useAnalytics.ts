@@ -32,11 +32,11 @@ export const trackEvent = async (customPath?: string) => {
         // 2. Custom Firestore REST Analytics
         let country = 'Unknown';
         try {
-            const response = await fetch('https://ipapi.co/json/');
+            const response = await fetch('https://get.geojs.io/v1/ip/country.json');
             const data = await response.json();
-            country = data.country_name || 'Unknown';
+            country = data.name || 'Unknown';
         } catch (e) {
-            console.error('IPAPI error:', e);
+            console.error('Analytics IP lookup error:', e);
         }
 
         const parser = new UAParser();

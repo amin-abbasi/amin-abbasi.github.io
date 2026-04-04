@@ -10,6 +10,16 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/setupTests.ts",
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 70,
+        statements: 70
+      }
+    }
   },
   resolve: {
     alias: {
@@ -25,6 +35,7 @@ export default defineConfig({
       "@hooks": path.resolve(__dirname, "./src/app/hooks"),
       "@utils": path.resolve(__dirname, "./src/app/utils"),
       "@domain-types": path.resolve(__dirname, "./src/core/types"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
     },
   },
   ssr: {

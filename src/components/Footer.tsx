@@ -1,9 +1,8 @@
+// src/components/Footer.tsx
 import { useEffect, useState } from "react";
 import { styled, keyframes } from "styled-components";
-import { Container } from "react-bootstrap";
 import { doc, setDoc, getDoc, increment } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
-
 import { Theme } from "@app/theme/themes";
 import { fireStore } from "@utils/firebase";
 
@@ -22,12 +21,15 @@ const FooterWrapper = styled.footer`
   }
 `;
 
-const FooterContent = styled(Container)`
+const FooterContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1rem;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -98,6 +100,11 @@ function getFlagEmoji(countryCode: string) {
   return String.fromCodePoint(...codePoints);
 }
 
+/**
+ * Footer Component
+ * Analytics-enabled persistent footer.
+ * Fully component-based and strictly typed.
+ */
 export default function Footer() {
   const { t } = useTranslation();
   const [totalViews, setTotalViews] = useState<number | null>(null);
@@ -105,12 +112,6 @@ export default function Footer() {
   const [userCountry, setUserCountry] = useState<string | null>(null);
 
   useEffect(() => {
-    /**
-     * LEAD ARCHITECT NOTE: 
-     * Implementing a lightweight, GDPR-compliant visitor tracking system 
-     * using Firebase Firestore. Logic includes basic deduplication via 
-     * localStorage and IP hash to avoid inflating view counts during development.
-     */
     async function fetchAndUpdateStats() {
       try {
         const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
@@ -200,3 +201,4 @@ export default function Footer() {
     </FooterWrapper>
   );
 }
+
