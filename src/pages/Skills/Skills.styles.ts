@@ -6,6 +6,7 @@ import { Theme } from '@app/theme/themes';
 export const MainContainer = styled.div`
     padding: 40px 0 80px;
     position: relative;
+    overflow-x: clip; /* Prevent node overflows from causing horizontal scroll */
 `;
 
 export const IntroTextWrapper = styled.div`
@@ -181,13 +182,116 @@ export const GraphWrapper = styled.div`
     padding: 1rem 0 1rem;
     overflow: visible;
     background: radial-gradient(circle at 50% 50%, ${(props) => (props.theme as Theme).accentColor}08 0%, transparent 75%);
+    z-index: 1; /* Stay below navbar */
 
     @media (max-width: 768px) {
-        min-height: 700px;
-        margin: 2rem 0 10rem;
-        padding-bottom: 120px;
+        min-height: auto;
+        margin: 1rem 0 4rem;
+        padding-bottom: 0;
+        background: none;
     }
 `;
+
+/* Lead-Engineer Mobile Grid */
+export const MobileGridWrapper = styled.div`
+    display: none;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 80px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        display: flex;
+    }
+`;
+
+export const MobileGroupCard = styled.div`
+    background: ${(props) => (props.theme as Theme).cardBackground}40;
+    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            ${(props) => (props.theme as Theme).accentColor}, 
+            transparent
+        );
+    }
+`;
+
+export const MobileGroupTitle = styled.h4`
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: ${(props) => (props.theme as Theme).accentColor};
+        box-shadow: 0 0 10px ${(props) => (props.theme as Theme).accentColor};
+    }
+`;
+
+export const MobileTechGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+`;
+
+export const MobileTechItem = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: ${(props) => (props.theme as Theme).cardBackground}80;
+    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}40;
+    border-radius: 4px;
+    
+    img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+    span {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: ${(props) => (props.theme as Theme).color}EE;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+`;
+
+export const MobileImpactNote = styled.div`
+    margin-top: 16px;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: ${(props) => (props.theme as Theme).color}BB;
+    padding-top: 12px;
+    border-top: 1px dashed ${(props) => (props.theme as Theme).cardBorderColor}60;
+`;
+
 
 export const GroupNode = styled(motion.div)<{ $isActive: boolean; $isSelected: boolean; $isDimmed: boolean }>`
     padding: 16px 32px;
@@ -343,7 +447,7 @@ export const ConnectionSvg = styled.svg`
 `;
 
 export const SoftSkillsSection = styled.div`
-    margin-top: 50px;
+    margin-top: 10px;
     padding-top: 50px;
     border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}30;
     position: relative;

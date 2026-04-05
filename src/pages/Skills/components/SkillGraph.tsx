@@ -181,12 +181,15 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
         );
     };
 
+    const isMobile = dimensions.width > 0 && dimensions.width < 768;
+
     return (
         <S.GraphWrapper ref={containerRef}>
-            {dimensions.width > 0 && renderConnections()}
+            {/* Desktop Orbit View */}
+            {!isMobile && dimensions.width > 0 && renderConnections()}
 
             <LayoutGroup>
-                {positions.groups.map(pos => {
+                {!isMobile && positions.groups.map(pos => {
                     const group = groups.find(g => g.id === pos.id)!;
                     const isActive = activeGroupId === pos.id || highlightedGroupIds.includes(pos.id);
                     const isSelected = activeGroupId === pos.id;
@@ -243,7 +246,7 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                     );
                 })}
 
-                {positions.techs.map(pos => {
+                {!isMobile && positions.techs.map(pos => {
                     const tech = techs.find(t => t.id === pos.id)!;
                     const isActive = activeTechId === pos.id || highlightedTechIds.includes(pos.id);
                     const isSelected = activeTechId === pos.id;
@@ -283,6 +286,39 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                     );
                 })}
             </LayoutGroup>
+
+            {/* Mobile Specialized Grid */}
+            {isMobile && (
+                <S.MobileGridWrapper>
+                    {groups.map((group, idx) => (
+                        <motion.div
+                            key={group.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                        >
+                            <S.MobileGroupCard>
+                                <S.MobileGroupTitle>{group.title}</S.MobileGroupTitle>
+                                <S.MobileTechGrid>
+                                    {techs
+                                        .filter(t => group.techIds.includes(t.id))
+                                        .map(tech => (
+                                            <S.MobileTechItem key={tech.id}>
+                                                <img src={tech.icon} alt={tech.title} />
+                                                <span>{tech.title}</span>
+                                            </S.MobileTechItem>
+                                        ))}
+                                </S.MobileTechGrid>
+                                {group.impactNote && (
+                                    <S.MobileImpactNote>
+                                        {group.impactNote}
+                                    </S.MobileImpactNote>
+                                )}
+                            </S.MobileGroupCard>
+                        </motion.div>
+                    ))}
+                </S.MobileGridWrapper>
+            )}
         </S.GraphWrapper>
     );
 };
