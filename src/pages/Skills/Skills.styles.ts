@@ -422,8 +422,8 @@ export const TechNodeCircle = styled(motion.div)<{ $isActive: boolean; $isSelect
 `;
 
 export const TechIconNode = styled(motion.img)`
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 
     @media (max-width: 768px) {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { TechNode, SkillGroup } from '@core/types/resume';
 import { ThemeContext } from 'styled-components';
 import { Theme } from '@app/theme/themes';
@@ -18,7 +17,6 @@ interface NodePosition {
 }
 
 const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
-    const { t } = useTranslation();
     const theme = React.useContext(ThemeContext) as Theme;
     const containerRef = useRef<HTMLDivElement>(null);
     const nodeRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
