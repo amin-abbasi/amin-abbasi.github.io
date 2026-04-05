@@ -10,6 +10,7 @@ import { StyledContainer } from '@components/shared/layout';
 import { Theme } from '@app/theme/themes';
 import { SocialLink } from '@core/types/resume';
 import * as S from './Contact.styles';
+import { configs } from 'src/app/constants/configs';
 
 interface ContactProps {
     header?: string;
@@ -43,7 +44,7 @@ function Contact(props: ContactProps) {
         setStatus('sending');
         try {
             // Using Formspree — replace YOUR_FORM_ID with actual ID in production
-            const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            const res = await fetch(`https://formspree.io/f/${configs.formspreeId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
                 body: JSON.stringify(form),

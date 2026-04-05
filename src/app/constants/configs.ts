@@ -7,4 +7,5 @@ export const configs = {
     firebaseAppId: import.meta.env.VITE_FIREBASE_APP_ID,
     firebaseMeasurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
     isProduction: import.meta.env.PROD,
+    formspreeId: import.meta.env.FORM_SPREE_ID,
 }
