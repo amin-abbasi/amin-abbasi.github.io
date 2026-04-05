@@ -67,14 +67,12 @@
         }
     },
     "home": {
-        "systemInit": "// system.init — lead engineer",
         "scroll": "scroll",
         "viewExperience": "View Experience",
-        "downloadCv": "Download CV",
+        "downloadCv": "Download Resume",
         "availability": "Available for Lead / Architect Roles · Antalya or Relocation"
     },
     "about": {
-        "refId": "REF_ID: PRO_BIO_772",
         "quote": "The best code is the line you didn't have to write.",
         "testimonials": "// What colleagues say",
         "viewOnLinkedin": "View on LinkedIn",
@@ -82,13 +80,11 @@
         "showLess": "Show less"
     },
     "contact": {
-        "init": "// contact.init",
         "title": "Let's Talk",
         "subtitle": "Whether you have an architecture challenge, a lead role opening, or just want to connect, I'm happy to chat. I typically respond within 24 hours.",
         "location": "Antalya, Turkey · GMT+3",
         "timezone": "EU & NA time zones supported",
         "status": "Open to Lead / Architect roles — Antalya or Relocation",
-        "sendInit": "// send.message",
         "sendTitle": "Send a Message",
         "form": {
             "name": "Name",
@@ -106,8 +102,8 @@
         "error": "Something went wrong. Try emailing directly at amin.abbasi.rs@gmail.com"
     },
     "buttons": {
-        "cv": "CV",
-        "downloadCv": "Download My CV"
+        "cv": "Resume",
+        "downloadCv": "Download My Resume"
     },
     "notFound": {
         "title": "404 — ROUTE_NOT_FOUND",

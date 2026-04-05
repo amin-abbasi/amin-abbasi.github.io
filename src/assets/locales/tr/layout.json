@@ -67,14 +67,12 @@
         }
     },
     "home": {
-        "systemInit": "// sistem.başlat — lider mühendis",
         "scroll": "kaydır",
         "viewExperience": "Deneyimi Görüntüle",
         "downloadCv": "Özgeçmişi İndir",
         "availability": "Lider / Mimar Roller için Uygun · Antalya veya Taşınma"
     },
     "about": {
-        "refId": "REF_NO: PRO_BIO_772",
         "quote": "En iyi kod, yazmak zorunda kalmadığınız koddur.",
         "testimonials": "// İş arkadaşlarım ne diyor",
         "viewOnLinkedin": "LinkedIn'den Görüntüle",
@@ -82,13 +80,11 @@
         "showLess": "Daha az göster"
     },
     "contact": {
-        "init": "// iletisim.baslat",
         "title": "Hadi Konuşalım",
         "subtitle": "Bir mimari zorluğunuz, liderlik rolü açığınız varsa veya sadece bağlantı kurmak istiyorsanız, sohbet etmekten mutluluk duyarım. Genellikle 24 saat içinde yanıt veririm.",
         "location": "Antalya, Türkiye · GMT+3",
         "timezone": "AB ve KA saat dilimleri desteklenmektedir",
         "status": "Lider / Mimar rollerine açık — Antalya veya Taşınma",
-        "sendInit": "// mesaj.gonder",
         "sendTitle": "Bir Mesaj Gönderin",
         "form": {
             "name": "İsim",

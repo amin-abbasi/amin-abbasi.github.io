@@ -19,21 +19,6 @@ function Header(props: HeaderProps) {
         padding: "90px 16px 0",
       }}
     >
-      {/* Monospace "module" prefix */}
-      <p
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.72rem",
-          fontWeight: 500,
-          letterSpacing: "0.25em",
-          textTransform: "uppercase",
-          color: theme.accentColor,
-          marginBottom: "0.6rem",
-          opacity: 0.8,
-        }}
-      >
-        // module.{title.toLowerCase().replace(/\s+/g, "_")}
-      </p>
 
       {/* Section title */}
       <h2

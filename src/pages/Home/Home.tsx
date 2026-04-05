@@ -55,12 +55,6 @@ function Home() {
 
             <S.HeroContent className="hero-content">
                 <Fade direction="up" triggerOnce duration={800}>
-                    {/* Monospace label */}
-                    <S.SystemInitLabel accent={accent} className="system-init-label">
-                        {t('layout:home.systemInit', { defaultValue: '// system.init — lead engineer' })}
-                    </S.SystemInitLabel>
-
-                    {/* Name */}
                     <S.NameHeading>{data.name}</S.NameHeading>
 
                     {/* Typewriter roles */}
