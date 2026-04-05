@@ -8,7 +8,7 @@ import ThemeToggler from '@components/ThemeToggler';
 import LanguageSwitcher from '@components/LanguageSwitcher';
 import { Theme } from '@app/theme/themes';
 import { NavbarData } from '@domain-types/profile.types';
-import { CV_DOWNLOAD_URL } from '@constants/config';
+import { RESUME_DOWNLOAD_URL } from '@constants/config';
 import * as S from './NavBar.styles';
 
 /**
@@ -73,14 +73,14 @@ function NavBar() {
                         
                         <S.Controls>
                             <S.CVButton
-                                href={CV_DOWNLOAD_URL}
+                                href={RESUME_DOWNLOAD_URL}
                                 download="Amin_Abbasi_CV.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={() => setExpanded(false)}
                             >
                                 <Download size={14} strokeWidth={2.5} />
-                                {t('layout:buttons.cv')}
+                                {t('layout:buttons.resume')}
                             </S.CVButton>
                             
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>

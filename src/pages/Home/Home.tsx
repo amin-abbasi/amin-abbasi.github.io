@@ -9,7 +9,6 @@ import Social from '@components/Social';
 import FallbackSpinner from '@components/FallbackSpinner';
 import { Briefcase, Download, MousePointer2 } from 'lucide-react';
 import { HomeData } from '@core/types/resume';
-import HomeTestimonial from './components/HomeTestimonial';
 import * as S from './Home.styles';
 
 /**
@@ -44,7 +43,7 @@ function Home() {
     const { darkMode } = context;
     const accent = darkMode.value ? '#00a0ff' : '#0070ba';
 
-    const CV_DOWNLOAD_URL = '/cv.pdf'; // Fallback or from configs
+    const RESUME_DOWNLOAD_URL = '/amin-abbasi-resume.pdf'; // Fallback or from configs
 
     return (
         <S.HeroWrapper className="hero-wrapper">
@@ -87,10 +86,10 @@ function Home() {
                             {t('layout:home.viewExperience')}
                         </S.PrimaryButton>
                         <S.SecondaryButton
-                            href={CV_DOWNLOAD_URL}
+                            href={RESUME_DOWNLOAD_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            download="amin-abbasi-cv.pdf"
+                            download="amin-abbasi-resume.pdf"
                             accent={accent}
                         >
                             <Download size={14} />

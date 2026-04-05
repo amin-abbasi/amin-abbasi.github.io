@@ -1,1 +1,1 @@
-export const CV_DOWNLOAD_URL = "/amin-abbasi-cv.pdf";
+export const RESUME_DOWNLOAD_URL = "/amin-abbasi-resume.pdf";
