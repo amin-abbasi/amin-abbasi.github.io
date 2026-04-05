@@ -1,5 +1,5 @@
 // src/pages/CaseStudies/CaseStudies.tsx
-import { useState, useContext, useEffect, useCallback } from 'react';
+import { useState, useContext, useEffect, useCallback, useRef } from 'react';
 import { Head } from 'vite-react-ssg';
 import { ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
@@ -31,10 +31,19 @@ export default function CaseStudies(props: CaseStudiesProps) {
     const studies = (t('resCaseStudies:studies', { returnObjects: true }) as CaseStudy[]) || [];
     
     // Initial state: open the first case study
-    const initialOpenId = studies.length > 0 ? studies[0].id : '';
-    const [openIds, setOpenIds] = useState<string[]>(initialOpenId ? [initialOpenId] : []);
+    const [activeId, setActiveId] = useState<string | null>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [preview, setPreview] = useState<{ id: string | null; x: number; y: number }>({ id: null, x: 0, y: 0 });
+
+    // Ensure we have an initial active ID once studies are loaded
+    useEffect(() => {
+        if (!activeId && studies.length > 0) {
+            setActiveId(studies[0].id);
+        }
+    }, [studies, activeId]);
+    
+    // Refs for scrolling to cards
+    const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 992);
@@ -44,10 +53,21 @@ export default function CaseStudies(props: CaseStudiesProps) {
     }, []);
 
     const toggle = (id: string) => {
-        setOpenIds((prev) => 
-            prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-        );
+        setActiveId((prev) => (prev === id ? null : id));
     };
+
+    // Auto-focus on expanded card
+    useEffect(() => {
+        if (activeId && cardRefs.current[activeId]) {
+            const timer = setTimeout(() => {
+                cardRefs.current[activeId]?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+            }, 300); // Slightly faster to feel more responsive
+            return () => clearTimeout(timer);
+        }
+    }, [activeId]);
 
     const handleMouseMove = useCallback((e: React.MouseEvent, id: string) => {
         if (!isMobile) {
@@ -82,10 +102,10 @@ export default function CaseStudies(props: CaseStudiesProps) {
                     )}
 
                     {studies.map((cs, i) => {
-                        const isOpen = openIds.includes(cs.id);
+                        const isOpen = activeId === cs.id;
                         return (
                             <Fade key={cs.id} direction="up" triggerOnce duration={600} delay={i * 100}>
-                                <S.CaseCard>
+                                <S.CaseCard ref={(el) => (cardRefs.current[cs.id] = el)}>
                                     <S.CaseHeader onClick={() => toggle(cs.id)}>
                                         <S.CaseMeta>
                                             <S.CaseLabel>{cs.label}</S.CaseLabel>
@@ -94,26 +114,28 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                             <S.TagRow>
                                                 {cs.tags.map((tag) => <S.Tag key={tag}>{tag}</S.Tag>)}
                                             </S.TagRow>
-
-                                            {isMobile && cs.previewSnippet && (
-                                                <S.StaticTerminalBlock>
-                                                    <TerminalPreview 
-                                                        visible={true} 
-                                                        snippet={cs.previewSnippet} 
-                                                        floating={false} 
-                                                    />
-                                                    <div style={{ padding: '0 16px 12px' }}>
-                                                        <S.TerminalStatus>
-                                                            {t('layout:caseStudies.terminal.status', { defaultValue: 'Ready' })}
-                                                        </S.TerminalStatus>
-                                                    </div>
-                                                </S.StaticTerminalBlock>
-                                            )}
                                         </S.CaseMeta>
                                         <S.ExpandIcon $open={isOpen}>
                                             <S.ChevronUpStyled size={14} strokeWidth={2.5} />
                                         </S.ExpandIcon>
                                     </S.CaseHeader>
+
+                                    {isMobile && cs.previewSnippet && (
+                                        <S.StaticTerminalBlock>
+                                            <div style={{ padding: '0 24px' }}>
+                                                <TerminalPreview 
+                                                    visible={true} 
+                                                    snippet={cs.previewSnippet} 
+                                                    floating={false} 
+                                                />
+                                                <div style={{ paddingBottom: '12px', paddingInlineStart: '4px' }}>
+                                                    <S.TerminalStatus>
+                                                        {t('layout:caseStudies.terminal.status', { defaultValue: 'Ready' })}
+                                                    </S.TerminalStatus>
+                                                </div>
+                                            </div>
+                                        </S.StaticTerminalBlock>
+                                    )}
 
                                     <S.CaseBodyWrapper $open={isOpen}>
                                         <S.CaseBody>

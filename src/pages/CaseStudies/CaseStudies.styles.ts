@@ -51,12 +51,12 @@ export const CaseCard = styled.div`
 `;
 
 export const CaseHeader = styled.div`
-    padding: 28px 32px 22px;
+    padding: 24px 32px;
+    padding-inline-end: 72px; /* Ensure space for the absolute icon */
     border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
     gap: 16px;
     cursor: pointer;
     user-select: none;
@@ -114,6 +114,9 @@ export const Tag = styled.span`
 `;
 
 export const ExpandIcon = styled.span<{ $open: boolean }>`
+    position: absolute;
+    top: 24px;
+    right: 24px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -126,6 +129,13 @@ export const ExpandIcon = styled.span<{ $open: boolean }>`
     font-size: 1rem;
     transition: transform 0.3s ease;
     transform: rotate(${(props) => props.$open ? '180deg' : '0deg'});
+
+    @media (max-width: 768px) {
+        top: 20px;
+        right: 16px;
+        width: 26px;
+        height: 26px;
+    }
 `;
 
 export const CaseBodyWrapper = styled.div<{ $open: boolean }>`
