@@ -30,7 +30,8 @@
         "Tripled procurement app performance by optimizing ArangoDB (AQL) queries, halving system latency to **60ms under peak loads of 1,500+ requests/sec**.",
         "Utilizing WebSocket's event-driven architecture, established unit tracking on all production lines with nearly **zero latency**."
       ],
-      "dateText": "12/2023 - 01/2025"
+      "dateText": "12/2023 - 01/2025",
+      "caseStudyId": "sdui-dannie"
     },
     {
       "title": "Senior Backend Software Engineer",
@@ -45,7 +46,8 @@
         "Refactored Docker and CI/CD pipelines on GCP, slashing deployment times from **15 minutes to 2 minutes (85% efficiency gain)**.",
         "Collaborated with the CTO to define the 'Implementation Flow,' from UI/UX design approval to automated testing and UAT cycles."
       ],
-      "dateText": "12/2022 - 12/2023"
+      "dateText": "12/2022 - 12/2023",
+      "caseStudyId": "fhir-actimi"
     },
     {
       "title": "Freelance Architect & Technical Consultant",
@@ -73,7 +75,8 @@
         "Implemented a **3-tier KYC** (Know Your Customer) verification service, integrating national ID and bank info verification.",
         "Scaled the engineering department from **4 to 9 developers**, acting as technical lead and Scrum Master."
       ],
-      "dateText": "06/2021 - 06/2022"
+      "dateText": "06/2021 - 06/2022",
+      "caseStudyId": "trading-engine-digialpha"
     },
     {
       "title": "Lead BackEnd Software Engineer",

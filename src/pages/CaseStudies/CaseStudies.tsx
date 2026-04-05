@@ -37,7 +37,10 @@ export default function CaseStudies(props: CaseStudiesProps) {
 
     // Ensure we have an initial active ID once studies are loaded
     useEffect(() => {
-        if (!activeId && studies.length > 0) {
+        const hash = window.location.hash.replace('#', '');
+        if (hash && studies.some(s => s.id === hash)) {
+            setActiveId(hash);
+        } else if (!activeId && studies.length > 0) {
             setActiveId(studies[0].id);
         }
     }, [studies, activeId]);

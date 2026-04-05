@@ -57,6 +57,7 @@ export interface ExperienceItem {
     promotionNote?: string;
     techStack?: string[];
     workDescription: string[];
+    caseStudyId?: string;
 }
 
 export interface TechNode {

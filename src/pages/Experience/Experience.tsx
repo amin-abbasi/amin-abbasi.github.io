@@ -50,7 +50,14 @@ const Experience = ({ header }: ExperienceProps) => {
 
                                     <S.Card>
                                         <S.CardHeader>
-                                            <S.JobTitle>{item.title}</S.JobTitle>
+                                            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                                                <S.JobTitle>{item.title}</S.JobTitle>
+                                                {item.caseStudyId && (
+                                                    <S.CaseStudyLink to={`/case-studies#${item.caseStudyId}`}>
+                                                        {t('layout:experience.viewCaseStudy')}
+                                                    </S.CaseStudyLink>
+                                                )}
+                                            </div>
                                             <S.DateBadge>{item.dateText}</S.DateBadge>
                                         </S.CardHeader>
                                         

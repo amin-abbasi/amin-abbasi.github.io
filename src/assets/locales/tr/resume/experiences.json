@@ -30,7 +30,8 @@
         "ArangoDB (AQL) sorgularını optimize ederek ve saniyede 1.500+ istek alan yoğun yükler altında sistem gecikmesini 60 ms'ye düşürerek tedarik uygulaması performansını üç katına çıkardı.",
         "WebSocket'in olay güdümlü mimarisini kullanarak, tüm üretim hatlarında neredeyse sıfır gecikme ile birim takibi sağlandı."
       ],
-      "dateText": "12/2023 - 01/2025"
+      "dateText": "12/2023 - 01/2025",
+      "caseStudyId": "sdui-dannie"
     },
     {
       "title": "Kıdemli Backend Yazılım Mühendisi",
@@ -46,7 +47,8 @@
         "Fabrika sahası ve yönetim sistemleri arasındaki günlük senkronizasyon hatalarını ortadan kaldıran standartlaştırılmış backend veri doğrulama kontrolleri kurdu.",
         "UI/UX tasarım onayından otomatik test ve UAT (Kullanıcı Kabul Testi) döngülerine kadar 'Uygulama Akışı'nı tanımlamak için CTO ile iş birliği yaptı."
       ],
-      "dateText": "12/2022 - 12/2023"
+      "dateText": "12/2022 - 12/2023",
+      "caseStudyId": "fhir-actimi"
     },
     {
       "title": "Serbest Mimar ve Teknik Danışman",
@@ -78,7 +80,8 @@
         "Mühendislik departmanını 4'ten 9 geliştiriciye çıkardı; yüksek kod kalitesi ve mimari bütünlüğü sağlamak için teknik lider ve Scrum Master olarak görev yaptı.",
         "Temiz kod standartlarını tanımladı ve yoğun işlem hacimlerinde sıfır mesaj kaybını sağlayan olay güdümlü bir mimari kurdu."
       ],
-      "dateText": "06/2021 - 06/2022"
+      "dateText": "06/2021 - 06/2022",
+      "caseStudyId": "trading-engine-digialpha"
     },
     {
       "title": "Lider Backend Yazılım Mühendisi",

@@ -17,6 +17,9 @@
         "skills": "Yetenekler",
         "contact": "İletişim"
     },
+    "experience": {
+        "viewCaseStudy": "[Vaka Çalışmasını Görüntüle]"
+    },
     "caseStudies": {
         "problem": "// Problem",
         "approach": "// Yaklaşım ve Tasarım",

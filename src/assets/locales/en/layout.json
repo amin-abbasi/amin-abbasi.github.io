@@ -17,6 +17,9 @@
         "skills": "Skills",
         "contact": "Contact"
     },
+    "experience": {
+        "viewCaseStudy": "[View Case Study]"
+    },
     "caseStudies": {
         "problem": "// The Problem",
         "approach": "// Approach & Design",

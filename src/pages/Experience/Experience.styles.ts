@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Theme } from '@app/theme/themes';
 import { Section } from '@components/shared/layout';
 
@@ -278,5 +279,36 @@ export const EntryIndex = styled.div`
 
     @media (max-width: 768px) {
         display: none;
+    }
+`;
+
+export const CaseStudyLink = styled(Link)`
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    text-decoration: none;
+    margin-inline-start: 12px;
+    padding: 3px 8px;
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}30;
+    border-radius: 4px;
+    background: ${(props) => (props.theme as Theme).accentColor}08;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+
+    &:hover {
+        background: ${(props) => (props.theme as Theme).accentColor}15;
+        border-color: ${(props) => (props.theme as Theme).accentColor}60;
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+        margin-inline-start: 0;
+        margin-top: 8px;
+        display: inline-flex;
     }
 `;
