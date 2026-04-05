@@ -1,4 +1,4 @@
-# 🚀 Modern "Architect" Portfolio & Analytics Engine (v14.0.0)
+# 🚀 Modern "Architect" Portfolio & Analytics Engine (v15.0.0)
 
 A premium, high-performance portfolio ecosystem designed for **Lead Engineers and Software Architects**. This is not just a resume; it's a strategic platform built with **React 19**, **TypeScript**, and **Vite**, featuring a high-fidelity **Interactive Skill Orbit** and a **Business-ROI narrative**.
 

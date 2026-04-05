@@ -1,13 +1,12 @@
 // src/pages/Home/Home.tsx
 import { useEffect, useContext } from 'react';
 import { Head } from 'vite-react-ssg';
-import Typewriter from 'typewriter-effect';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import AppContext from '@app/AppContext';
 import Social from '@components/Social';
 import FallbackSpinner from '@components/FallbackSpinner';
-import { Briefcase, Download, MousePointer2 } from 'lucide-react';
+import { Briefcase, Download } from 'lucide-react';
 import { HomeData } from '@core/types/resume';
 import * as S from './Home.styles';
 
@@ -17,7 +16,7 @@ import * as S from './Home.styles';
  * Optimized for performance and Lead-level technical architecture.
  */
 function Home() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const context = useContext(AppContext);
     
     useEffect(() => {
@@ -56,19 +55,8 @@ function Home() {
                 <Fade direction="up" triggerOnce duration={800}>
                     <S.NameHeading>{data.name}</S.NameHeading>
 
-                    {/* Typewriter roles */}
                     <S.TypewriterContainer accent={accent}>
-                        <span />
-                        <Typewriter
-                            key={i18n.language}
-                            options={{
-                                loop: true,
-                                autoStart: true,
-                                strings: data.roles,
-                                delay: 35,
-                                deleteSpeed: 25,
-                            }}
-                        />
+                        {data.roles[0]}
                     </S.TypewriterContainer>
 
                     {/* Tagline */}

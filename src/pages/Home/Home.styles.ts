@@ -82,21 +82,12 @@ export const TypewriterContainer = styled.div<{ accent: string }>`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
   font-family: var(--font-main);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-secondary);
   margin-bottom: 2.2rem;
   min-height: 2rem;
-
-  & > span:first-child {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: ${props => props.accent};
-    flex-shrink: 0;
-    box-shadow: 0 0 8px ${props => props.accent};
-  }
 `;
 
 export const Tagline = styled.p`
