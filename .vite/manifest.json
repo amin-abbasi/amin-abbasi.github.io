@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/app-CJXu9kzZ.js",
+    "file": "assets/app-D_xsYjX8.js",
     "name": "app",
     "src": "index.html",
     "isEntry": true,
@@ -12,7 +12,7 @@
     ]
   },
   "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs": {
-    "file": "assets/styled-components-LOjbGeN5.js",
+    "file": "assets/styled-components-Dzx7eMft.js",
     "name": "styled-components",
     "src": "node_modules/vite-react-ssg/dist/style-collectors/styled-components.mjs",
     "isDynamicEntry": true,
