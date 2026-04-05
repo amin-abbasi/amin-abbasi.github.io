@@ -1,24 +1,24 @@
 {
-  "about": "### Hey, I'm Amin 👋\n\nI’ve spent the last decade obsessed with one question: **How do you build software that scales—not just for the traffic, but for the humans maintaining it at 2 AM?**\n\nAs a **Lead Backend Architect**, I specialize in high-stakes environments like **Fintech, HealthTech, and Cryptocurrency**. I’ve designed high-frequency trading engines, FHIR-compliant medical platforms, and **ERP/MES systems** running factory floors in real-time.\n\nBut for me, the architecture is only half the story.\n\n#### 🏗️ Architecture & Philosophy\nI'm a firm believer that **clean architecture is less about elegance and more about being kind to your future self.** My core expertise lies in **Node.js & TypeScript**, architecting distributed systems with event-driven pipelines (RabbitMQ), real-time sync (WebSockets), and high-performance databases (PostgreSQL, ArangoDB, Redis).\n\n#### 🤝 Leadership & Growth\nI’ve had the privilege of mentoring **30+ developers** across 5 companies. I prefer spending an hour explaining the *why* behind a design decision over shipping a solution nobody understands. I believe a system is only as sustainable as the team behind it.\n\n#### 📍 Available & Ready\nCurrently based in **Antalya, Turkey** (with a transferable work permit). I support **EU and North American** time zones and I'm open to Lead roles or Senior Consulting—remote or on-site.",
+  "about": "### Professional Overview\n\nFor over a decade, I have focused on a single mission: **Bridging the gap between complex engineering and measurable business growth.**\n\nAs a **Lead Backend Architect**, I don't just build software that scales; I design systems that **reduce operational risk** and **maximize Return on Investment (ROI)** in high-stakes sectors like **Fintech, HealthTech, and Industrial ERPs**.\n\n#### 🚀 Business Impact & Strategy\nArchitecture is a financial decision. My expertise in **Node.js, TypeScript, and Distributed Systems** isn't about following trends—it's about **accelerating Time-to-Market by 2x**, slashing cloud infrastructure spend, and ensuring **zero-downtime reliability** for mission-critical operations. I specialize in turning legacy bottlenecks into competitive advantages.\n\n#### 📈 Leadership for Velocity\nI have mentored **30+ engineers** across 8 companies, focusing on building high-performance, autonomous teams. I believe my success is measured by the team's ability to ship high-quality features with predictable velocity and minimal technical debt.\n\n#### 📍 Collaboration Ready\nBased in **Antalya, Turkey** (transferable work permit). Supporting **EU and North American** time zones for Lead roles or Senior Architectural Consulting—Remote or On-site.",
   "leadershipPhilosophy": {
     "title": "Leadership Philosophy",
     "pillars": [
       {
         "id": "mentorship",
-        "title": "Mentorship & Growth",
-        "description": "My mentorship is built on active **Pair Programming** and Socratic reviews. I invest the extra hour to explain the 'why,' empowering engineers to make Lead-level decisions independently.",
+        "title": "High-Performance Teams",
+        "description": "My mentorship focuses on building autonomous, high-performing engineering cultures. I invest in the technical growth of each engineer to ensure they can make Lead-level decisions that align with product goals.",
         "icon": "Users"
       },
       {
         "id": "governance",
-        "title": "Architectural Governance",
-        "description": "I translate stakeholder sessions into a two-stage **ADR process**: a lightweight proposal for business-logic alignment, followed by a thorough technical blueprint.",
+        "title": "Architectural Alignment",
+        "description": "I translate strategic business sessions into a two-stage **ADR process**: ensuring every technical blueprint serves a specific business objective and stakeholder requirement.",
         "icon": "Layout"
       },
       {
         "id": "sustainability",
-        "title": "Sustainable Engineering",
-        "description": "I maintain a strict **20% continuous refactoring rule**, planned 'behind the scenes' to preserve velocity while ensuring long-term system health and CEO alignment.",
+        "title": "Operational Resilience",
+        "description": "I maintain a strict focus on proactive technical-debt management. By balancing continuous refactoring with CEO-level priorities, I ensure long-term system health and predictable delivery velocity.",
         "icon": "ShieldCheck"
       }
     ]
