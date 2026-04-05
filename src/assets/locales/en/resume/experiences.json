@@ -27,7 +27,7 @@
       "workDescription": [
         "Architected a **Server-Driven UI (SDUI) framework** using WebSockets, allowing the backend to dynamically render complex app modules and reducing frontend deployment needs by **80%**.",
         "Led the platform migration to TypeScript, reducing developer onboarding time from **3 months to 1 month** by removing architectural ambiguity and ensuring type-safety across complex data fragments.",
-        "Optimized ArangoDB queries to reduce latency to **60ms under high peak loads**, increasing the ERP app's speed by **3×**.",
+        "Tripled procurement app performance by optimizing ArangoDB (AQL) queries, halving system latency to **60ms under peak loads of 1,500+ requests/sec**.",
         "Utilizing WebSocket's event-driven architecture, established unit tracking on all production lines with nearly **zero latency**."
       ],
       "dateText": "12/2023 - 01/2025"
@@ -42,7 +42,6 @@
         "Engineered a secure remote fleet management system via Zoho MDM API to automate the lifecycle of distributed tablets used by patients and practitioners.",
         "Developed a robust data-wiping and UUID-regeneration workflow for device reassignment, ensuring **100% GDPR and HIPAA** compliance during patient transitions.",
         "Spearheaded a platform-wide migration from JavaScript to TypeScript, reducing new developer onboarding from **3 months to 1 month**.",
-        "Tripled procurement app performance by optimizing ArangoDB (AQL) queries, halving system latency to **60ms under peak loads of 1,500+ requests/sec**.",
         "Refactored Docker and CI/CD pipelines on GCP, slashing deployment times from **15 minutes to 2 minutes (85% efficiency gain)**.",
         "Collaborated with the CTO to define the 'Implementation Flow,' from UI/UX design approval to automated testing and UAT cycles."
       ],
