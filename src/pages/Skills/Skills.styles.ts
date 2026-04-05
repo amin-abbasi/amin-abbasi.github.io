@@ -294,7 +294,7 @@ export const MobileImpactNote = styled.div`
 
 
 export const GroupNode = styled(motion.div)<{ $isActive: boolean; $isSelected: boolean; $isDimmed: boolean }>`
-    padding: 16px 32px;
+    padding: 8px 16px;
     background: ${(props) => props.$isActive 
         ? `${(props.theme as Theme).accentColor}f0` 
         : `${(props.theme as Theme).cardBackground}f0`};
@@ -307,21 +307,23 @@ export const GroupNode = styled(motion.div)<{ $isActive: boolean; $isSelected: b
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: background 0.4s ease, border-color 0.4s ease;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
     backdrop-filter: blur(12px);
     opacity: ${(props) => (props.$isDimmed ? 0.2 : 1)};
+    transform: ${(props) => props.$isSelected ? 'translateY(6px)' : 'translateY(0)'};
     box-shadow: ${(props) => props.$isSelected 
-        ? '0 0 40px rgba(0, 242, 255, 0.5), inset 0 0 12px rgba(255, 255, 255, 0.2)' 
+        ? '0 2px 20px rgba(0, 242, 255, 0.4), inset 0 0 20px rgba(0, 242, 255, 0.1)' 
         : props.$isActive
             ? '0 0 20px rgba(0, 242, 255, 0.2)'
             : '0 4px 15px rgba(0, 0, 0, 0.1)'};
     box-sizing: border-box;
     max-width: 400px;
+    position: relative;
     
     &:hover {
         border-color: #00f2ff;
         box-shadow: 0 8px 30px rgba(0, 242, 255, 0.3);
-        z-index: 50;
+        z-index: 55;
     }
 
     @media (max-width: 768px) {
@@ -341,29 +343,45 @@ export const NodeLabel = styled(motion.span)`
     }
 `;
 
-export const InlineImpactContent = styled(motion.div)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-`;
-
-export const ImpactText = styled.span`
+export const GroupTooltip = styled(motion.div)`
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 10, 20, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid #00f2ff50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 0.82rem;
     font-family: var(--font-main);
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    white-space: normal;
-    text-align: center;
     line-height: 1.5;
-    letter-spacing: 0.01em;
+    width: max-content;
+    max-width: 250px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 242, 255, 0.2);
 
-    @media (max-width: 768px) {
-        font-size: 0.8rem;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: #00f2ff50 transparent transparent transparent;
+    }
+
+    ${GroupNode}:hover & {
+        opacity: 1;
+        visibility: visible;
+        bottom: 130%;
     }
 `;
 

@@ -22,13 +22,13 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
     const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
     const [activeTechId, setActiveTechId] = useState<string | null>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    const [domCenters, setDomCenters] = useState<{ [key: string]: { x: number; y: number } }>({});
+    const [domCenters, setDomCenters] = useState<{ [key: string]: { x: number; y: number; width?: number; height?: number } }>({});
 
     // Track DOM positions for pixel-perfect line alignment
     const updateDOMCenters = useCallback(() => {
         if (!containerRef.current) return;
         const containerRect = containerRef.current.getBoundingClientRect();
-        const newCenters: { [key: string]: { x: number; y: number } } = {};
+        const newCenters: { [key: string]: { x: number; y: number; width: number; height: number } } = {};
 
         [...techs, ...groups].forEach(item => {
             const el = nodeRefs.current[item.id];
@@ -36,7 +36,9 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                 const rect = el.getBoundingClientRect();
                 newCenters[item.id] = {
                     x: (rect.left + rect.width / 2) - containerRect.left,
-                    y: (rect.top + rect.height / 2) - containerRect.top
+                    y: (rect.top + rect.height / 2) - containerRect.top,
+                    width: rect.width,
+                    height: rect.height
                 };
             }
         });
@@ -58,13 +60,11 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
         return () => resizeObserver.disconnect();
     }, [updateDOMCenters]);
 
-    // Update centers after expansion animations
-    // Using useEffect instead of useLayoutEffect to avoid SSR/SSG warnings (like in vite-react-ssg)
+    // Update centers after mounting
     useEffect(() => {
         const timer = setTimeout(updateDOMCenters, 100); 
-        const longTimer = setTimeout(updateDOMCenters, 600); 
-        return () => { clearTimeout(timer); clearTimeout(longTimer); };
-    }, [activeGroupId, activeTechId, updateDOMCenters, dimensions]);
+        return () => clearTimeout(timer);
+    }, [updateDOMCenters, dimensions]);
 
     const positions = useMemo(() => {
         const { width, height } = dimensions;
@@ -120,12 +120,15 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
         e.stopPropagation();
         setActiveTechId(null);
         setActiveGroupId(activeGroupId === id ? null : id);
+        // Instant update since geometry doesn't change
+        setTimeout(updateDOMCenters, 0);
     };
 
     const handleTechClick = (id: string, e: React.MouseEvent) => {
         e.stopPropagation();
         setActiveGroupId(null);
         setActiveTechId(activeTechId === id ? null : id);
+        setTimeout(updateDOMCenters, 0);
     };
 
     useEffect(() => {
@@ -156,9 +159,34 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
             <S.ConnectionSvg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
                 <AnimatePresence>
                     {lines.map(line => {
-                        const start = domCenters[line.from];
-                        const end = domCenters[line.to];
-                        if (!start || !end) return null;
+                        const startNode = domCenters[line.from];
+                        const endNode = domCenters[line.to];
+                        if (!startNode || !endNode) return null;
+
+                        const dx = endNode.x - startNode.x;
+                        const dy = endNode.y - startNode.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 40) return null; // Too close to draw
+
+                        const unitX = dx / dist;
+                        const unitY = dy / dist;
+
+                        // Calculate intersection radius for start (Group) and end (Tech)
+                        const getRadius = (node: { width?: number; height?: number }) => {
+                            const a = (node.width || 80) / 2;
+                            const b = (node.height || 40) / 2;
+                            return (a * b) / Math.sqrt(Math.pow(b * unitX, 2) + Math.pow(a * unitY, 2));
+                        };
+
+                        const rStart = getRadius(startNode);
+                        const rEnd = getRadius(endNode);
+
+                        // Add small 2px gap for aesthetic breathing room
+                        const buffer = 2;
+                        const startX = startNode.x + unitX * (rStart + buffer);
+                        const startY = startNode.y + unitY * (rStart + buffer);
+                        const endX = endNode.x - unitX * (rEnd + buffer);
+                        const endY = endNode.y - unitY * (rEnd + buffer);
 
                         return (
                             <motion.line
@@ -166,12 +194,12 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                                 initial={{ pathLength: 0, opacity: 0 }}
                                 animate={{ pathLength: 1, opacity: 0.6 }}
                                 exit={{ pathLength: 0, opacity: 0 }}
-                                x1={start.x}
-                                y1={start.y}
-                                x2={end.x}
-                                y2={end.y}
+                                x1={startX}
+                                y1={startY}
+                                x2={endX}
+                                y2={endY}
                                 stroke="#00f2ff"
-                                strokeWidth="1.5"
+                                strokeWidth="1"
                                 strokeDasharray="4,4"
                                 transition={{ duration: 0.4 }}
                             />
@@ -208,6 +236,7 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                                 opacity: isDimmed ? 0.2 : 1,
                                 zIndex: isActive ? 50 : 20
                             }}
+                            whileHover={{ zIndex: 110 }}
                             style={{ position: 'absolute', x: '-50%', y: '-50%' }}
                             transition={{ type: "spring", stiffness: 200, damping: 25 }}
                         >
@@ -218,30 +247,12 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                                 $isDimmed={!!isDimmed}
                                 onClick={(e) => handleGroupClick(pos.id, e)}
                             >
-                                <motion.div 
-                                    layout="position"
-                                    style={{ 
-                                        display: 'flex', 
-                                        flexDirection: 'column', 
-                                        alignItems: 'center', 
-                                        justifyContent: 'center' 
-                                    }}
-                                >
-                                    <S.NodeLabel layout="position">{group.title}</S.NodeLabel>
-                                    
-                                    <AnimatePresence mode="popLayout">
-                                        {isSelected && (
-                                            <S.InlineImpactContent
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                transition={{ duration: 0.5, ease: "circOut" }}
-                                            >
-                                                <S.ImpactText>{group.impactNote}</S.ImpactText>
-                                            </S.InlineImpactContent>
-                                        )}
-                                    </AnimatePresence>
-                                </motion.div>
+                                <S.NodeLabel layout="position">{group.title}</S.NodeLabel>
+                                {group.impactNote && (
+                                    <S.GroupTooltip>
+                                        {group.impactNote}
+                                    </S.GroupTooltip>
+                                )}
                             </S.GroupNode>
                         </motion.div>
                     );
