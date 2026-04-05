@@ -6,6 +6,21 @@ export const bpBounce = keyframes`
   50% { transform: translateX(-50%) translateY(8px); }
 `;
 
+export const pulseBeacon = keyframes`
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(0, 230, 118, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 230, 118, 0);
+  }
+`;
+
 export const HeroWrapper = styled.div`
   flex: 1;
   width: 100%;
@@ -170,12 +185,12 @@ export const AvailabilityBadge = styled.div<{ accent: string }>`
   margin-bottom: 0.1rem;
 
   & > span {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #00e676;
     display: inline-block;
-    animation: ${bpBounce} 2s ease-in-out infinite;
+    animation: ${pulseBeacon} 2s infinite;
   }
 `;
 

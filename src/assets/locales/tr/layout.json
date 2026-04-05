@@ -71,7 +71,7 @@
         "scroll": "kaydır",
         "viewExperience": "Deneyimi Görüntüle",
         "downloadCv": "Özgeçmişi İndir",
-        "availability": "✦ Lider / Mimar Roller için Uygun · Uzaktan veya Antalya"
+        "availability": "Lider / Mimar Roller için Uygun · Antalya veya Taşınma"
     },
     "about": {
         "refId": "REF_NO: PRO_BIO_772",
@@ -87,7 +87,7 @@
         "subtitle": "Bir mimari zorluğunuz, liderlik rolü açığınız varsa veya sadece bağlantı kurmak istiyorsanız, sohbet etmekten mutluluk duyarım. Genellikle 24 saat içinde yanıt veririm.",
         "location": "Antalya, Türkiye · GMT+3",
         "timezone": "AB ve KA saat dilimleri desteklenmektedir",
-        "status": "Lider / Mimar rollerine açık — Uzaktan veya Yer Değiştirme",
+        "status": "Lider / Mimar rollerine açık — Antalya veya Taşınma",
         "sendInit": "// mesaj.gonder",
         "sendTitle": "Bir Mesaj Gönderin",
         "form": {
