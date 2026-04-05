@@ -85,11 +85,7 @@ export default function CaseStudies(props: CaseStudiesProps) {
                         const isOpen = openIds.includes(cs.id);
                         return (
                             <Fade key={cs.id} direction="up" triggerOnce duration={600} delay={i * 100}>
-                                <S.CaseCard
-                                    onMouseEnter={(e) => !isMobile && setPreview({ id: cs.id, x: e.clientX, y: e.clientY })}
-                                    onMouseMove={(e) => handleMouseMove(e, cs.id)}
-                                    onMouseLeave={() => !isMobile && setPreview({ id: null, x: 0, y: 0 })}
-                                >
+                                <S.CaseCard>
                                     <S.CaseHeader onClick={() => toggle(cs.id)}>
                                         <S.CaseMeta>
                                             <S.CaseLabel>{cs.label}</S.CaseLabel>
@@ -123,7 +119,13 @@ export default function CaseStudies(props: CaseStudiesProps) {
                                         <S.CaseBody>
                                             {Boolean(cs.diagram) && (
                                                 <S.Section>
-                                                    <DiagramViewer code={cs.diagram!} id={cs.id} />
+                                                    <DiagramViewer 
+                                                        code={cs.diagram!} 
+                                                        id={cs.id}
+                                                        onMouseEnter={(e) => !isMobile && setPreview({ id: cs.id, x: e.clientX, y: e.clientY })}
+                                                        onMouseMove={(e) => handleMouseMove(e, cs.id)}
+                                                        onMouseLeave={() => !isMobile && setPreview({ id: null, x: 0, y: 0 })}
+                                                    />
                                                 </S.Section>
                                             )}
 

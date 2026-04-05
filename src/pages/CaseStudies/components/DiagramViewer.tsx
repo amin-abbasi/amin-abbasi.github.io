@@ -52,6 +52,9 @@ const MermaidWrap = styled.div`
 interface DiagramViewerProps {
   code: string;
   id: string;
+  onMouseEnter?: (e: React.MouseEvent) => void;
+  onMouseMove?: (e: React.MouseEvent) => void;
+  onMouseLeave?: (e: React.MouseEvent) => void;
 }
 
 declare global {
@@ -60,7 +63,7 @@ declare global {
   }
 }
 
-const DiagramViewer: React.FC<DiagramViewerProps> = ({ code, id }) => {
+const DiagramViewer: React.FC<DiagramViewerProps> = ({ code, id, onMouseEnter, onMouseMove, onMouseLeave }) => {
   const theme = useContext(ThemeContext) as Theme;
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -123,7 +126,7 @@ const DiagramViewer: React.FC<DiagramViewerProps> = ({ code, id }) => {
   }, [code, isLoaded, id, isDark]);
 
   return (
-    <DiagramContainer>
+    <DiagramContainer onMouseEnter={onMouseEnter} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
       <MermaidWrap ref={containerRef} id={`wrap-${id}`}>
         {!isLoaded && <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', opacity: 0.5 }}>L O A D I N G _ D I A G R A M . . .</span>}
       </MermaidWrap>
