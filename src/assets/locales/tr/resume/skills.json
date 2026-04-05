@@ -77,8 +77,8 @@
       "title": "Liderlik",
       "items": [
         "Çapraz Fonksiyonlu Ekip Ölçekleme",
-        "Teknik Mentorluk",
-        "Mühendislik Mükemmeliyeti Kültürünü Teşvik Etme"
+        "Teknik Mentorluk ve Eşli Programlama",
+        "Mühendislik Mükemmeliyeti Kültürünü Yönetme"
       ]
     },
     {
@@ -100,9 +100,9 @@
     {
       "title": "Değişim Yönetimi",
       "items": [
-        "Çevik ve Scrum Optimizasyonu",
-        "KPI Tanımlama",
-        "Kod İnceleme Standartlarının Oluşturulması"
+        "İki Aşamalı ADR Yönetişimi",
+        "%20 Sürdürülebilir Refactoring Kuralı",
+        "Çevik ve Scrum Optimizasyonu"
       ]
     }
   ]

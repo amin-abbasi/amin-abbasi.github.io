@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { AboutData, Testimonial, StatEntry, Availability } from '@core/types/resume';
+import { AboutData, Testimonial, StatEntry, Availability, LeadershipPhilosophy } from '@core/types/resume';
 
 /**
  * useAboutData - Dedicated hook for fetching and mapping About feature data.
@@ -15,6 +15,7 @@ export const useAboutData = () => {
         stats: t('resAbout:stats', { returnObjects: true }) as StatEntry[],
         availability: t('resAbout:availability', { returnObjects: true }) as Availability,
         testimonials: t('resAbout:testimonials', { returnObjects: true }) as Testimonial[],
+        leadershipPhilosophy: t('resAbout:leadershipPhilosophy', { returnObjects: true }) as LeadershipPhilosophy,
     };
 
     return {

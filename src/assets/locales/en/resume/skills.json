@@ -77,7 +77,7 @@
       "title": "Leadership",
       "items": [
         "Cross-functional Team Scaling",
-        "Technical Mentorship",
+        "Technical Mentorship & Pair Programming",
         "Driving a Culture of Engineering Excellence"
       ]
     },
@@ -100,9 +100,9 @@
     {
       "title": "Change Management",
       "items": [
-        "Agile & Scrum Optimization",
-        "KPI Definition",
-        "Establishing Code Review Standards"
+        "Two-stage ADR Governance",
+        "20% Sustainable Refactoring Rule",
+        "Agile & Scrum Optimization"
       ]
     }
   ]

@@ -10,6 +10,18 @@ export interface StatEntry {
     label: string;
 }
 
+export interface LeadershipPillar {
+    id: string;
+    title: string;
+    description: string;
+    icon: string;
+}
+
+export interface LeadershipPhilosophy {
+    title: string;
+    pillars: LeadershipPillar[];
+}
+
 export interface Availability {
     location: string;
     timezone: string;
@@ -30,9 +42,10 @@ export interface AboutData {
     about: string;
     quote?: string;
     imageSource: string;
-    stats?: StatEntry[];
-    availability?: Availability;
-    testimonials?: Testimonial[];
+    stats: StatEntry[];
+    availability: Availability;
+    testimonials: Testimonial[];
+    leadershipPhilosophy?: LeadershipPhilosophy;
 }
 
 export interface ExperienceItem {

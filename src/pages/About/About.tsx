@@ -9,6 +9,7 @@ import StatsBar from './components/StatsBar';
 import AvailabilityCard from './components/AvailabilityCard';
 import { StyledContainer, Grid, Column } from '@components/shared/layout';
 import { TestimonialCard } from '@shared/components/TestimonialCard';
+import LeadershipPhilosophy from './components/LeadershipPhilosophy';
 import { useAboutData } from './hooks/useAboutData';
 import * as S from './About.styles';
 
@@ -52,14 +53,7 @@ const About = ({ header }: AboutProps) => {
                 <StyledContainer>
                     <Fade triggerOnce duration={1000}>
                         <Grid className="align-items-start">
-                            <Column lg={7} md={12} className="order-2 order-lg-1">
-                                <S.TextColumnContent>
-                                    <ReactMarkdown>{data.about}</ReactMarkdown>
-                                    <StatsBar stats={data.stats || []} />
-                                </S.TextColumnContent>
-                            </Column>
-
-                            <Column lg={5} md={12} className="order-1 order-lg-2 mb-5 mb-lg-0 mt-lg-4">
+                            <Column lg={5} md={12} order={1} orderLg={2} className="mb-5 mb-lg-0 mt-lg-4">
                                 <Fade direction="right" triggerOnce delay={200}>
                                     <S.ProfileWrapper>
                                         <S.ImageContainer>
@@ -78,7 +72,21 @@ const About = ({ header }: AboutProps) => {
                                     </S.ProfileWrapper>
                                 </Fade>
                             </Column>
+
+                            <Column lg={7} md={12} order={2} orderLg={1}>
+                                <S.TextColumnContent>
+                                    <ReactMarkdown>{data.about}</ReactMarkdown>
+                                    <StatsBar stats={data.stats || []} />
+                                </S.TextColumnContent>
+                            </Column>
                         </Grid>
+
+                        {data.leadershipPhilosophy && (
+                            <LeadershipPhilosophy 
+                                title={data.leadershipPhilosophy.title} 
+                                pillars={data.leadershipPhilosophy.pillars} 
+                            />
+                        )}
 
                         {/* Testimonials Section */}
                         {Array.isArray(data.testimonials) && data.testimonials.length > 0 && (

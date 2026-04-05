@@ -27,8 +27,12 @@ export const Grid: React.FC<LayoutProps & { noGutters?: boolean }> = ({ children
   </S.GridRow>
 );
 
-export const Column: React.FC<LayoutProps & { xs?: number; sm?: number; md?: number; lg?: number; xl?: number }> = ({ 
-  children, className, id, style, xs, sm, md, lg, xl 
+export const Column: React.FC<LayoutProps & { 
+  xs?: number; sm?: number; md?: number; lg?: number; xl?: number;
+  order?: number; orderSm?: number; orderMd?: number; orderLg?: number; orderXl?: number;
+}> = ({ 
+  children, className, id, style, xs, sm, md, lg, xl,
+  order, orderSm, orderMd, orderLg, orderXl
 }) => (
   <S.GridColumn 
     className={className} 
@@ -39,6 +43,11 @@ export const Column: React.FC<LayoutProps & { xs?: number; sm?: number; md?: num
     $md={md} 
     $lg={lg} 
     $xl={xl}
+    $order={order}
+    $orderSm={orderSm}
+    $orderMd={orderMd}
+    $orderLg={orderLg}
+    $orderXl={orderXl}
   >
     {children}
   </S.GridColumn>

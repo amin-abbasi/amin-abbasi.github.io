@@ -4,7 +4,7 @@ import { Theme } from '@app/theme/themes';
 
 export const StyledSection = styled.section`
   padding: 4rem 0;
-  background: ${(props) => (props.theme as Theme).background};
+  background: transparent;
   color: ${(props) => (props.theme as Theme).color};
   position: relative;
   overflow: hidden;
@@ -38,6 +38,11 @@ export const GridColumn = styled.div<{
   $md?: number; 
   $lg?: number; 
   $xl?: number;
+  $order?: number;
+  $orderSm?: number;
+  $orderMd?: number;
+  $orderLg?: number;
+  $orderXl?: number;
 }>`
   position: relative;
   width: 100%;
@@ -46,11 +51,13 @@ export const GridColumn = styled.div<{
   margin-bottom: 2.5rem;
   flex: 0 0 100%;
   max-width: 100%;
+  order: ${(props) => props.$order || 0};
 
   ${(props) => props.$sm && css`
     @media (min-width: 576px) {
       flex: 0 0 ${(props.$sm / 12) * 100}%;
       max-width: ${(props.$sm / 12) * 100}%;
+      order: ${props.$orderSm !== undefined ? props.$orderSm : props.$order || 0};
     }
   `}
 
@@ -58,6 +65,7 @@ export const GridColumn = styled.div<{
     @media (min-width: 768px) {
       flex: 0 0 ${(props.$md / 12) * 100}%;
       max-width: ${(props.$md / 12) * 100}%;
+      order: ${props.$orderMd !== undefined ? props.$orderMd : props.$orderSm !== undefined ? props.$orderSm : props.$order || 0};
     }
   `}
 
@@ -65,6 +73,7 @@ export const GridColumn = styled.div<{
     @media (min-width: 992px) {
       flex: 0 0 ${(props.$lg / 12) * 100}%;
       max-width: ${(props.$lg / 12) * 100}%;
+      order: ${props.$orderLg !== undefined ? props.$orderLg : props.$orderMd !== undefined ? props.$orderMd : props.$orderSm !== undefined ? props.$orderSm : props.$order || 0};
     }
   `}
 
@@ -72,6 +81,7 @@ export const GridColumn = styled.div<{
     @media (min-width: 1200px) {
       flex: 0 0 ${(props.$xl / 12) * 100}%;
       max-width: ${(props.$xl / 12) * 100}%;
+      order: ${props.$orderXl !== undefined ? props.$orderXl : props.$orderLg !== undefined ? props.$orderLg : props.$orderMd !== undefined ? props.$orderMd : props.$orderSm !== undefined ? props.$orderSm : props.$order || 0};
     }
   `}
 `;

@@ -1,5 +1,28 @@
 {
   "about": "### Hey, I'm Amin 👋\n\nI’ve spent the last decade obsessed with one question: **How do you build software that scales—not just for the traffic, but for the humans maintaining it at 2 AM?**\n\nAs a **Lead Backend Architect**, I specialize in high-stakes environments like **Fintech, HealthTech, and Cryptocurrency**. I’ve designed high-frequency trading engines, FHIR-compliant medical platforms, and **ERP/MES systems** running factory floors in real-time.\n\nBut for me, the architecture is only half the story.\n\n#### 🏗️ Architecture & Philosophy\nI'm a firm believer that **clean architecture is less about elegance and more about being kind to your future self.** My core expertise lies in **Node.js & TypeScript**, architecting distributed systems with event-driven pipelines (RabbitMQ), real-time sync (WebSockets), and high-performance databases (PostgreSQL, ArangoDB, Redis).\n\n#### 🤝 Leadership & Growth\nI’ve had the privilege of mentoring **30+ developers** across 5 companies. I prefer spending an hour explaining the *why* behind a design decision over shipping a solution nobody understands. I believe a system is only as sustainable as the team behind it.\n\n#### 📍 Available & Ready\nCurrently based in **Antalya, Turkey** (with a transferable work permit). I support **EU and North American** time zones and I'm open to Lead roles or Senior Consulting—remote or on-site.",
+  "leadershipPhilosophy": {
+    "title": "Leadership Philosophy",
+    "pillars": [
+      {
+        "id": "mentorship",
+        "title": "Mentorship & Growth",
+        "description": "My mentorship is built on active **Pair Programming** and Socratic reviews. I invest the extra hour to explain the 'why,' empowering engineers to make Lead-level decisions independently.",
+        "icon": "Users"
+      },
+      {
+        "id": "governance",
+        "title": "Architectural Governance",
+        "description": "I translate stakeholder sessions into a two-stage **ADR process**: a lightweight proposal for business-logic alignment, followed by a thorough technical blueprint.",
+        "icon": "Layout"
+      },
+      {
+        "id": "sustainability",
+        "title": "Sustainable Engineering",
+        "description": "I maintain a strict **20% continuous refactoring rule**, planned 'behind the scenes' to preserve velocity while ensuring long-term system health and CEO alignment.",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
   "quote": "The best code is the one you didn't have to write.",
   "imageSource": "images/about/me.png",
   "stats": [

@@ -1,5 +1,28 @@
 {
   "about": "### Merhaba, Ben Amin 👋\n\nSon on yılımı tek bir soruya odaklanarak geçirdim: **Yazılımı sadece trafik için değil, gece 02:00'de bakımını yapacak ekip için de nasıl ölçeklenebilir kılarız?**\n\n**Lider Backend Mimarı** olarak, **Fintech, HealthTech ve Kripto Para** gibi hatanın lüks olduğu sektörlerde uzmanlaştım. Yüksek frekanslı ticaret motorlarından, Avrupa standartlarında (FHIR) tıbbi platformlara ve fabrika alanlarını gerçek zamanlı yöneten **ERP/MES sistemlerine** kadar kritik yapılar tasarladım.\n\nAncak benim için mimari, madalyonun sadece bir yüzü.\n\n#### 🏗️ Mimari & Felsefe\n**Temiz mimarinin zarafetten ziyade, gelecekteki benliğinize nazik davranmakla ilgili olduğuna** inanıyorum. Uzmanlığım **Node.js ve TypeScript** odağında; dağıtık sistemler, olay güdümlü yapılar (RabbitMQ), gerçek zamanlı senkronizasyon (WebSockets) ve yüksek performanslı veritabanları (PostgreSQL, ArangoDB, Redis) üzerine kurulu.\n\n#### 🤝 Liderlik & Gelişim\nBugüne kadar 5 farklı şirkette **30'dan fazla geliştiriciye** mentorluk yaptım. Kimsenin anlamadığı bir kodu yayına almaktansa, mimari bir kararın arkasındaki *nedeni* ekibe anlatmak için zaman ayırmayı tercih ederim. Bir sistemin ancak onu ayakta tutan ekip kadar sürdürülebilir olduğuna inanıyorum.\n\n#### 📍 Uygunluk & İletişim\nŞu anda **Antalya'da** yaşıyorum. **Avrupa ve Kuzey Amerika** saat dilimlerinde çalışmaya uygunum. Uzaktan veya yerinde tam zamanlı liderlik rollerine veya kıdemli danışmanlık projelerine açığım.",
+  "leadershipPhilosophy": {
+    "title": "Liderlik Felsefesi",
+    "pillars": [
+      {
+        "id": "mentorship",
+        "title": "Mentorluk ve Gelişim",
+        "description": "Mentorluk yaklaşımım aktif **Eşli Programlama (Pair Programming)** ve Sokratik incelemeler üzerine kurulu. Mühendislerin bağımsız kararlar alabilmesini sağlamak için mimari kararların 'nedenlerini' açıklamaya zaman ayırıyorum.",
+        "icon": "Users"
+      },
+      {
+        "id": "governance",
+        "title": "Mimari Yönetişim (ADR)",
+        "description": "İş akışlarını paydaşlarla belirleyip iki aşamalı bir **ADR (Mimari Karar Kaydı)** sürecine dönüştürüyorum: iş mantığı uyumu için hafif bir ön onay ve ardından kapsamlı teknik dokümantasyon.",
+        "icon": "Layout"
+      },
+      {
+        "id": "sustainability",
+        "title": "Sürdürülebilir Mühendislik",
+        "description": "Uygulama hızını düşürmeden, uzun vadeli sistem sağlığı için CEO bilgisi dahilinde **%20 sürekli refactoring** kuralını uyguluyorum.",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
   "imageSource": "images/about/me.png",
   "quote": "En iyi kod, yazmak zorunda kalmadığın koddur.",
   "stats": [
