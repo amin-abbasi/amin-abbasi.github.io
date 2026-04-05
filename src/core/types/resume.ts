@@ -46,20 +46,29 @@ export interface ExperienceItem {
     workDescription: string[];
 }
 
-export interface SkillItem {
+export interface TechNode {
+  id: string;
   title: string;
   icon: string;
-  isCore?: boolean;
 }
 
-export interface SkillCategory {
+export interface SkillGroup {
+  id: string;
   title: string;
-  items: SkillItem[];
+  impactNote: string;
+  techIds: string[];
+}
+
+export interface SoftSkillCategory {
+  title: string;
+  items: string[];
 }
 
 export interface SkillsData {
   intro: string;
-  skills: SkillCategory[];
+  techs: TechNode[];
+  groups: SkillGroup[];
+  softSkills: SoftSkillCategory[];
 }
 
 export interface EducationItem {

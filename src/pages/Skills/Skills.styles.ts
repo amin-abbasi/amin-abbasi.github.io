@@ -1,5 +1,6 @@
 // src/pages/Skills/Skills.styles.ts
 import { styled, css } from 'styled-components';
+import { motion } from 'framer-motion';
 import { Theme } from '@app/theme/themes';
 
 export const MainContainer = styled.div`
@@ -45,7 +46,6 @@ export const CategoryCard = styled.div`
     position: relative;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
-    /* Blueprint corner markers */
     &::before {
         content: '';
         position: absolute;
@@ -112,7 +112,6 @@ export const SkillBadge = styled.div<{ $isCore?: boolean }>`
     ${(props) => props.$isCore && css`
         box-shadow: 0 0 12px rgba(0, 242, 255, 0.25), inset 0 0 4px rgba(0, 242, 255, 0.1);
         
-        /* Vibrant glassmorphic lamp indicator */
         &::after {
             content: '';
             position: absolute;
@@ -174,42 +173,294 @@ export const ModuleID = styled.div`
     margin-inline-start: auto;
 `;
 
-export const FilterContainer = styled.div`
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}40;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+export const GraphWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    min-height: 900px;
+    margin: 1rem 0 1rem;
+    padding: 1rem 0 1rem;
+    overflow: visible;
+    background: radial-gradient(circle at 50% 50%, ${(props) => (props.theme as Theme).accentColor}08 0%, transparent 75%);
 
-    @media (min-width: 601px) {
-        flex-wrap: wrap;
-        justify-content: flex-start;
+    @media (max-width: 768px) {
+        min-height: 700px;
+        margin: 2rem 0 10rem;
+        padding-bottom: 120px;
     }
 `;
 
-export const FilterButton = styled.button<{ $active: boolean }>`
-    background: ${(props) => (props.$active ? `${(props.theme as Theme).accentColor}15` : 'transparent')};
-    border: 1px solid ${(props) => (props.$active ? (props.theme as Theme).accentColor : `${(props.theme as Theme).cardBorderColor}`)};
-    color: ${(props) => (props.$active ? (props.theme as Theme).accentColor : `${(props.theme as Theme).color}88`)};
-    padding: 6px 16px;
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+export const GroupNode = styled(motion.div)<{ $isActive: boolean; $isSelected: boolean; $isDimmed: boolean }>`
+    padding: 16px 32px;
+    background: ${(props) => props.$isActive 
+        ? `${(props.theme as Theme).accentColor}f0` 
+        : `${(props.theme as Theme).cardBackground}f0`};
+    border: 1px solid ${(props) => props.$isSelected 
+        ? '#00f2ff' 
+        : `${(props.theme as Theme).cardBorderColor}`};
+    border-radius: 40px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s ease, border-color 0.4s ease;
+    backdrop-filter: blur(12px);
+    opacity: ${(props) => (props.$isDimmed ? 0.2 : 1)};
+    box-shadow: ${(props) => props.$isSelected 
+        ? '0 0 40px rgba(0, 242, 255, 0.5), inset 0 0 12px rgba(255, 255, 255, 0.2)' 
+        : props.$isActive
+            ? '0 0 20px rgba(0, 242, 255, 0.2)'
+            : '0 4px 15px rgba(0, 0, 0, 0.1)'};
+    box-sizing: border-box;
+    max-width: 400px;
+    
+    &:hover {
+        border-color: #00f2ff;
+        box-shadow: 0 8px 30px rgba(0, 242, 255, 0.3);
+        z-index: 50;
+    }
+
+    @media (max-width: 768px) {
+        padding: 12px 24px;
+        max-width: 280px;
+    }
+`;
+
+export const NodeLabel = styled(motion.span)`
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: inherit;
+
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
+    }
+`;
+
+export const InlineImpactContent = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+`;
+
+export const ImpactText = styled.span`
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
+    }
+`;
+
+export const TechNodeCircle = styled(motion.div)<{ $isActive: boolean; $isSelected: boolean; $isDimmed: boolean }>`
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: ${(props) => props.$isActive 
+        ? `${(props.theme as Theme).accentColor}18` 
+        : `${(props.theme as Theme).cardBackground}`};
+    border: 1px solid ${(props) => props.$isSelected 
+        ? '#00f2ff' 
+        : `${(props.theme as Theme).cardBorderColor}`};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    opacity: ${(props) => (props.$isDimmed ? 0.3 : 1)};
+    backdrop-filter: blur(8px);
+    
+    ${(props) => props.$isSelected && css`
+        box-shadow: 0 0 25px rgba(0, 242, 255, 0.4), inset 0 0 10px rgba(0, 242, 255, 0.1);
+        transform: scale(1.1);
+    `}
 
     &:hover {
-        border-color: ${(props) => (props.theme as Theme).accentColor};
+        border-color: #00f2ff;
+        transform: scale(1.15);
+        box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        z-index: 40;
+    }
+
+    @media (max-width: 768px) {
+        width: 48px;
+        height: 48px;
+    }
+`;
+
+export const TechIconNode = styled(motion.img)`
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+        width: 20px;
+        height: 20px;
+    }
+`;
+
+export const TechLabel = styled(motion.div)`
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 45;
+
+    ${TechNodeCircle}:hover & {
+        opacity: 1;
+    }
+`;
+
+export const ConnectionSvg = styled.svg`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+`;
+
+export const SoftSkillsSection = styled.div`
+    margin-top: 50px;
+    padding-top: 50px;
+    border-top: 1px solid ${(props) => (props.theme as Theme).cardBorderColor}30;
+    position: relative;
+    z-index: 100;
+
+    @media (max-width: 768px) {
+        margin-top: 200px;
+        padding-top: 100px;
+    }
+`;
+
+export const SoftSkillsTitle = styled.h2`
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: ${(props) => (props.theme as Theme).accentColor};
+    margin-bottom: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    &::before, &::after {
+        content: '';
+        height: 1px;
+        width: 100px;
+        background: linear-gradient(to var(--dir, right), ${(props) => (props.theme as Theme).accentColor}, transparent);
+    }
+    &::after { --dir: left; }
+`;
+
+export const SoftSkillsGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+`;
+
+export const SoftSkillCard = styled.div`
+    padding: 32px;
+    background: ${(props) => (props.theme as Theme).cardBackground}C0;
+    border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: ${(props) => (props.theme as Theme).accentColor}20;
+    }
+
+    &:hover {
+        transform: translateY(-8px);
+        border-color: ${(props) => (props.theme as Theme).accentColor}60;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        &::before {
+            background: ${(props) => (props.theme as Theme).accentColor};
+        }
+    }
+`;
+
+export const SoftCategoryTitle = styled.h3`
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: ${(props) => (props.theme as Theme).color};
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &::before {
+        content: '>';
         color: ${(props) => (props.theme as Theme).accentColor};
+        font-weight: 900;
+    }
+`;
+
+export const SoftItemList = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+`;
+
+export const SoftItem = styled.li`
+    font-family: var(--font-main);
+    font-size: 1rem;
+    line-height: 1.2;
+    color: ${(props) => (props.theme as Theme).color}BB;
+    margin-bottom: 16px;
+    padding-left: 24px;
+    position: relative;
+    text-align: start;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        background: ${(props) => (props.theme as Theme).accentColor}40;
+        border: 1px solid ${(props) => (props.theme as Theme).accentColor};
+        border-radius: 50%;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
     }
 `;

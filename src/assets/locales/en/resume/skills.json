@@ -1,88 +1,108 @@
 {
   "intro": "I love to learn new things and experiment with new technologies. These are some of the major languages, technologies, tools and platforms I have worked with:",
-  "skills": [
+  "techs": [
+    { "id": "nodejs", "title": "Node.js", "icon": "images/skills/nodejs.svg" },
+    { "id": "typescript", "title": "TypeScript", "icon": "images/skills/typescript.svg" },
+    { "id": "nestjs", "title": "NestJS", "icon": "images/skills/nestjs.svg" },
+    { "id": "express", "title": "Express", "icon": "images/skills/expressjs.svg" },
+    { "id": "js", "title": "JavaScript", "icon": "images/skills/js.svg" },
+    { "id": "python", "title": "Python", "icon": "images/skills/python.svg" },
+    { "id": "django", "title": "Django", "icon": "images/skills/django.svg" },
+    { "id": "golang", "title": "Golang", "icon": "images/skills/golang.svg" },
+    { "id": "api", "title": "API Design", "icon": "images/skills/api.svg" },
+    { "id": "microservices", "title": "Microservices", "icon": "images/skills/microservices.svg" },
+    { "id": "architecture", "title": "Clean Architecture", "icon": "images/skills/architecture.svg" },
+    { "id": "websocket", "title": "WebSocket", "icon": "images/skills/websocket.svg" },
+    { "id": "rabbitmq", "title": "RabbitMQ", "icon": "images/skills/rabbit-mq.svg" },
+    { "id": "kafka", "title": "Kafka", "icon": "images/skills/kafka.svg" },
+    { "id": "webrtc", "title": "WebRTC", "icon": "images/skills/webrtc.svg" },
+    { "id": "socketio", "title": "Socket.IO", "icon": "images/skills/socket-io.svg" },
+    { "id": "postgresql", "title": "PostgreSQL", "icon": "images/skills/postgresql.svg" },
+    { "id": "mongodb", "title": "MongoDB", "icon": "images/skills/mongo-db.svg" },
+    { "id": "arangodb", "title": "ArangoDB", "icon": "images/skills/arangodb.svg" },
+    { "id": "redis", "title": "Redis", "icon": "images/skills/redis.svg" },
+    { "id": "docker", "title": "Docker", "icon": "images/skills/docker.svg" },
+    { "id": "git", "title": "Git", "icon": "images/skills/git.svg" },
+    { "id": "gitlabci", "title": "GitLab CI/CD", "icon": "images/skills/gitlab.svg" },
+    { "id": "kubernetes", "title": "Kubernetes", "icon": "images/skills/kubernetes.svg" },
+    { "id": "terraform", "title": "Terraform", "icon": "images/skills/terraform.svg" },
+    { "id": "linux", "title": "Linux/Bash", "icon": "images/skills/bash.svg" },
+    { "id": "nginx", "title": "Nginx", "icon": "images/skills/nginx.svg" },
+    { "id": "gcp", "title": "GCP", "icon": "images/skills/gcp.svg" },
+    { "id": "react", "title": "React", "icon": "images/skills/react.svg" },
+    { "id": "tailwind", "title": "Tailwind", "icon": "images/skills/tailwind.svg" },
+    { "id": "jest", "title": "Jest (TDD/BDD)", "icon": "images/skills/jest.svg" },
+    { "id": "graphql", "title": "GraphQL", "icon": "images/skills/graphql.svg" }
+  ],
+  "groups": [
     {
-      "title": "Backend Languages & Frameworks",
+      "id": "healthcare",
+      "title": "Healthcare Systems (FHIR/HL7)",
+      "impactNote": "Architected secure, GDPR-compliant healthcare platforms using FHIR standards, reducing query latency by 30%.",
+      "techIds": ["nodejs", "typescript", "postgresql", "docker", "gcp", "gitlabci"]
+    },
+    {
+      "id": "erp",
+      "title": "ERP & MES Solutions",
+      "impactNote": "Modernized industrial platforms by migrating to microservices, cutting feature delivery time from 1 month to 1 week.",
+      "techIds": ["nodejs", "typescript", "nestjs", "arangodb", "websocket", "docker", "microservices", "redis", "postgresql"]
+    },
+    {
+      "id": "realtime",
+      "title": "Real-time Communication",
+      "impactNote": "Optimized signaling protocols for multi-party conferencing and live tracking, boosting efficiency by 40%.",
+      "techIds": ["nodejs", "typescript", "webrtc", "socketio", "websocket", "redis"]
+    },
+    {
+      "id": "fintech",
+      "title": "FinTech & Blockchain",
+      "impactNote": "Engineered high-frequency trading engines and secure HD wallet solutions, achieving a 30% gain in speed.",
+      "techIds": ["nodejs", "typescript", "postgresql", "mongodb", "redis", "rabbitmq", "python"]
+    },
+    {
+      "id": "distributed",
+      "title": "Distributed Systems",
+      "impactNote": "Designed and maintained complex ecosystems of 30+ microservices, leveraging polyglot persistence for high-traffic optimization.",
+      "techIds": ["nodejs", "typescript", "rabbitmq", "kafka", "docker", "kubernetes", "terraform", "postgresql", "microservices", "architecture"]
+    },
+    {
+      "id": "devops",
+      "title": "DevOps & Infrastructure",
+      "impactNote": "Slid deployment times by 85% through optimized CI/CD pipelines and infrastructure-as-code, ensuring 99.9% availability.",
+      "techIds": ["docker", "gitlabci", "kubernetes", "terraform", "gcp", "linux", "nginx", "architecture"]
+    }
+  ],
+  "softSkills": [
+    {
+      "title": "Leadership",
       "items": [
-        { "icon": "images/skills/nodejs.svg", "title": "Node.js", "isCore": true },
-        { "icon": "images/skills/typescript.png", "title": "TypeScript", "isCore": true },
-        { "icon": "images/skills/nestjs.svg", "title": "NestJS", "isCore": true },
-        { "icon": "images/skills/expressjs.svg", "title": "Express", "isCore": true },
-        { "icon": "images/skills/js.png", "title": "JavaScript", "isCore": true },
-        { "icon": "images/skills/python.png", "title": "Python" },
-        { "icon": "images/skills/django.png", "title": "Django" },
-        { "icon": "images/skills/golang.svg", "title": "Golang" }
+        "Cross-functional Team Scaling",
+        "Technical Mentorship",
+        "Driving a Culture of Engineering Excellence"
       ]
     },
     {
-      "title": "Architecture & Real-time",
+      "title": "Strategic Ownership",
       "items": [
-        { "icon": "images/skills/api.svg", "title": "API Design", "isCore": true },
-        { "icon": "images/skills/microservice.svg", "title": "Microservices", "isCore": true },
-        { "icon": "images/skills/architecture.svg", "title": "Clean Architecture", "isCore": true },
-        { "icon": "images/skills/websocket.svg", "title": "WebSocket", "isCore": true },
-        { "icon": "images/skills/rabbit-mq.svg", "title": "RabbitMQ", "isCore": true },
-        { "icon": "images/skills/kafka.svg", "title": "Kafka", "isCore": true },
-        { "icon": "images/skills/webrtc.svg", "title": "WebRTC" },
-        { "icon": "images/skills/socket-io.svg", "title": "Socket-IO" }
+        "High-Stakes Risk Mitigation",
+        "Audit Compliance",
+        "System Reliability Management"
       ]
     },
     {
-      "title": "Databases",
+      "title": "Communication",
       "items": [
-        { "icon": "images/skills/postgresql.svg", "title": "PostgreSQL", "isCore": true },
-        { "icon": "images/skills/mongo-db.png", "title": "MongoDB", "isCore": true },
-        { "icon": "images/skills/arangodb.png", "title": "ArangoDB", "isCore": true },
-        { "icon": "images/skills/redis.svg", "title": "Redis", "isCore": true },
-        { "icon": "images/skills/couchdb.svg", "title": "CouchDB" },
-        { "icon": "images/skills/mysql.png", "title": "MySQL" }
+        "Business-to-Technical Translation",
+        "Stakeholder Alignment",
+        "Cross-functional Collaboration"
       ]
     },
     {
-      "title": "DevOps & Cloud",
+      "title": "Change Management",
       "items": [
-        { "icon": "images/skills/docker.png", "title": "Docker", "isCore": true },
-        { "icon": "images/skills/gitlab.svg", "title": "GitLab CI/CD", "isCore": true },
-        { "icon": "images/skills/kubernetes.svg", "title": "Kubernetes", "isCore": true },
-        { "icon": "images/skills/terraform.svg", "title": "Terraform", "isCore": true },
-        { "icon": "images/skills/bash.svg", "title": "Linux/Bash", "isCore": true },
-        { "icon": "images/skills/nginx.svg", "title": "Nginx", "isCore": true },
-        { "icon": "images/skills/ubuntu.svg", "title": "Ubuntu" },
-        { "icon": "images/skills/aws.svg", "title": "AWS" },
-        { "icon": "images/skills/azure.svg", "title": "Azure" },
-        { "icon": "images/skills/firebase.png", "title": "Firebase" },
-        { "icon": "images/skills/openshift.png", "title": "OpenShift" },
-        { "icon": "images/skills/cloudflare.png", "title": "Cloudflare" }
-      ]
-    },
-    {
-      "title": "Security & Testing Tools",
-      "items": [
-        { "icon": "images/skills/antigravity.svg", "title": "Antigravity", "isCore": true },
-        { "icon": "images/skills/jest.svg", "title": "Jest (TDD/BDD)", "isCore": true },
-        { "icon": "images/skills/jwt.svg", "title": "JWT", "isCore": true },
-        { "icon": "images/skills/vscode.svg", "title": "VS-Code", "isCore": true },
-        { "icon": "images/skills/git.png", "title": "Git", "isCore": true },
-        { "icon": "images/skills/github.svg", "title": "Github", "isCore": true },
-        { "icon": "images/skills/gitlab.svg", "title": "Gitlab", "isCore": true },
-        { "icon": "images/skills/oauth.svg", "title": "OAuth2" },
-        { "icon": "images/skills/rbac.svg", "title": "RBAC" },
-        { "icon": "images/skills/jira.svg", "title": "Jira" },
-        { "icon": "images/skills/graphql.svg", "title": "GraphQL" }
-      ]
-    },
-    {
-      "title": "Frontend (Supporting)",
-      "items": [
-        { "icon": "images/skills/typescript.png", "title": "TypeScript", "isCore": true },
-        { "icon": "images/skills/react.png", "title": "React", "isCore": true },
-        { "icon": "images/skills/tailwind.svg", "title": "Tailwind", "isCore": true },
-        { "icon": "images/skills/lucide.svg", "title": "Lucide", "isCore": true },
-        { "icon": "images/skills/shadcn.svg", "title": "Shadcn", "isCore": true },
-        { "icon": "images/skills/js.png", "title": "JavaScript" },
-        { "icon": "images/skills/redux.svg", "title": "Redux" },
-        { "icon": "images/skills/html.png", "title": "HTML" },
-        { "icon": "images/skills/css.png", "title": "CSS" }
+        "Agile & Scrum Optimization",
+        "KPI Definition",
+        "Establishing Code Review Standards"
       ]
     }
   ]

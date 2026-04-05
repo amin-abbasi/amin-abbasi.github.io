@@ -1,88 +1,108 @@
 {
   "intro": "Yeni şeyler öğrenmeyi ve yeni teknolojilerle deneyler yapmayı seviyorum. Bunlar üzerinde çalıştığım başlıca diller, teknolojiler, araçlar ve platformlardan bazılarıdır:",
-  "skills": [
+  "techs": [
+    { "id": "nodejs", "title": "Node.js", "icon": "images/skills/nodejs.svg" },
+    { "id": "typescript", "title": "TypeScript", "icon": "images/skills/typescript.svg" },
+    { "id": "nestjs", "title": "NestJS", "icon": "images/skills/nestjs.svg" },
+    { "id": "express", "title": "Express", "icon": "images/skills/expressjs.svg" },
+    { "id": "js", "title": "JavaScript", "icon": "images/skills/js.svg" },
+    { "id": "python", "title": "Python", "icon": "images/skills/python.svg" },
+    { "id": "django", "title": "Django", "icon": "images/skills/django.svg" },
+    { "id": "golang", "title": "Golang", "icon": "images/skills/golang.svg" },
+    { "id": "api", "title": "API Tasarımı", "icon": "images/skills/api.svg" },
+    { "id": "microservices", "title": "Mikroservisler", "icon": "images/skills/microservices.svg" },
+    { "id": "architecture", "title": "Temiz Mimari", "icon": "images/skills/architecture.svg" },
+    { "id": "websocket", "title": "WebSocket", "icon": "images/skills/websocket.svg" },
+    { "id": "rabbitmq", "title": "RabbitMQ", "icon": "images/skills/rabbit-mq.svg" },
+    { "id": "kafka", "title": "Kafka", "icon": "images/skills/kafka.svg" },
+    { "id": "webrtc", "title": "WebRTC", "icon": "images/skills/webrtc.svg" },
+    { "id": "socketio", "title": "Socket.IO", "icon": "images/skills/socket-io.svg" },
+    { "id": "postgresql", "title": "PostgreSQL", "icon": "images/skills/postgresql.svg" },
+    { "id": "mongodb", "title": "MongoDB", "icon": "images/skills/mongo-db.svg" },
+    { "id": "arangodb", "title": "ArangoDB", "icon": "images/skills/arangodb.svg" },
+    { "id": "redis", "title": "Redis", "icon": "images/skills/redis.svg" },
+    { "id": "docker", "title": "Docker", "icon": "images/skills/docker.svg" },
+    { "id": "git", "title": "Git", "icon": "images/skills/git.svg" },
+    { "id": "gitlabci", "title": "GitLab CI/CD", "icon": "images/skills/gitlab.svg" },
+    { "id": "kubernetes", "title": "Kubernetes", "icon": "images/skills/kubernetes.svg" },
+    { "id": "terraform", "title": "Terraform", "icon": "images/skills/terraform.svg" },
+    { "id": "linux", "title": "Linux/Bash", "icon": "images/skills/bash.svg" },
+    { "id": "nginx", "title": "Nginx", "icon": "images/skills/nginx.svg" },
+    { "id": "gcp", "title": "GCP", "icon": "images/skills/gcp.svg" },
+    { "id": "react", "title": "React", "icon": "images/skills/react.svg" },
+    { "id": "tailwind", "title": "Tailwind", "icon": "images/skills/tailwind.svg" },
+    { "id": "jest", "title": "Jest (TDD/BDD)", "icon": "images/skills/jest.svg" },
+    { "id": "graphql", "title": "GraphQL", "icon": "images/skills/graphql.svg" }
+  ],
+  "groups": [
     {
-      "title": "Backend Dilleri ve Framework'leri",
+      "id": "healthcare",
+      "title": "Sağlık Sistemleri (FHIR/HL7)",
+      "impactNote": "FHIR standartlarını kullanarak güvenli, GDPR uyumlu sağlık platformları mimarisi oluşturuldu; sorgu gecikmesi %30 azaltıldı.",
+      "techIds": ["nodejs", "typescript", "postgresql", "docker", "gcp", "gitlabci"]
+    },
+    {
+      "id": "erp",
+      "title": "ERP ve MES Çözümleri",
+      "impactNote": "Endüstriyel platformlar mikroservislere taşınarak modernize edildi; özellik teslim süresi 1 aydan 1 haftaya indirildi.",
+      "techIds": ["nodejs", "typescript", "nestjs", "arangodb", "websocket", "docker", "microservices", "redis", "postgresql"]
+    },
+    {
+      "id": "realtime",
+      "title": "Gerçek Zamanlı İletişim",
+      "impactNote": "Çok partili konferans ve canlı izleme için sinyalleşme protokolleri optimize edildi; sistem verimliliği %40 artırıldı.",
+      "techIds": ["nodejs", "typescript", "webrtc", "socketio", "websocket", "redis"]
+    },
+    {
+      "id": "fintech",
+      "title": "FinTech ve Blockchain",
+      "impactNote": "Yüksek frekanslı işlem motorları ve güvenli HD cüzdan çözümleri tasarlandı; %30 hız artışı sağlandı.",
+      "techIds": ["nodejs", "typescript", "postgresql", "mongodb", "redis", "rabbitmq", "python"]
+    },
+    {
+      "id": "distributed",
+      "title": "Dağıtık Sistemler",
+      "impactNote": "30'dan fazla mikroservisten oluşan karmaşık ekosistemler tasarlandı ve sürdürüldü; yüksek trafik optimizasyonu için polyglot kalıcılık kullanıldı.",
+      "techIds": ["nodejs", "typescript", "rabbitmq", "kafka", "docker", "kubernetes", "terraform", "postgresql", "microservices", "architecture"]
+    },
+    {
+      "id": "devops",
+      "title": "DevOps ve Altyapı",
+      "impactNote": "Optimize edilmiş CI/CD boru hatları ve altyapı kodlaması (IaC) ile dağıtım süreleri %85 azaltıldı; %99.9 erişilebilirlik sağlandı.",
+      "techIds": ["docker", "gitlabci", "kubernetes", "terraform", "gcp", "linux", "nginx", "architecture"]
+    }
+  ],
+  "softSkills": [
+    {
+      "title": "Liderlik",
       "items": [
-        { "icon": "images/skills/nodejs.svg", "title": "Node.js", "isCore": true },
-        { "icon": "images/skills/typescript.png", "title": "TypeScript", "isCore": true },
-        { "icon": "images/skills/nestjs.svg", "title": "NestJS", "isCore": true },
-        { "icon": "images/skills/expressjs.svg", "title": "Express", "isCore": true },
-        { "icon": "images/skills/js.png", "title": "JavaScript", "isCore": true },
-        { "icon": "images/skills/python.png", "title": "Python" },
-        { "icon": "images/skills/django.png", "title": "Django" },
-        { "icon": "images/skills/golang.svg", "title": "Golang" }
+        "Çapraz Fonksiyonlu Ekip Ölçekleme",
+        "Teknik Mentorluk",
+        "Mühendislik Mükemmeliyeti Kültürünü Teşvik Etme"
       ]
     },
     {
-      "title": "Mimari ve Gerçek Zamanlı",
+      "title": "Stratejik Sahiplik",
       "items": [
-        { "icon": "images/skills/api.svg", "title": "API Tasarımı", "isCore": true },
-        { "icon": "images/skills/microservice.svg", "title": "Mikroservisler", "isCore": true },
-        { "icon": "images/skills/architecture.svg", "title": "Temiz Mimari", "isCore": true },
-        { "icon": "images/skills/websocket.svg", "title": "WebSocket", "isCore": true },
-        { "icon": "images/skills/rabbit-mq.svg", "title": "RabbitMQ", "isCore": true },
-        { "icon": "images/skills/kafka.svg", "title": "Kafka", "isCore": true },
-        { "icon": "images/skills/webrtc.svg", "title": "WebRTC" },
-        { "icon": "images/skills/socket-io.svg", "title": "Socket-IO" }
+        "Yüksek Risk Azaltma",
+        "Denetim Uyumluluğu",
+        "Sistem Güvenilirliği Yönetimi"
       ]
     },
     {
-      "title": "Veritabanları",
+      "title": "İletişim",
       "items": [
-        { "icon": "images/skills/postgresql.svg", "title": "PostgreSQL", "isCore": true },
-        { "icon": "images/skills/mongo-db.png", "title": "MongoDB", "isCore": true },
-        { "icon": "images/skills/arangodb.png", "title": "ArangoDB", "isCore": true },
-        { "icon": "images/skills/redis.svg", "title": "Redis", "isCore": true },
-        { "icon": "images/skills/couchdb.svg", "title": "CouchDB" },
-        { "icon": "images/skills/mysql.png", "title": "MySQL" }
+        "İşten Tekniğe Çeviri",
+        "Paydaş Uyumu",
+        "Çapraz Fonksiyonlu İşbirliği"
       ]
     },
     {
-      "title": "DevOps ve Bulut",
+      "title": "Değişim Yönetimi",
       "items": [
-        { "icon": "images/skills/docker.png", "title": "Docker", "isCore": true },
-        { "icon": "images/skills/gitlab.svg", "title": "GitLab CI/CD", "isCore": true },
-        { "icon": "images/skills/kubernetes.svg", "title": "Kubernetes", "isCore": true },
-        { "icon": "images/skills/terraform.svg", "title": "Terraform", "isCore": true },
-        { "icon": "images/skills/bash.svg", "title": "Linux/Bash", "isCore": true },
-        { "icon": "images/skills/nginx.svg", "title": "Nginx", "isCore": true },
-        { "icon": "images/skills/ubuntu.svg", "title": "Ubuntu" },
-        { "icon": "images/skills/aws.svg", "title": "AWS" },
-        { "icon": "images/skills/azure.svg", "title": "Azure" },
-        { "icon": "images/skills/firebase.png", "title": "Firebase" },
-        { "icon": "images/skills/openshift.png", "title": "OpenShift" },
-        { "icon": "images/skills/cloudflare.png", "title": "Cloudflare" }
-      ]
-    },
-    {
-      "title": "Güvenlik ve Test Araçlar",
-      "items": [
-        { "icon": "images/skills/antigravity.svg", "title": "Antigravity", "isCore": true },
-        { "icon": "images/skills/jest.svg", "title": "Jest (TDD/BDD)", "isCore": true },
-        { "icon": "images/skills/jwt.svg", "title": "JWT", "isCore": true },
-        { "icon": "images/skills/vscode.svg", "title": "VS-Code", "isCore": true },
-        { "icon": "images/skills/git.png", "title": "Git", "isCore": true },
-        { "icon": "images/skills/github.svg", "title": "Github", "isCore": true },
-        { "icon": "images/skills/gitlab.svg", "title": "Gitlab", "isCore": true },
-        { "icon": "images/skills/oauth.svg", "title": "OAuth2" },
-        { "icon": "images/skills/rbac.svg", "title": "RBAC" },
-        { "icon": "images/skills/jira.svg", "title": "Jira" },
-        { "icon": "images/skills/graphql.svg", "title": "GraphQL" }
-      ]
-    },
-    {
-      "title": "Frontend (Destekleyici)",
-      "items": [
-        { "icon": "images/skills/typescript.png", "title": "TypeScript", "isCore": true },
-        { "icon": "images/skills/react.png", "title": "React", "isCore": true },
-        { "icon": "images/skills/tailwind.svg", "title": "Tailwind", "isCore": true },
-        { "icon": "images/skills/lucide.svg", "title": "Lucide", "isCore": true },
-        { "icon": "images/skills/shadcn.svg", "title": "Shadcn", "isCore": true },
-        { "icon": "images/skills/js.png", "title": "JavaScript" },
-        { "icon": "images/skills/redux.svg", "title": "Redux" },
-        { "icon": "images/skills/html.png", "title": "HTML" },
-        { "icon": "images/skills/css.png", "title": "CSS" }
+        "Çevik ve Scrum Optimizasyonu",
+        "KPI Tanımlama",
+        "Kod İnceleme Standartlarının Oluşturulması"
       ]
     }
   ]
