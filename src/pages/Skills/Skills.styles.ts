@@ -489,10 +489,10 @@ export const SoftSkillsGrid = styled.div`
 `;
 
 export const SoftSkillCard = styled.div`
-    padding: 32px;
+    padding: 22px;
     background: ${(props) => (props.theme as Theme).cardBackground}C0;
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
-    border-radius: 4px;
+    border-radius: 6px;
     position: relative;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     overflow: hidden;

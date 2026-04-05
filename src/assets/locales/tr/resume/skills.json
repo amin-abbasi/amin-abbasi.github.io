@@ -74,14 +74,6 @@
   ],
   "softSkills": [
     {
-      "title": "Liderlik",
-      "items": [
-        "Çapraz Fonksiyonlu Ekip Ölçekleme",
-        "Teknik Mentorluk ve Eşli Programlama",
-        "Mühendislik Mükemmeliyeti Kültürünü Yönetme"
-      ]
-    },
-    {
       "title": "Stratejik Sahiplik",
       "items": [
         "Yüksek Risk Azaltma",
@@ -103,6 +95,14 @@
         "İki Aşamalı ADR Yönetişimi",
         "%20 Sürdürülebilir Refactoring Kuralı",
         "Çevik ve Scrum Optimizasyonu"
+      ]
+    },
+    {
+      "title": "Liderlik",
+      "items": [
+        "Çapraz Fonksiyonlu Ekip Ölçekleme",
+        "Teknik Mentorluk ve Eşli Programlama",
+        "Mühendislik Mükemmeliyeti Kültürünü Yönetme"
       ]
     }
   ]

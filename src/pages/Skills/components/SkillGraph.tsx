@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { TechNode, SkillGroup } from '@core/types/resume';
@@ -59,7 +59,8 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
     }, [updateDOMCenters]);
 
     // Update centers after expansion animations
-    useLayoutEffect(() => {
+    // Using useEffect instead of useLayoutEffect to avoid SSR/SSG warnings (like in vite-react-ssg)
+    useEffect(() => {
         const timer = setTimeout(updateDOMCenters, 100); 
         const longTimer = setTimeout(updateDOMCenters, 600); 
         return () => { clearTimeout(timer); clearTimeout(longTimer); };

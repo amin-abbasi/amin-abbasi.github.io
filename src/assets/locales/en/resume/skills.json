@@ -74,14 +74,6 @@
   ],
   "softSkills": [
     {
-      "title": "Leadership",
-      "items": [
-        "Cross-functional Team Scaling",
-        "Technical Mentorship & Pair Programming",
-        "Driving a Culture of Engineering Excellence"
-      ]
-    },
-    {
       "title": "Strategic Ownership",
       "items": [
         "High-Stakes Risk Mitigation",
@@ -103,6 +95,14 @@
         "Two-stage ADR Governance",
         "20% Sustainable Refactoring Rule",
         "Agile & Scrum Optimization"
+      ]
+    },
+    {
+      "title": "Leadership",
+      "items": [
+        "Cross-functional Team Scaling",
+        "Technical Mentorship & Pair Programming",
+        "Driving a Culture of Engineering Excellence"
       ]
     }
   ]
