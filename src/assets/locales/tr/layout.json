@@ -95,7 +95,7 @@
             "subjectPlaceholder": "Örn: Lider Mühendis rolü — şirketiniz",
             "message": "Mesaj",
             "messagePlaceholder": "Bana rolden, zorluktan bahsedin veya sadece merhaba deyin...",
-            "submit": "Mesaj Gönder",
+            "submit": "Gönder",
             "sending": "Gönderiliyor..."
         },
         "success": "✓ Mesaj gönderildi! 24 saat içinde size döneceğim.",

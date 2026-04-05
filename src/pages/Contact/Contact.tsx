@@ -4,7 +4,7 @@ import { Head } from 'vite-react-ssg';
 import { ThemeContext } from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import { Linkedin, Github, Mail, MapPin, Clock, Loader2, Send } from 'lucide-react';
+import { Linkedin, Github, Mail, MapPin, Clock, Loader2, MailIcon } from 'lucide-react';
 import Header from '@components/Header';
 import { StyledContainer } from '@components/shared/layout';
 import { Theme } from '@app/theme/themes';
@@ -196,7 +196,7 @@ function Contact(props: ContactProps) {
                                             </>
                                         ) : (
                                             <>
-                                                <Send size={14} />
+                                                <MailIcon size={14} />
                                                 {t('layout:contact.form.submit')}
                                             </>
                                         )}

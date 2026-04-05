@@ -95,7 +95,7 @@
             "subjectPlaceholder": "e.g. Lead Engineer role — your company",
             "message": "Message",
             "messagePlaceholder": "Tell me about the role, the challenge, or just say hi...",
-            "submit": "Send Message",
+            "submit": "Send",
             "sending": "Sending..."
         },
         "success": "✓ Message sent! I'll get back to you within 24 hours.",
