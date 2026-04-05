@@ -19,16 +19,6 @@
         "Remote Sensing & GIS Analysis",
         "Geodesy & Photogrammetry"
       ]
-    },
-    {
-      "title": "Continuous Learning",
-      "cardTitle": "Self-directed Growth & Professional Development",
-      "cardSubtitle": "Ongoing",
-      "bulletPoints": [
-        "Regular deep-dives into distributed systems literature (Designing Data-Intensive Applications, Clean Architecture)",
-        "Active participant in backend engineering communities and open-source ecosystems",
-        "Built and maintained public TypeScript, Go, and JS boilerplate libraries on GitHub with community adoption"
-      ]
     }
   ]
 }

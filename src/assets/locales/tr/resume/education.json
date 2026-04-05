@@ -19,16 +19,6 @@
         "Uzaktan Algılama ve CBS (GIS) Analizi",
         "Jeodezi ve Fotogrametri"
       ]
-    },
-    {
-      "title": "Sürekli Gelişim",
-      "cardTitle": "Kendi Başına Öğrenme ve Profesyonel Gelişim",
-      "cardSubtitle": "Devam Ediyor",
-      "bulletPoints": [
-        "Dağıtılmış sistemler literatürü (Designing Data-Intensive Applications, Clean Architecture) üzerine düzenli derinlemesine çalışmalar",
-        "Backend mühendisliği topluluklarına ve açık kaynak ekosistemlerine aktif katılım",
-        "GitHub üzerinde topluluk tarafından benimsenen TypeScript, Go ve JS boilerplate kütüphaneleri oluşturup sürdürdü"
-      ]
     }
   ]
 }
