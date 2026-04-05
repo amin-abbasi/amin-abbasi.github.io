@@ -57,9 +57,9 @@ export const NameHeading = styled.h1`
   font-size: clamp(2.6rem, 6vw, 5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 1.05;
+  line-height: 1.5;
   color: var(--text-primary);
-  margin: 0 0 1.2rem;
+  margin: 2rem 0 2rem;
 `;
 
 export const TypewriterContainer = styled.div<{ accent: string }>`

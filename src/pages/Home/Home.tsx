@@ -72,6 +72,8 @@ function Home() {
                                 loop: true,
                                 autoStart: true,
                                 strings: data.roles,
+                                delay: 35,
+                                deleteSpeed: 25,
                             }}
                         />
                     </S.TypewriterContainer>
