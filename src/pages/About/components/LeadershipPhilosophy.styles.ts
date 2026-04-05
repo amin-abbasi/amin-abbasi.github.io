@@ -104,9 +104,19 @@ export const PillarCard = styled.div`
     }
 `;
 
+export const PillarHeader = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+`;
+
 export const IconWrapper = styled.div`
-    width: 52px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
     border-radius: 4px;
     background: ${(props) => (props.theme as Theme).accentColor}1A;
     border: 1px solid ${(props) => (props.theme as Theme).accentColor}40;
@@ -114,26 +124,23 @@ export const IconWrapper = styled.div`
     align-items: center;
     justify-content: center;
     color: ${(props) => (props.theme as Theme).accentColor};
-    margin-bottom: 0.5rem;
     position: relative;
-    z-index: 1;
 
     svg {
-        width: 26px;
-        height: 26px;
+        width: 22px;
+        height: 22px;
         filter: drop-shadow(0 0 5px ${(props) => (props.theme as Theme).accentColor}40);
     }
 `;
 
 export const PillarTitle = styled.h4`
     font-family: var(--font-mono);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: ${(props) => (props.theme as Theme).color};
     margin: 0;
-    position: relative;
-    z-index: 1;
     letter-spacing: -0.02em;
+    text-align: start;
 `;
 
 export const PillarDescription = styled.div`
@@ -143,6 +150,7 @@ export const PillarDescription = styled.div`
     margin: 0;
     position: relative;
     z-index: 1;
+    text-align: start;
 
     strong {
         color: ${(props) => (props.theme as Theme).accentColor};

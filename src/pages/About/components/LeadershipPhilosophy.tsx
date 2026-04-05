@@ -34,10 +34,12 @@ const LeadershipPhilosophy: React.FC<LeadershipPhilosophyProps> = ({ title, pill
                         <Fade key={pillar.id} direction="up" triggerOnce delay={index * 150}>
                             <S.PillarCard>
                                 <div className="blueprint-pattern" />
-                                <S.IconWrapper>
-                                    <IconComponent />
-                                </S.IconWrapper>
-                                <S.PillarTitle>{pillar.title}</S.PillarTitle>
+                                <S.PillarHeader>
+                                    <S.IconWrapper>
+                                        <IconComponent />
+                                    </S.IconWrapper>
+                                    <S.PillarTitle>{pillar.title}</S.PillarTitle>
+                                </S.PillarHeader>
                                 <S.PillarDescription as="div">
                                     <ReactMarkdown>{pillar.description}</ReactMarkdown>
                                 </S.PillarDescription>

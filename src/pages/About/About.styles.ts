@@ -122,7 +122,7 @@ export const TestimonialsGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
     
     @media (min-width: 992px) {
         grid-template-columns: repeat(3, 1fr);
