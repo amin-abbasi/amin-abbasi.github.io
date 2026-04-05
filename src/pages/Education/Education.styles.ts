@@ -71,7 +71,7 @@ export const TrackDot = styled.div<{ $accent: string }>`
 
 export const Card = styled.div`
     padding: 28px 32px;
-    margin-top: 0.4em;
+    margin-top: 1.4em;
     background: ${(props) => (props.theme as Theme).cardBackground};
     border: 1px solid ${(props) => (props.theme as Theme).cardBorderColor};
     border-radius: 4px;

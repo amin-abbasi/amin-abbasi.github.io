@@ -9,7 +9,7 @@ export const AboutSection = styled(Section)`
 export const TextColumnContent = styled.div`
     font-size: 1.05em;
     font-weight: 400;
-    line-height: 1.8;
+    line-height: 1.5;
     position: relative;
     z-index: 10;
     text-align: start;
@@ -28,7 +28,7 @@ export const TextColumnContent = styled.div`
     }
 
     p {
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
         color: ${(props) => (props.theme as Theme).color}DD;
     }
 

@@ -66,6 +66,7 @@ export const Card = styled.div`
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
 
     &::before,
     &::after {
