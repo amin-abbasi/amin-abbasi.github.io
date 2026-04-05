@@ -103,7 +103,7 @@ export const SkillBadge = styled.div<{ $isCore?: boolean }>`
         ? `${(props.theme as Theme).accentColor}18` 
         : `${(props.theme as Theme).accentColor}08`)};
     border: 1px solid ${(props) => (props.$isCore 
-        ? '#00f2ff' 
+        ? (props.theme as Theme).accentColor 
         : `${(props.theme as Theme).accentColor}15`)};
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -111,7 +111,7 @@ export const SkillBadge = styled.div<{ $isCore?: boolean }>`
     margin-bottom: 4px;
 
     ${(props) => props.$isCore && css`
-        box-shadow: 0 0 12px rgba(0, 242, 255, 0.25), inset 0 0 4px rgba(0, 242, 255, 0.1);
+        box-shadow: 0 0 12px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}40, inset 0 0 4px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}15;
         
         &::after {
             content: '';
@@ -122,8 +122,8 @@ export const SkillBadge = styled.div<{ $isCore?: boolean }>`
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background: #00f2ff;
-            box-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+            background: ${(props: { theme: Theme }) => (props.theme as Theme).accentColor};
+            box-shadow: 0 0 10px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}, 0 0 20px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor};
             opacity: 0.9;
         }
 
@@ -131,7 +131,7 @@ export const SkillBadge = styled.div<{ $isCore?: boolean }>`
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(0, 242, 255, 0.05), transparent);
+            background: linear-gradient(135deg, ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}10, transparent);
             border-radius: 2px;
             pointer-events: none;
         }
@@ -139,14 +139,14 @@ export const SkillBadge = styled.div<{ $isCore?: boolean }>`
 
     &:hover {
         background: ${(props) => (props.$isCore 
-            ? 'rgba(0, 242, 255, 0.15)' 
+            ? `${(props.theme as Theme).accentColor}25` 
             : `${(props.theme as Theme).accentColor}12`)};
         border-color: ${(props) => (props.$isCore 
-            ? '#00f2ff' 
+            ? (props.theme as Theme).accentColor 
             : `${(props.theme as Theme).accentColor}50`)};
         transform: translateY(-2px) scale(1.05);
         box-shadow: ${(props) => (props.$isCore 
-            ? '0 8px 25px rgba(0, 242, 255, 0.4)' 
+            ? `0 8px 25px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}50` 
             : '0 4px 12px rgba(0, 0, 0, 0.05)')};
         z-index: 10;
     }
@@ -299,8 +299,8 @@ export const GroupNode = styled(motion.div)<{ $isActive: boolean; $isSelected: b
         ? `${(props.theme as Theme).accentColor}f0` 
         : `${(props.theme as Theme).cardBackground}f0`};
     border: 1px solid ${(props) => props.$isSelected 
-        ? '#00f2ff' 
-        : `${(props.theme as Theme).cardBorderColor}`};
+        ? (props.theme as Theme).accentColor 
+        : (props.theme as Theme).cardBorderColor};
     border-radius: 40px;
     cursor: pointer;
     display: inline-flex;
@@ -312,17 +312,17 @@ export const GroupNode = styled(motion.div)<{ $isActive: boolean; $isSelected: b
     opacity: ${(props) => (props.$isDimmed ? 0.2 : 1)};
     transform: ${(props) => props.$isSelected ? 'translateY(6px)' : 'translateY(0)'};
     box-shadow: ${(props) => props.$isSelected 
-        ? '0 2px 20px rgba(0, 242, 255, 0.4), inset 0 0 20px rgba(0, 242, 255, 0.1)' 
+        ? `0 2px 20px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}40, inset 0 0 20px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}10` 
         : props.$isActive
-            ? '0 0 20px rgba(0, 242, 255, 0.2)'
+            ? `0 0 20px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}20`
             : '0 4px 15px rgba(0, 0, 0, 0.1)'};
     box-sizing: border-box;
     max-width: 400px;
     position: relative;
     
     &:hover {
-        border-color: #00f2ff;
-        box-shadow: 0 8px 30px rgba(0, 242, 255, 0.3);
+        border-color: ${(props) => (props.theme as Theme).accentColor};
+        box-shadow: 0 8px 30px ${(props) => (props.theme as Theme).accentColor}30;
         z-index: 55;
     }
 
@@ -350,7 +350,7 @@ export const GroupTooltip = styled(motion.div)`
     transform: translateX(-50%);
     background: rgba(0, 10, 20, 0.95);
     backdrop-filter: blur(8px);
-    border: 1px solid #00f2ff50;
+    border: 1px solid ${(props) => (props.theme as Theme).accentColor}50;
     color: white;
     padding: 12px 18px;
     border-radius: 8px;
@@ -375,7 +375,7 @@ export const GroupTooltip = styled(motion.div)`
         transform: translateX(-50%);
         border-width: 6px;
         border-style: solid;
-        border-color: #00f2ff50 transparent transparent transparent;
+        border-color: ${(props) => (props.theme as Theme).accentColor}50 transparent transparent transparent;
     }
 
     ${GroupNode}:hover & {
@@ -393,8 +393,8 @@ export const TechNodeCircle = styled(motion.div)<{ $isActive: boolean; $isSelect
         ? `${(props.theme as Theme).accentColor}18` 
         : `${(props.theme as Theme).cardBackground}`};
     border: 1px solid ${(props) => props.$isSelected 
-        ? '#00f2ff' 
-        : `${(props.theme as Theme).cardBorderColor}`};
+        ? (props.theme as Theme).accentColor 
+        : (props.theme as Theme).cardBorderColor};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -404,14 +404,14 @@ export const TechNodeCircle = styled(motion.div)<{ $isActive: boolean; $isSelect
     backdrop-filter: blur(8px);
     
     ${(props) => props.$isSelected && css`
-        box-shadow: 0 0 25px rgba(0, 242, 255, 0.4), inset 0 0 10px rgba(0, 242, 255, 0.1);
+        box-shadow: 0 0 25px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}40, inset 0 0 10px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}10;
         transform: scale(1.1);
     `}
 
     &:hover {
-        border-color: #00f2ff;
+        border-color: ${(props) => (props.theme as Theme).accentColor};
         transform: scale(1.15);
-        box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        box-shadow: 0 0 20px ${(props: { theme: Theme }) => (props.theme as Theme).accentColor}40;
         z-index: 40;
     }
 

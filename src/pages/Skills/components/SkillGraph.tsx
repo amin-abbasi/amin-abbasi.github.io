@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { TechNode, SkillGroup } from '@core/types/resume';
+import { ThemeContext } from 'styled-components';
+import { Theme } from '@app/theme/themes';
 import * as S from '../Skills.styles';
 
 interface SkillGraphProps {
@@ -17,6 +19,7 @@ interface NodePosition {
 
 const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
     const { t } = useTranslation();
+    const theme = React.useContext(ThemeContext) as Theme;
     const containerRef = useRef<HTMLDivElement>(null);
     const nodeRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
     const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
@@ -198,7 +201,7 @@ const SkillGraph: React.FC<SkillGraphProps> = ({ techs, groups }) => {
                                 y1={startY}
                                 x2={endX}
                                 y2={endY}
-                                stroke="#00f2ff"
+                                stroke={theme.accentColor}
                                 strokeWidth="1"
                                 strokeDasharray="4,4"
                                 transition={{ duration: 0.4 }}
