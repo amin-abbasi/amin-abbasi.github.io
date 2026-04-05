@@ -143,6 +143,8 @@ export const CaseBodyWrapper = styled.div<{ $open: boolean }>`
     grid-template-rows: ${props => props.$open ? '1fr' : '0fr'};
     transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: ${(props) => (props.theme as Theme).cardBackground};
+    overflow: hidden;
+    min-height: 0;
 `;
 
 export const CaseBody = styled.div`

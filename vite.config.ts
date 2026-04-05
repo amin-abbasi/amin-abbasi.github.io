@@ -57,7 +57,7 @@ export default defineConfig({
   },
   base: "/",
   build: {
-    outDir: "build",
+    outDir: "dist",
   },
   envPrefix: ["VITE_", "FIREBASE_", "FORM_"],
   // SSG options
