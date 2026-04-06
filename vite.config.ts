@@ -42,7 +42,13 @@ export default defineConfig({
     noExternal: ["styled-components", "react-awesome-reveal", "@emotion/react", "@emotion/styled"],
   },
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          ["babel-plugin-styled-components", { ssr: true, displayName: true }]
+        ]
+      }
+    }),
     viteStaticCopy({
       targets: [
         {
