@@ -76,7 +76,6 @@ function Contact(props: ContactProps) {
                         <S.Grid>
                             {/* Left: Contact Info */}
                             <S.InfoCard>
-                                <S.InfoLabel>{t('layout:contact.init')}</S.InfoLabel>
                                 <S.InfoTitle>{t('layout:contact.title')}</S.InfoTitle>
                                 <S.InfoSubtitle>
                                     {t('layout:contact.subtitle')}
@@ -125,7 +124,6 @@ function Contact(props: ContactProps) {
 
                             {/* Right: Contact Form */}
                             <S.FormCard>
-                                <S.InfoLabel>{t('layout:contact.sendInit')}</S.InfoLabel>
                                 <S.InfoTitle style={{ marginBottom: '1.5rem' }}>{t('layout:contact.sendTitle')}</S.InfoTitle>
 
                                 <form onSubmit={handleSubmit}>
