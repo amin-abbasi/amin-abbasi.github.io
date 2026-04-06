@@ -73,7 +73,6 @@ export default defineConfig({
       },
     },
   },
-  envPrefix: ["VITE_", "FIREBASE_", "FORM_"],
   // SSG options
   // @ts-ignore
   ssgOptions: {

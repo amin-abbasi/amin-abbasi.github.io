@@ -1,7 +1,7 @@
 {
     "homepage": "https://amin-abbasi.github.io",
     "name": "my-portfolio",
-    "version": "15.8.0",
+    "version": "15.9.0",
     "private": true,
     "type": "module",
     "scripts": {

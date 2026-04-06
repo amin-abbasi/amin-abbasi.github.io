@@ -175,15 +175,15 @@ const GlobalBackground: React.FC = () => {
                 ctx.globalAlpha = easeOut;
                 ctx.font = '500 10px var(--font-mono)';
                 ctx.fillStyle = textHUD;
-                ctx.fillText(`BOOT: SYSTEM_OK`, 40, 40);
-                const coordX = (mouseRef.current.x / W).toFixed(4);
-                const coordY = (mouseRef.current.y / H).toFixed(4);
-                ctx.textAlign = 'right';
-                ctx.fillText(`LAT:${coordX} LNG:${coordY}`, W - 40, 40);
-                ctx.textAlign = 'left';
-                ctx.fillText(`STATUS: CONNECTED`, 40, H - 40);
-                ctx.textAlign = 'right';
-                ctx.fillText(`FRM: ${Math.floor(time / 16)}`, W - 40, H - 40);
+                // ctx.fillText(`BOOT: SYSTEM_OK`, 40, 40);
+                // const coordX = (mouseRef.current.x / W).toFixed(4);
+                // const coordY = (mouseRef.current.y / H).toFixed(4);
+                // ctx.textAlign = 'right';
+                // ctx.fillText(`LAT:${coordX} LNG:${coordY}`, W - 40, 40);
+                // ctx.textAlign = 'left';
+                // ctx.fillText(`STATUS: CONNECTED`, 40, H - 40);
+                // ctx.textAlign = 'right';
+                // ctx.fillText(`FRM: ${Math.floor(time / 16)}`, W - 40, H - 40);
                 ctx.restore();
             }
 
