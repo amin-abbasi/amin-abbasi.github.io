@@ -1,8 +1,9 @@
 {
     "homepage": "https://amin-abbasi.github.io",
     "name": "my-portfolio",
-    "version": "15.6.0",
+    "version": "15.7.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "start": "vite",
         "dev": "vite",

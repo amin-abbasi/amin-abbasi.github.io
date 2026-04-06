@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAnalytics } from './hooks/useAnalytics';
 import NavBarWithRouter from '../components/NavBar';
@@ -5,6 +6,7 @@ import Footer from '../components/Footer';
 import TranslationWarning from '../components/TranslationWarning';
 import GlobalBackground from '../components/GlobalBackground';
 import ScrollToTop from '../components/ScrollToTop';
+import SkeletonLoader from '../components/SkeletonLoader';
 
 function MainApp() {
     useAnalytics();
@@ -15,7 +17,9 @@ function MainApp() {
             <GlobalBackground />
             <NavBarWithRouter />
             <main className="main">
-                <Outlet />
+                <Suspense fallback={<SkeletonLoader />}>
+                    <Outlet />
+                </Suspense>
             </main>
             <Footer />
             <TranslationWarning />

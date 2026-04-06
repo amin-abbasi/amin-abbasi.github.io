@@ -58,6 +58,20 @@ export default defineConfig({
   base: "/",
   build: {
     outDir: "dist",
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('firebase')) return 'vendor-firebase';
+            if (id.includes('recharts') || id.includes('d3')) return 'vendor-charts';
+            if (id.includes('framer-motion')) return 'vendor-motion';
+            if (id.includes('lucide-react') || id.includes('react-icons')) return 'vendor-icons';
+            // Leave everything else to Vite/Rollup's default automatic splitting
+          }
+        },
+      },
+    },
   },
   envPrefix: ["VITE_", "FIREBASE_", "FORM_"],
   // SSG options
