@@ -10,13 +10,17 @@ const SkeletonContainer = styled.div`
   padding: 100px 2rem 2rem;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 500px; /* Aligned with HeroContent's stable height */
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   @media (max-width: 991px) {
     padding-top: 120px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 450px;
   }
 
   @media (max-width: 480px) {

@@ -42,14 +42,24 @@ export const HeroWrapper = styled.div`
   }
 `;
 
-export const HeroContent = styled.div`
+export const HeroContent = styled.div<{ $isVisible: boolean }>`
   position: relative;
-  zIndex: 2;
+  z-index: 2;
   text-align: center;
   padding: 0 24px;
   max-width: 760px;
   width: 100%;
   margin: 0 auto;
+  min-height: 500px; /* Stable height to prevent CLS */
+  
+  /* Modern CSS Transition */
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  transform: translateY(${props => props.$isVisible ? '0' : '20px'});
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+
+  @media (max-width: 768px) {
+    min-height: 450px;
+  }
 
   @media (max-width: 480px) {
     padding-bottom: 80px;

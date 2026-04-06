@@ -84,11 +84,20 @@ export const useAnalytics = () => {
     useEffect(() => {
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         if (typeof window !== 'undefined' && (configs.isProduction || isLocal)) {
-            // Defer analytics to prioritize critical rendering
-            const timer = setTimeout(() => {
-                trackEvent();
-            }, 5000);
-            return () => clearTimeout(timer);
+            // Wait for full window load to prioritize 3D assets and initial paint
+            const handleLoad = () => {
+                const timer = setTimeout(() => {
+                    trackEvent();
+                }, 2000); // Small additional buffer
+                return () => clearTimeout(timer);
+            };
+
+            if (document.readyState === 'complete') {
+                handleLoad();
+            } else {
+                window.addEventListener('load', handleLoad);
+                return () => window.removeEventListener('load', handleLoad);
+            }
         }
     }, [location]);
 };

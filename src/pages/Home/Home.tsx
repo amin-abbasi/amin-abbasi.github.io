@@ -1,7 +1,5 @@
-// src/pages/Home/Home.tsx
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { Head } from 'vite-react-ssg';
-import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import AppContext from '@app/AppContext';
 import Social from '@components/Social';
@@ -18,8 +16,10 @@ import * as S from './Home.styles';
 function Home() {
     const { t } = useTranslation();
     const context = useContext(AppContext);
+    const [isVisible, setIsVisible] = useState(false);
     
     useEffect(() => {
+        setIsVisible(true);
         if (context?.background) {
             // Activate the 3D "AA" Core for the Home page
             context.background.setLogo(true, "AA", 48, 22);
@@ -51,54 +51,46 @@ function Home() {
                 <meta name="description" content={data.roles.join(', ')} />
             </Head>
 
-            <S.HeroContent className="hero-content">
-                <Fade direction="up" triggerOnce duration={800}>
-                    <S.NameHeading>{data.name}</S.NameHeading>
+            <S.HeroContent className="hero-content" $isVisible={isVisible}>
+                <S.NameHeading>{data.name}</S.NameHeading>
 
-                    <S.TypewriterContainer accent={accent}>
-                        {data.roles[0]}
-                    </S.TypewriterContainer>
+                <S.TypewriterContainer accent={accent}>
+                    {data.roles[0]}
+                </S.TypewriterContainer>
 
-                    {/* Tagline */}
-                    {data.tagline && (
-                        <S.Tagline>{data.tagline}</S.Tagline>
-                    )}
+                {/* Tagline */}
+                {data.tagline && (
+                    <S.Tagline>{data.tagline}</S.Tagline>
+                )}
 
-                    {/* CTA Buttons */}
-                    <S.HeroCtaGroup className="hero-cta-group">
-                        <S.PrimaryButton
-                            href="/experience"
-                            accent={accent}
-                        >
-                            <Briefcase size={14} />
-                            {t('layout:home.viewExperience')}
-                        </S.PrimaryButton>
-                        <S.SecondaryButton
-                            href={RESUME_DOWNLOAD_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            download="amin-abbasi-resume.pdf"
-                            accent={accent}
-                        >
-                            <Download size={14} />
-                            {t('layout:home.downloadCv')}
-                        </S.SecondaryButton>
-                    </S.HeroCtaGroup>
+                {/* CTA Buttons */}
+                <S.HeroCtaGroup className="hero-cta-group">
+                    <S.PrimaryButton
+                        href="/experience"
+                        accent={accent}
+                    >
+                        <Briefcase size={14} />
+                        {t('layout:home.viewExperience')}
+                    </S.PrimaryButton>
+                    <S.SecondaryButton
+                        href={RESUME_DOWNLOAD_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download="amin-abbasi-resume.pdf"
+                        accent={accent}
+                    >
+                        <Download size={14} />
+                        {t('layout:home.downloadCv')}
+                    </S.SecondaryButton>
+                </S.HeroCtaGroup>
 
-                    {/* Availability badge */}
-                    <S.AvailabilityBadge accent={accent}>
-                        <span />
-                        {t('layout:home.availability')}
-                    </S.AvailabilityBadge>
+                {/* Availability badge */}
+                <S.AvailabilityBadge accent={accent}>
+                    <span />
+                    {t('layout:home.availability')}
+                </S.AvailabilityBadge>
 
-                    <Social />
-
-                    {/* Social Proof: Featured Testimonial */}
-                    {/* <div style={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '0 12px', marginTop: '2rem' }}> */}
-                    {/* <HomeTestimonial /> */}
-                    {/* </div> */}
-
-                </Fade>
+                <Social />
             </S.HeroContent>
         </S.HeroWrapper>
     );

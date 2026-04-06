@@ -43,9 +43,15 @@ const GlobalBackground: React.FC = () => {
         }));
         let shootingStars: any[] = [];
 
+        let resizePending = false;
         const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if (resizePending) return;
+            resizePending = true;
+            requestAnimationFrame(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                resizePending = false;
+            });
         };
 
         resize();
@@ -118,56 +124,37 @@ const GlobalBackground: React.FC = () => {
                 ctx.save();
                 ctx.translate(W/2 + tiltRef.current.y * 150, H/2 + ty * 150);
                 
-                const finalBlur = introBlur + 10 * easeOut;
-                if (finalBlur > 0.5) ctx.filter = `blur(${finalBlur}px)`;
-                
-                ctx.globalAlpha = 0.12 + (0.68 * (1 - easeOut)); 
-                ctx.strokeStyle = accent;
-                ctx.lineWidth = logoThickness;
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                mesh.connections.forEach(([i, j]) => {
-                    const p1 = mesh.vertices[i]; const p2 = mesh.vertices[j];
-                    const r1 = { 
-                        x: (p1.x * Math.cos(tx) - p1.z * Math.sin(tx)) * baseScale,
-                        y: (p1.y * Math.cos(ty) - (p1.x * Math.sin(tx) + p1.z * Math.cos(tx)) * Math.sin(ty)) * baseScale
-                    };
-                    const r2 = { 
-                        x: (p2.x * Math.cos(tx) - p2.z * Math.sin(tx)) * baseScale,
-                        y: (p2.y * Math.cos(ty) - (p2.x * Math.sin(tx) + p2.z * Math.cos(tx)) * Math.sin(ty)) * baseScale
-                    };
+                // --- HIGH-PERFORMANCE MULTI-PASS GLOW ---
+                // We draw the mesh 3 times with different thicknesses and alphas
+                // to simulate a high-fidelity "Blueprint Glow" without using ctx.filter.
+                const glowPasses = [
+                    { width: logoThickness * 2.5, alpha: 0.04 * (1 - easeOut), blur: 0 }, // Outer Glow
+                    { width: logoThickness * 1.5, alpha: 0.12 * (1 - easeOut), blur: 0 }, // Inner Glow
+                    { width: 1, alpha: 0.6 * (1 - easeOut), blur: 0 }                    // Sharp Center (Ink)
+                ];
 
-                    // ---- SOLID BEAM RENDERING ----
-                    const dx = r2.x - r1.x;
-                    const dy = r2.y - r1.y;
-                    const len = Math.sqrt(dx * dx + dy * dy);
-                    if (len < 0.5) return;
-
-                    const nx = (-dy / len) * (logoThickness / 2);
-                    const ny = (dx / len) * (logoThickness / 2);
-
-                    const q1 = { x: r1.x + nx, y: r1.y + ny };
-                    const q2 = { x: r2.x + nx, y: r2.y + ny };
-                    const q3 = { x: r2.x - nx, y: r2.y - ny };
-                    const q4 = { x: r1.x - nx, y: r1.y - ny };
-
+                glowPasses.forEach((pass) => {
+                    ctx.globalAlpha = pass.alpha;
+                    ctx.strokeStyle = accent;
+                    ctx.lineWidth = pass.width;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
                     ctx.beginPath();
-                    ctx.moveTo(q1.x, q1.y);
-                    ctx.lineTo(q2.x, q2.y);
-                    ctx.lineTo(q3.x, q3.y);
-                    ctx.lineTo(q4.x, q4.y);
-                    ctx.closePath();
+                    
+                    mesh.connections.forEach(([i, j]) => {
+                        const p1 = mesh.vertices[i]; const p2 = mesh.vertices[j];
+                        // Cache the projected coordinates
+                        const r1x = (p1.x * Math.cos(tx) - p1.z * Math.sin(tx)) * baseScale;
+                        const r1y = (p1.y * Math.cos(ty) - (p1.x * Math.sin(tx) + p1.z * Math.cos(tx)) * Math.sin(ty)) * baseScale;
+                        const r2x = (p2.x * Math.cos(tx) - p2.z * Math.sin(tx)) * baseScale;
+                        const r2y = (p2.y * Math.cos(ty) - (p2.x * Math.sin(tx) + p2.z * Math.cos(tx)) * Math.sin(ty)) * baseScale;
 
-                    // Fill for the "Solid" look
-                    ctx.globalAlpha = (0.08 + (0.42 * (1 - easeOut))) * 0.8;
-                    ctx.fillStyle = accent;
-                    ctx.fill();
-
-                    // Stroke for the "Edge" definition
-                    ctx.globalAlpha = 0.15 + (0.55 * (1 - easeOut));
-                    ctx.lineWidth = 1;
+                        ctx.moveTo(r1x, r1y);
+                        ctx.lineTo(r2x, r2y);
+                    });
                     ctx.stroke();
                 });
+                
                 ctx.restore();
 
                 // ── LAYER 3: Technical HUD (Only when logo is visible) ───────
