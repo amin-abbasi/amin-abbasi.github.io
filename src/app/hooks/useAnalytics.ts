@@ -33,10 +33,16 @@ export const trackEvent = async (customPath?: string) => {
         let country = 'Unknown';
         try {
             const response = await fetch('https://get.geojs.io/v1/ip/country.json');
-            const data = await response.json();
-            country = data.name || 'Unknown';
+            if (response.ok) {
+                const text = await response.text();
+                if (text) {
+                    const data = JSON.parse(text);
+                    country = data.name || data.country || 'Unknown';
+                }
+            }
         } catch (e) {
-            console.error('Analytics IP lookup error:', e);
+            // Silently fallback for IP lookup to keep console clean
+            console.warn('Analytics IP lookup skipped:', e instanceof Error ? e.message : 'Service unavailable');
         }
 
         const parser = new UAParser();

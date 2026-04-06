@@ -19,5 +19,18 @@ export const fireStore = getFirestore(firebaseApp);
 
 // Initialize analytics only on the client and if supported
 export const analyticsPromise = typeof window !== 'undefined' 
-  ? isSupported().then(supported => supported ? getAnalytics(firebaseApp) : null)
+  ? isSupported().then(supported => {
+      if (supported) {
+        const analytics = getAnalytics(firebaseApp);
+        // Fix for GitHub Pages cookie rejection
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('config', configs.firebaseMeasurementId, {
+            cookie_domain: window.location.hostname,
+            cookie_flags: 'SameSite=None;Secure'
+          });
+        }
+        return analytics;
+      }
+      return null;
+    })
   : Promise.resolve(null);
