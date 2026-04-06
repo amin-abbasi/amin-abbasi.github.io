@@ -84,7 +84,11 @@ export const useAnalytics = () => {
     useEffect(() => {
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         if (typeof window !== 'undefined' && (configs.isProduction || isLocal)) {
-            trackEvent();
+            // Defer analytics to prioritize critical rendering
+            const timer = setTimeout(() => {
+                trackEvent();
+            }, 5000);
+            return () => clearTimeout(timer);
         }
     }, [location]);
 };

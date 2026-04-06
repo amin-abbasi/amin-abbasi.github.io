@@ -34,6 +34,7 @@ function NavBar() {
                         <img
                             src={data?.logo?.source}
                             alt="main logo"
+                            loading="lazy"
                             style={{ 
                                 height: data?.logo?.height || 40, 
                                 width: data?.logo?.width || 40 

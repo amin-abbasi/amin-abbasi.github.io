@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
 import { useTranslation } from 'react-i18next';
-import Dashboard from './components/Dashboard';
+const Dashboard = React.lazy(() => import('./components/Dashboard'));
 import * as S from './Admin.styles';
 
 const ADMIN_HASH = '$2b$10$4QoV.FxH11vPy92U0hcZXOuzSjpeK0C.J7whXDpKw1z590CUZFWdq';

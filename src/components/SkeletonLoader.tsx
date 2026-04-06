@@ -7,14 +7,21 @@ const shimmer = keyframes`
 `;
 
 const SkeletonContainer = styled.div`
-  padding: 2rem;
+  padding: 100px 2rem 2rem;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: var(--header-height);
+
+  @media (max-width: 991px) {
+    padding-top: 120px;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 140px;
+  }
 `;
 
 const SkeletonBase = styled.div`

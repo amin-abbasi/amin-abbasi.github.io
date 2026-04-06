@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import path from "path";
@@ -72,7 +72,6 @@ export default defineConfig({
             if (id.includes('firebase')) return 'vendor-firebase';
             if (id.includes('recharts') || id.includes('d3')) return 'vendor-charts';
             if (id.includes('framer-motion')) return 'vendor-motion';
-            if (id.includes('lucide-react') || id.includes('react-icons')) return 'vendor-icons';
             // Leave everything else to Vite/Rollup's default automatic splitting
           }
         },

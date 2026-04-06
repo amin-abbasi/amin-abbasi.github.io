@@ -249,7 +249,7 @@ function ProjectCard(props: ProjectCardProps) {
 
             {project.image && (
                 <ImageWrapper>
-                    <img src={project.image} alt={project.title} />
+                    <img src={project.image} alt={project.title} loading="lazy" />
                 </ImageWrapper>
             )}
 

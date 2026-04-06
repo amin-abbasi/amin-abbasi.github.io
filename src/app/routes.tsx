@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import App from './App';
-import Home from '@pages/Home/Home';
+const Home = lazy(() => import('@pages/Home/Home'));
 
 const Admin = lazy(() => import('@pages/Admin/Admin'));
 const About = lazy(() => import('@pages/About/About'));
