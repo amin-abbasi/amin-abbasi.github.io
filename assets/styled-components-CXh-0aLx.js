@@ -1,1 +1,0 @@
-import{d as r}from"./app-DIpUg5qZ.js";import"./vendor-motion-CLxAPPWH.js";import"./vendor-icons-oi0yKthW.js";import"./vendor-charts-DbC-OHEB.js";import"./vendor-firebase-BBPOHLSG.js";async function a(){const t=new r;return{collect(e){return t.collectStyles(e)},toString(){return t.getStyleTags()},cleanup(){t.seal()}}}export{a as default};
