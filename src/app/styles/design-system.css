@@ -17,9 +17,27 @@
   --blueprint-cyan-dark: #005a8e;
   --blueprint-cyan-faded: rgba(0, 160, 255, 0.12);
 
-  /* Typography */
-  --font-main: "Outfit", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  /* Typography Fallbacks (Zero-CLS Architecture) */
+  @font-face {
+    font-family: 'OutfitFallback';
+    src: local('Arial');
+    size-adjust: 100%;
+    ascent-override: 95%;
+    descent-override: 20%;
+    line-gap-override: 0%;
+  }
+
+  @font-face {
+    font-family: 'MonoFallback';
+    src: local('Courier New');
+    size-adjust: 105%;
+    ascent-override: 92%;
+    descent-override: 25%;
+    line-gap-override: 0%;
+  }
+
+  --font-main: "Outfit", "OutfitFallback", sans-serif;
+  --font-mono: "JetBrains Mono", "MonoFallback", monospace;
 
   /* Layout */
   --header-height: 80px;

@@ -58,10 +58,10 @@ const SkeletonHeader = styled(SkeletonBase)`
   margin-bottom: 1rem;
 `;
 
-const SkeletonLine = styled(SkeletonBase)`
-  height: 16px;
-  width: 100%;
-  margin-bottom: 0.75rem;
+const SkeletonLine = styled(SkeletonBase)<{ width?: string }>`
+  height: 3.5rem; /* Matches the H1 leading height */
+  width: ${props => props.width || '100%'};
+  border-radius: var(--border-radius);
 `;
 
 const SkeletonGrid = styled.div`

@@ -52,10 +52,10 @@ export const HeroContent = styled.div<{ $isVisible: boolean }>`
   margin: 0 auto;
   min-height: 500px; /* Stable height to prevent CLS */
   
-  /* Modern CSS Transition */
+  /* Modern CSS Transition (Restricted to non-H1 elements) */
   opacity: ${props => props.$isVisible ? 1 : 0};
-  transform: translateY(${props => props.$isVisible ? '0' : '20px'});
-  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(${props => props.$isVisible ? '0' : '10px'});
+  transition: opacity 0.4s ease-out 0.2s, transform 0.4s ease-out 0.2s;
 
   @media (max-width: 768px) {
     min-height: 450px;

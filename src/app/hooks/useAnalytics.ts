@@ -88,7 +88,7 @@ export const useAnalytics = () => {
             const handleLoad = () => {
                 const timer = setTimeout(() => {
                     trackEvent();
-                }, 2000); // Small additional buffer
+                }, 5000); // Increased buffer to ensure zero competition with LCP/Hydration
                 return () => clearTimeout(timer);
             };
 
